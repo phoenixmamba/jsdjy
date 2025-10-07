@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.mallserver.dao.ShoppingCouponDao">
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.mallserver.po.ShoppingCouponPo">
+        <id column="id" property="id"/>
+        <result column="right_No" property="right_No"/>
+        <result column="createdate" property="createdate"/>
+        <result column="right_Type" property="right_Type"/>
+        <result column="right_Display" property="right_Display"/>
+        <result column="right_Content" property="right_Content"/>
+        <result column="act_Rule" property="act_Rule"/>
+        <result column="memo" property="memo"/>
+        <result column="stack_Used" property="stack_Used"/>
+        <result column="discount_First" property="discount_First"/>
+        <result column="time_Type" property="time_Type"/>
+        <result column="start_Date" property="start_Date"/>
+        <result column="end_Date" property="end_Date"/>
+        <result column="time_Unit" property="time_Unit"/>
+        <result column="fix_Month" property="fix_Month"/>
+        <result column="max_Money" property="max_Money"/>
+        <result column="min_Money" property="min_Money"/>
+        <result column="isdelete" property="isdelete"/>
+        <result column="ispub" property="ispub"/>
+        <result column="per_limit" property="perLimit"/>
+        <result column="offline" property="offline"/>
+        <result column="write_off_count" property="writeOffCount"/>
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id,
+        right_No,
+        createdate,
+        right_Type,
+        right_Display,
+        right_Content,
+        act_Rule,
+        memo,
+        stack_Used,
+        discount_First,
+        time_Type,
+        start_Date,
+        end_Date,
+        time_Unit,
+        fix_Month,
+        max_Money,
+        min_Money,
+        isdelete,
+        ispub,
+        per_limit,
+        offline,
+        write_off_count
+    </sql>
+
+
+    <!--  查询详情 -->
+    <select id="selectDetail" resultMap="BaseResultMap" parameterType="com.centit.mallserver.po.ShoppingCouponPo">
+        <![CDATA[
+        select
+        ]]>
+        <include refid="Base_Column_List1"/>
+        <![CDATA[
+        from shopping_coupon t
+        ]]>
+        <where>
+            <![CDATA[
+            and right_No = #{right_No ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+
+    <!--  查询列表 -->
+    <select id="selectUserGoodsCouponList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+        select
+        ]]>
+        <include refid="Base_Column_List1"/>
+        <![CDATA[
+        from shopping_coupon t
+        ]]>
+        <where>
+            (right_No in (
+                select right_No
+                from shopping_coupon_relate sr
+                where (sr.link_type = 1 and
+                       FIND_IN_SET(#{classId ,jdbcType=VARCHAR }, queryGoodsClass(sr.goods_id)) and
+                       sr.goods_type = #{goodsType ,jdbcType=VARCHAR })
+                   OR (sr.link_type = 2 and sr.goods_id = #{goodsId ,jdbcType=VARCHAR } and
+                       sr.goods_type = #{goodsType ,jdbcType=VARCHAR })
+            )
+                or (right_No not in
+                    (select right_No
+                     from shopping_coupon_relate
+                     union
+                     select right_no
+                     from shopping_coupon_directgrant
+                     union
+                     select right_No
+                     from shopping_birth_coupon
+                     union
+                     select right_No
+                     from shopping_new_coupon)
+                    and right_Type != 'park')
+                )
+              and isdelete = '0'
+              and offline = 0
+              and ispub = '1'
+        </where>
+        order by t.createdate desc
+    </select>
+</mapper>

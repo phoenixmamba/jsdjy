@@ -1,0 +1,841 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.FUserinfoDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.FUserinfo">
+        <id column="USER_CODE" property="userCode" />
+        <result column="USER_PIN" property="userPin" />
+        <result column="USER_TYPE" property="userType" />
+        <result column="IS_VALID" property="isValid" />
+        <result column="LOGIN_NAME" property="loginName" />
+        <result column="USER_NAME" property="userName" />
+        <result column="USER_TAG" property="userTag" />
+        <result column="ENGLISH_NAME" property="englishName" />
+        <result column="USER_DESC" property="userDesc" />
+        <result column="LOGIN_TIMES" property="loginTimes" />
+        <result column="ACTIVE_TIME" property="activeTime" />
+        <result column="LOGIN_IP" property="loginIp" />
+        <result column="ADDRBOOK_ID" property="addrbookId" />
+        <result column="REG_EMAIL" property="regEmail" />
+        <result column="USER_PWD" property="userPwd" />
+        <result column="PWD_EXPIRED_TIME" property="pwdExpiredTime" />
+        <result column="REG_CELL_PHONE" property="regCellPhone" />
+        <result column="ID_CARD_NO" property="idCardNo" />
+        <result column="PRIMARY_UNIT" property="primaryUnit" />
+        <result column="USER_WORD" property="userWord" />
+        <result column="USER_ORDER" property="userOrder" />
+        <result column="UPDATE_DATE" property="updateDate" />
+        <result column="CREATE_DATE" property="createDate" />
+        <result column="EXTJSONINFO" property="extjsoninfo" />
+        <result column="CREATOR" property="creator" />
+        <result column="UPDATOR" property="updator" />
+        <result column="NICK_NAME" property="nickName" />
+        <result column="PHOTO" property="photo" />
+        <result column="SEX" property="sex" />
+        <result column="SIGNATURE" property="signature" />
+        <result column="TOP_UNIT" property="topUnit" />
+        <result column="CORPID" property="corpid" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        USER_CODE, USER_PIN, USER_TYPE, IS_VALID, LOGIN_NAME, USER_NAME, USER_TAG, ENGLISH_NAME, USER_DESC, LOGIN_TIMES, ACTIVE_TIME, LOGIN_IP, ADDRBOOK_ID, REG_EMAIL, USER_PWD, PWD_EXPIRED_TIME, REG_CELL_PHONE, ID_CARD_NO, PRIMARY_UNIT, USER_WORD, USER_ORDER, UPDATE_DATE, CREATE_DATE, EXTJSONINFO, CREATOR, UPDATOR, NICK_NAME, PHOTO, SEX, SIGNATURE, TOP_UNIT, CORPID
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        USER_CODE
+          ,
+        USER_PIN
+          ,
+        USER_TYPE
+          ,
+        IS_VALID
+          ,
+        LOGIN_NAME
+          ,
+        USER_NAME
+          ,
+        USER_TAG
+          ,
+        ENGLISH_NAME
+          ,
+        USER_DESC
+          ,
+        LOGIN_TIMES
+          ,
+        ACTIVE_TIME
+          ,
+        LOGIN_IP
+          ,
+        ADDRBOOK_ID
+          ,
+        REG_EMAIL
+          ,
+        USER_PWD
+          ,
+        PWD_EXPIRED_TIME
+          ,
+        REG_CELL_PHONE
+          ,
+        ID_CARD_NO
+          ,
+        PRIMARY_UNIT
+          ,
+        USER_WORD
+          ,
+        USER_ORDER
+          ,
+        UPDATE_DATE
+          ,
+        CREATE_DATE
+          ,
+        EXTJSONINFO
+          ,
+        CREATOR
+          ,
+        UPDATOR
+          ,
+        NICK_NAME
+          ,
+        PHOTO
+          ,
+        SEX
+          ,
+        SIGNATURE
+          ,
+        TOP_UNIT
+          ,
+        CORPID
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="userCode != null and userCode != ''">
+            <![CDATA[
+                AND USER_CODE = #{userCode ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="userPin != null and userPin != ''">
+            <![CDATA[
+                AND USER_PIN = #{userPin ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="userType != null and userType != ''">
+            <![CDATA[
+                AND USER_TYPE = #{userType ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="isValid != null and isValid != ''">
+            <![CDATA[
+                AND IS_VALID = #{isValid ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="loginName != null and loginName != ''">
+            <![CDATA[
+                AND LOGIN_NAME = #{loginName ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="userName != null and userName != ''">
+            <![CDATA[
+                AND USER_NAME = #{userName ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="userTag != null and userTag != ''">
+            <![CDATA[
+                AND USER_TAG = #{userTag ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="englishName != null and englishName != ''">
+            <![CDATA[
+                AND ENGLISH_NAME = #{englishName ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="userDesc != null and userDesc != ''">
+            <![CDATA[
+                AND USER_DESC = #{userDesc ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="loginTimes != null and loginTimes != ''">
+            <![CDATA[
+                AND LOGIN_TIMES = #{loginTimes ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="activeTime != null and activeTime != ''">
+            <![CDATA[
+                AND ACTIVE_TIME = #{activeTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="loginIp != null and loginIp != ''">
+            <![CDATA[
+                AND LOGIN_IP = #{loginIp ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="addrbookId != null and addrbookId != ''">
+            <![CDATA[
+                AND ADDRBOOK_ID = #{addrbookId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="regEmail != null and regEmail != ''">
+            <![CDATA[
+                AND REG_EMAIL = #{regEmail ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="userPwd != null and userPwd != ''">
+            <![CDATA[
+                AND USER_PWD = #{userPwd ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="pwdExpiredTime != null and pwdExpiredTime != ''">
+            <![CDATA[
+                AND PWD_EXPIRED_TIME = #{pwdExpiredTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="regCellPhone != null and regCellPhone != ''">
+            <![CDATA[
+                AND REG_CELL_PHONE = #{regCellPhone ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="idCardNo != null and idCardNo != ''">
+            <![CDATA[
+                AND ID_CARD_NO = #{idCardNo ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="primaryUnit != null and primaryUnit != ''">
+            <![CDATA[
+                AND PRIMARY_UNIT = #{primaryUnit ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="userWord != null and userWord != ''">
+            <![CDATA[
+                AND USER_WORD = #{userWord ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="userOrder != null and userOrder != ''">
+            <![CDATA[
+                AND USER_ORDER = #{userOrder ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="updateDate != null and updateDate != ''">
+            <![CDATA[
+                AND UPDATE_DATE = #{updateDate ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="createDate != null and createDate != ''">
+            <![CDATA[
+                AND CREATE_DATE = #{createDate ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="extjsoninfo != null and extjsoninfo != ''">
+            <![CDATA[
+                AND EXTJSONINFO = #{extjsoninfo ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="creator != null and creator != ''">
+            <![CDATA[
+                AND CREATOR = #{creator ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="updator != null and updator != ''">
+            <![CDATA[
+                AND UPDATOR = #{updator ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="nickName != null and nickName != ''">
+            <![CDATA[
+                AND NICK_NAME = #{nickName ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="photo != null and photo != ''">
+            <![CDATA[
+                AND PHOTO = #{photo ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="sex != null and sex != ''">
+            <![CDATA[
+                AND SEX = #{sex ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="signature != null and signature != ''">
+            <![CDATA[
+                AND SIGNATURE = #{signature ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="topUnit != null and topUnit != ''">
+            <![CDATA[
+                AND TOP_UNIT = #{topUnit ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="corpid != null and corpid != ''">
+            <![CDATA[
+                AND CORPID = #{corpid ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.FUserinfo">
+        <![CDATA[
+			insert into f_userinfo
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="userCode != null and userCode != ''" >
+                <![CDATA[
+                    USER_CODE,
+                ]]>
+            </if>
+            <if test="userPin != null and userPin != ''" >
+                <![CDATA[
+                    USER_PIN,
+                ]]>
+            </if>
+            <if test="userType != null and userType != ''" >
+                <![CDATA[
+                    USER_TYPE,
+                ]]>
+            </if>
+            <if test="isValid != null and isValid != ''" >
+                <![CDATA[
+                    IS_VALID,
+                ]]>
+            </if>
+            <if test="loginName != null and loginName != ''" >
+                <![CDATA[
+                    LOGIN_NAME,
+                ]]>
+            </if>
+            <if test="userName != null and userName != ''" >
+                <![CDATA[
+                    USER_NAME,
+                ]]>
+            </if>
+            <if test="userTag != null and userTag != ''" >
+                <![CDATA[
+                    USER_TAG,
+                ]]>
+            </if>
+            <if test="englishName != null and englishName != ''" >
+                <![CDATA[
+                    ENGLISH_NAME,
+                ]]>
+            </if>
+            <if test="userDesc != null and userDesc != ''" >
+                <![CDATA[
+                    USER_DESC,
+                ]]>
+            </if>
+            <if test="loginTimes != null and loginTimes != ''" >
+                <![CDATA[
+                    LOGIN_TIMES,
+                ]]>
+            </if>
+            <if test="activeTime != null and activeTime != ''" >
+                <![CDATA[
+                    ACTIVE_TIME,
+                ]]>
+            </if>
+            <if test="loginIp != null and loginIp != ''" >
+                <![CDATA[
+                    LOGIN_IP,
+                ]]>
+            </if>
+            <if test="addrbookId != null and addrbookId != ''" >
+                <![CDATA[
+                    ADDRBOOK_ID,
+                ]]>
+            </if>
+            <if test="regEmail != null and regEmail != ''" >
+                <![CDATA[
+                    REG_EMAIL,
+                ]]>
+            </if>
+            <if test="userPwd != null and userPwd != ''" >
+                <![CDATA[
+                    USER_PWD,
+                ]]>
+            </if>
+            <if test="pwdExpiredTime != null and pwdExpiredTime != ''" >
+                <![CDATA[
+                    PWD_EXPIRED_TIME,
+                ]]>
+            </if>
+            <if test="regCellPhone != null and regCellPhone != ''" >
+                <![CDATA[
+                    REG_CELL_PHONE,
+                ]]>
+            </if>
+            <if test="idCardNo != null and idCardNo != ''" >
+                <![CDATA[
+                    ID_CARD_NO,
+                ]]>
+            </if>
+            <if test="primaryUnit != null and primaryUnit != ''" >
+                <![CDATA[
+                    PRIMARY_UNIT,
+                ]]>
+            </if>
+            <if test="userWord != null and userWord != ''" >
+                <![CDATA[
+                    USER_WORD,
+                ]]>
+            </if>
+            <if test="userOrder != null and userOrder != ''" >
+                <![CDATA[
+                    USER_ORDER,
+                ]]>
+            </if>
+            <if test="updateDate != null and updateDate != ''" >
+                <![CDATA[
+                    UPDATE_DATE,
+                ]]>
+            </if>
+            <if test="createDate != null and createDate != ''" >
+                <![CDATA[
+                    CREATE_DATE,
+                ]]>
+            </if>
+            <if test="extjsoninfo != null and extjsoninfo != ''" >
+                <![CDATA[
+                    EXTJSONINFO,
+                ]]>
+            </if>
+            <if test="creator != null and creator != ''" >
+                <![CDATA[
+                    CREATOR,
+                ]]>
+            </if>
+            <if test="updator != null and updator != ''" >
+                <![CDATA[
+                    UPDATOR,
+                ]]>
+            </if>
+            <if test="nickName != null and nickName != ''" >
+                <![CDATA[
+                    NICK_NAME,
+                ]]>
+            </if>
+            <if test="photo != null and photo != ''" >
+                <![CDATA[
+                    PHOTO,
+                ]]>
+            </if>
+            <if test="sex != null and sex != ''" >
+                <![CDATA[
+                    SEX,
+                ]]>
+            </if>
+            <if test="signature != null and signature != ''" >
+                <![CDATA[
+                    SIGNATURE,
+                ]]>
+            </if>
+            <if test="topUnit != null and topUnit != ''" >
+                <![CDATA[
+                    TOP_UNIT,
+                ]]>
+            </if>
+            <if test="corpid != null and corpid != ''" >
+                <![CDATA[
+                    CORPID,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="userCode != null and userCode != ''" >
+                <![CDATA[
+                    #{userCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userPin != null and userPin != ''" >
+                <![CDATA[
+                    #{userPin,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userType != null and userType != ''" >
+                <![CDATA[
+                    #{userType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isValid != null and isValid != ''" >
+                <![CDATA[
+                    #{isValid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="loginName != null and loginName != ''" >
+                <![CDATA[
+                    #{loginName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userName != null and userName != ''" >
+                <![CDATA[
+                    #{userName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userTag != null and userTag != ''" >
+                <![CDATA[
+                    #{userTag,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="englishName != null and englishName != ''" >
+                <![CDATA[
+                    #{englishName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userDesc != null and userDesc != ''" >
+                <![CDATA[
+                    #{userDesc,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="loginTimes != null and loginTimes != ''" >
+                <![CDATA[
+                    #{loginTimes,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="activeTime != null and activeTime != ''" >
+                <![CDATA[
+                    #{activeTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="loginIp != null and loginIp != ''" >
+                <![CDATA[
+                    #{loginIp,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="addrbookId != null and addrbookId != ''" >
+                <![CDATA[
+                    #{addrbookId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="regEmail != null and regEmail != ''" >
+                <![CDATA[
+                    #{regEmail,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userPwd != null and userPwd != ''" >
+                <![CDATA[
+                    #{userPwd,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="pwdExpiredTime != null and pwdExpiredTime != ''" >
+                <![CDATA[
+                    #{pwdExpiredTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="regCellPhone != null and regCellPhone != ''" >
+                <![CDATA[
+                    #{regCellPhone,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="idCardNo != null and idCardNo != ''" >
+                <![CDATA[
+                    #{idCardNo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="primaryUnit != null and primaryUnit != ''" >
+                <![CDATA[
+                    #{primaryUnit,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userWord != null and userWord != ''" >
+                <![CDATA[
+                    #{userWord,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userOrder != null and userOrder != ''" >
+                <![CDATA[
+                    #{userOrder,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="updateDate != null and updateDate != ''" >
+                <![CDATA[
+                    #{updateDate,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="createDate != null and createDate != ''" >
+                <![CDATA[
+                    #{createDate,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="extjsoninfo != null and extjsoninfo != ''" >
+                <![CDATA[
+                    #{extjsoninfo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="creator != null and creator != ''" >
+                <![CDATA[
+                    #{creator,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="updator != null and updator != ''" >
+                <![CDATA[
+                    #{updator,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="nickName != null and nickName != ''" >
+                <![CDATA[
+                    #{nickName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="photo != null and photo != ''" >
+                <![CDATA[
+                    #{photo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="sex != null and sex != ''" >
+                <![CDATA[
+                    #{sex,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="signature != null and signature != ''" >
+                <![CDATA[
+                    #{signature,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="topUnit != null and topUnit != ''" >
+                <![CDATA[
+                    #{topUnit,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="corpid != null and corpid != ''" >
+                <![CDATA[
+                    #{corpid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.FUserinfo" >
+        <![CDATA[
+        	update f_userinfo
+        ]]>
+        <set >
+            <if test="userCode != null and userCode != ''" >
+                <![CDATA[
+                    USER_CODE = #{userCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userPin != null and userPin != ''" >
+                <![CDATA[
+                    USER_PIN = #{userPin,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userType != null and userType != ''" >
+                <![CDATA[
+                    USER_TYPE = #{userType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isValid != null and isValid != ''" >
+                <![CDATA[
+                    IS_VALID = #{isValid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="loginName != null and loginName != ''" >
+                <![CDATA[
+                    LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userName != null and userName != ''" >
+                <![CDATA[
+                    USER_NAME = #{userName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userTag != null and userTag != ''" >
+                <![CDATA[
+                    USER_TAG = #{userTag,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="englishName != null and englishName != ''" >
+                <![CDATA[
+                    ENGLISH_NAME = #{englishName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userDesc != null and userDesc != ''" >
+                <![CDATA[
+                    USER_DESC = #{userDesc,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="loginTimes != null and loginTimes != ''" >
+                <![CDATA[
+                    LOGIN_TIMES = #{loginTimes,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="activeTime != null and activeTime != ''" >
+                <![CDATA[
+                    ACTIVE_TIME = #{activeTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="loginIp != null and loginIp != ''" >
+                <![CDATA[
+                    LOGIN_IP = #{loginIp,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="addrbookId != null and addrbookId != ''" >
+                <![CDATA[
+                    ADDRBOOK_ID = #{addrbookId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="regEmail != null and regEmail != ''" >
+                <![CDATA[
+                    REG_EMAIL = #{regEmail,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userPwd != null and userPwd != ''" >
+                <![CDATA[
+                    USER_PWD = #{userPwd,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="pwdExpiredTime != null and pwdExpiredTime != ''" >
+                <![CDATA[
+                    PWD_EXPIRED_TIME = #{pwdExpiredTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="regCellPhone != null and regCellPhone != ''" >
+                <![CDATA[
+                    REG_CELL_PHONE = #{regCellPhone,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="idCardNo != null and idCardNo != ''" >
+                <![CDATA[
+                    ID_CARD_NO = #{idCardNo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="primaryUnit != null and primaryUnit != ''" >
+                <![CDATA[
+                    PRIMARY_UNIT = #{primaryUnit,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userWord != null and userWord != ''" >
+                <![CDATA[
+                    USER_WORD = #{userWord,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userOrder != null and userOrder != ''" >
+                <![CDATA[
+                    USER_ORDER = #{userOrder,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="updateDate != null and updateDate != ''" >
+                <![CDATA[
+                    UPDATE_DATE = #{updateDate,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="createDate != null and createDate != ''" >
+                <![CDATA[
+                    CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="extjsoninfo != null and extjsoninfo != ''" >
+                <![CDATA[
+                    EXTJSONINFO = #{extjsoninfo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="creator != null and creator != ''" >
+                <![CDATA[
+                    CREATOR = #{creator,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="updator != null and updator != ''" >
+                <![CDATA[
+                    UPDATOR = #{updator,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="nickName != null and nickName != ''" >
+                <![CDATA[
+                    NICK_NAME = #{nickName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="photo != null and photo != ''" >
+                <![CDATA[
+                    PHOTO = #{photo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="sex != null and sex != ''" >
+                <![CDATA[
+                    SEX = #{sex,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="signature != null and signature != ''" >
+                <![CDATA[
+                    SIGNATURE = #{signature,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="topUnit != null and topUnit != ''" >
+                <![CDATA[
+                    TOP_UNIT = #{topUnit,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="corpid != null and corpid != ''" >
+                <![CDATA[
+                    CORPID = #{corpid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and USER_CODE = #{userCode ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.FUserinfo">
+        <![CDATA[
+            delete from f_userinfo
+        ]]>
+        <where>
+            <![CDATA[
+                and USER_CODE = #{userCode ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.FUserinfo">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from f_userinfo t
+        ]]>
+        <where>
+            <![CDATA[
+                and USER_CODE = #{userCode ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from f_userinfo t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+    <!--  查询具有核销权限的用户 -->
+    <select id="queryWriteOffCountList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from f_userinfo t
+        ]]>
+        <where>
+            AND t.IS_VALID = #{isValid ,jdbcType=VARCHAR}
+            AND t.USER_CODE in (select USER_CODE from f_userrole where ROLE_CODE =#{roleCode ,jdbcType=VARCHAR })
+        </where>
+    </select>
+</mapper>

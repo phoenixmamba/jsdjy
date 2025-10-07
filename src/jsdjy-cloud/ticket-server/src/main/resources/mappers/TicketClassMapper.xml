@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.ticket.dao.TicketClassDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.ticket.po.TicketClass">
+        <result column="class_id" property="classId" />
+        <result column="class_name" property="className" />
+        <result column="parent_class_id" property="parentClassId" />
+        <result column="photo_id" property="photoId" />
+        <result column="sn" property="sn" />
+        <result column="is_show" property="isShow" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        class_id, class_name, parent_class_id, is_show
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        class_id
+          ,
+        class_name
+          ,
+        parent_class_id
+          ,
+        is_show
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="classId != null and classId != ''">
+            <![CDATA[
+                AND class_id = #{classId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="className != null and className != ''">
+            <![CDATA[
+                AND class_name = #{className ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="parentClassId != null and parentClassId != ''">
+            <![CDATA[
+                AND parent_class_id = #{parentClassId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="isShow != null and isShow != ''">
+            <![CDATA[
+                AND is_show = #{isShow ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.ticket.po.TicketClass">
+        <![CDATA[
+			insert into ticket_class
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="classId != '' and classId != null" >
+                <![CDATA[
+                    class_id,
+                ]]>
+            </if>
+            <if test="className != '' and className != null" >
+                <![CDATA[
+                    class_name,
+                ]]>
+            </if>
+            <if test="parentClassId != '' and parentClassId != null" >
+                <![CDATA[
+                    parent_class_id,
+                ]]>
+            </if>
+            <if test="isShow != null">
+                <![CDATA[
+                    is_show,
+            ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="classId != '' and classId != null" >
+                <![CDATA[
+                    #{classId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="className != '' and className != null" >
+                <![CDATA[
+                    #{className,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="parentClassId != '' and parentClassId != null" >
+                <![CDATA[
+                    #{parentClassId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isShow != null" >
+                <![CDATA[
+                    #{isShow,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.ticket.po.TicketClass" >
+        <![CDATA[
+        	update ticket_class
+        ]]>
+        <set >
+            <if test="classId != '' and classId != null" >
+                <![CDATA[
+                    class_id = #{classId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="className != '' and className != null" >
+                <![CDATA[
+                    class_name = #{className,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="parentClassId != '' and parentClassId != null" >
+                <![CDATA[
+                    parent_class_id = #{parentClassId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isShow != null" >
+                <![CDATA[
+                    is_show = #{isShow,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                    and class_id = #{classId,jdbcType=VARCHAR}
+                ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.ticket.po.TicketClass">
+        <![CDATA[
+            delete from ticket_class
+        ]]>
+        <where>
+            <if test="classId != '' and classId != null" >
+                <![CDATA[
+                    and class_id = #{classId,jdbcType=VARCHAR}
+                ]]>
+            </if>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.ticket.po.TicketClass">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from ticket_class t
+        ]]>
+        <where>
+            <![CDATA[
+                    and class_id = #{classId,jdbcType=VARCHAR}
+                ]]>
+        </where>
+    </select>
+
+    <!--  查询爱艺活动分类 -->
+    <select id="queryAiYiHuoDong" resultMap="BaseResultMap" parameterType="com.centit.ticket.po.TicketClass">
+        <![CDATA[
+            select t.*,tcp.photo_id,tcp.sn
+        ]]>
+        <![CDATA[
+            from ticket_class t left join ticket_class_photo tcp on t.class_id = tcp.class_id
+        ]]>
+        <where>
+            <![CDATA[
+                    and t.class_name = #{className,jdbcType=VARCHAR}
+                ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select t.*,tcp.photo_id,tcp.sn
+        ]]>
+        <![CDATA[
+            from ticket_class t left join ticket_class_photo tcp on t.class_id = tcp.class_id
+        ]]>
+        <where>
+            <![CDATA[
+                AND t.parent_class_id is null
+            ]]>
+            <if test="className != null and className != ''">
+                <![CDATA[
+                AND t.class_name = #{className ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="isShow != null">
+                <![CDATA[
+                AND is_show = #{isShow ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+        </where>
+            order by tcp.sn asc
+    </select>
+
+</mapper>

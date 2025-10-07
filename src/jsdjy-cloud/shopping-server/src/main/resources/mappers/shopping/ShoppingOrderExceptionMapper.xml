@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.ShoppingOrderExceptionDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.ShoppingOrderException">
+        <id column="id" property="id" />
+        <result column="addTime" property="addTime" />
+        <result column="refund_integral" property="refundIntegral" />
+        <result column="refund_balance" property="refundBalance" />
+        <result column="refund_cash" property="refundCash" />
+        <result column="update_time" property="updateTime" />
+        <result column="admin_user" property="adminUser" />
+        <result column="admin_name" property="adminName" />
+        <result column="of_id" property="ofId" />
+        <result column="admin_log" property="adminLog" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, addTime, refund_integral, refund_balance, refund_cash, update_time, admin_user, admin_name, of_id, admin_log
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        addTime
+          ,
+        refund_integral
+          ,
+        refund_balance
+          ,
+        refund_cash
+          ,
+        update_time
+          ,
+        admin_user
+          ,
+        admin_name
+          ,
+        of_id
+          ,
+        admin_log
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="addTime != null and addTime != ''">
+            <![CDATA[
+                AND addTime = #{addTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="refundIntegral != null and refundIntegral != ''">
+            <![CDATA[
+                AND refund_integral = #{refundIntegral ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="refundBalance != null and refundBalance != ''">
+            <![CDATA[
+                AND refund_balance = #{refundBalance ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="refundCash != null and refundCash != ''">
+            <![CDATA[
+                AND refund_cash = #{refundCash ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="updateTime != null and updateTime != ''">
+            <![CDATA[
+                AND update_time = #{updateTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="adminUser != null and adminUser != ''">
+            <![CDATA[
+                AND admin_user = #{adminUser ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="adminName != null and adminName != ''">
+            <![CDATA[
+                AND admin_name = #{adminName ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="ofId != null and ofId != ''">
+            <![CDATA[
+                AND of_id = #{ofId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="adminLog != null and adminLog != ''">
+            <![CDATA[
+                AND admin_log = #{adminLog ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.ShoppingOrderException">
+        <![CDATA[
+			insert into shopping_order_exception
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+
+                <![CDATA[
+                    addTime,
+                ]]>
+
+            <if test="refundIntegral != null" >
+                <![CDATA[
+                    refund_integral,
+                ]]>
+            </if>
+            <if test="refundBalance != null" >
+                <![CDATA[
+                    refund_balance,
+                ]]>
+            </if>
+            <if test="refundCash != null" >
+                <![CDATA[
+                    refund_cash,
+                ]]>
+            </if>
+            <if test="updateTime != null and updateTime != ''" >
+                <![CDATA[
+                    update_time,
+                ]]>
+            </if>
+            <if test="adminUser != null and adminUser != ''" >
+                <![CDATA[
+                    admin_user,
+                ]]>
+            </if>
+            <if test="adminName != null and adminName != ''" >
+                <![CDATA[
+                    admin_name,
+                ]]>
+            </if>
+            <if test="ofId != null and ofId != ''" >
+                <![CDATA[
+                    of_id,
+                ]]>
+            </if>
+            <if test="adminLog != null and adminLog != ''" >
+                <![CDATA[
+                    admin_log,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+
+            now(),
+            <if test="refundIntegral != null" >
+                <![CDATA[
+                    #{refundIntegral,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="refundBalance != null" >
+                <![CDATA[
+                    #{refundBalance,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="refundCash != null" >
+                <![CDATA[
+                    #{refundCash,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="updateTime != null and updateTime != ''" >
+                <![CDATA[
+                    #{updateTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="adminUser != null and adminUser != ''" >
+                <![CDATA[
+                    #{adminUser,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="adminName != null and adminName != ''" >
+                <![CDATA[
+                    #{adminName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="ofId != null and ofId != ''" >
+                <![CDATA[
+                    #{ofId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="adminLog != null and adminLog != ''" >
+                <![CDATA[
+                    #{adminLog,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.ShoppingOrderException" >
+        <![CDATA[
+        	update shopping_order_exception
+        ]]>
+        <set >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="addTime != null and addTime != ''" >
+                <![CDATA[
+                    addTime = #{addTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="refundIntegral != null" >
+                <![CDATA[
+                    refund_integral = #{refundIntegral,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="refundBalance != null" >
+                <![CDATA[
+                    refund_balance = #{refundBalance,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="refundCash != null" >
+                <![CDATA[
+                    refund_cash = #{refundCash,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="updateTime != null and updateTime != ''" >
+                <![CDATA[
+                    update_time = #{updateTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="adminUser != null and adminUser != ''" >
+                <![CDATA[
+                    admin_user = #{adminUser,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="adminName != null and adminName != ''" >
+                <![CDATA[
+                    admin_name = #{adminName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="ofId != null and ofId != ''" >
+                <![CDATA[
+                    of_id = #{ofId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="adminLog != null and adminLog != ''" >
+                <![CDATA[
+                    admin_log = #{adminLog,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.ShoppingOrderException">
+        <![CDATA[
+            delete from shopping_order_exception
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.ShoppingOrderException">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_order_exception t
+        ]]>
+        <where>
+            <![CDATA[
+                AND of_id = #{ofId ,jdbcType=VARCHAR}
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_order_exception t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+</mapper>

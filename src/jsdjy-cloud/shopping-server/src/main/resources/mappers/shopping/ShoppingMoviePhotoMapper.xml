@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.ShoppingMoviePhotoDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.ShoppingMoviePhoto">
+        <id column="id" property="id" />
+        <result column="photo_id" property="photoId" />
+        <result column="movie_id" property="movieId" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, photo_id, movie_id
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        photo_id
+          ,
+        movie_id
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="photoId != null and photoId != ''">
+            <![CDATA[
+                AND photo_id = #{photoId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="movieId != null and movieId != ''">
+            <![CDATA[
+                AND movie_id = #{movieId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.ShoppingMoviePhoto">
+        <![CDATA[
+			insert into shopping_movie_photo
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    id,
+                ]]>
+            </if>
+            <if test="photoId != '' and photoId != null" >
+                <![CDATA[
+                    photo_id,
+                ]]>
+            </if>
+            <if test="movieId != '' and movieId != null" >
+                <![CDATA[
+                    movie_id,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="photoId != '' and photoId != null" >
+                <![CDATA[
+                    #{photoId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="movieId != '' and movieId != null" >
+                <![CDATA[
+                    #{movieId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.ShoppingMoviePhoto" >
+        <![CDATA[
+        	update shopping_movie_photo
+        ]]>
+        <set >
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="photoId != '' and photoId != null" >
+                <![CDATA[
+                    photo_id = #{photoId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="movieId != '' and movieId != null" >
+                <![CDATA[
+                    movie_id = #{movieId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.ShoppingMoviePhoto">
+        <![CDATA[
+            delete from shopping_movie_photo
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+    <!-- 删除 -->
+    <delete id="deleteByMovieId"  parameterType="com.centit.shopping.po.ShoppingMoviePhoto">
+        <![CDATA[
+            delete from shopping_movie_photo
+        ]]>
+        <where>
+            <![CDATA[
+                and movie_id = #{movieId ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.ShoppingMoviePhoto">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_movie_photo t
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_movie_photo t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+</mapper>

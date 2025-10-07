@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.TJpushInfoDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.TJpushInfo">
+        <id column="ID" property="id"/>
+        <result column="MOBILE" property="mobile"/>
+        <result column="CODE" property="code"/>
+        <result column="TITLE" property="title"/>
+        <result column="NOTIFICATION" property="notification"/>
+        <result column="URL" property="url"/>
+        <result column="DATA" property="data"/>
+        <result column="CREATE_DATE" property="createDate"/>
+
+        <result column="appName" property="appName"/>
+        <result column="appIconFileId" property="appIconFileId"/>
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        ID, MOBILE, CODE, TITLE, NOTIFICATION, URL, DATA, CREATE_DATE
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        ID
+          ,
+        MOBILE
+          ,
+        CODE
+          ,
+        TITLE
+          ,
+        NOTIFICATION
+          ,
+        URL
+          ,
+        DATA
+          ,
+        CREATE_DATE
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND ID = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="mobile != null and mobile != ''">
+            <![CDATA[
+                AND MOBILE = #{mobile ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="code != null and code != ''">
+            <![CDATA[
+                AND CODE = #{code ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="title != null and title != ''">
+            <![CDATA[
+                AND TITLE = #{title ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="notification != null and notification != ''">
+            <![CDATA[
+                AND NOTIFICATION = #{notification ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="url != null and url != ''">
+            <![CDATA[
+                AND URL = #{url ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="data != null and data != ''">
+            <![CDATA[
+                AND DATA = #{data ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="createDate != null and createDate != ''">
+            <![CDATA[
+                AND CREATE_DATE = #{createDate ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.TJpushInfo">
+        <![CDATA[
+			insert into T_JPUSH_INFO
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="mobile != '' and mobile != null">
+                <![CDATA[
+                    MOBILE,
+                ]]>
+            </if>
+            <if test="code != '' and code != null">
+                <![CDATA[
+                    CODE,
+                ]]>
+            </if>
+            <if test="title != '' and title != null">
+                <![CDATA[
+                    TITLE,
+                ]]>
+            </if>
+            <if test="notification != '' and notification != null">
+                <![CDATA[
+                    NOTIFICATION,
+                ]]>
+            </if>
+            <if test="url != '' and url != null">
+                <![CDATA[
+                    URL,
+                ]]>
+            </if>
+            <if test="data != '' and data != null">
+                <![CDATA[
+                    DATA,
+                ]]>
+            </if>
+            <!--<if test="createDate != '' and createDate != null" >-->
+            <![CDATA[
+                    CREATE_DATE,
+                ]]>
+            <!--</if>-->
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="mobile != '' and mobile != null">
+                <![CDATA[
+                    #{mobile,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="code != '' and code != null">
+                <![CDATA[
+                    #{code,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="title != '' and title != null">
+                <![CDATA[
+                    #{title,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="notification != '' and notification != null">
+                <![CDATA[
+                    #{notification,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="url != '' and url != null">
+                <![CDATA[
+                    #{url,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="data != '' and data != null">
+                <![CDATA[
+                    #{data,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <!--<if test="createDate != '' and createDate != null" >-->
+            <![CDATA[
+                    now(),
+                ]]>
+            <!--</if>-->
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.TJpushInfo">
+        <![CDATA[
+        	update T_JPUSH_INFO
+        ]]>
+        <set>
+            <if test="id != '' and id != null">
+                <![CDATA[
+                    ID = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="mobile != '' and mobile != null">
+                <![CDATA[
+                    MOBILE = #{mobile,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="code != '' and code != null">
+                <![CDATA[
+                    CODE = #{code,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="title != '' and title != null">
+                <![CDATA[
+                    TITLE = #{title,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="notification != '' and notification != null">
+                <![CDATA[
+                    NOTIFICATION = #{notification,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="url != '' and url != null">
+                <![CDATA[
+                    URL = #{url,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="data != '' and data != null">
+                <![CDATA[
+                    DATA = #{data,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="createDate != '' and createDate != null">
+                <![CDATA[
+                    CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and ID = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete" parameterType="com.centit.shopping.po.TJpushInfo">
+        <![CDATA[
+            delete from T_JPUSH_INFO
+        ]]>
+        <where>
+            <![CDATA[
+                and ID = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.TJpushInfo">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1"/>
+        <![CDATA[
+            from T_JPUSH_INFO t
+        ]]>
+        <where>
+            <![CDATA[
+                and ID = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1"/>
+        <![CDATA[
+            from T_JPUSH_INFO t
+        ]]>
+        <where>
+            <include refid="Base_Where_List"/>
+        </where>
+    </select>
+
+
+    <!--  查询分页列表 -->
+    <select id="queryPageList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        SELECT
+        <include refid="Base_Column_List1"/>
+        FROM T_JPUSH_INFO t
+        <where>
+            <if test="id != null and id != ''">
+                <![CDATA[
+                    AND t.ID = #{id ,jdbcType=VARCHAR}
+                ]]>
+            </if>
+            <if test="mobile != null and mobile != ''">
+                <![CDATA[
+                    AND t.MOBILE like concat('%',#{mobile,jdbcType=VARCHAR},'%')
+                ]]>
+            </if>
+            <if test="code != null and code != ''">
+                <![CDATA[
+                    AND t.CODE = #{code ,jdbcType=VARCHAR}
+                ]]>
+            </if>
+            <if test="title != null and title != ''">
+                <![CDATA[
+                    AND t.TITLE like concat('%',#{title,jdbcType=VARCHAR},'%')
+                ]]>
+            </if>
+            <if test="notification != null and notification != ''">
+                <![CDATA[
+                    AND t.NOTIFICATION like concat('%',#{notification,jdbcType=VARCHAR},'%')
+                ]]>
+            </if>
+            <if test="url != null and url != ''">
+                <![CDATA[
+                    AND t.URL = #{url ,jdbcType=VARCHAR}
+                ]]>
+            </if>
+            <if test="data != null and data != ''">
+                <![CDATA[
+                    AND t.DATA = #{data ,jdbcType=VARCHAR}
+                ]]>
+            </if>
+            <if test="createDate != null and createDate != ''">
+                <![CDATA[
+                    AND t.CREATE_DATE = #{createDate ,jdbcType=VARCHAR}
+                ]]>
+            </if>
+        </where>
+    </select>
+
+    <!--  查询用户重要通知分页列表数量 -->
+    <select id="queryPageListCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            SELECT count(0) FROM T_JPUSH_INFO t
+        ]]>
+        <where>
+            <if test="id != null and id != ''">
+                <![CDATA[
+                    AND t.ID = #{id ,jdbcType=VARCHAR}
+                ]]>
+            </if>
+            <if test="mobile != null and mobile != ''">
+                <![CDATA[
+                    AND t.MOBILE like '%'||#{mobile,jdbcType=VARCHAR}||'%'
+                ]]>
+            </if>
+            <if test="code != null and code != ''">
+                <![CDATA[
+                    AND t.CODE = #{code ,jdbcType=VARCHAR}
+                ]]>
+            </if>
+            <if test="title != null and title != ''">
+                <![CDATA[
+                    AND t.TITLE like '%'||#{title,jdbcType=VARCHAR}||'%'
+                ]]>
+            </if>
+            <if test="notification != null and notification != ''">
+                <![CDATA[
+                    AND t.NOTIFICATION like '%'||#{notification,jdbcType=VARCHAR}||'%'
+                ]]>
+            </if>
+            <if test="url != null and url != ''">
+                <![CDATA[
+                    AND t.URL = #{url ,jdbcType=VARCHAR}
+                ]]>
+            </if>
+            <if test="data != null and data != ''">
+                <![CDATA[
+                    AND t.DATA = #{data ,jdbcType=VARCHAR}
+                ]]>
+            </if>
+            <if test="createDate != null and createDate != ''">
+                <![CDATA[
+                    AND t.CREATE_DATE = #{createDate ,jdbcType=VARCHAR}
+                ]]>
+            </if>
+        </where>
+    </select>
+
+</mapper>

@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.TicketRedeemActivityDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.TicketRedeemActivity">
+        <id column="ID" property="id" />
+        <result column="COMPANY_ID" property="companyId" />
+        <result column="TITLE" property="title" />
+        <result column="REMARKS" property="remarks" />
+        <result column="PUB_STATUS" property="pubStatus" />
+        <result column="IS_DELETE" property="isDelete" />
+        <result column="START_TIME" property="startTime" />
+        <result column="END_TIME" property="endTime" />
+        <result column="CREATE_TIME" property="createTime" />
+        <result column="CREATE_USER" property="createUser" />
+        <result column="UPDATE_TIME" property="updateTime" />
+        <result column="UPDATE_USER" property="updateUser" />
+        <result column="IS_BINDALL" property="isBindall" />
+        <result column="COMPANY_NAME" property="companyName" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        ID, COMPANY_ID, TITLE, REMARKS, PUB_STATUS, IS_DELETE, START_TIME, END_TIME, CREATE_TIME, CREATE_USER, UPDATE_TIME, UPDATE_USER, IS_BINDALL, COMPANY_NAME
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        ID
+          ,
+        COMPANY_ID
+          ,
+        TITLE
+          ,
+        REMARKS
+          ,
+        PUB_STATUS
+          ,
+        IS_DELETE
+          ,
+        START_TIME
+          ,
+        END_TIME
+          ,
+        CREATE_TIME
+          ,
+        CREATE_USER
+          ,
+        UPDATE_TIME
+          ,
+        UPDATE_USER
+          ,
+        IS_BINDALL
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND ID = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="companyId != null and companyId != ''">
+            <![CDATA[
+                AND COMPANY_ID = #{companyId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="title != null and title != ''">
+            <![CDATA[
+                AND TITLE = #{title ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="remarks != null and remarks != ''">
+            <![CDATA[
+                AND REMARKS = #{remarks ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="pubStatus != null and pubStatus != ''">
+            <![CDATA[
+                AND PUB_STATUS = #{pubStatus ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="isDelete != null and isDelete != ''">
+            <![CDATA[
+                AND IS_DELETE = #{isDelete ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="startTime != null and startTime != ''">
+            <![CDATA[
+                AND START_TIME = #{startTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="endTime != null and endTime != ''">
+            <![CDATA[
+                AND END_TIME = #{endTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="createTime != null and createTime != ''">
+            <![CDATA[
+                AND CREATE_TIME = #{createTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="createUser != null and createUser != ''">
+            <![CDATA[
+                AND CREATE_USER = #{createUser ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="updateTime != null and updateTime != ''">
+            <![CDATA[
+                AND UPDATE_TIME = #{updateTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="updateUser != null and updateUser != ''">
+            <![CDATA[
+                AND UPDATE_USER = #{updateUser ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="isBindall != null and isBindall != ''">
+            <![CDATA[
+                AND IS_BINDALL = #{isBindall ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.TicketRedeemActivity"  useGeneratedKeys="true" keyProperty="id">
+        <![CDATA[
+			insert into ticket_redeem_activity
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    ID,
+                ]]>
+            </if>
+            <if test="companyId != null and companyId != ''" >
+                <![CDATA[
+                    COMPANY_ID,
+                ]]>
+            </if>
+            <if test="title != null and title != ''" >
+                <![CDATA[
+                    TITLE,
+                ]]>
+            </if>
+            <if test="remarks != null and remarks != ''" >
+                <![CDATA[
+                    REMARKS,
+                ]]>
+            </if>
+            <if test="pubStatus != null and pubStatus != ''" >
+                <![CDATA[
+                    PUB_STATUS,
+                ]]>
+            </if>
+            <if test="isDelete != null and isDelete != ''" >
+                <![CDATA[
+                    IS_DELETE,
+                ]]>
+            </if>
+            <if test="startTime != null and startTime != ''" >
+                <![CDATA[
+                    START_TIME,
+                ]]>
+            </if>
+            <if test="endTime != null and endTime != ''" >
+                <![CDATA[
+                    END_TIME,
+                ]]>
+            </if>
+            <if test="createTime != null and createTime != ''" >
+                <![CDATA[
+                    CREATE_TIME,
+                ]]>
+            </if>
+            <if test="createUser != null and createUser != ''" >
+                <![CDATA[
+                    CREATE_USER,
+                ]]>
+            </if>
+            <if test="updateTime != null and updateTime != ''" >
+                <![CDATA[
+                    UPDATE_TIME,
+                ]]>
+            </if>
+            <if test="updateUser != null and updateUser != ''" >
+                <![CDATA[
+                    UPDATE_USER,
+                ]]>
+            </if>
+            <if test="isBindall != null and isBindall != ''" >
+                <![CDATA[
+                    IS_BINDALL,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="companyId != null and companyId != ''" >
+                <![CDATA[
+                    #{companyId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="title != null and title != ''" >
+                <![CDATA[
+                    #{title,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="remarks != null and remarks != ''" >
+                <![CDATA[
+                    #{remarks,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="pubStatus != null and pubStatus != ''" >
+                <![CDATA[
+                    #{pubStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isDelete != null and isDelete != ''" >
+                <![CDATA[
+                    #{isDelete,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="startTime != null and startTime != ''" >
+                <![CDATA[
+                    #{startTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="endTime != null and endTime != ''" >
+                <![CDATA[
+                    #{endTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="createTime != null and createTime != ''" >
+                <![CDATA[
+                    #{createTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="createUser != null and createUser != ''" >
+                <![CDATA[
+                    #{createUser,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="updateTime != null and updateTime != ''" >
+                <![CDATA[
+                    #{updateTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="updateUser != null and updateUser != ''" >
+                <![CDATA[
+                    #{updateUser,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isBindall != null and isBindall != ''" >
+                <![CDATA[
+                    #{isBindall,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.TicketRedeemActivity" >
+        <![CDATA[
+        	update ticket_redeem_activity
+        ]]>
+        <set >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    ID = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="companyId != null and companyId != ''" >
+                <![CDATA[
+                    COMPANY_ID = #{companyId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="title != null and title != ''" >
+                <![CDATA[
+                    TITLE = #{title,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="remarks != null and remarks != ''" >
+                <![CDATA[
+                    REMARKS = #{remarks,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="pubStatus != null and pubStatus != ''" >
+                <![CDATA[
+                    PUB_STATUS = #{pubStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isDelete != null and isDelete != ''" >
+                <![CDATA[
+                    IS_DELETE = #{isDelete,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="startTime != null and startTime != ''" >
+                <![CDATA[
+                    START_TIME = #{startTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="endTime != null and endTime != ''" >
+                <![CDATA[
+                    END_TIME = #{endTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="createTime != null and createTime != ''" >
+                <![CDATA[
+                    CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="createUser != null and createUser != ''" >
+                <![CDATA[
+                    CREATE_USER = #{createUser,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="updateTime != null and updateTime != ''" >
+                <![CDATA[
+                    UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="updateUser != null and updateUser != ''" >
+                <![CDATA[
+                    UPDATE_USER = #{updateUser,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isBindall != null and isBindall != ''" >
+                <![CDATA[
+                    IS_BINDALL = #{isBindall,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and ID = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.TicketRedeemActivity">
+        <![CDATA[
+            delete from ticket_redeem_activity
+        ]]>
+        <where>
+            <![CDATA[
+                and ID = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.TicketRedeemActivity">
+        <![CDATA[
+            select t.*,tc.NAME COMPANY_NAME
+        ]]>
+        <![CDATA[
+            from ticket_redeem_activity t left join ticket_redeem_company tc on t.COMPANY_ID = tc.ID
+        ]]>
+        <where>
+            <![CDATA[
+                and t.ID = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select t.*,tc.NAME COMPANY_NAME
+        ]]>
+        <![CDATA[
+            from ticket_redeem_activity t left join ticket_redeem_company tc on t.COMPANY_ID = tc.ID
+        ]]>
+        <where>
+            <if test="companyId != null and companyId != ''">
+                <![CDATA[
+                AND t.COMPANY_ID = #{companyId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="companyName != null and companyName != ''">
+                <![CDATA[
+                AND tc.NAME like concat('%',#{companyName,jdbcType=VARCHAR},'%')
+            ]]>
+            </if>
+            <if test="title != null and title != ''">
+                <![CDATA[
+                AND t.TITLE like concat('%',#{title,jdbcType=VARCHAR},'%')
+            ]]>
+            </if>
+            <if test="remarks != null and remarks != ''">
+                <![CDATA[
+                AND t.REMARKS like concat('%',#{remarks,jdbcType=VARCHAR},'%')
+            ]]>
+            </if>
+            <if test="pubStatus != null and pubStatus != ''">
+                <![CDATA[
+                AND t.PUB_STATUS = #{pubStatus ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="isDelete != null and isDelete != ''">
+                <![CDATA[
+                AND t.IS_DELETE = #{isDelete ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="startTime != null and startTime != ''">
+                <![CDATA[
+                AND t.START_TIME >= #{startTime ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="endTime != null and endTime != ''">
+                <![CDATA[
+                AND t.END_TIME <= #{endTime ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="createUser != null and createUser != ''">
+                <![CDATA[
+                AND CREATE_USER = #{createUser ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="isBindall != null and isBindall != ''">
+                <![CDATA[
+                AND IS_BINDALL = #{isBindall ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+        </where>
+        order by t.CREATE_TIME desc,t.UPDATE_TIME desc
+        <if test="pageSize != '' and pageSize != null">
+            <![CDATA[
+                    limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+                ]]>
+        </if>
+    </select>
+
+    <!--  查询列表数量 -->
+    <select id="queryTotalCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            SELECT count(0) FROM ticket_redeem_activity t left join ticket_redeem_company tc on t.COMPANY_ID = tc.ID
+        ]]>
+        <where>
+            <if test="companyId != null and companyId != ''">
+                <![CDATA[
+                AND t.COMPANY_ID = #{companyId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="companyName != null and companyName != ''">
+                <![CDATA[
+                AND tc.NAME like concat('%',#{companyName,jdbcType=VARCHAR},'%')
+            ]]>
+            </if>
+            <if test="title != null and title != ''">
+                <![CDATA[
+                AND t.TITLE like concat('%',#{title,jdbcType=VARCHAR},'%')
+            ]]>
+            </if>
+            <if test="remarks != null and remarks != ''">
+                <![CDATA[
+                AND t.REMARKS like concat('%',#{remarks,jdbcType=VARCHAR},'%')
+            ]]>
+            </if>
+            <if test="pubStatus != null and pubStatus != ''">
+                <![CDATA[
+                AND t.PUB_STATUS = #{pubStatus ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="isDelete != null and isDelete != ''">
+                <![CDATA[
+                AND t.IS_DELETE = #{isDelete ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="startTime != null and startTime != ''">
+                <![CDATA[
+                AND t.START_TIME >= #{startTime ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="endTime != null and endTime != ''">
+                <![CDATA[
+                AND t.END_TIME <= #{endTime ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="createUser != null and createUser != ''">
+                <![CDATA[
+                AND CREATE_USER = #{createUser ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="isBindall != null and isBindall != ''">
+                <![CDATA[
+                AND IS_BINDALL = #{isBindall ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+        </where>
+    </select>
+</mapper>

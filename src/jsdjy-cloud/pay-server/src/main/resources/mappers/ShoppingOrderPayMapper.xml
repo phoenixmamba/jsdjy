@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.pay.biz.dao.ShoppingOrderPayDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.pay.biz.po.ShoppingOrderPay">
+        <id column="id" property="id" />
+        <result column="updateTime" property="updateTime" />
+        <result column="cash_status" property="cashStatus" />
+        <result column="coupon_status" property="couponStatus" />
+        <result column="giftcard_status" property="giftcardStatus" />
+        <result column="integral_status" property="integralStatus" />
+        <result column="balance_status" property="balanceStatus" />
+        <result column="pay_status" property="payStatus" />
+        <result column="of_id" property="ofId" />
+        <result column="user_id" property="userId" />
+        <result column="out_trade_no" property="outTradeNo" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, updateTime, cash_status, coupon_status, giftcard_status, integral_status, balance_status, pay_status, of_id, user_id, out_trade_no
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        updateTime
+          ,
+        cash_status
+          ,
+        coupon_status
+          ,
+        giftcard_status
+          ,
+        integral_status
+          ,
+        balance_status
+          ,
+        pay_status
+          ,
+        of_id
+          ,
+        user_id
+          ,
+        out_trade_no
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="updateTime != null and updateTime != ''">
+            <![CDATA[
+                AND updateTime = #{updateTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="cashStatus != null and cashStatus != ''">
+            <![CDATA[
+                AND cash_status = #{cashStatus ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="couponStatus != null and couponStatus != ''">
+            <![CDATA[
+                AND coupon_status = #{couponStatus ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="giftcardStatus != null and giftcardStatus != ''">
+            <![CDATA[
+                AND giftcard_status = #{giftcardStatus ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="integralStatus != null and integralStatus != ''">
+            <![CDATA[
+                AND integral_status = #{integralStatus ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="balanceStatus != null and balanceStatus != ''">
+            <![CDATA[
+                AND balance_status = #{balanceStatus ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="payStatus != null and payStatus != ''">
+            <![CDATA[
+                AND pay_status = #{payStatus ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="ofId != null and ofId != ''">
+            <![CDATA[
+                AND of_id = #{ofId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="userId != null and userId != ''">
+            <![CDATA[
+                AND user_id = #{userId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="outTradeNo != null and outTradeNo != ''">
+            <![CDATA[
+                AND out_trade_no = #{outTradeNo ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.pay.biz.po.ShoppingOrderPay">
+        <![CDATA[
+			insert into shopping_order_pay
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+
+                <![CDATA[
+                    updateTime,
+                ]]>
+
+            <if test="cashStatus != '' and cashStatus != null" >
+                <![CDATA[
+                    cash_status,
+                ]]>
+            </if>
+            <if test="couponStatus != '' and couponStatus != null" >
+                <![CDATA[
+                    coupon_status,
+                ]]>
+            </if>
+            <if test="giftcardStatus != '' and giftcardStatus != null" >
+                <![CDATA[
+                    giftcard_status,
+                ]]>
+            </if>
+            <if test="integralStatus != '' and integralStatus != null" >
+                <![CDATA[
+                    integral_status,
+                ]]>
+            </if>
+            <if test="balanceStatus != '' and balanceStatus != null" >
+                <![CDATA[
+                    balance_status,
+                ]]>
+            </if>
+            <if test="payStatus != '' and payStatus != null" >
+                <![CDATA[
+                    pay_status,
+                ]]>
+            </if>
+            <if test="ofId != '' and ofId != null" >
+                <![CDATA[
+                    of_id,
+                ]]>
+            </if>
+            <if test="userId != '' and userId != null" >
+                <![CDATA[
+                    user_id,
+                ]]>
+            </if>
+            <if test="outTradeNo != '' and outTradeNo != null" >
+                <![CDATA[
+                    out_trade_no,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+
+            now(),
+            <if test="cashStatus != '' and cashStatus != null" >
+                <![CDATA[
+                    #{cashStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="couponStatus != '' and couponStatus != null" >
+                <![CDATA[
+                    #{couponStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="giftcardStatus != '' and giftcardStatus != null" >
+                <![CDATA[
+                    #{giftcardStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="integralStatus != '' and integralStatus != null" >
+                <![CDATA[
+                    #{integralStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="balanceStatus != '' and balanceStatus != null" >
+                <![CDATA[
+                    #{balanceStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="payStatus != '' and payStatus != null" >
+                <![CDATA[
+                    #{payStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="ofId != '' and ofId != null" >
+                <![CDATA[
+                    #{ofId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userId != '' and userId != null" >
+                <![CDATA[
+                    #{userId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="outTradeNo != '' and outTradeNo != null" >
+                <![CDATA[
+                    #{outTradeNo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.pay.biz.po.ShoppingOrderPay" >
+        <![CDATA[
+        	update shopping_order_pay
+        ]]>
+        <set >
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="updateTime != '' and updateTime != null" >
+                <![CDATA[
+                    updateTime = #{updateTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="cashStatus != '' and cashStatus != null" >
+                <![CDATA[
+                    cash_status = #{cashStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="couponStatus != '' and couponStatus != null" >
+                <![CDATA[
+                    coupon_status = #{couponStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="giftcardStatus != '' and giftcardStatus != null" >
+                <![CDATA[
+                    giftcard_status = #{giftcardStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="integralStatus != '' and integralStatus != null" >
+                <![CDATA[
+                    integral_status = #{integralStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="balanceStatus != '' and balanceStatus != null" >
+                <![CDATA[
+                    balance_status = #{balanceStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="payStatus != '' and payStatus != null" >
+                <![CDATA[
+                    pay_status = #{payStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="ofId != '' and ofId != null" >
+                <![CDATA[
+                    of_id = #{ofId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userId != '' and userId != null" >
+                <![CDATA[
+                    user_id = #{userId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="outTradeNo != '' and outTradeNo != null" >
+                <![CDATA[
+                    out_trade_no = #{outTradeNo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.pay.biz.po.ShoppingOrderPay">
+        <![CDATA[
+            delete from shopping_order_pay
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.pay.biz.po.ShoppingOrderPay">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_order_pay t
+        ]]>
+        <where>
+            <if test="id != null and id != ''">
+                <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+                <![CDATA[
+                AND of_id = #{ofId ,jdbcType=VARCHAR}
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_order_pay t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+    <!-- 更新现金支付状态为已完成 -->
+    <update id="setCashPayStatusFinish">
+        <![CDATA[
+        	update shopping_order_pay
+        ]]>
+        <set >
+                <![CDATA[
+                    cash_status = 1,
+                ]]>
+                <![CDATA[
+                    out_trade_no = #{outTradeNo,jdbcType=VARCHAR},
+                ]]>
+        </set>
+        <where>
+            <![CDATA[
+                and of_id = #{ofId,jdbcType=VARCHAR}
+            ]]>
+            <![CDATA[
+                and cash_status = 0
+            ]]>
+        </where>
+    </update>
+</mapper>

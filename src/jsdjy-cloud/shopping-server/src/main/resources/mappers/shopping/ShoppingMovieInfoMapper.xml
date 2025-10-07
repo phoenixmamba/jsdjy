@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.ShoppingMovieInfoDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.ShoppingMovieInfo">
+        <id column="id" property="id"/>
+        <result column="movie_name" property="movieName"/>
+        <result column="movie_other_name" property="movieOtherName"/>
+        <result column="movie_image" property="movieImage"/>
+        <result column="movie_duration" property="movieDuration"/>
+        <result column="keyword" property="keyword"/>
+        <result column="release_time" property="releaseTime"/>
+        <result column="release_location" property="releaseLocation"/>
+        <result column="synopsis" property="synopsis"/>
+        <result column="status" property="status"/>
+        <result column="create_time" property="createTime"/>
+        <result column="create_user" property="createUser"/>
+        <collection property="actorInfos" column="id" select="queryActorInfosByMovieId"
+                    ofType="com.centit.shopping.po.ShoppingMovieActorInfo"/>
+        <collection property="photos" column="id" select="queryPhotosByMovieId"
+                    ofType="com.centit.shopping.po.ShoppingMoviePhoto"/>
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, movie_name,movie_other_name, movie_image, movie_duration, keyword, release_time, release_location, synopsis, `status`, create_time, create_user
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        movie_name
+        ,
+        movie_other_name
+          ,
+        movie_image
+          ,
+        movie_duration
+          ,
+        keyword
+          ,
+        release_time
+          ,
+        release_location
+          ,
+        synopsis
+          ,
+        `status`
+          ,
+        create_time
+          ,
+        create_user
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="movieName != null and movieName != ''">
+            <![CDATA[
+                AND movie_name like concat('%', #{movieName ,jdbcType=VARCHAR},'%')
+            ]]>
+        </if>
+        <if test="movieOtherName != null and movieOtherName != ''">
+            <![CDATA[
+                AND movie_other_name like concat('%', #{movieOtherName ,jdbcType=VARCHAR},'%')
+            ]]>
+        </if>
+        <if test="movieImage != null and movieImage != ''">
+            <![CDATA[
+                AND movie_image = #{movieImage ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="movieDuration != null and movieDuration != ''">
+            <![CDATA[
+                AND movie_duration = #{movieDuration ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="keyword != null and keyword != ''">
+            <![CDATA[
+                AND keyword = #{keyword ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="releaseTime != null and releaseTime != ''">
+            <![CDATA[
+                AND release_time = #{releaseTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="releaseLocation != null and releaseLocation != ''">
+            <![CDATA[
+                AND release_location = #{releaseLocation ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="synopsis != null and synopsis != ''">
+            <![CDATA[
+                AND synopsis = #{synopsis ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="status != null and status != ''">
+            <![CDATA[
+                AND `status` = #{status ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="createTime != null and createTime != ''">
+            <![CDATA[
+                AND create_time = #{createTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="createUser != null and createUser != ''">
+            <![CDATA[
+                AND create_user = #{createUser ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+    <select id="queryActorInfosByMovieId" resultMap="com.centit.shopping.dao.ShoppingMovieActorInfoDao.BaseResultMap">
+        select *
+        from shopping_movie_actor_info
+        where movie_id = #{id}
+        order by `sort`
+    </select>
+
+    <select id="queryPhotosByMovieId" resultMap="com.centit.shopping.dao.ShoppingMoviePhotoDao.BaseResultMap">
+        select *
+        from shopping_movie_photo
+        where movie_id = #{id}
+    </select>
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.ShoppingMovieInfo" keyProperty="id" keyColumn="id"
+            useGeneratedKeys="true">
+        <![CDATA[
+			insert into shopping_movie_info
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != '' and id != null">
+                <![CDATA[
+                    id,
+                ]]>
+            </if>
+            <if test="movieName != '' and movieName != null">
+                <![CDATA[
+                    movie_name,
+                ]]>
+            </if>
+            <if test="movieOtherName != '' and movieOtherName != null">
+                <![CDATA[
+                    movie_other_name,
+                ]]>
+            </if>
+            <if test="movieImage != '' and movieImage != null">
+                <![CDATA[
+                    movie_image,
+                ]]>
+            </if>
+            <if test="movieDuration != '' and movieDuration != null">
+                <![CDATA[
+                    movie_duration,
+                ]]>
+            </if>
+            <if test="keyword != '' and keyword != null">
+                <![CDATA[
+                    keyword,
+                ]]>
+            </if>
+            <if test="releaseTime != null">
+                <![CDATA[
+                    release_time,
+                ]]>
+            </if>
+            <if test="releaseLocation != '' and releaseLocation != null">
+                <![CDATA[
+                    release_location,
+                ]]>
+            </if>
+            <if test="synopsis != '' and synopsis != null">
+                <![CDATA[
+                    synopsis,
+                ]]>
+            </if>
+            <if test="status != null">
+                <![CDATA[
+                    status,
+                ]]>
+            </if>
+            <if test="createTime != null">
+                <![CDATA[
+                    create_time,
+                ]]>
+            </if>
+            <if test="createUser != '' and createUser != null">
+                <![CDATA[
+                    create_user,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != '' and id != null">
+                <![CDATA[
+                    #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="movieName != '' and movieName != null">
+                <![CDATA[
+                    #{movieName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="movieOtherName != '' and movieOtherName != null">
+                <![CDATA[
+                    #{movieOtherName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="movieImage != '' and movieImage != null">
+                <![CDATA[
+                    #{movieImage,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="movieDuration != '' and movieDuration != null">
+                <![CDATA[
+                    #{movieDuration,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="keyword != '' and keyword != null">
+                <![CDATA[
+                    #{keyword,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="releaseTime != null">
+                <![CDATA[
+                    #{releaseTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="releaseLocation != '' and releaseLocation != null">
+                <![CDATA[
+                    #{releaseLocation,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="synopsis != '' and synopsis != null">
+                <![CDATA[
+                    #{synopsis,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="status != null">
+                <![CDATA[
+                    #{status,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="createTime != null">
+                <![CDATA[
+                    #{createTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="createUser != '' and createUser != null">
+                <![CDATA[
+                    #{createUser,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.ShoppingMovieInfo">
+        <![CDATA[
+        	update shopping_movie_info
+        ]]>
+        <set>
+            <if test="id != '' and id != null">
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="movieName != '' and movieName != null">
+                <![CDATA[
+                    movie_name = #{movieName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="movieOtherName != '' and movieOtherName != null">
+                <![CDATA[
+                    movie_other_name = #{movieOtherName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="movieImage != '' and movieImage != null">
+                <![CDATA[
+                    movie_image = #{movieImage,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="movieDuration != '' and movieDuration != null">
+                <![CDATA[
+                    movie_duration = #{movieDuration,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="keyword != '' and keyword != null">
+                <![CDATA[
+                    keyword = #{keyword,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="releaseTime != null">
+                <![CDATA[
+                    release_time = #{releaseTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="releaseLocation != '' and releaseLocation != null">
+                <![CDATA[
+                    release_location = #{releaseLocation,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="synopsis != '' and synopsis != null">
+                <![CDATA[
+                    synopsis = #{synopsis,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="status != null">
+                <![CDATA[
+                    status = #{status,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="createTime != null">
+                <![CDATA[
+                    create_time = #{createTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="createUser != '' and createUser != null">
+                <![CDATA[
+                    create_user = #{createUser,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete" parameterType="com.centit.shopping.po.ShoppingMovieInfo">
+        <![CDATA[
+            delete from shopping_movie_info
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.ShoppingMovieInfo">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1"/>
+        <![CDATA[
+            from shopping_movie_info t
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1"/>
+        <![CDATA[
+            from shopping_movie_info t
+        ]]>
+        <where>
+            <include refid="Base_Where_List"/>
+        </where>
+        order by release_time desc
+    </select>
+    <select id="queryCount" resultType="java.lang.Integer">
+        select count(0) <![CDATA[
+            from shopping_movie_info t
+        ]]>
+        <where>
+            <include refid="Base_Where_List"/>
+        </where>
+    </select>
+    <select id="queryAllMovie" resultType="java.util.Map">
+        <![CDATA[
+            select
+        ]]>
+        id,movie_name as name,movie_image photo
+        <![CDATA[
+            from shopping_movie_info t
+        ]]>
+        <where>
+            <include refid="Base_Where_List"/>
+        </where>
+        order by release_time desc
+    </select>
+
+</mapper>

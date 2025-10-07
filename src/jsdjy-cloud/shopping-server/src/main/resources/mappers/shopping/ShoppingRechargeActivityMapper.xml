@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.ShoppingRechargeActivityDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.ShoppingRechargeActivity">
+        <id column="id" property="id" />
+        <result column="title" property="title" />
+        <result column="remark" property="remark" />
+        <result column="floor" property="floor" />
+        <result column="give" property="give" />
+        <result column="pernum" property="pernum" />
+        <result column="start_time" property="startTime" />
+        <result column="end_time" property="endTime" />
+        <result column="create_time" property="createTime" />
+        <result column="is_pub" property="isPub" />
+        <result column="is_delete" property="isDelete" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, title, remark, floor, give, pernum, start_time, end_time, create_time, is_pub, is_delete
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        title
+          ,
+        remark
+          ,
+        floor
+          ,
+        give
+          ,
+        pernum
+          ,
+        start_time
+          ,
+        end_time
+          ,
+        create_time
+          ,
+        is_pub
+          ,
+        is_delete
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="title != null and title != ''">
+            <![CDATA[
+                AND title = #{title ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="remark != null and remark != ''">
+            <![CDATA[
+                AND remark = #{remark ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="floor != null and floor != ''">
+            <![CDATA[
+                AND floor = #{floor ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="give != null and give != ''">
+            <![CDATA[
+                AND give = #{give ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="pernum != null and pernum != ''">
+            <![CDATA[
+                AND pernum = #{pernum ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="startTime != null and startTime != ''">
+            <![CDATA[
+                AND start_time = #{startTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="endTime != null and endTime != ''">
+            <![CDATA[
+                AND end_time = #{endTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="createTime != null and createTime != ''">
+            <![CDATA[
+                AND create_time = #{createTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="isPub != null and isPub != ''">
+            <![CDATA[
+                AND is_pub = #{isPub ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="isDelete != null and isDelete != ''">
+            <![CDATA[
+                AND is_delete = #{isDelete ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.ShoppingRechargeActivity">
+        <![CDATA[
+			insert into shopping_recharge_activity
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+
+            <if test="title != null and title != ''" >
+                <![CDATA[
+                    title,
+                ]]>
+            </if>
+            <if test="remark != null and remark != ''" >
+                <![CDATA[
+                    remark,
+                ]]>
+            </if>
+            <if test="floor != null and floor != ''" >
+                <![CDATA[
+                    floor,
+                ]]>
+            </if>
+            <if test="give != null and give != ''" >
+                <![CDATA[
+                    give,
+                ]]>
+            </if>
+            <if test="pernum != null'" >
+                <![CDATA[
+                    pernum,
+                ]]>
+            </if>
+            <if test="startTime != null and startTime != ''" >
+                <![CDATA[
+                    start_time,
+                ]]>
+            </if>
+            <if test="endTime != null and endTime != ''" >
+                <![CDATA[
+                    end_time,
+                ]]>
+            </if>
+
+                <![CDATA[
+                    create_time,
+                ]]>
+
+            <if test="isPub != null and isPub != ''" >
+                <![CDATA[
+                    is_pub,
+                ]]>
+            </if>
+            <if test="isDelete != null and isDelete != ''" >
+                <![CDATA[
+                    is_delete,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+
+            <if test="title != null and title != ''" >
+                <![CDATA[
+                    #{title,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="remark != null and remark != ''" >
+                <![CDATA[
+                    #{remark,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="floor != null and floor != ''" >
+                <![CDATA[
+                    #{floor,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="give != null and give != ''" >
+                <![CDATA[
+                    #{give,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="pernum != null" >
+                <![CDATA[
+                    #{pernum,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="startTime != null and startTime != ''" >
+                <![CDATA[
+                    #{startTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="endTime != null and endTime != ''" >
+                <![CDATA[
+                    #{endTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            now(),
+            <if test="isPub != null" >
+                <![CDATA[
+                    #{isPub,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isDelete != null" >
+                <![CDATA[
+                    #{isDelete,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.ShoppingRechargeActivity" >
+        <![CDATA[
+        	update shopping_recharge_activity
+        ]]>
+        <set >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="title != null and title != ''" >
+                <![CDATA[
+                    title = #{title,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="remark != null and remark != ''" >
+                <![CDATA[
+                    remark = #{remark,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="floor != null and floor != ''" >
+                <![CDATA[
+                    floor = #{floor,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="give != null and give != ''" >
+                <![CDATA[
+                    give = #{give,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="pernum != null" >
+                <![CDATA[
+                    pernum = #{pernum,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="startTime != null and startTime != ''" >
+                <![CDATA[
+                    start_time = #{startTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="endTime != null and endTime != ''" >
+                <![CDATA[
+                    end_time = #{endTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="createTime != null and createTime != ''" >
+                <![CDATA[
+                    create_time = #{createTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isPub != null" >
+                <![CDATA[
+                    is_pub = #{isPub,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isDelete != null" >
+                <![CDATA[
+                    is_delete = #{isDelete,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+    <!-- 更新 -->
+    <update id="unpubActicitys" parameterType="com.centit.shopping.po.ShoppingRechargeActivity" >
+        <![CDATA[
+        	update shopping_recharge_activity
+        ]]>
+        <set >
+                <![CDATA[
+                    is_pub = '0',
+                ]]>
+        </set>
+        <where>
+            <!--<![CDATA[-->
+                <!--and id = #{id ,jdbcType=VARCHAR }-->
+            <!--]]>-->
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.ShoppingRechargeActivity">
+        <![CDATA[
+            delete from shopping_recharge_activity
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.ShoppingRechargeActivity">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_recharge_activity t
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_recharge_activity t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+        order by t.is_pub desc,t.create_time desc
+        <if test="pageSize != '' and pageSize != null">
+            limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+        </if>
+    </select>
+
+    <!--  查询列表数量 -->
+    <select id="queryTotalCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            SELECT count(0) FROM shopping_recharge_activity
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+</mapper>

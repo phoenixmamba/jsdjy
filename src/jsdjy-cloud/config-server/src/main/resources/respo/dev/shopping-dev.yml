@@ -1,0 +1,53 @@
+#商城服务配置文件
+#Author: cui_jian
+
+spring:
+  application:
+    name: shopping
+
+  #Redis配置
+  redis:
+    host: 192.168.135.40
+    #Redis服务器连接密码（默认为空）
+    password:
+    #Redis数据库索引（默认为0）
+    database: 5
+    port: 6379
+    #连接超时时间（毫秒）
+    timeout: 300
+    #这里使用的是lettuce，如果使用Jedis，把下面的lettuce改成Jedis即可
+    lettuce:
+      pool:
+        #连接池中的最大空闲连接
+        max-idle: 8
+        #连接池中的最小空闲连接
+        min-idle: 0
+        #连接池最大连接数（使用负值表示没有限制）
+        max-active: 8
+        #连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: -1
+
+
+
+
+#mybatis配置
+mybatis:
+  config-locations: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mappers/*.xml #指定resources下面的mappers文件夹
+  #  typeAliasesPackage: com.centit.organizeuser.organizeuserserver.webmgr.po
+
+  #spring boot集成mybatis的方式打印sql
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+#商品
+goods:
+  #文创商品
+  culGoods:
+    #文创商品一级分类id
+    firstClassId: 1
+  #积分商城商品
+  integralGoods:
+      #文创商品一级分类id
+      firstClassId: 2
+

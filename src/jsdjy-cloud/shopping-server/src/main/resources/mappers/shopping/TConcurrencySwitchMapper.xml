@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.TConcurrencySwitchDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.TConcurrencySwitch">
+        <result column="sync_mz_switch" property="syncMzSwitch" />
+        <result column="homepage_api_switch" property="homepageApiSwitch" />
+        <result column="sync_projectid" property="syncProjectid" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        sync_mz_switch, homepage_api_switch,sync_projectid
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        sync_mz_switch
+          ,
+        homepage_api_switch
+,
+sync_projectid
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="syncMzSwitch != null and syncMzSwitch != ''">
+            <![CDATA[
+                AND sync_mz_switch = #{syncMzSwitch ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="homepageApiSwitch != null and homepageApiSwitch != ''">
+            <![CDATA[
+                AND homepage_api_switch = #{homepageApiSwitch ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="syncProjectid != null and syncProjectid != ''">
+            <![CDATA[
+                AND sync_projectid = #{syncProjectid ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.TConcurrencySwitch">
+        <![CDATA[
+			insert into t_concurrency_switch
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="syncMzSwitch != '' and syncMzSwitch != null" >
+                <![CDATA[
+                    sync_mz_switch,
+                ]]>
+            </if>
+            <if test="homepageApiSwitch != '' and homepageApiSwitch != null" >
+                <![CDATA[
+                    homepage_api_switch,
+                ]]>
+            </if>
+            <if test="syncProjectid != '' and syncProjectid != null" >
+                <![CDATA[
+                    sync_projectid,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="syncMzSwitch != '' and syncMzSwitch != null" >
+                <![CDATA[
+                    #{syncMzSwitch,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="homepageApiSwitch != '' and homepageApiSwitch != null" >
+                <![CDATA[
+                    #{homepageApiSwitch,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="syncProjectid != '' and syncProjectid != null" >
+                <![CDATA[
+                    #{syncProjectid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.TConcurrencySwitch" >
+        <![CDATA[
+        	update t_concurrency_switch
+        ]]>
+        <set >
+            <if test="syncMzSwitch != '' and syncMzSwitch != null" >
+                <![CDATA[
+                    sync_mz_switch = #{syncMzSwitch,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="homepageApiSwitch != '' and homepageApiSwitch != null" >
+                <![CDATA[
+                    homepage_api_switch = #{homepageApiSwitch,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="syncProjectid != '' and syncProjectid != null" >
+                <![CDATA[
+                    sync_projectid = #{syncProjectid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.TConcurrencySwitch">
+        <![CDATA[
+            delete from t_concurrency_switch
+        ]]>
+        <where>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.TConcurrencySwitch">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from t_concurrency_switch t
+        ]]>
+        <where>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from t_concurrency_switch t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+</mapper>

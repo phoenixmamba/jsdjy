@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.TInvoiceTokenDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.TInvoiceToken">
+        <result column="app_key" property="appKey" />
+        <result column="app_secret" property="appSecret" />
+        <result column="access_token" property="accessToken" />
+        <result column="create_time" property="createTime" />
+        <result column="expires_time" property="expiresTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        app_key, app_secret, access_token, create_time, expires_time
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        app_key
+          ,
+        app_secret
+          ,
+        access_token
+          ,
+        create_time
+          ,
+        expires_time
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="appKey != null and appKey != ''">
+            <![CDATA[
+                AND app_key = #{appKey ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="appSecret != null and appSecret != ''">
+            <![CDATA[
+                AND app_secret = #{appSecret ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="accessToken != null and accessToken != ''">
+            <![CDATA[
+                AND access_token = #{accessToken ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="createTime != null and createTime != ''">
+            <![CDATA[
+                AND create_time = #{createTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="expiresTime != null and expiresTime != ''">
+            <![CDATA[
+                AND expires_time = #{expiresTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.TInvoiceToken">
+        <![CDATA[
+			insert into t_invoice_token
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="appKey != null and appKey != ''" >
+                <![CDATA[
+                    app_key,
+                ]]>
+            </if>
+            <if test="appSecret != null and appSecret != ''" >
+                <![CDATA[
+                    app_secret,
+                ]]>
+            </if>
+            <if test="accessToken != null and accessToken != ''" >
+                <![CDATA[
+                    access_token,
+                ]]>
+            </if>
+
+                <![CDATA[
+                    create_time,
+                ]]>
+
+            <if test="expiresTime != null and expiresTime != ''" >
+                <![CDATA[
+                    expires_time,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="appKey != null and appKey != ''" >
+                <![CDATA[
+                    #{appKey,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="appSecret != null and appSecret != ''" >
+                <![CDATA[
+                    #{appSecret,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="accessToken != null and accessToken != ''" >
+                <![CDATA[
+                    #{accessToken,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            now(),
+            <if test="expiresTime != null and expiresTime != ''" >
+                <![CDATA[
+                    #{expiresTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.TInvoiceToken" >
+        <![CDATA[
+        	update t_invoice_token
+        ]]>
+        <set >
+            <if test="appKey != null and appKey != ''" >
+                <![CDATA[
+                    app_key = #{appKey,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="appSecret != null and appSecret != ''" >
+                <![CDATA[
+                    app_secret = #{appSecret,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="accessToken != null and accessToken != ''" >
+                <![CDATA[
+                    access_token = #{accessToken,jdbcType=VARCHAR},
+                ]]>
+            </if>
+
+                <![CDATA[
+                    create_time = now(),
+                ]]>
+
+            <if test="expiresTime != null and expiresTime != ''" >
+                <![CDATA[
+                    expires_time = #{expiresTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                AND app_key = #{appKey ,jdbcType=VARCHAR}
+            ]]>
+            <![CDATA[
+                AND app_secret = #{appSecret ,jdbcType=VARCHAR}
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.TInvoiceToken">
+        <![CDATA[
+            delete from t_invoice_token
+        ]]>
+        <where>
+            <![CDATA[
+                AND app_key = #{appKey ,jdbcType=VARCHAR}
+            ]]>
+            <![CDATA[
+                AND app_secret = #{appSecret ,jdbcType=VARCHAR}
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.TInvoiceToken">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from t_invoice_token t
+        ]]>
+        <where>
+            <![CDATA[
+                AND app_key = #{appKey ,jdbcType=VARCHAR}
+            ]]>
+            <![CDATA[
+                AND app_secret = #{appSecret ,jdbcType=VARCHAR}
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from t_invoice_token t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+</mapper>

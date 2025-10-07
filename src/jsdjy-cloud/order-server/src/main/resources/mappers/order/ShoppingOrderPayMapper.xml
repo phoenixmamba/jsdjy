@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.order.dao.ShoppingOrderPayDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.order.po.ShoppingOrderPayPo">
+        <id column="id" property="id" />
+        <result column="updateTime" property="updateTime" />
+        <result column="cash_status" property="cashStatus" />
+        <result column="coupon_status" property="couponStatus" />
+        <result column="giftcard_status" property="giftcardStatus" />
+        <result column="integral_status" property="integralStatus" />
+        <result column="balance_status" property="balanceStatus" />
+        <result column="pay_status" property="payStatus" />
+        <result column="of_id" property="ofId" />
+        <result column="user_id" property="userId" />
+        <result column="out_trade_no" property="outTradeNo" />
+    </resultMap>
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.order.po.ShoppingOrderPayPo">
+        <![CDATA[
+			insert into shopping_order_pay
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+
+
+                <![CDATA[
+                    updateTime,
+                ]]>
+
+            <if test="cashStatus != null" >
+                <![CDATA[
+                    cash_status,
+                ]]>
+            </if>
+            <if test="couponStatus != null" >
+                <![CDATA[
+                    coupon_status,
+                ]]>
+            </if>
+            <if test="giftcardStatus != null" >
+                <![CDATA[
+                    giftcard_status,
+                ]]>
+            </if>
+            <if test="integralStatus != null" >
+                <![CDATA[
+                    integral_status,
+                ]]>
+            </if>
+            <if test="balanceStatus != null" >
+                <![CDATA[
+                    balance_status,
+                ]]>
+            </if>
+            <if test="payStatus != null" >
+                <![CDATA[
+                    pay_status,
+                ]]>
+            </if>
+            <if test="ofId != '' and ofId != null" >
+                <![CDATA[
+                    of_id,
+                ]]>
+            </if>
+            <if test="userId != '' and userId != null" >
+                <![CDATA[
+                    user_id,
+                ]]>
+            </if>
+            <if test="outTradeNo != '' and outTradeNo != null" >
+                <![CDATA[
+                    out_trade_no,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+
+            now(),
+            <if test="cashStatus != null" >
+                <![CDATA[
+                    #{cashStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="couponStatus != null" >
+                <![CDATA[
+                    #{couponStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="giftcardStatus != null" >
+                <![CDATA[
+                    #{giftcardStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="integralStatus != null" >
+                <![CDATA[
+                    #{integralStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="balanceStatus != null" >
+                <![CDATA[
+                    #{balanceStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="payStatus != null" >
+                <![CDATA[
+                    #{payStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="ofId != '' and ofId != null" >
+                <![CDATA[
+                    #{ofId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userId != '' and userId != null" >
+                <![CDATA[
+                    #{userId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="outTradeNo != '' and outTradeNo != null" >
+                <![CDATA[
+                    #{outTradeNo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+</mapper>

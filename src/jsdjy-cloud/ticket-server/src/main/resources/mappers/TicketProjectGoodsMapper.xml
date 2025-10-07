@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.ticket.dao.TicketProjectGoodsDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.ticket.po.TicketProjectGoods">
+        <id column="id" property="id" />
+        <result column="project_id" property="projectId" />
+        <result column="goods_id" property="goodsId" />
+        <result column="goods_type" property="goodsType" />
+        <result column="sn" property="sn" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, project_id, goods_id, goods_type, sn
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        project_id
+          ,
+        goods_id
+          ,
+        goods_type
+          ,
+        sn
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="projectId != null and projectId != ''">
+            <![CDATA[
+                AND project_id = #{projectId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="goodsId != null and goodsId != ''">
+            <![CDATA[
+                AND goods_id = #{goodsId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="goodsType != null and goodsType != ''">
+            <![CDATA[
+                AND goods_type = #{goodsType ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="sn != null">
+            <![CDATA[
+                AND sn = #{sn ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.ticket.po.TicketProjectGoods">
+        <![CDATA[
+			insert into ticket_project_goods
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="projectId != '' and projectId != null" >
+                <![CDATA[
+                    project_id,
+                ]]>
+            </if>
+            <if test="goodsId != '' and goodsId != null" >
+                <![CDATA[
+                    goods_id,
+                ]]>
+            </if>
+            <if test="goodsType != '' and goodsType != null" >
+                <![CDATA[
+                    goods_type,
+                ]]>
+            </if>
+            <if test="sn != null" >
+                <![CDATA[
+                    sn,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="projectId != '' and projectId != null" >
+                <![CDATA[
+                    #{projectId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="goodsId != '' and goodsId != null" >
+                <![CDATA[
+                    #{goodsId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="goodsType != '' and goodsType != null" >
+                <![CDATA[
+                    #{goodsType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="sn != null" >
+                <![CDATA[
+                    #{sn,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.ticket.po.TicketProjectGoods" >
+        <![CDATA[
+        	update ticket_project_goods
+        ]]>
+        <set >
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="projectId != '' and projectId != null" >
+                <![CDATA[
+                    project_id = #{projectId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="goodsId != '' and goodsId != null" >
+                <![CDATA[
+                    goods_id = #{goodsId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="goodsType != '' and goodsType != null" >
+                <![CDATA[
+                    goods_type = #{goodsType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="sn != null" >
+                <![CDATA[
+                    sn = #{sn,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.ticket.po.TicketProjectGoods">
+        <![CDATA[
+            delete from ticket_project_goods
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.ticket.po.TicketProjectGoods">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from ticket_project_goods t
+        ]]>
+        <where>
+                <![CDATA[
+                AND project_id = #{projectId ,jdbcType=VARCHAR}
+            ]]>
+                <![CDATA[
+                AND goods_id = #{goodsId ,jdbcType=VARCHAR}
+            ]]>
+                <![CDATA[
+                AND goods_type = #{goodsType ,jdbcType=VARCHAR}
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from ticket_project_goods t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+        order by t.sn asc
+    </select>
+
+</mapper>

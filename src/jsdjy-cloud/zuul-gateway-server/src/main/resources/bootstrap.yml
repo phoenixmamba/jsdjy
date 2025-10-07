@@ -1,0 +1,169 @@
+#路由网关服务
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:10080/eureka/
+
+server:
+  port: 10084
+spring:
+  application:
+    #配置文件名称，多个配置文件用英文逗号分隔
+    name: gateway
+  #从config-server配置中心获取配置信息
+  main:
+    web-application-type: reactive
+  cloud:
+    config:
+      enabled: true
+      name: gateway,commonRetCodeMsg,commonDataSource,commonConfig
+      label: master
+      profile: test
+      discovery:
+        enabled: true
+        serviceId: configServer
+#    sentinel:
+#      transport:
+#        port: 9999 #跟控制台交流的端口,随意指定一个未使用的端口即可
+#        dashboard: localhost:8080 # 指定控制台服务的地址
+#        #配置限流之后的响应内容
+#      scg:
+#        fallback:
+#          mode: response
+#          response-body: '{"retCode": 100,"retMsg": "限流了，稍后重试！"}'
+    gateway:
+      discovery:
+        locator:
+          enabled: false # 开启从注册中心动态创建路由的功能，利用微服务名进行路由,uri即可支持lb://微服务名进行负载均衡调用
+      routes:
+        - id: djyserv-provider
+          uri: lb://djyserv
+          predicates:
+            - Path=/djyserv/**
+          filters:
+            - StripPrefix=1
+        - id: logstatistics-provider
+          uri: lb://logstatistics
+          predicates:
+            - Path=/logstatistics/**
+          filters:
+            - StripPrefix=1
+        - id: admin-provider
+          uri: lb://admin
+          predicates:
+            - Path=/admin/**
+          filters:
+            - StripPrefix=1
+        - id: djy-provider
+          uri: lb://djy
+          predicates:
+            - Path=/djy/**
+          filters:
+            - StripPrefix=1
+#        - id: shopping-renderActOrder
+#          uri: lb://shopping
+#          predicates:
+#            - Path=/shopping/shoppingArts/renderActivityOrder
+#          filters:
+#            - StripPrefix=1
+#          metadata:
+#            response-timeout: 30000
+#            connect-timeout: 30000
+#        - id: shopping-addActOrder
+#            uri: lb://shopping
+#            predicates:
+#              - Path=/shopping/shoppingArts/addActivityOrder
+#            filters:
+#              - StripPrefix=1
+#            metadata:
+#              response-timeout: 30000
+#              connect-timeout: 30000
+        - id: shopping-provider
+          uri: lb://shopping
+          predicates:
+            - Path=/shopping/**
+          filters:
+            - StripPrefix=1
+        - id: community-provider
+          uri: lb://community
+          predicates:
+            - Path=/community/**              # 各种断言，这里指定3种，为与关系，java bean则可配置或关系，而且After,Before等断言配置比较麻烦，故建议java bean配置，而且java bean方式可以方便结合nacos进行动态更新
+          filters:
+            - StripPrefix=1
+        - id: capability-provider
+          uri: lb://capability
+          predicates:
+            - Path=/capability/**
+          filters:
+            - StripPrefix=1
+        - id: user-provider
+          uri: lb://user
+          predicates:
+            - Path=/user/**
+          filters:
+            - StripPrefix=1
+        - id: pay-provider
+          uri: lb://pay
+          predicates:
+            - Path=/pay/**              # 各种断言，这里指定3种，为与关系，java bean则可配置或关系，而且After,Before等断言配置比较麻烦，故建议java bean配置，而且java bean方式可以方便结合nacos进行动态更新
+          filters:
+            - StripPrefix=1
+        - id: file-upload
+          uri: http://172.21.1.144:10097
+          predicates:
+            - Path=/fileserver/common/uploadFile
+          filters:
+            - StripPrefix=1
+        - id: file-download
+          uri: http://172.21.1.144:10097
+          predicates:
+            - Path=/fileserver/common/downloadFile/**
+          filters:
+            - StripPrefix=1
+        - id: ticket-homepage
+          uri: lb://ticket
+          predicates:
+            - Path=/ticket/project/home**
+          filters:
+            - StripPrefix=1
+        - id: ticket-order
+          uri: lb://ticket
+          predicates:
+            - Path=/ticket/project/renderOrder,/ticket/project/addOrder
+          filters:
+            - StripPrefix=1
+          metadata:   #演出订单渲染和下单接口单独设置超时时间
+            response-timeout: 30000
+            connect-timeout: 30000
+        - id: ticket-provider
+          uri: lb://ticket
+          predicates:
+            - Path=/ticket/**
+          filters:
+            - StripPrefix=1
+
+hystrix:
+  threadpool:
+    default:
+      coreSize: 2000   #线程池数量
+  command:
+    default:  #default全局有效，service id指定应用有效
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 300000 #断路器超时时间，默认1000ms
+          strategy: SEMAPHORE   #隔离策略
+          semaphore:
+            max-semaphores: 2000 #信号量大小
+      circuitBreaker:
+        requestVolumeThreshold: 2000
+      fallback:
+        isolation:
+          semaphore:
+            maxConcurrentRequests: 50
+
+operlogSwitchOn: false
+

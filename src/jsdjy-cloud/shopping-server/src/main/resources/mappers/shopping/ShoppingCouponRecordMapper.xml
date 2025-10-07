@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.ShoppingCouponRecordDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.ShoppingCouponRecord">
+        <id column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="right_no" property="rightNo" />
+        <result column="coupon_id" property="couponId" />
+        <result column="of_id" property="ofId" />
+        <result column="create_time" property="createTime" />
+        <result column="mobile" property="mobile" />
+        <result column="order_id" property="orderId" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, user_id, right_no, coupon_id, of_id, create_time
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        user_id
+          ,
+        right_no
+          ,
+        coupon_id
+          ,
+        of_id
+          ,
+        create_time
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="userId != null and userId != ''">
+            <![CDATA[
+                AND user_id = #{userId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="rightNo != null and rightNo != ''">
+            <![CDATA[
+                AND right_no = #{rightNo ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="couponId != null and couponId != ''">
+            <![CDATA[
+                AND coupon_id = #{couponId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="ofId != null and ofId != ''">
+            <![CDATA[
+                AND of_id = #{ofId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="createTime != null and createTime != ''">
+            <![CDATA[
+                AND create_time = #{createTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.ShoppingCouponRecord">
+        <![CDATA[
+			insert into shopping_coupon_record
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+
+            <if test="userId != null and userId != ''" >
+                <![CDATA[
+                    user_id,
+                ]]>
+            </if>
+            <if test="rightNo != null and rightNo != ''" >
+                <![CDATA[
+                    right_no,
+                ]]>
+            </if>
+            <if test="couponId != null and couponId != ''" >
+                <![CDATA[
+                    coupon_id,
+                ]]>
+            </if>
+            <if test="ofId != null and ofId != ''" >
+                <![CDATA[
+                    of_id,
+                ]]>
+            </if>
+
+                <![CDATA[
+                    create_time,
+                ]]>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+
+            <if test="userId != null and userId != ''" >
+                <![CDATA[
+                    #{userId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="rightNo != null and rightNo != ''" >
+                <![CDATA[
+                    #{rightNo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="couponId != null and couponId != ''" >
+                <![CDATA[
+                    #{couponId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="ofId != null and ofId != ''" >
+                <![CDATA[
+                    #{ofId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            now(),
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.ShoppingCouponRecord" >
+        <![CDATA[
+        	update shopping_coupon_record
+        ]]>
+        <set >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userId != null and userId != ''" >
+                <![CDATA[
+                    user_id = #{userId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="rightNo != null and rightNo != ''" >
+                <![CDATA[
+                    right_no = #{rightNo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="couponId != null and couponId != ''" >
+                <![CDATA[
+                    coupon_id = #{couponId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="ofId != null and ofId != ''" >
+                <![CDATA[
+                    of_id = #{ofId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="createTime != null and createTime != ''" >
+                <![CDATA[
+                    create_time = #{createTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.ShoppingCouponRecord">
+        <![CDATA[
+            delete from shopping_coupon_record
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.ShoppingCouponRecord">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_coupon_record t
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select t.*,u.mobile,s.order_id
+        ]]>
+        <![CDATA[
+            from shopping_coupon_record t left join shopping_user u on t.user_id = u.id
+            left join shopping_orderform s on t.of_id = s.id
+        ]]>
+        <where>
+            <if test="mobile != null and mobile != ''">
+                <![CDATA[
+                AND u.mobile like concat('%', #{mobile,jdbcType=VARCHAR}, '%')
+            ]]>
+            </if>
+            <if test="orderId != null and orderId != ''">
+                <![CDATA[
+                AND s.order_id like concat('%', #{orderId,jdbcType=VARCHAR}, '%')
+            ]]>
+            </if>
+            <if test="rightNo != null and rightNo != ''">
+                <![CDATA[
+                AND t.right_no = #{rightNo ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="startTime !=null and startTime !='' ">
+                <![CDATA[
+                AND t.create_time  >=  #{startTime}
+            ]]>
+            </if>
+            <if test="endTime !=null and endTime!='' "  >
+                <![CDATA[
+                and t.create_time <=  #{endTime}
+             ]]>
+            </if>
+        </where>
+        order by t.create_time desc
+        <if test="pageSize != '' and pageSize != null">
+            <![CDATA[
+                    limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+                ]]>
+        </if>
+    </select>
+
+    <select id="queryListCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            select count(1)
+        ]]>
+        <![CDATA[
+            from shopping_coupon_record t left join shopping_user u on t.user_id = u.id
+            left join shopping_orderform s on t.of_id = s.id
+        ]]>
+        <where>
+            <if test="mobile != null and mobile != ''">
+                <![CDATA[
+                AND u.mobile like concat('%', #{mobile,jdbcType=VARCHAR}, '%')
+            ]]>
+            </if>
+            <if test="orderId != null and orderId != ''">
+                <![CDATA[
+                AND s.order_id like concat('%', #{orderId,jdbcType=VARCHAR}, '%')
+            ]]>
+            </if>
+            <if test="rightNo != null and rightNo != ''">
+                <![CDATA[
+                AND t.right_no = #{rightNo ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="startTime !=null and startTime !='' ">
+                <![CDATA[
+                AND t.create_time  >=  #{startTime}
+            ]]>
+            </if>
+            <if test="endTime !=null and endTime!='' "  >
+                <![CDATA[
+                and t.create_time <=  #{endTime}
+             ]]>
+            </if>
+        </where>
+    </select>
+</mapper>

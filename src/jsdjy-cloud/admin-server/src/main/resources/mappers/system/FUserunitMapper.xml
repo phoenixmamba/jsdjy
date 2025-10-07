@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.admin.system.dao.FUserunitDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.admin.system.po.FUserunit">
+        <id column="USER_UNIT_ID" property="userUnitId" />
+        <result column="UNIT_CODE" property="unitCode" />
+        <result column="USER_CODE" property="userCode" />
+        <result column="IS_PRIMARY" property="isPrimary" />
+        <result column="USER_STATION" property="userStation" />
+        <result column="USER_RANK" property="userRank" />
+        <result column="RANK_MEMO" property="rankMemo" />
+        <result column="USER_ORDER" property="userOrder" />
+        <result column="UPDATE_DATE" property="updateDate" />
+        <result column="CREATE_DATE" property="createDate" />
+        <result column="CREATOR" property="creator" />
+        <result column="UPDATOR" property="updator" />
+        <result column="TEMP_TYPE" property="tempType" />
+        <result column="CORPID" property="corpid" />
+        <result column="USER_NAME" property="userName" />
+        <result column="UNIT_NAME" property="unitName" />
+        <result column="REG_CELL_PHONE" property="regCellPhone" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        USER_UNIT_ID, UNIT_CODE, USER_CODE, IS_PRIMARY, USER_STATION, USER_RANK, RANK_MEMO, USER_ORDER, UPDATE_DATE, CREATE_DATE, CREATOR, UPDATOR, TEMP_TYPE, CORPID
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        USER_UNIT_ID
+          ,
+        UNIT_CODE
+          ,
+        USER_CODE
+          ,
+        IS_PRIMARY
+          ,
+        USER_STATION
+          ,
+        USER_RANK
+          ,
+        RANK_MEMO
+          ,
+        USER_ORDER
+          ,
+        UPDATE_DATE
+          ,
+        CREATE_DATE
+          ,
+        CREATOR
+          ,
+        UPDATOR
+          ,
+        TEMP_TYPE
+          ,
+        CORPID
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="userUnitId != null and userUnitId != ''">
+            <![CDATA[
+                AND USER_UNIT_ID = #{userUnitId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="unitCode != null and unitCode != ''">
+            <![CDATA[
+                AND UNIT_CODE = #{unitCode ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="userCode != null and userCode != ''">
+            <![CDATA[
+                AND USER_CODE = #{userCode ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="isPrimary != null and isPrimary != ''">
+            <![CDATA[
+                AND IS_PRIMARY = #{isPrimary ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="userStation != null and userStation != ''">
+            <![CDATA[
+                AND USER_STATION = #{userStation ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="userRank != null and userRank != ''">
+            <![CDATA[
+                AND USER_RANK = #{userRank ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="rankMemo != null and rankMemo != ''">
+            <![CDATA[
+                AND RANK_MEMO = #{rankMemo ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="userOrder != null and userOrder != ''">
+            <![CDATA[
+                AND USER_ORDER = #{userOrder ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="updateDate != null and updateDate != ''">
+            <![CDATA[
+                AND UPDATE_DATE = #{updateDate ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="createDate != null and createDate != ''">
+            <![CDATA[
+                AND CREATE_DATE = #{createDate ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="creator != null and creator != ''">
+            <![CDATA[
+                AND CREATOR = #{creator ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="updator != null and updator != ''">
+            <![CDATA[
+                AND UPDATOR = #{updator ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="tempType != null and tempType != ''">
+            <![CDATA[
+                AND TEMP_TYPE = #{tempType ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="corpid != null and corpid != ''">
+            <![CDATA[
+                AND CORPID = #{corpid ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.admin.system.po.FUserunit">
+        <![CDATA[
+			insert into f_userunit
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="userUnitId != '' and userUnitId != null" >
+                <![CDATA[
+                    USER_UNIT_ID,
+                ]]>
+            </if>
+            <if test="unitCode != '' and unitCode != null" >
+                <![CDATA[
+                    UNIT_CODE,
+                ]]>
+            </if>
+            <if test="userCode != '' and userCode != null" >
+                <![CDATA[
+                    USER_CODE,
+                ]]>
+            </if>
+            <if test="isPrimary != '' and isPrimary != null" >
+                <![CDATA[
+                    IS_PRIMARY,
+                ]]>
+            </if>
+            <if test="userStation != '' and userStation != null" >
+                <![CDATA[
+                    USER_STATION,
+                ]]>
+            </if>
+            <if test="userRank != '' and userRank != null" >
+                <![CDATA[
+                    USER_RANK,
+                ]]>
+            </if>
+            <if test="rankMemo != '' and rankMemo != null" >
+                <![CDATA[
+                    RANK_MEMO,
+                ]]>
+            </if>
+            <if test="userOrder != '' and userOrder != null" >
+                <![CDATA[
+                    USER_ORDER,
+                ]]>
+            </if>
+            <if test="updateDate != '' and updateDate != null" >
+                <![CDATA[
+                    UPDATE_DATE,
+                ]]>
+            </if>
+            <if test="createDate != '' and createDate != null" >
+                <![CDATA[
+                    CREATE_DATE,
+                ]]>
+            </if>
+            <if test="creator != '' and creator != null" >
+                <![CDATA[
+                    CREATOR,
+                ]]>
+            </if>
+            <if test="updator != '' and updator != null" >
+                <![CDATA[
+                    UPDATOR,
+                ]]>
+            </if>
+            <if test="tempType != '' and tempType != null" >
+                <![CDATA[
+                    TEMP_TYPE,
+                ]]>
+            </if>
+            <if test="corpid != '' and corpid != null" >
+                <![CDATA[
+                    CORPID,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="userUnitId != '' and userUnitId != null" >
+                <![CDATA[
+                    #{userUnitId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="unitCode != '' and unitCode != null" >
+                <![CDATA[
+                    #{unitCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userCode != '' and userCode != null" >
+                <![CDATA[
+                    #{userCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isPrimary != '' and isPrimary != null" >
+                <![CDATA[
+                    #{isPrimary,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userStation != '' and userStation != null" >
+                <![CDATA[
+                    #{userStation,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userRank != '' and userRank != null" >
+                <![CDATA[
+                    #{userRank,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="rankMemo != '' and rankMemo != null" >
+                <![CDATA[
+                    #{rankMemo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userOrder != '' and userOrder != null" >
+                <![CDATA[
+                    #{userOrder,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="updateDate != '' and updateDate != null" >
+                <![CDATA[
+                    #{updateDate,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="createDate != '' and createDate != null" >
+                <![CDATA[
+                    #{createDate,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="creator != '' and creator != null" >
+                <![CDATA[
+                    #{creator,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="updator != '' and updator != null" >
+                <![CDATA[
+                    #{updator,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="tempType != '' and tempType != null" >
+                <![CDATA[
+                    #{tempType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="corpid != '' and corpid != null" >
+                <![CDATA[
+                    #{corpid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.admin.system.po.FUserunit" >
+        <![CDATA[
+        	update f_userunit
+        ]]>
+        <set >
+            <if test="userUnitId != '' and userUnitId != null" >
+                <![CDATA[
+                    USER_UNIT_ID = #{userUnitId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="unitCode != '' and unitCode != null" >
+                <![CDATA[
+                    UNIT_CODE = #{unitCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userCode != '' and userCode != null" >
+                <![CDATA[
+                    USER_CODE = #{userCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isPrimary != '' and isPrimary != null" >
+                <![CDATA[
+                    IS_PRIMARY = #{isPrimary,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userStation != '' and userStation != null" >
+                <![CDATA[
+                    USER_STATION = #{userStation,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userRank != '' and userRank != null" >
+                <![CDATA[
+                    USER_RANK = #{userRank,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="rankMemo != '' and rankMemo != null" >
+                <![CDATA[
+                    RANK_MEMO = #{rankMemo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userOrder != '' and userOrder != null" >
+                <![CDATA[
+                    USER_ORDER = #{userOrder,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="updateDate != '' and updateDate != null" >
+                <![CDATA[
+                    UPDATE_DATE = #{updateDate,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="createDate != '' and createDate != null" >
+                <![CDATA[
+                    CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="creator != '' and creator != null" >
+                <![CDATA[
+                    CREATOR = #{creator,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="updator != '' and updator != null" >
+                <![CDATA[
+                    UPDATOR = #{updator,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="tempType != '' and tempType != null" >
+                <![CDATA[
+                    TEMP_TYPE = #{tempType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="corpid != '' and corpid != null" >
+                <![CDATA[
+                    CORPID = #{corpid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and USER_UNIT_ID = #{userUnitId ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.admin.system.po.FUserunit">
+        <![CDATA[
+            delete from f_userunit
+        ]]>
+        <where>
+            <![CDATA[
+                AND USER_CODE = #{userCode ,jdbcType=VARCHAR}
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.admin.system.po.FUserunit">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from f_userunit t
+        ]]>
+        <where>
+            <![CDATA[
+                and USER_UNIT_ID = #{userUnitId ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from f_userunit t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+    <!--  查询部门下所有人员 -->
+    <select id="queryUnitUserPageList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select T1.*,t2.USER_NAME,t3.UNIT_NAME,t2.REG_CELL_PHONE
+        ]]>
+        <![CDATA[
+            from f_userunit t1 left join f_userinfo t2 on t1.USER_CODE = t2.USER_CODE left join f_unitinfo t3
+            on t1.unit_code = t3.unit_code
+        ]]>
+        <where>
+            <if test="unitCode != '' and unitCode != null" >
+                <![CDATA[
+            AND FIND_IN_SET(t1.UNIT_CODE, getParentUnitCode(#{unitCode}))
+                ]]>
+            </if>
+            <if test="userName != '' and userName != null" >
+                <![CDATA[
+                    AND t2.USER_NAME  like '%'||#{userName,jdbcType=VARCHAR}||'%'
+                ]]>
+            </if>
+            <if test="isValid != '' and isValid != null" >
+                <![CDATA[
+                    AND t2.IS_VALID = #{isValid,jdbcType=VARCHAR}
+                ]]>
+            </if>
+            <if test="userCode != '' and userCode != null" >
+                <![CDATA[
+                    AND t1.USER_CODE = #{userCode,jdbcType=VARCHAR}
+
+                ]]>
+            </if>
+        </where>
+        <![CDATA[
+                      ORDER BY t2.REG_CELL_PHONE ASC,t1.USER_CODE ASC
+                      limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+        ]]>
+    </select>
+
+    <!--  查询分页列表数量 -->
+    <select id="queryUnitUserPageListCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            select count(0)
+        ]]>
+        <![CDATA[
+            from f_userunit t1 left join f_userinfo t2 on t1.USER_CODE = t2.USER_CODE left join f_unitinfo t3
+            on t1.unit_code = t3.unit_code
+        ]]>
+        <where>
+            <if test="unitCode != '' and unitCode != null" >
+                <![CDATA[
+            AND FIND_IN_SET(t1.UNIT_CODE, getParentUnitCode(#{unitCode}))
+                ]]>
+            </if>
+            <if test="userName != '' and userName != null" >
+                <![CDATA[
+                    AND t2.USER_NAME  like '%'||#{userName,jdbcType=VARCHAR}||'%'
+                ]]>
+            </if>
+            <if test="isValid != '' and isValid != null" >
+                <![CDATA[
+                    AND t2.IS_VALID = #{isValid,jdbcType=VARCHAR}
+                ]]>
+            </if>
+            <if test="userCode != '' and userCode != null" >
+                <![CDATA[
+                    AND t1.USER_CODE = #{userCode,jdbcType=VARCHAR}
+
+                ]]>
+            </if>
+        </where>
+    </select>
+</mapper>

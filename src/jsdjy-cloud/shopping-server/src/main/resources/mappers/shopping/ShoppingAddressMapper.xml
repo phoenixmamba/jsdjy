@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.ShoppingAddressDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.ShoppingAddress">
+        <id column="id" property="id" />
+        <result column="addTime" property="addTime" />
+        <result column="deleteStatus" property="deleteStatus" />
+        <result column="area_info" property="areaInfo" />
+        <result column="mobile" property="mobile" />
+        <result column="telephone" property="telephone" />
+        <result column="trueName" property="trueName" />
+        <result column="zip" property="zip" />
+        <result column="area_id" property="areaId" />
+        <result column="user_id" property="userId" />
+        <result column="defaultAddr" property="defaultAddr" />
+        <result column="customer_name" property="customerName" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, addTime, deleteStatus, area_info, mobile, telephone, trueName, zip, area_id, user_id, defaultAddr, customer_name
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        addTime
+          ,
+        deleteStatus
+          ,
+        area_info
+          ,
+        mobile
+          ,
+        telephone
+          ,
+        trueName
+          ,
+        zip
+          ,
+        area_id
+          ,
+        user_id
+          ,
+        defaultAddr
+          ,
+        customer_name
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="addTime != null and addTime != ''">
+            <![CDATA[
+                AND addTime = #{addTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="deleteStatus != null and deleteStatus != ''">
+            <![CDATA[
+                AND deleteStatus = #{deleteStatus ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="areaInfo != null and areaInfo != ''">
+            <![CDATA[
+                AND area_info = #{areaInfo ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="mobile != null and mobile != ''">
+            <![CDATA[
+                AND mobile = #{mobile ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="telephone != null and telephone != ''">
+            <![CDATA[
+                AND telephone = #{telephone ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="trueName != null and trueName != ''">
+            <![CDATA[
+                AND trueName = #{trueName ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="zip != null and zip != ''">
+            <![CDATA[
+                AND zip = #{zip ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="areaId != null and areaId != ''">
+            <![CDATA[
+                AND area_id = #{areaId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="userId != null and userId != ''">
+            <![CDATA[
+                AND user_id = #{userId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="defaultAddr != null and defaultAddr != ''">
+            <![CDATA[
+                AND defaultAddr = #{defaultAddr ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="customerName != null and customerName != ''">
+            <![CDATA[
+                AND customer_name = #{customerName ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.ShoppingAddress">
+        <![CDATA[
+			insert into shopping_address
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    id,
+                ]]>
+            </if>
+            <if test="addTime != '' and addTime != null" >
+                <![CDATA[
+                    addTime,
+                ]]>
+            </if>
+            <if test="deleteStatus != '' and deleteStatus != null" >
+                <![CDATA[
+                    deleteStatus,
+                ]]>
+            </if>
+            <if test="areaInfo != '' and areaInfo != null" >
+                <![CDATA[
+                    area_info,
+                ]]>
+            </if>
+            <if test="mobile != '' and mobile != null" >
+                <![CDATA[
+                    mobile,
+                ]]>
+            </if>
+            <if test="telephone != '' and telephone != null" >
+                <![CDATA[
+                    telephone,
+                ]]>
+            </if>
+            <if test="trueName != '' and trueName != null" >
+                <![CDATA[
+                    trueName,
+                ]]>
+            </if>
+            <if test="zip != '' and zip != null" >
+                <![CDATA[
+                    zip,
+                ]]>
+            </if>
+            <if test="areaId != '' and areaId != null" >
+                <![CDATA[
+                    area_id,
+                ]]>
+            </if>
+            <if test="userId != '' and userId != null" >
+                <![CDATA[
+                    user_id,
+                ]]>
+            </if>
+            <if test="defaultAddr != '' and defaultAddr != null" >
+                <![CDATA[
+                    defaultAddr,
+                ]]>
+            </if>
+            <if test="customerName != '' and customerName != null" >
+                <![CDATA[
+                    customer_name,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="addTime != '' and addTime != null" >
+                <![CDATA[
+                    #{addTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="deleteStatus != '' and deleteStatus != null" >
+                <![CDATA[
+                    #{deleteStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="areaInfo != '' and areaInfo != null" >
+                <![CDATA[
+                    #{areaInfo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="mobile != '' and mobile != null" >
+                <![CDATA[
+                    #{mobile,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="telephone != '' and telephone != null" >
+                <![CDATA[
+                    #{telephone,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="trueName != '' and trueName != null" >
+                <![CDATA[
+                    #{trueName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="zip != '' and zip != null" >
+                <![CDATA[
+                    #{zip,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="areaId != '' and areaId != null" >
+                <![CDATA[
+                    #{areaId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userId != '' and userId != null" >
+                <![CDATA[
+                    #{userId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="defaultAddr != '' and defaultAddr != null" >
+                <![CDATA[
+                    #{defaultAddr,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="customerName != '' and customerName != null" >
+                <![CDATA[
+                    #{customerName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.ShoppingAddress" >
+        <![CDATA[
+        	update shopping_address
+        ]]>
+        <set >
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="addTime != '' and addTime != null" >
+                <![CDATA[
+                    addTime = #{addTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="deleteStatus != '' and deleteStatus != null" >
+                <![CDATA[
+                    deleteStatus = #{deleteStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="areaInfo != '' and areaInfo != null" >
+                <![CDATA[
+                    area_info = #{areaInfo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="mobile != '' and mobile != null" >
+                <![CDATA[
+                    mobile = #{mobile,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="telephone != '' and telephone != null" >
+                <![CDATA[
+                    telephone = #{telephone,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="trueName != '' and trueName != null" >
+                <![CDATA[
+                    trueName = #{trueName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="zip != '' and zip != null" >
+                <![CDATA[
+                    zip = #{zip,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="areaId != '' and areaId != null" >
+                <![CDATA[
+                    area_id = #{areaId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userId != '' and userId != null" >
+                <![CDATA[
+                    user_id = #{userId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="defaultAddr != '' and defaultAddr != null" >
+                <![CDATA[
+                    defaultAddr = #{defaultAddr,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="customerName != '' and customerName != null" >
+                <![CDATA[
+                    customer_name = #{customerName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.ShoppingAddress">
+        <![CDATA[
+            delete from shopping_address
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.ShoppingAddress">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_address t
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_address t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+</mapper>

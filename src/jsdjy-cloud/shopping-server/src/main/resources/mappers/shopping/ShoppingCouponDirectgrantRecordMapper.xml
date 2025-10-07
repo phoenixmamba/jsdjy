@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.ShoppingCouponDirectgrantRecordDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.ShoppingCouponDirectgrantRecord">
+        <id column="id" property="id" />
+        <result column="right_no" property="rightNo" />
+        <result column="phone" property="phone" />
+        <result column="grant_status" property="grantStatus" />
+        <result column="msg" property="msg" />
+        <result column="add_time" property="addTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, right_no, phone, grant_status, msg, add_time
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        right_no
+          ,
+        phone
+          ,
+        grant_status
+          ,
+        msg
+          ,
+        add_time
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="rightNo != null and rightNo != ''">
+            <![CDATA[
+                AND right_no = #{rightNo ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="phone != null and phone != ''">
+            <![CDATA[
+                AND phone = #{phone ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="grantStatus != null and grantStatus != ''">
+            <![CDATA[
+                AND grant_status = #{grantStatus ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="msg != null and msg != ''">
+            <![CDATA[
+                AND msg = #{msg ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="addTime != null and addTime != ''">
+            <![CDATA[
+                AND add_time = #{addTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.ShoppingCouponDirectgrantRecord">
+        <![CDATA[
+			insert into shopping_coupon_directgrant_record
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    id,
+                ]]>
+            </if>
+            <if test="rightNo != null and rightNo != ''" >
+                <![CDATA[
+                    right_no,
+                ]]>
+            </if>
+            <if test="phone != null and phone != ''" >
+                <![CDATA[
+                    phone,
+                ]]>
+            </if>
+            <if test="grantStatus != null and grantStatus != ''" >
+                <![CDATA[
+                    grant_status,
+                ]]>
+            </if>
+            <if test="msg != null and msg != ''" >
+                <![CDATA[
+                    msg,
+                ]]>
+            </if>
+
+                <![CDATA[
+                    add_time,
+                ]]>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="rightNo != null and rightNo != ''" >
+                <![CDATA[
+                    #{rightNo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="phone != null and phone != ''" >
+                <![CDATA[
+                    #{phone,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="grantStatus != null and grantStatus != ''" >
+                <![CDATA[
+                    #{grantStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="msg != null and msg != ''" >
+                <![CDATA[
+                    #{msg,jdbcType=VARCHAR},
+                ]]>
+            </if>
+                now(),
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.ShoppingCouponDirectgrantRecord" >
+        <![CDATA[
+        	update shopping_coupon_directgrant_record
+        ]]>
+        <set >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="rightNo != null and rightNo != ''" >
+                <![CDATA[
+                    right_no = #{rightNo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="phone != null and phone != ''" >
+                <![CDATA[
+                    phone = #{phone,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="grantStatus != null and grantStatus != ''" >
+                <![CDATA[
+                    grant_status = #{grantStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="msg != null and msg != ''" >
+                <![CDATA[
+                    msg = #{msg,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="addTime != null and addTime != ''" >
+                <![CDATA[
+                    add_time = #{addTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.ShoppingCouponDirectgrantRecord">
+        <![CDATA[
+            delete from shopping_coupon_directgrant_record
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.ShoppingCouponDirectgrantRecord">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_coupon_directgrant_record t
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_coupon_directgrant_record t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+</mapper>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.ShoppingEarlyWarningAdminDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.ShoppingEarlyWarningAdmin">
+        <id column="id" property="id" />
+        <result column="username" property="username" />
+        <result column="phone" property="phone" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, username, phone
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        username
+          ,
+        phone
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="username != null and username != ''">
+            <![CDATA[
+                AND username = #{username ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="phone != null and phone != ''">
+            <![CDATA[
+                AND phone = #{phone ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.ShoppingEarlyWarningAdmin">
+        <![CDATA[
+			insert into shopping_early_warning_admin
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="username != null and username != ''" >
+                <![CDATA[
+                    username,
+                ]]>
+            </if>
+            <if test="phone != null and phone != ''" >
+                <![CDATA[
+                    phone,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="username != null and username != ''" >
+                <![CDATA[
+                    #{username,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="phone != null and phone != ''" >
+                <![CDATA[
+                    #{phone,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.ShoppingEarlyWarningAdmin" >
+        <![CDATA[
+        	update shopping_early_warning_admin
+        ]]>
+        <set >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="username != null and username != ''" >
+                <![CDATA[
+                    username = #{username,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="phone != null and phone != ''" >
+                <![CDATA[
+                    phone = #{phone,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.ShoppingEarlyWarningAdmin">
+        <![CDATA[
+            delete from shopping_early_warning_admin
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.ShoppingEarlyWarningAdmin">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_early_warning_admin t
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_early_warning_admin t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+</mapper>

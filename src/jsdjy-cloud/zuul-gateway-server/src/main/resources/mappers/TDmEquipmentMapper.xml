@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.zuulgateway.dao.TDmEquipmentDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.zuulgateway.po.TDmEquipment">
+        <id column="EQUIPMENTID" property="equipmentid" />
+        <result column="EQUIPMENTNAME" property="equipmentname" />
+        <result column="IDENTCODE" property="identcode" />
+        <result column="DEVICETYPE" property="devicetype" />
+        <result column="OSVERSION" property="osversion" />
+        <result column="EQUIPMENTDESC" property="equipmentdesc" />
+        <result column="DEPTID" property="deptid" />
+        <result column="ISLOSS" property="isloss" />
+        <result column="ISENABLED" property="isenabled" />
+        <result column="ISDELETED" property="isdeleted" />
+        <result column="PURCHASEUSERID" property="purchaseuserid" />
+        <result column="PURCHASENAME" property="purchasename" />
+        <result column="PURCHASEDATE" property="purchasedate" />
+        <result column="EQUVERIFCODE" property="equverifcode" />
+        <result column="CREATEUSERID" property="createuserid" />
+        <result column="CREATETIME" property="createtime" />
+        <result column="UPDATEUSERID" property="updateuserid" />
+        <result column="UPDATETIME" property="updatetime" />
+        <result column="BELONGTO" property="belongto" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        EQUIPMENTID, EQUIPMENTNAME, IDENTCODE, DEVICETYPE, OSVERSION, EQUIPMENTDESC, DEPTID, ISLOSS, ISENABLED, ISDELETED, PURCHASEUSERID, PURCHASENAME, PURCHASEDATE, EQUVERIFCODE, CREATEUSERID, CREATETIME, UPDATEUSERID, UPDATETIME, BELONGTO
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        EQUIPMENTID
+          ,
+        EQUIPMENTNAME
+          ,
+        IDENTCODE
+          ,
+        DEVICETYPE
+          ,
+        OSVERSION
+          ,
+        EQUIPMENTDESC
+          ,
+        DEPTID
+          ,
+        ISLOSS
+          ,
+        ISENABLED
+          ,
+        ISDELETED
+          ,
+        PURCHASEUSERID
+          ,
+        PURCHASENAME
+          ,
+        PURCHASEDATE
+          ,
+        EQUVERIFCODE
+          ,
+        CREATEUSERID
+          ,
+        CREATETIME
+          ,
+        UPDATEUSERID
+          ,
+        UPDATETIME
+          ,
+        BELONGTO
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="equipmentid != null and equipmentid != ''">
+            <![CDATA[
+                AND EQUIPMENTID = #{equipmentid ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="equipmentname != null and equipmentname != ''">
+            <![CDATA[
+                AND EQUIPMENTNAME = #{equipmentname ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="identcode != null and identcode != ''">
+            <![CDATA[
+                AND IDENTCODE = #{identcode ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="devicetype != null and devicetype != ''">
+            <![CDATA[
+                AND DEVICETYPE = #{devicetype ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="osversion != null and osversion != ''">
+            <![CDATA[
+                AND OSVERSION = #{osversion ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="equipmentdesc != null and equipmentdesc != ''">
+            <![CDATA[
+                AND EQUIPMENTDESC = #{equipmentdesc ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="deptid != null and deptid != ''">
+            <![CDATA[
+                AND DEPTID = #{deptid ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="isloss != null and isloss != ''">
+            <![CDATA[
+                AND ISLOSS = #{isloss ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="isenabled != null and isenabled != ''">
+            <![CDATA[
+                AND ISENABLED = #{isenabled ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="isdeleted != null and isdeleted != ''">
+            <![CDATA[
+                AND ISDELETED = #{isdeleted ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="purchaseuserid != null and purchaseuserid != ''">
+            <![CDATA[
+                AND PURCHASEUSERID = #{purchaseuserid ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="purchasename != null and purchasename != ''">
+            <![CDATA[
+                AND PURCHASENAME = #{purchasename ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="purchasedate != null and purchasedate != ''">
+            <![CDATA[
+                AND PURCHASEDATE = #{purchasedate ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="equverifcode != null and equverifcode != ''">
+            <![CDATA[
+                AND EQUVERIFCODE = #{equverifcode ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="createuserid != null and createuserid != ''">
+            <![CDATA[
+                AND CREATEUSERID = #{createuserid ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="createtime != null and createtime != ''">
+            <![CDATA[
+                AND CREATETIME = #{createtime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="updateuserid != null and updateuserid != ''">
+            <![CDATA[
+                AND UPDATEUSERID = #{updateuserid ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="updatetime != null and updatetime != ''">
+            <![CDATA[
+                AND UPDATETIME = #{updatetime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="belongto != null and belongto != ''">
+            <![CDATA[
+                AND BELONGTO = #{belongto ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  查询数量ByProperties -->
+    <select id="queryCountByProperties" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            select count(0) from T_DM_EQUIPMENT t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+
+</mapper>

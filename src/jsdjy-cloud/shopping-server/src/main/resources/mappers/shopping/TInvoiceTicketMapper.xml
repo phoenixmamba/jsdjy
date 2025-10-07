@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.TInvoiceTicketDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.TInvoiceTicket">
+        <id column="id" property="id" />
+        <result column="userid" property="userid" />
+        <result column="invoice_id" property="invoiceId" />
+        <result column="mz_order_id" property="mzOrderId" />
+        <result column="project_id" property="projectId" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, userid, invoice_id, mz_order_id, project_id
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        userid
+          ,
+        invoice_id
+          ,
+        mz_order_id
+          ,
+        project_id
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="userid != null and userid != ''">
+            <![CDATA[
+                AND userid = #{userid ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="invoiceId != null and invoiceId != ''">
+            <![CDATA[
+                AND invoice_id = #{invoiceId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="mzOrderId != null and mzOrderId != ''">
+            <![CDATA[
+                AND mz_order_id = #{mzOrderId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="projectId != null and projectId != ''">
+            <![CDATA[
+                AND project_id = #{projectId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.TInvoiceTicket">
+        <![CDATA[
+			insert into t_invoice_ticket
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="userid != null and userid != ''" >
+                <![CDATA[
+                    userid,
+                ]]>
+            </if>
+            <if test="invoiceId != null and invoiceId != ''" >
+                <![CDATA[
+                    invoice_id,
+                ]]>
+            </if>
+            <if test="mzOrderId != null and mzOrderId != ''" >
+                <![CDATA[
+                    mz_order_id,
+                ]]>
+            </if>
+            <if test="projectId != null and projectId != ''" >
+                <![CDATA[
+                    project_id,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="userid != null and userid != ''" >
+                <![CDATA[
+                    #{userid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="invoiceId != null and invoiceId != ''" >
+                <![CDATA[
+                    #{invoiceId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="mzOrderId != null and mzOrderId != ''" >
+                <![CDATA[
+                    #{mzOrderId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="projectId != null and projectId != ''" >
+                <![CDATA[
+                    #{projectId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.TInvoiceTicket" >
+        <![CDATA[
+        	update t_invoice_ticket
+        ]]>
+        <set >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userid != null and userid != ''" >
+                <![CDATA[
+                    userid = #{userid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="invoiceId != null and invoiceId != ''" >
+                <![CDATA[
+                    invoice_id = #{invoiceId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="mzOrderId != null and mzOrderId != ''" >
+                <![CDATA[
+                    mz_order_id = #{mzOrderId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="projectId != null and projectId != ''" >
+                <![CDATA[
+                    project_id = #{projectId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.TInvoiceTicket">
+        <![CDATA[
+            delete from t_invoice_ticket
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.TInvoiceTicket">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from t_invoice_ticket t
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from t_invoice_ticket t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+    <select id="queryInvoiceOrderCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            select count(distinct (mz_order_id))
+        ]]>
+        <![CDATA[
+            from t_invoice_ticket t
+        ]]>
+        <where>
+                <![CDATA[
+                AND invoice_id = #{invoiceId ,jdbcType=VARCHAR}
+            ]]>
+        </where>
+
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryUserInvoiceTicketList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select t.*
+        ]]>
+
+        <![CDATA[
+            from t_invoice_ticket t left join t_invoice ti on t.invoice_id = ti.id
+        ]]>
+        <where>
+            <![CDATA[
+                AND t.userid = #{userid ,jdbcType=VARCHAR}
+            ]]>
+            and (ti.invoice_status =2 or ti.invoice_status =20 or ti.invoice_status =21 or ti.invoice_status =31)
+        </where>
+    </select>
+</mapper>

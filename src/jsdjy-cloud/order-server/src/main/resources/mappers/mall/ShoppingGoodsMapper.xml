@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.order.dao.ShoppingGoodsDao">
+
+    <select id="checkGoodsStatus" resultType="java.lang.Boolean" parameterType="java.lang.String">
+        <![CDATA[
+            SELECT IF(t.goods_status, true, false)  FROM shopping_goods t
+        ]]>
+        <where>
+            <![CDATA[
+              id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <update id="cutGoodsStock" >
+        <![CDATA[
+        	update shopping_goods
+        ]]>
+        <set >
+            <![CDATA[
+                    goods_inventory = goods_inventory -#{cutStock,jdbcType=INTEGER},
+                ]]>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{goodsId,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+    <update id="cutInventoryStock"  >
+        <![CDATA[
+        	update shopping_goods_inventory
+        ]]>
+        <set >
+            <![CDATA[
+                    count = count - #{cutCount,jdbcType=INTEGER},
+                ]]>
+        </set>
+        <where>
+
+            <![CDATA[
+                AND goods_id = #{goodsId ,jdbcType=VARCHAR}
+            ]]>
+
+            <![CDATA[
+                AND propertys = #{propertys ,jdbcType=VARCHAR}
+            ]]>
+        </where>
+    </update>
+
+    <select id="selectGoodsStock" resultType="java.lang.Integer" parameterType="java.lang.String">
+        <![CDATA[
+            SELECT t.goods_inventory FROM shopping_goods t
+        ]]>
+        <where>
+            <![CDATA[
+              id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <select id="selectInventoryStock" resultType="java.lang.Integer">
+        <![CDATA[
+            SELECT t.count FROM shopping_goods_inventory t
+        ]]>
+        <where>
+            <![CDATA[
+                AND goods_id = #{goodsId ,jdbcType=VARCHAR}
+            ]]>
+
+            <![CDATA[
+                AND propertys = #{propertys ,jdbcType=VARCHAR}
+            ]]>
+        </where>
+    </select>
+</mapper>

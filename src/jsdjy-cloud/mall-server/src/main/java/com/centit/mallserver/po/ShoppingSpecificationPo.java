@@ -1,0 +1,25 @@
+package com.centit.mallserver.po;
+
+import lombok.Data;
+
+import java.io.Serializable;
+import java.util.List;
+
+/**
+ * <p><p>
+ * @version : 1.0
+ * @Author : cui_jian
+ * @Description : 实体类
+ * @Date : 2021-02-22
+ **/
+@Data
+public class ShoppingSpecificationPo implements Serializable {
+
+
+    private String specId;
+
+    private String specName;
+
+    private List<ShoppingSpecPropertyPo> propertys;
+
+}

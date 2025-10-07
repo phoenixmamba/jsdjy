@@ -1,0 +1,1108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.TicketRedeemCodeDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.TicketRedeemCode">
+        <id column="CODE" property="code" />
+        <result column="PREFIX" property="prefix" />
+        <result column="NUMBER" property="number" />
+        <result column="PWD" property="pwd" />
+        <result column="IS_DELETE" property="isDelete" />
+        <result column="BATCH_ID" property="batchId" />
+        <result column="CREATE_TIME" property="createTime" />
+        <result column="ACTIVITY_ID" property="activityId" />
+        <result column="ACTIVITY_NAME" property="activityName" />
+        <result column="BIND_ID" property="bindId" />
+        <result column="PROJECT_ID" property="projectId" />
+        <result column="project_name" property="projectName" />
+        <result column="project_img_url" property="projectImgUrl" />
+        <result column="EVENT_ID" property="eventId" />
+        <result column="event_name" property="eventName" />
+        <result column="event_start_time" property="eventStartTime" />
+        <result column="venue_name" property="venueName" />
+        <result column="EXCHANGE_TIME" property="exchangeTime" />
+        <result column="EXCHANGE_USER" property="exchangeUser" />
+        <result column="EXCHANGE_MOBILE" property="exchangeMobile" />
+        <result column="WRITEOFF_TIME" property="writeoffTime" />
+        <result column="COMPANY_ID" property="companyId" />
+        <result column="COMPANY_NAME" property="companyName" />
+        <result column="WATCHING_USER" property="watchingUser" />
+        <result column="WATCHING_MOBILE" property="watchingMobile" />
+        <result column="WATCHING_CARD" property="watchingCard" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        CODE, PREFIX, NUMBER, PWD, IS_DELETE, BATCH_ID, CREATE_TIME, ACTIVITY_ID, PROJECT_ID, EXCHANGE_TIME, EXCHANGE_USER, EXCHANGE_MOBILE, WRITEOFF_TIME, BIND_ID, EVENT_ID
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        CODE
+          ,
+        PREFIX
+          ,
+        NUMBER
+          ,
+        PWD
+          ,
+        IS_DELETE
+          ,
+        BATCH_ID
+          ,
+        CREATE_TIME
+          ,
+        ACTIVITY_ID
+          ,
+        BIND_ID
+          ,
+        PROJECT_ID
+          ,
+        EXCHANGE_TIME
+          ,
+        EXCHANGE_USER
+          ,
+        EXCHANGE_MOBILE
+          ,
+        WRITEOFF_TIME
+          ,
+        EVENT_ID
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="code != null and code != ''">
+            <![CDATA[
+                AND CODE = #{code ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="prefix != null and prefix != ''">
+            <![CDATA[
+                AND PREFIX = #{prefix ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="number != null and number != ''">
+            <![CDATA[
+                AND NUMBER = #{number ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="pwd != null and pwd != ''">
+            <![CDATA[
+                AND PWD = #{pwd ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="isDelete != null and isDelete != ''">
+            <![CDATA[
+                AND IS_DELETE = #{isDelete ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="batchId != null and batchId != ''">
+            <![CDATA[
+                AND BATCH_ID = #{batchId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="createTime != null and createTime != ''">
+            <![CDATA[
+                AND CREATE_TIME = #{createTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="activityId != null and activityId != ''">
+            <![CDATA[
+                AND ACTIVITY_ID = #{activityId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="bindId != null and bindId != ''">
+            <![CDATA[
+                AND BIND_ID = #{bindId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="projectId != null and projectId != ''">
+            <![CDATA[
+                AND PROJECT_ID = #{projectId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="eventId != null and eventId != ''">
+            <![CDATA[
+                AND EVENT_ID = #{eventId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="exchangeTime != null and exchangeTime != ''">
+            <![CDATA[
+                AND EXCHANGE_TIME = #{exchangeTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="exchangeUser != null and exchangeUser != ''">
+            <![CDATA[
+                AND EXCHANGE_USER = #{exchangeUser ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="exchangeMobile != null and exchangeMobile != ''">
+            <![CDATA[
+                AND EXCHANGE_MOBILE = #{exchangeMobile ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="writeoffTime != null and writeoffTime != ''">
+            <![CDATA[
+                AND WRITEOFF_TIME = #{writeoffTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.TicketRedeemCode">
+        <![CDATA[
+			insert into ticket_redeem_code
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="code != null and code != ''" >
+                <![CDATA[
+                    CODE,
+                ]]>
+            </if>
+            <if test="prefix != null and prefix != ''" >
+                <![CDATA[
+                    PREFIX,
+                ]]>
+            </if>
+            <if test="number != null and number != ''" >
+                <![CDATA[
+                    NUMBER,
+                ]]>
+            </if>
+            <if test="pwd != null and pwd != ''" >
+                <![CDATA[
+                    PWD,
+                ]]>
+            </if>
+            <if test="isDelete != null and isDelete != ''" >
+                <![CDATA[
+                    IS_DELETE,
+                ]]>
+            </if>
+            <if test="batchId != null and batchId != ''" >
+                <![CDATA[
+                    BATCH_ID,
+                ]]>
+            </if>
+            <if test="createTime != null and createTime != ''" >
+                <![CDATA[
+                    CREATE_TIME,
+                ]]>
+            </if>
+            <if test="activityId != null and activityId != ''" >
+                <![CDATA[
+                    ACTIVITY_ID,
+                ]]>
+            </if>
+            <if test="eventId != null and eventId != ''" >
+                <![CDATA[
+                    EVENT_ID,
+                ]]>
+            </if>
+            <if test="bindId != null and bindId != ''" >
+                <![CDATA[
+                    BIND_ID,
+                ]]>
+            </if>
+            <if test="projectId != null and projectId != ''" >
+                <![CDATA[
+                    PROJECT_ID,
+                ]]>
+            </if>
+            <if test="exchangeTime != null and exchangeTime != ''" >
+                <![CDATA[
+                    EXCHANGE_TIME,
+                ]]>
+            </if>
+            <if test="exchangeUser != null and exchangeUser != ''" >
+                <![CDATA[
+                    EXCHANGE_USER,
+                ]]>
+            </if>
+            <if test="exchangeMobile != null and exchangeMobile != ''" >
+                <![CDATA[
+                    EXCHANGE_MOBILE,
+                ]]>
+            </if>
+            <if test="writeoffTime != null and writeoffTime != ''" >
+                <![CDATA[
+                    WRITEOFF_TIME,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="code != null and code != ''" >
+                <![CDATA[
+                    #{code,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="prefix != null and prefix != ''" >
+                <![CDATA[
+                    #{prefix,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="number != null and number != ''" >
+                <![CDATA[
+                    #{number,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="pwd != null and pwd != ''" >
+                <![CDATA[
+                    #{pwd,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isDelete != null and isDelete != ''" >
+                <![CDATA[
+                    #{isDelete,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="batchId != null and batchId != ''" >
+                <![CDATA[
+                    #{batchId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="createTime != null and createTime != ''" >
+                <![CDATA[
+                    #{createTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="activityId != null and activityId != ''" >
+                <![CDATA[
+                    #{activityId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="bindId != null and bindId != ''" >
+                <![CDATA[
+                    #{bindId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="projectId != null and projectId != ''" >
+                <![CDATA[
+                    #{projectId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="eventId != null and eventId != ''" >
+                <![CDATA[
+                    #{eventId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="exchangeTime != null and exchangeTime != ''" >
+                <![CDATA[
+                    #{exchangeTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="exchangeUser != null and exchangeUser != ''" >
+                <![CDATA[
+                    #{exchangeUser,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="exchangeMobile != null and exchangeMobile != ''" >
+                <![CDATA[
+                    #{exchangeMobile,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="writeoffTime != null and writeoffTime != ''" >
+                <![CDATA[
+                    #{writeoffTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.TicketRedeemCode" >
+        <![CDATA[
+        	update ticket_redeem_code
+        ]]>
+        <set >
+            <if test="code != null and code != ''" >
+                <![CDATA[
+                    CODE = #{code,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="prefix != null and prefix != ''" >
+                <![CDATA[
+                    PREFIX = #{prefix,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="number != null and number != ''" >
+                <![CDATA[
+                    NUMBER = #{number,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="pwd != null and pwd != ''" >
+                <![CDATA[
+                    PWD = #{pwd,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isDelete != null and isDelete != ''" >
+                <![CDATA[
+                    IS_DELETE = #{isDelete,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="batchId != null and batchId != ''" >
+                <![CDATA[
+                    BATCH_ID = #{batchId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="createTime != null and createTime != ''" >
+                <![CDATA[
+                    CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="activityId != null and activityId != ''" >
+                <![CDATA[
+                    ACTIVITY_ID = #{activityId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="bindId != null and bindId != ''" >
+                <![CDATA[
+                    BIND_ID = #{bindId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="projectId != null and projectId != ''" >
+                <![CDATA[
+                    PROJECT_ID = #{projectId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="eventId != null and eventId != ''" >
+                <![CDATA[
+                    EVENT_ID = #{eventId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="exchangeTime != null and exchangeTime != ''" >
+                <![CDATA[
+                    EXCHANGE_TIME = #{exchangeTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="exchangeUser != null and exchangeUser != ''" >
+                <![CDATA[
+                    EXCHANGE_USER = #{exchangeUser,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="exchangeMobile != null and exchangeMobile != ''" >
+                <![CDATA[
+                    EXCHANGE_MOBILE = #{exchangeMobile,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="writeoffTime != null and writeoffTime != ''" >
+                <![CDATA[
+                    WRITEOFF_TIME = #{writeoffTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and CODE = #{code ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.TicketRedeemCode">
+        <![CDATA[
+            delete from ticket_redeem_code
+        ]]>
+        <where>
+            <![CDATA[
+                and CODE = #{code ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.TicketRedeemCode">
+        <![CDATA[
+            select t.*,ta.TITLE ACTIVITY_NAME,tc.ID COMPANY_ID,tc.NAME COMPANY_NAME,tp.project_name,tp.project_img_url,te.event_name,
+            te.event_start_time,te.venue_name,tw.WATCHING_USER,tw.WATCHING_MOBILE,tw.WATCHING_CARD
+        ]]>
+
+        <![CDATA[
+            from ticket_redeem_code t left join ticket_redeem_activity ta on t.ACTIVITY_ID = ta.ID
+            left join ticket_redeem_company tc on ta.COMPANY_ID = tc.ID left join ticket_redeem_project tp on t.PROJECT_ID = tp.project_id
+            left join ticket_redeem_event te on t.EVENT_ID = te.event_id left join ticket_redeem_watching tw on t.CODE = tw.CODE
+        ]]>
+        <where>
+            <![CDATA[
+                and t.CODE = #{code ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select t.*,ta.TITLE ACTIVITY_NAME,tc.ID COMPANY_ID,tc.NAME COMPANY_NAME,tp.project_name,tp.project_img_url,te.event_name,
+            te.event_start_time,te.venue_name,tw.WATCHING_USER,tw.WATCHING_MOBILE,tw.WATCHING_CARD
+        ]]>
+
+        <![CDATA[
+            from ticket_redeem_code t left join ticket_redeem_activity ta on t.ACTIVITY_ID = ta.ID
+            left join ticket_redeem_company tc on ta.COMPANY_ID = tc.ID left join ticket_redeem_project tp on t.PROJECT_ID = tp.project_id
+            left join ticket_redeem_event te on t.EVENT_ID = te.event_id left join ticket_redeem_watching tw on t.CODE = tw.CODE
+        ]]>
+        <where>
+            <if test="code != null and code != ''">
+                <![CDATA[
+                AND t.CODE like concat('%',#{code,jdbcType=VARCHAR},'%')
+            ]]>
+            </if>
+            <if test="prefix != null and prefix != ''">
+                <![CDATA[
+                AND t.PREFIX like concat('%',#{code,jdbcType=VARCHAR},'%')
+            ]]>
+            </if>
+            <if test="number != null and number != ''">
+                <![CDATA[
+                AND t.NUMBER = #{number ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="pwd != null and pwd != ''">
+                <![CDATA[
+                AND t.PWD like concat('%',#{code,jdbcType=VARCHAR},'%')
+            ]]>
+            </if>
+            <if test="isDelete != null and isDelete != ''">
+                <![CDATA[
+                AND t.IS_DELETE = #{isDelete ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="batchId != null and batchId != ''">
+                <![CDATA[
+                AND t.BATCH_ID = #{batchId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="startCreateTime != null and startCreateTime != ''">
+                <![CDATA[
+                AND t.CREATE_TIME >=  #{startCreateTime}
+            ]]>
+            </if>
+            <if test="endCreateTime != null and endCreateTime != ''">
+                <![CDATA[
+                AND t.CREATE_TIME <=  #{endCreateTime}
+            ]]>
+            </if>
+            <if test="activityId != null and activityId != ''">
+                <![CDATA[
+                AND t.ACTIVITY_ID = #{activityId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="activityName != null and activityName != ''">
+                <![CDATA[
+                AND ta.TITLE like concat('%',#{code,jdbcType=VARCHAR},'%')
+            ]]>
+            </if>
+            <if test="bindId != null and bindId != ''">
+                <![CDATA[
+                AND t.BIND_ID = #{bindId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="projectId != null and projectId != ''">
+                <![CDATA[
+                AND t.PROJECT_ID = #{projectId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="projectName != null and projectName != ''">
+                <![CDATA[
+                AND tp.project_name like concat('%',#{projectName,jdbcType=VARCHAR},'%')
+            ]]>
+            </if>
+            <if test="eventId != null and eventId != ''">
+                <![CDATA[
+                AND t.EVENT_ID = #{eventId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="eventName != null and eventName != ''">
+                <![CDATA[
+                AND te.event_name like concat('%',#{eventName,jdbcType=VARCHAR},'%')
+            ]]>
+            </if>
+            <if test="startExchangeTime != null and startExchangeTime != ''">
+                <![CDATA[
+                AND t.EXCHANGE_TIME >=  #{startExchangeTime}
+            ]]>
+            </if>
+            <if test="endExchangeTime != null and endExchangeTime != ''">
+                <![CDATA[
+                AND t.EXCHANGE_TIME <=  #{endExchangeTime}
+            ]]>
+            </if>
+            <if test="exchangeUser != null and exchangeUser != ''">
+                <![CDATA[
+                AND t.EXCHANGE_USER = #{exchangeUser ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="exchangeMobile != null and exchangeMobile != ''">
+                <![CDATA[
+                AND t.EXCHANGE_MOBILE like concat('%',#{exchangeMobile,jdbcType=VARCHAR},'%')
+            ]]>
+            </if>
+            <if test="startWriteoffTime != null and startWriteoffTime != ''">
+                <![CDATA[
+                AND t.WRITEOFF_TIME >=  #{startWriteoffTime}
+            ]]>
+            </if>
+            <if test="endWriteoffTime != null and endWriteoffTime != ''">
+                <![CDATA[
+                AND t.WRITEOFF_TIME <=  #{endWriteoffTime}
+            ]]>
+            </if>
+            <if test="isBind != null and isBind == 1">
+                <![CDATA[
+                AND t.ACTIVITY_ID is not null
+            ]]>
+            </if>
+            <if test="isBind != null and isBind == 0">
+                <![CDATA[
+                AND t.ACTIVITY_ID is null
+            ]]>
+            </if>
+            <if test="companyId != null and companyId != ''">
+                <![CDATA[
+                AND ta.COMPANY_ID =  #{companyId}
+            ]]>
+            </if>
+            <if test="companyName != null and companyName != ''">
+                <![CDATA[
+                AND tc.NAME like concat('%',#{companyName,jdbcType=VARCHAR},'%')
+            ]]>
+            </if>
+        </where>
+        order by t.CODE ASC
+        <if test="pageSize != '' and pageSize != null">
+            <![CDATA[
+                    limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+                ]]>
+        </if>
+    </select>
+
+    <!--  查询列表数量 -->
+    <select id="queryTotalCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            select  count(0)
+        ]]>
+
+        <![CDATA[
+            from ticket_redeem_code t left join ticket_redeem_activity ta on t.ACTIVITY_ID = ta.ID
+            left join ticket_redeem_company tc on ta.COMPANY_ID = tc.ID left join ticket_redeem_project tp on t.PROJECT_ID = tp.project_id
+            left join ticket_redeem_event te on t.EVENT_ID = te.event_id left join ticket_redeem_watching tw on t.CODE = tw.CODE
+        ]]>
+        <where>
+            <if test="code != null and code != ''">
+                <![CDATA[
+                AND t.CODE like concat('%',#{code,jdbcType=VARCHAR},'%')
+            ]]>
+            </if>
+            <if test="prefix != null and prefix != ''">
+                <![CDATA[
+                AND t.PREFIX like concat('%',#{code,jdbcType=VARCHAR},'%')
+            ]]>
+            </if>
+            <if test="number != null and number != ''">
+                <![CDATA[
+                AND t.NUMBER = #{number ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="pwd != null and pwd != ''">
+                <![CDATA[
+                AND t.PWD like concat('%',#{code,jdbcType=VARCHAR},'%')
+            ]]>
+            </if>
+            <if test="isDelete != null and isDelete != ''">
+                <![CDATA[
+                AND t.IS_DELETE = #{isDelete ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="batchId != null and batchId != ''">
+                <![CDATA[
+                AND t.BATCH_ID = #{batchId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="startCreateTime != null and startCreateTime != ''">
+                <![CDATA[
+                AND t.CREATE_TIME >=  #{startCreateTime}
+            ]]>
+            </if>
+            <if test="endCreateTime != null and endCreateTime != ''">
+                <![CDATA[
+                AND t.CREATE_TIME <=  #{endCreateTime}
+            ]]>
+            </if>
+            <if test="activityId != null and activityId != ''">
+                <![CDATA[
+                AND t.ACTIVITY_ID = #{activityId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="activityName != null and activityName != ''">
+                <![CDATA[
+                AND ta.TITLE like concat('%',#{code,jdbcType=VARCHAR},'%')
+            ]]>
+            </if>
+            <if test="bindId != null and bindId != ''">
+                <![CDATA[
+                AND t.BIND_ID = #{bindId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="projectId != null and projectId != ''">
+                <![CDATA[
+                AND t.PROJECT_ID = #{projectId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="projectName != null and projectName != ''">
+                <![CDATA[
+                AND tp.project_name like concat('%',#{projectName,jdbcType=VARCHAR},'%')
+            ]]>
+            </if>
+            <if test="eventId != null and eventId != ''">
+                <![CDATA[
+                AND t.EVENT_ID = #{eventId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="eventName != null and eventName != ''">
+                <![CDATA[
+                AND te.event_name like concat('%',#{eventName,jdbcType=VARCHAR},'%')
+            ]]>
+            </if>
+            <if test="startExchangeTime != null and startExchangeTime != ''">
+                <![CDATA[
+                AND t.EXCHANGE_TIME >=  #{startExchangeTime}
+            ]]>
+            </if>
+            <if test="endExchangeTime != null and endExchangeTime != ''">
+                <![CDATA[
+                AND t.EXCHANGE_TIME <=  #{endExchangeTime}
+            ]]>
+            </if>
+            <if test="exchangeUser != null and exchangeUser != ''">
+                <![CDATA[
+                AND t.EXCHANGE_USER = #{exchangeUser ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="exchangeMobile != null and exchangeMobile != ''">
+                <![CDATA[
+                AND t.EXCHANGE_MOBILE like concat('%',#{exchangeMobile,jdbcType=VARCHAR},'%')
+            ]]>
+            </if>
+            <if test="startWriteoffTime != null and startWriteoffTime != ''">
+                <![CDATA[
+                AND t.WRITEOFF_TIME >=  #{startWriteoffTime}
+            ]]>
+            </if>
+            <if test="endWriteoffTime != null and endWriteoffTime != ''">
+                <![CDATA[
+                AND t.WRITEOFF_TIME <=  #{endWriteoffTime}
+            ]]>
+            </if>
+            <if test="isBind != null and isBind == 1">
+                <![CDATA[
+                AND t.ACTIVITY_ID is not null
+            ]]>
+            </if>
+            <if test="isBind != null and isBind == 0">
+                <![CDATA[
+                AND t.ACTIVITY_ID is null
+            ]]>
+            </if>
+            <if test="companyId != null and companyId != ''">
+                <![CDATA[
+                AND ta.COMPANY_ID =  #{companyId}
+            ]]>
+            </if>
+            <if test="companyName != null and companyName != ''">
+                <![CDATA[
+                AND tc.NAME like concat('%',#{companyName,jdbcType=VARCHAR},'%')
+            ]]>
+            </if>
+        </where>
+    </select>
+
+
+    <!--  查询最大编码的优惠码 -->
+    <select id="queryLargestCode" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from ticket_redeem_code t
+        ]]>
+        <where>
+            <if test="prefix != null and prefix != ''">
+                <![CDATA[
+                AND PREFIX = #{prefix ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="isBind != null and isBind == 1">
+                <![CDATA[
+                AND t.ACTIVITY_ID is not null
+            ]]>
+            </if>
+            <if test="isBind != null and isBind == 0">
+                <![CDATA[
+                AND t.ACTIVITY_ID is null
+            ]]>
+            </if>
+            <if test="isDelete != null">
+                <![CDATA[
+                and IS_DELETE = '0'
+            ]]>
+            </if>
+        </where>
+            order by t.NUMBER desc limit 1
+    </select>
+
+    <!--  查询最小编码的优惠码 -->
+    <select id="querySmallestCode" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from ticket_redeem_code t
+        ]]>
+        <where>
+            <if test="prefix != null and prefix != ''">
+                <![CDATA[
+                AND PREFIX = #{prefix ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="startNum != null">
+                <![CDATA[
+                AND t.NUMBER >= #{startNum}
+            ]]>
+            </if>
+            <if test="isBind != null and isBind == 1">
+                <![CDATA[
+                AND t.ACTIVITY_ID is not null
+            ]]>
+            </if>
+            <if test="isBind != null and isBind == 0">
+                <![CDATA[
+                AND t.ACTIVITY_ID is null
+            ]]>
+            </if>
+            <![CDATA[
+                and IS_DELETE = '0'
+            ]]>
+        </where>
+        order by t.NUMBER asc limit 1
+    </select>
+
+    <!--  查询可用编码数量 -->
+    <select id="queryFreeCodeCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            SELECT count(0) FROM ticket_redeem_code t
+        ]]>
+        <where>
+            <if test="startNum != null">
+                <![CDATA[
+                AND t.NUMBER >= #{startNum}
+            ]]>
+            </if>
+            <if test="endNum != null">
+                <![CDATA[
+                AND t.NUMBER <= #{endNum}
+            ]]>
+            </if>
+            <if test="isBind != null and isBind == 0">
+                <![CDATA[
+                AND t.ACTIVITY_ID is null
+            ]]>
+            </if>
+            <![CDATA[
+                and t.IS_DELETE = '0'
+            ]]>
+        </where>
+    </select>
+
+    <!-- 按批次删除兑换码 -->
+    <update id="deleteByBatchId" parameterType="com.centit.shopping.po.TicketRedeemCode" >
+        <![CDATA[
+        	update ticket_redeem_code
+        ]]>
+        <set >
+
+                <![CDATA[
+                    IS_DELETE = '1',
+                ]]>
+
+        </set>
+        <where>
+            <![CDATA[
+                and BATCH_ID = #{batchId ,jdbcType=VARCHAR}
+            ]]>
+        </where>
+    </update>
+
+    <!-- 将兑换码与活动绑定 -->
+    <update id="bindCode" parameterType="java.util.HashMap" >
+        <![CDATA[
+        	update ticket_redeem_code
+        ]]>
+        <set >
+
+                <![CDATA[
+                    ACTIVITY_ID = #{activityId ,jdbcType=VARCHAR},
+                ]]>
+            <![CDATA[
+                    BIND_ID = #{bindId ,jdbcType=VARCHAR},
+                ]]>
+
+        </set>
+        <where>
+            <![CDATA[
+                AND NUMBER >= #{startNum}
+            ]]>
+                <![CDATA[
+                AND NUMBER < #{endNum}
+            ]]>
+        </where>
+    </update>
+
+    <!-- 按活动删除兑换码 -->
+    <update id="deleteCodeByActivity" parameterType="java.util.HashMap" >
+        <![CDATA[
+        	update ticket_redeem_code
+        ]]>
+        <set >
+            <![CDATA[
+                    IS_DELETE = '1',
+                ]]>
+
+        </set>
+        <where>
+            <![CDATA[
+                AND ACTIVITY_ID = #{activityId ,jdbcType=VARCHAR}
+            ]]>
+        </where>
+    </update>
+
+    <!-- 按绑定记录删除兑换码 -->
+    <update id="deleteCodeByBindId" parameterType="java.util.HashMap" >
+        <![CDATA[
+        	update ticket_redeem_code
+        ]]>
+        <set >
+            <![CDATA[
+                    IS_DELETE = '1',
+                ]]>
+
+        </set>
+        <where>
+            <![CDATA[
+                and BIND_ID = #{bindId ,jdbcType=VARCHAR}
+            ]]>
+        </where>
+    </update>
+
+    <!-- 批量删除兑换码 -->
+    <update id="deleteCodes" parameterType="java.util.HashMap" >
+        <![CDATA[
+        	update ticket_redeem_code
+        ]]>
+        <set >
+            <![CDATA[
+                    IS_DELETE = '1',
+                ]]>
+
+        </set>
+        <where>
+                AND CODE IN
+	<foreach collection="codeList" item="id" index="index" open="(" close=")" separator=",">
+	  #{id}
+    </foreach>
+        </where>
+    </update>
+
+
+    <!--  查询列表 -->
+    <select id="queryMyCodeList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select t.*,ta.TITLE ACTIVITY_NAME,tc.ID COMPANY_ID,tc.NAME COMPANY_NAME,tp.project_name,tp.project_img_url,te.event_name,
+            te.event_start_time,te.venue_name,tw.WATCHING_USER,tw.WATCHING_MOBILE,tw.WATCHING_CARD
+        ]]>
+
+        <![CDATA[
+            from ticket_redeem_code t left join ticket_redeem_activity ta on t.ACTIVITY_ID = ta.ID
+            left join ticket_redeem_company tc on ta.COMPANY_ID = tc.ID left join ticket_redeem_project tp on t.PROJECT_ID = tp.project_id
+            left join ticket_redeem_event te on t.EVENT_ID = te.event_id left join ticket_redeem_watching tw on t.CODE = tw.CODE
+        ]]>
+        <where>
+            <if test="code != null and code != ''">
+                <![CDATA[
+                AND t.CODE like concat('%',#{code,jdbcType=VARCHAR},'%')
+            ]]>
+            </if>
+            <if test="pwd != null and pwd != ''">
+                <![CDATA[
+                AND t.PWD like concat('%',#{code,jdbcType=VARCHAR},'%')
+            ]]>
+            </if>
+            <if test="isDelete != null and isDelete != ''">
+                <![CDATA[
+                AND t.IS_DELETE = #{isDelete ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="activityId != null and activityId != ''">
+                <![CDATA[
+                AND t.ACTIVITY_ID = #{activityId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="activityName != null and activityName != ''">
+                <![CDATA[
+                AND ta.TITLE like concat('%',#{code,jdbcType=VARCHAR},'%')
+            ]]>
+            </if>
+            <if test="projectId != null and projectId != ''">
+                <![CDATA[
+                AND t.PROJECT_ID = #{projectId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="projectName != null and projectName != ''">
+                <![CDATA[
+                AND tp.project_name like concat('%',#{projectName,jdbcType=VARCHAR},'%')
+            ]]>
+            </if>
+            <if test="eventId != null and eventId != ''">
+                <![CDATA[
+                AND t.EVENT_ID = #{eventId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="eventName != null and eventName != ''">
+                <![CDATA[
+                AND te.event_name like concat('%',#{eventName,jdbcType=VARCHAR},'%')
+            ]]>
+            </if>
+            <if test="startExchangeTime != null and startExchangeTime != ''">
+                <![CDATA[
+                AND t.EXCHANGE_TIME >=  #{startExchangeTime}
+            ]]>
+            </if>
+            <if test="endExchangeTime != null and endExchangeTime != ''">
+                <![CDATA[
+                AND t.EXCHANGE_TIME <=  #{endExchangeTime}
+            ]]>
+            </if>
+
+                <![CDATA[
+                AND t.EXCHANGE_USER = #{exchangeUser ,jdbcType=VARCHAR}
+            ]]>
+
+            <if test="exchangeMobile != null and exchangeMobile != ''">
+                <![CDATA[
+                AND t.EXCHANGE_MOBILE like concat('%',#{exchangeMobile,jdbcType=VARCHAR},'%')
+            ]]>
+            </if>
+            <if test="startWriteoffTime != null and startWriteoffTime != ''">
+                <![CDATA[
+                AND t.WRITEOFF_TIME >=  #{startWriteoffTime}
+            ]]>
+            </if>
+            <if test="endWriteoffTime != null and endWriteoffTime != ''">
+                <![CDATA[
+                AND t.WRITEOFF_TIME <=  #{endWriteoffTime}
+            ]]>
+            </if>
+        </where>
+        order by te.event_start_time ASC
+        <if test="pageSize != '' and pageSize != null">
+            <![CDATA[
+                    limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+                ]]>
+        </if>
+    </select>
+
+    <!--  查询列表数量 -->
+    <select id="queryMyCodeTotalCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            select  count(0)
+        ]]>
+
+        <![CDATA[
+            from ticket_redeem_code t left join ticket_redeem_activity ta on t.ACTIVITY_ID = ta.ID
+            left join ticket_redeem_company tc on ta.COMPANY_ID = tc.ID left join ticket_redeem_project tp on t.PROJECT_ID = tp.project_id
+            left join ticket_redeem_event te on t.EVENT_ID = te.event_id left join ticket_redeem_watching tw on t.CODE = tw.CODE
+        ]]>
+        <where>
+            <if test="code != null and code != ''">
+                <![CDATA[
+                AND t.CODE like concat('%',#{code,jdbcType=VARCHAR},'%')
+            ]]>
+            </if>
+            <if test="pwd != null and pwd != ''">
+                <![CDATA[
+                AND t.PWD like concat('%',#{code,jdbcType=VARCHAR},'%')
+            ]]>
+            </if>
+            <if test="isDelete != null and isDelete != ''">
+                <![CDATA[
+                AND t.IS_DELETE = #{isDelete ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="activityId != null and activityId != ''">
+                <![CDATA[
+                AND t.ACTIVITY_ID = #{activityId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="activityName != null and activityName != ''">
+                <![CDATA[
+                AND ta.TITLE like concat('%',#{code,jdbcType=VARCHAR},'%')
+            ]]>
+            </if>
+            <if test="projectId != null and projectId != ''">
+                <![CDATA[
+                AND t.PROJECT_ID = #{projectId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="projectName != null and projectName != ''">
+                <![CDATA[
+                AND tp.project_name like concat('%',#{projectName,jdbcType=VARCHAR},'%')
+            ]]>
+            </if>
+            <if test="eventId != null and eventId != ''">
+                <![CDATA[
+                AND t.EVENT_ID = #{eventId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="eventName != null and eventName != ''">
+                <![CDATA[
+                AND te.event_name like concat('%',#{eventName,jdbcType=VARCHAR},'%')
+            ]]>
+            </if>
+            <if test="startExchangeTime != null and startExchangeTime != ''">
+                <![CDATA[
+                AND t.EXCHANGE_TIME >=  #{startExchangeTime}
+            ]]>
+            </if>
+            <if test="endExchangeTime != null and endExchangeTime != ''">
+                <![CDATA[
+                AND t.EXCHANGE_TIME <=  #{endExchangeTime}
+            ]]>
+            </if>
+
+            <![CDATA[
+                AND t.EXCHANGE_USER = #{exchangeUser ,jdbcType=VARCHAR}
+            ]]>
+
+            <if test="exchangeMobile != null and exchangeMobile != ''">
+                <![CDATA[
+                AND t.EXCHANGE_MOBILE like concat('%',#{exchangeMobile,jdbcType=VARCHAR},'%')
+            ]]>
+            </if>
+            <if test="startWriteoffTime != null and startWriteoffTime != ''">
+                <![CDATA[
+                AND t.WRITEOFF_TIME >=  #{startWriteoffTime}
+            ]]>
+            </if>
+            <if test="endWriteoffTime != null and endWriteoffTime != ''">
+                <![CDATA[
+                AND t.WRITEOFF_TIME <=  #{endWriteoffTime}
+            ]]>
+            </if>
+        </where>
+    </select>
+</mapper>

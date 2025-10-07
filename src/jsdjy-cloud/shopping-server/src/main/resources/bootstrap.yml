@@ -1,0 +1,76 @@
+#商城服务
+#Author: cui_jian
+
+server:
+  port: 10093
+spring:
+  application:
+    # 服务名称
+    name: shopping
+  http:
+    multipart:
+      maxFileSize: 10MB
+      maxRequestSize: 100MB
+    servlet:
+      multipart:
+        maxFileSize: 10MB
+        maxRequestSize: 100MB
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      #discovery 服务注册
+      discovery:
+        server-addr: 114.55.40.183:8858
+        #分组
+        group: SHOPPING_GROUP
+        # 注册到nacos上的服务名称，默认{${spring.application.name}
+        service: shopping
+        username: nacos  #nacos 账号
+        password: nacos
+        namespace: jsdjy_test
+      #config 读取nacos上的服务配置
+      config:
+        server-addr: 114.55.40.183:8858
+        username: nacos  #nacos 账号
+        password: nacos
+        #开发环境命名空间
+        namespace: jsdjy_test
+        file-extension: yaml
+        group: shopping
+        extension-configs:
+          - data-id: commonDataSource.yaml
+            group: common
+            refresh: true
+          - data-id: commonConfig.yaml
+            group: common
+            refresh: true
+  aop:
+    proxy-target-class: true
+
+swagger:
+  enable: true
+  application-name: ${spring.application.name}
+  application-version: 1.0
+  application-description: springfox swagger 3.0整合Demo
+  try-host: http://localhost:${server.port}
+
+invoice:
+  nuonuo:
+    appKey: SD68601635
+    appSecret: SD353A0058354B15
+    url: https://sandbox.nuonuocs.cn/open/v1/services
+  saler:
+    taxNum: 339901999999824
+    salerTel: 025-85775515
+    salerAddress: 南京市建邺区梦都大街181号
+    salerAccount: 中国工商银行南京新街口支行4301010009101224647
+    payee: 柯君
+    checker: 苗晓伟
+    clerk: 丁冉
+    goodsCode: 3070101
+    goodsName: 购票款
+    taxRate: 0.06
+
+fileDownloadUrl: https://app.jsartcentre.org/JSDJYPlatform/fileserver/common/downloadFile/
+writeOffStr: (仅限线下兑换使用)

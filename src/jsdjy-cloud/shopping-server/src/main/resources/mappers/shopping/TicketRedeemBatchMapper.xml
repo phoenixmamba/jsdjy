@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.TicketRedeemBatchDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.TicketRedeemBatch">
+        <id column="ID" property="id" />
+        <result column="REMARKS" property="remarks" />
+        <result column="CODE_PREFIX" property="codePrefix" />
+        <result column="CODE_COUNT" property="codeCount" />
+        <result column="CREATE_USER" property="createUser" />
+        <result column="CREATE_TIME" property="createTime" />
+        <result column="IS_DELETE" property="isDelete" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        ID, REMARKS, CODE_PREFIX, CODE_COUNT, CREATE_USER, CREATE_TIME, IS_DELETE
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        ID
+          ,
+        REMARKS
+          ,
+        CODE_PREFIX
+          ,
+        CODE_COUNT
+          ,
+        CREATE_USER
+          ,
+        CREATE_TIME
+          ,
+        IS_DELETE
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND ID = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="remarks != null and remarks != ''">
+            <![CDATA[
+                AND REMARKS = #{remarks ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="codePrefix != null and codePrefix != ''">
+            <![CDATA[
+                AND CODE_PREFIX = #{codePrefix ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="codeCount != null and codeCount != ''">
+            <![CDATA[
+                AND CODE_COUNT = #{codeCount ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="createUser != null and createUser != ''">
+            <![CDATA[
+                AND CREATE_USER = #{createUser ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="createTime != null and createTime != ''">
+            <![CDATA[
+                AND CREATE_TIME = #{createTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="isDelete != null and isDelete != ''">
+            <![CDATA[
+                AND IS_DELETE = #{isDelete ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.TicketRedeemBatch"  useGeneratedKeys="true" keyProperty="id">
+        <![CDATA[
+			insert into ticket_redeem_batch
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    ID,
+                ]]>
+            </if>
+            <if test="remarks != null and remarks != ''" >
+                <![CDATA[
+                    REMARKS,
+                ]]>
+            </if>
+            <if test="codePrefix != null and codePrefix != ''" >
+                <![CDATA[
+                    CODE_PREFIX,
+                ]]>
+            </if>
+            <if test="codeCount != null and codeCount != ''" >
+                <![CDATA[
+                    CODE_COUNT,
+                ]]>
+            </if>
+            <if test="createUser != null and createUser != ''" >
+                <![CDATA[
+                    CREATE_USER,
+                ]]>
+            </if>
+            <if test="createTime != null and createTime != ''" >
+                <![CDATA[
+                    CREATE_TIME,
+                ]]>
+            </if>
+            <if test="isDelete != null and isDelete != ''" >
+                <![CDATA[
+                    IS_DELETE,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="remarks != null and remarks != ''" >
+                <![CDATA[
+                    #{remarks,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="codePrefix != null and codePrefix != ''" >
+                <![CDATA[
+                    #{codePrefix,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="codeCount != null and codeCount != ''" >
+                <![CDATA[
+                    #{codeCount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="createUser != null and createUser != ''" >
+                <![CDATA[
+                    #{createUser,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="createTime != null and createTime != ''" >
+                <![CDATA[
+                    #{createTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isDelete != null and isDelete != ''" >
+                <![CDATA[
+                    #{isDelete,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.TicketRedeemBatch" >
+        <![CDATA[
+        	update ticket_redeem_batch
+        ]]>
+        <set >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    ID = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="remarks != null and remarks != ''" >
+                <![CDATA[
+                    REMARKS = #{remarks,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="codePrefix != null and codePrefix != ''" >
+                <![CDATA[
+                    CODE_PREFIX = #{codePrefix,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="codeCount != null and codeCount != ''" >
+                <![CDATA[
+                    CODE_COUNT = #{codeCount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="createUser != null and createUser != ''" >
+                <![CDATA[
+                    CREATE_USER = #{createUser,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="createTime != null and createTime != ''" >
+                <![CDATA[
+                    CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isDelete != null and isDelete != ''" >
+                <![CDATA[
+                    IS_DELETE = #{isDelete,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and ID = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.TicketRedeemBatch">
+        <![CDATA[
+            delete from ticket_redeem_batch
+        ]]>
+        <where>
+            <![CDATA[
+                and ID = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.TicketRedeemBatch">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from ticket_redeem_batch t
+        ]]>
+        <where>
+            <![CDATA[
+                and ID = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from ticket_redeem_batch t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+        order by t.CREATE_TIME desc
+        <if test="pageSize != '' and pageSize != null">
+            <![CDATA[
+                    limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+                ]]>
+        </if>
+    </select>
+
+    <!--  查询列表数量 -->
+    <select id="queryTotalCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            SELECT count(0) FROM ticket_redeem_batch
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+</mapper>

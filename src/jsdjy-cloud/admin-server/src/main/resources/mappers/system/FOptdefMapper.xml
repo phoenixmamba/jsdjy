@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.admin.system.dao.FOptdefDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.admin.system.po.FOptdef">
+        <id column="OPT_CODE" property="optCode" />
+        <result column="OPT_ID" property="optId" />
+        <result column="OPT_NAME" property="optName" />
+        <result column="OPT_METHOD" property="optMethod" />
+        <result column="OPT_URL" property="optUrl" />
+        <result column="OPT_DESC" property="optDesc" />
+        <result column="OPT_ORDER" property="optOrder" />
+        <result column="IS_IN_WORKFLOW" property="isInWorkflow" />
+        <result column="UPDATE_DATE" property="updateDate" />
+        <result column="CREATE_DATE" property="createDate" />
+        <result column="OPT_REQ" property="optReq" />
+        <result column="CREATOR" property="creator" />
+        <result column="UPDATOR" property="updator" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        OPT_CODE, OPT_ID, OPT_NAME, OPT_METHOD, OPT_URL, OPT_DESC, OPT_ORDER, IS_IN_WORKFLOW, UPDATE_DATE, CREATE_DATE, OPT_REQ, CREATOR, UPDATOR
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        OPT_CODE
+          ,
+        OPT_ID
+          ,
+        OPT_NAME
+          ,
+        OPT_METHOD
+          ,
+        OPT_URL
+          ,
+        OPT_DESC
+          ,
+        OPT_ORDER
+          ,
+        IS_IN_WORKFLOW
+          ,
+        UPDATE_DATE
+          ,
+        CREATE_DATE
+          ,
+        OPT_REQ
+          ,
+        CREATOR
+          ,
+        UPDATOR
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="optCode != null and optCode != ''">
+            <![CDATA[
+                AND OPT_CODE = #{optCode ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="optId != null and optId != ''">
+            <![CDATA[
+                AND OPT_ID = #{optId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="optName != null and optName != ''">
+            <![CDATA[
+                AND OPT_NAME = #{optName ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="optMethod != null and optMethod != ''">
+            <![CDATA[
+                AND OPT_METHOD = #{optMethod ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="optUrl != null and optUrl != ''">
+            <![CDATA[
+                AND OPT_URL = #{optUrl ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="optDesc != null and optDesc != ''">
+            <![CDATA[
+                AND OPT_DESC = #{optDesc ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="optOrder != null and optOrder != ''">
+            <![CDATA[
+                AND OPT_ORDER = #{optOrder ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="isInWorkflow != null and isInWorkflow != ''">
+            <![CDATA[
+                AND IS_IN_WORKFLOW = #{isInWorkflow ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="updateDate != null and updateDate != ''">
+            <![CDATA[
+                AND UPDATE_DATE = #{updateDate ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="createDate != null and createDate != ''">
+            <![CDATA[
+                AND CREATE_DATE = #{createDate ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="optReq != null and optReq != ''">
+            <![CDATA[
+                AND OPT_REQ = #{optReq ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="creator != null and creator != ''">
+            <![CDATA[
+                AND CREATOR = #{creator ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="updator != null and updator != ''">
+            <![CDATA[
+                AND UPDATOR = #{updator ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.admin.system.po.FOptdef">
+        <![CDATA[
+			insert into f_optdef
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="optCode != '' and optCode != null" >
+                <![CDATA[
+                    OPT_CODE,
+                ]]>
+            </if>
+            <if test="optId != '' and optId != null" >
+                <![CDATA[
+                    OPT_ID,
+                ]]>
+            </if>
+            <if test="optName != '' and optName != null" >
+                <![CDATA[
+                    OPT_NAME,
+                ]]>
+            </if>
+            <if test="optMethod != '' and optMethod != null" >
+                <![CDATA[
+                    OPT_METHOD,
+                ]]>
+            </if>
+            <if test="optUrl != '' and optUrl != null" >
+                <![CDATA[
+                    OPT_URL,
+                ]]>
+            </if>
+            <if test="optDesc != '' and optDesc != null" >
+                <![CDATA[
+                    OPT_DESC,
+                ]]>
+            </if>
+            <if test="optOrder != '' and optOrder != null" >
+                <![CDATA[
+                    OPT_ORDER,
+                ]]>
+            </if>
+            <if test="isInWorkflow != '' and isInWorkflow != null" >
+                <![CDATA[
+                    IS_IN_WORKFLOW,
+                ]]>
+            </if>
+
+                <![CDATA[
+                    UPDATE_DATE,
+                ]]>
+
+                <![CDATA[
+                    CREATE_DATE,
+                ]]>
+
+            <if test="optReq != '' and optReq != null" >
+                <![CDATA[
+                    OPT_REQ,
+                ]]>
+            </if>
+            <if test="creator != '' and creator != null" >
+                <![CDATA[
+                    CREATOR,
+                ]]>
+            </if>
+            <if test="updator != '' and updator != null" >
+                <![CDATA[
+                    UPDATOR,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="optCode != '' and optCode != null" >
+                <![CDATA[
+                    #{optCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="optId != '' and optId != null" >
+                <![CDATA[
+                    #{optId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="optName != '' and optName != null" >
+                <![CDATA[
+                    #{optName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="optMethod != '' and optMethod != null" >
+                <![CDATA[
+                    #{optMethod,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="optUrl != '' and optUrl != null" >
+                <![CDATA[
+                    #{optUrl,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="optDesc != '' and optDesc != null" >
+                <![CDATA[
+                    #{optDesc,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="optOrder != '' and optOrder != null" >
+                <![CDATA[
+                    #{optOrder,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isInWorkflow != '' and isInWorkflow != null" >
+                <![CDATA[
+                    #{isInWorkflow,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            now(),
+            now(),
+            <if test="optReq != '' and optReq != null" >
+                <![CDATA[
+                    #{optReq,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="creator != '' and creator != null" >
+                <![CDATA[
+                    #{creator,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="updator != '' and updator != null" >
+                <![CDATA[
+                    #{updator,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.admin.system.po.FOptdef" >
+        <![CDATA[
+        	update f_optdef
+        ]]>
+        <set >
+            <if test="optCode != '' and optCode != null" >
+                <![CDATA[
+                    OPT_CODE = #{optCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="optId != '' and optId != null" >
+                <![CDATA[
+                    OPT_ID = #{optId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="optName != '' and optName != null" >
+                <![CDATA[
+                    OPT_NAME = #{optName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="optMethod != '' and optMethod != null" >
+                <![CDATA[
+                    OPT_METHOD = #{optMethod,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="optUrl != '' and optUrl != null" >
+                <![CDATA[
+                    OPT_URL = #{optUrl,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="optDesc != '' and optDesc != null" >
+                <![CDATA[
+                    OPT_DESC = #{optDesc,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="optOrder != '' and optOrder != null" >
+                <![CDATA[
+                    OPT_ORDER = #{optOrder,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isInWorkflow != '' and isInWorkflow != null" >
+                <![CDATA[
+                    IS_IN_WORKFLOW = #{isInWorkflow,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="updateDate != '' and updateDate != null" >
+                <![CDATA[
+                    UPDATE_DATE = #{updateDate,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="createDate != '' and createDate != null" >
+                <![CDATA[
+                    CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="optReq != '' and optReq != null" >
+                <![CDATA[
+                    OPT_REQ = #{optReq,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="creator != '' and creator != null" >
+                <![CDATA[
+                    CREATOR = #{creator,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="updator != '' and updator != null" >
+                <![CDATA[
+                    UPDATOR = #{updator,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and OPT_CODE = #{optCode ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.admin.system.po.FOptdef">
+        <![CDATA[
+            delete from f_optdef
+        ]]>
+        <where>
+            <![CDATA[
+                and OPT_CODE = #{optCode ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.admin.system.po.FOptdef">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from f_optdef t
+        ]]>
+        <where>
+            <![CDATA[
+                and OPT_CODE = #{optCode ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from f_optdef t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+</mapper>

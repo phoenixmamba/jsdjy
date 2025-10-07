@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.ticket.dao.TicketFavoriteDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.ticket.po.TicketFavorite">
+        <id column="id" property="id" />
+        <result column="addTime" property="addTime" />
+        <result column="deleteStatus" property="deleteStatus" />
+        <result column="user_id" property="userId" />
+        <result column="project_id" property="projectId" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, addTime, deleteStatus, user_id, project_id
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        addTime
+          ,
+        deleteStatus
+          ,
+        user_id
+          ,
+        project_id
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="addTime != null and addTime != ''">
+            <![CDATA[
+                AND addTime = #{addTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="deleteStatus != null and deleteStatus != ''">
+            <![CDATA[
+                AND deleteStatus = #{deleteStatus ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="userId != null and userId != ''">
+            <![CDATA[
+                AND user_id = #{userId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="projectId != null and projectId != ''">
+            <![CDATA[
+                AND project_id = #{projectId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.ticket.po.TicketFavorite">
+        <![CDATA[
+			insert into ticket_favorite
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <![CDATA[
+                    addTime,
+                ]]>
+            <if test="deleteStatus != '' and deleteStatus != null" >
+                <![CDATA[
+                    deleteStatus,
+                ]]>
+            </if>
+            <if test="userId != '' and userId != null" >
+                <![CDATA[
+                    user_id,
+                ]]>
+            </if>
+            <if test="projectId != '' and projectId != null" >
+                <![CDATA[
+                    project_id,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            now(),
+            <if test="deleteStatus != '' and deleteStatus != null" >
+                <![CDATA[
+                    #{deleteStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userId != '' and userId != null" >
+                <![CDATA[
+                    #{userId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="projectId != '' and projectId != null" >
+                <![CDATA[
+                    #{projectId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.ticket.po.TicketFavorite" >
+        <![CDATA[
+        	update ticket_favorite
+        ]]>
+        <set >
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="addTime != '' and addTime != null" >
+                <![CDATA[
+                    addTime = #{addTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="deleteStatus != '' and deleteStatus != null" >
+                <![CDATA[
+                    deleteStatus = #{deleteStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userId != '' and userId != null" >
+                <![CDATA[
+                    user_id = #{userId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="projectId != '' and projectId != null" >
+                <![CDATA[
+                    project_id = #{projectId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.ticket.po.TicketFavorite">
+        <![CDATA[
+            delete from ticket_favorite
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.ticket.po.TicketFavorite">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from ticket_favorite t
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from ticket_favorite t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+        order by t.addTime desc
+        <if test="pageSize != '' and pageSize != null" >
+            <![CDATA[
+                    limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+                ]]>
+        </if>
+    </select>
+
+    <!--  查询列表数量 -->
+    <select id="queryTotalCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            SELECT count(0) FROM ticket_favorite
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+    <!-- 取消收藏 -->
+    <update id="cancelFav" parameterType="com.centit.ticket.po.TicketFavorite" >
+        <![CDATA[
+        	update ticket_favorite
+        ]]>
+        <set >
+            <![CDATA[
+                    deleteStatus = '1',
+                ]]>
+        </set>
+        <where>
+            <if test="projectId != null and projectId != ''">
+                <![CDATA[
+                AND project_id = #{projectId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="userId != null and userId != ''">
+                <![CDATA[
+                AND user_id = #{userId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+        </where>
+    </update>
+</mapper>

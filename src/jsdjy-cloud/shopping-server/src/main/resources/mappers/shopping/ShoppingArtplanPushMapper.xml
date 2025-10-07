@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.ShoppingArtplanPushDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.ShoppingArtplanPush">
+        <id column="id" property="id" />
+        <result column="activity_id" property="activityId" />
+        <result column="push_title" property="pushTitle" />
+        <result column="push_content" property="pushContent" />
+        <result column="push_type" property="pushType" />
+        <result column="push_time" property="pushTime" />
+        <result column="push_range" property="pushRange" />
+        <result column="push_mobiles" property="pushMobiles" />
+        <result column="push_status" property="pushStatus" />
+        <result column="done_time" property="doneTime" />
+        <result column="add_time" property="addTime" />
+        <result column="add_user" property="addUser" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, activity_id, push_title, push_content, push_type, push_time, push_range, push_mobiles, push_status, done_time, add_time, add_user
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        activity_id
+          ,
+        push_title
+          ,
+        push_content
+          ,
+        push_type
+          ,
+        push_time
+          ,
+        push_range
+          ,
+        push_mobiles
+          ,
+        push_status
+          ,
+        done_time
+          ,
+        add_time
+          ,
+        add_user
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="activityId != null and activityId != ''">
+            <![CDATA[
+                AND activity_id = #{activityId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="pushTitle != null and pushTitle != ''">
+            <![CDATA[
+                AND push_title = #{pushTitle ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="pushContent != null and pushContent != ''">
+            <![CDATA[
+                AND push_content = #{pushContent ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="pushType != null">
+            <![CDATA[
+                AND push_type = #{pushType ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="pushTime != null and pushTime != ''">
+            <![CDATA[
+                AND push_time = #{pushTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="pushRange != null">
+            <![CDATA[
+                AND push_range = #{pushRange ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="pushMobiles != null and pushMobiles != ''">
+            <![CDATA[
+                AND push_mobiles = #{pushMobiles ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="pushStatus != null">
+            <![CDATA[
+                AND push_status = #{pushStatus ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="doneTime != null and doneTime != ''">
+            <![CDATA[
+                AND done_time = #{doneTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="addTime != null and addTime != ''">
+            <![CDATA[
+                AND add_time = #{addTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="addUser != null and addUser != ''">
+            <![CDATA[
+                AND add_user = #{addUser ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.ShoppingArtplanPush">
+        <![CDATA[
+			insert into shopping_artplan_push
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="activityId != null and activityId != ''" >
+                <![CDATA[
+                    activity_id,
+                ]]>
+            </if>
+            <if test="pushTitle != null and pushTitle != ''">
+                <![CDATA[
+               push_title,
+            ]]>
+            </if>
+            <if test="pushContent != null and pushContent != ''" >
+                <![CDATA[
+                    push_content,
+                ]]>
+            </if>
+            <if test="pushType != null" >
+                <![CDATA[
+                    push_type,
+                ]]>
+            </if>
+            <if test="pushTime != null and pushTime != ''" >
+                <![CDATA[
+                    push_time,
+                ]]>
+            </if>
+            <if test="pushRange != null" >
+                <![CDATA[
+                    push_range,
+                ]]>
+            </if>
+            <if test="pushMobiles != null and pushMobiles != ''" >
+                <![CDATA[
+                    push_mobiles,
+                ]]>
+            </if>
+            <if test="pushStatus != null" >
+                <![CDATA[
+                    push_status,
+                ]]>
+            </if>
+            <if test="doneTime != null and doneTime != ''" >
+                <![CDATA[
+                    done_time,
+                ]]>
+            </if>
+            <![CDATA[
+                    add_time,
+                ]]>
+            <if test="addUser != null and addUser != ''" >
+                <![CDATA[
+                    add_user,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="activityId != null and activityId != ''" >
+                <![CDATA[
+                    #{activityId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="pushTitle != null and pushTitle != ''">
+                <![CDATA[
+               #{pushTitle,jdbcType=VARCHAR},
+            ]]>
+            </if>
+            <if test="pushContent != null and pushContent != ''" >
+                <![CDATA[
+                    #{pushContent,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="pushType != null" >
+                <![CDATA[
+                    #{pushType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="pushTime != null and pushTime != ''" >
+                <![CDATA[
+                    #{pushTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="pushRange != null" >
+                <![CDATA[
+                    #{pushRange,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="pushMobiles != null and pushMobiles != ''" >
+                <![CDATA[
+                    #{pushMobiles,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="pushStatus != null" >
+                <![CDATA[
+                    #{pushStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="doneTime != null and doneTime != ''" >
+                <![CDATA[
+                    #{doneTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            now(),
+            <if test="addUser != null and addUser != ''" >
+                <![CDATA[
+                    #{addUser,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.ShoppingArtplanPush" >
+        <![CDATA[
+        	update shopping_artplan_push
+        ]]>
+        <set >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="activityId != null and activityId != ''" >
+                <![CDATA[
+                    activity_id = #{activityId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="pushTitle != null and pushTitle != ''">
+                <![CDATA[
+               push_title = #{pushTitle,jdbcType=VARCHAR},
+            ]]>
+            </if>
+            <if test="pushContent != null and pushContent != ''" >
+                <![CDATA[
+                    push_content = #{pushContent,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="pushType != null" >
+                <![CDATA[
+                    push_type = #{pushType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="pushTime != null and pushTime != ''" >
+                <![CDATA[
+                    push_time = #{pushTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="pushRange != null" >
+                <![CDATA[
+                    push_range = #{pushRange,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="pushMobiles != null and pushMobiles != ''" >
+                <![CDATA[
+                    push_mobiles = #{pushMobiles,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="pushStatus != null" >
+                <![CDATA[
+                    push_status = #{pushStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="doneTime != null and doneTime != ''" >
+                <![CDATA[
+                    done_time = #{doneTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="addTime != null and addTime != ''" >
+                <![CDATA[
+                    add_time = #{addTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="addUser != null and addUser != ''" >
+                <![CDATA[
+                    add_user = #{addUser,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.ShoppingArtplanPush">
+        <![CDATA[
+            delete from shopping_artplan_push
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.ShoppingArtplanPush">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_artplan_push t
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_artplan_push t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+        order by t.add_time desc
+        <if test="pageSize != '' and pageSize != null">
+            <![CDATA[
+                    limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+                ]]>
+        </if>
+    </select>
+
+    <select id="queryListCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            SELECT count(0) from shopping_artplan_push t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+    <!--  查询待处理的定时推送任务 -->
+    <select id="queryToDoPushList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_artplan_push t
+        ]]>
+        <where>
+            <![CDATA[
+            and t.push_type=2
+            and t.push_status=1
+            and t.push_time >= #{startTime ,jdbcType=VARCHAR}
+            and t.push_time <= #{endTime ,jdbcType=VARCHAR}
+            ]]>
+        </where>
+    </select>
+</mapper>

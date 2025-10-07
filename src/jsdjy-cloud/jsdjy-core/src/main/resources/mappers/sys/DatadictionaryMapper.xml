@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.core.dao.sys.DatadictionaryDao">
+    <!--  查询列表 -->
+    <select id="selectDataValue" resultType="java.lang.String">
+            select t.DATA_VALUE from f_datadictionary t
+        <where>
+            <![CDATA[
+              t.CATALOG_CODE = #{catalogCode ,jdbcType=VARCHAR}
+            ]]>
+            <![CDATA[
+                AND t.DATA_CODE = #{dataCode ,jdbcType=VARCHAR}
+            ]]>
+        </where>
+        limit 1
+    </select>
+
+</mapper>

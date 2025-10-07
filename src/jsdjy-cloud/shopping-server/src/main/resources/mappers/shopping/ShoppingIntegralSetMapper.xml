@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.ShoppingIntegralSetDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.ShoppingIntegralSet">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="integral" property="integral" />
+        <result column="daily_max" property="dailyMax" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, name, integral, daily_max
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        name
+          ,
+        integral
+          ,
+        daily_max
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="name != null and name != ''">
+            <![CDATA[
+                AND name = #{name ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="integral != null and integral != ''">
+            <![CDATA[
+                AND integral = #{integral ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="dailyMax != null and dailyMax != ''">
+            <![CDATA[
+                AND daily_max = #{dailyMax ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.ShoppingIntegralSet">
+        <![CDATA[
+			insert into shopping_integral_set
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+
+            <if test="name != null and name != ''" >
+                <![CDATA[
+                    name,
+                ]]>
+            </if>
+            <if test="integral != null" >
+                <![CDATA[
+                    integral,
+                ]]>
+            </if>
+            <if test="dailyMax != null" >
+                <![CDATA[
+                    daily_max,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="name != null and name != ''" >
+                <![CDATA[
+                    #{name,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="integral != null" >
+                <![CDATA[
+                    #{integral,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="dailyMax != null" >
+                <![CDATA[
+                    #{dailyMax,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.ShoppingIntegralSet" >
+        <![CDATA[
+        	update shopping_integral_set
+        ]]>
+        <set >
+
+            <if test="name != null and name != ''" >
+                <![CDATA[
+                    name = #{name,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="integral != null" >
+                <![CDATA[
+                    integral = #{integral,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="dailyMax != null" >
+                <![CDATA[
+                    daily_max = #{dailyMax,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.ShoppingIntegralSet">
+        <![CDATA[
+            delete from shopping_integral_set
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.ShoppingIntegralSet">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_integral_set t
+        ]]>
+        <where>
+            <if test="id != null and id != ''">
+                <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="name != null and name != ''">
+                <![CDATA[
+                AND name = #{name ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_integral_set t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+        order by t.id asc
+    </select>
+
+    <!--  查询列表 -->
+    <select id="checkName" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_integral_set t
+        ]]>
+        <where>
+            <if test="id != null and id != ''">
+                <![CDATA[
+                AND id != #{id ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="name != null and name != ''">
+                <![CDATA[
+                AND name = #{name ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+        </where>
+    </select>
+
+</mapper>

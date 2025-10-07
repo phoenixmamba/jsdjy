@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.mallserver.dao.ShoppingGoodscartDao">
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.mallserver.po.ShoppingGoodscart">
+        <id column="id" property="id"/>
+        <result column="addTime" property="addTime"/>
+        <result column="deleteStatus" property="deleteStatus"/>
+        <result column="count" property="count"/>
+        <result column="price" property="price"/>
+        <result column="integral" property="integral"/>
+        <result column="spec_info" property="specInfo"/>
+        <result column="goods_id" property="goodsId"/>
+        <result column="of_id" property="ofId"/>
+        <result column="cart_type" property="cartType"/>
+        <result column="sc_id" property="scId"/>
+        <result column="screen_price" property="screenPrice"/>
+        <result column="screen_safe" property="screenSafe"/>
+        <result column="anchor_id" property="anchorId"/>
+        <result column="propertys" property="propertys"/>
+        <result column="deduction_integral" property="deductionIntegral"/>
+        <result column="deduction_integral_price" property="deductionIntegralPrice"/>
+        <result column="deduction_member_price" property="deductionMemberPrice"/>
+        <result column="deduction_balance_price" property="deductionBalancePrice"/>
+        <result column="deduction_coupon_price" property="deductionCouponPrice"/>
+        <result column="deduction_giftcard_price" property="deductionGiftcardPrice"/>
+        <result column="pay_price" property="payPrice"/>
+        <result column="transport" property="transport"/>
+        <result column="ship_price" property="shipPrice"/>
+    </resultMap>
+
+
+    <!--  查询已下单的商品数量 -->
+    <select id="selectHasCount" resultType="java.lang.Integer">
+        select COALESCE(SUM(sg.count), 0) AS total_count
+        from shopping_goodscart sg
+        JOIN shopping_orderform t ON sg.of_id = t.id
+        <where>
+            t.order_status != 0
+            AND t.deleteStatus = 0
+            AND t.user_id = #{userId ,jdbcType=VARCHAR}
+            and sg.goods_id = #{goodsId ,jdbcType=VARCHAR}
+            and sg.cart_type = #{goodsType ,jdbcType=INTEGER}
+        </where>
+    </select>
+
+    <!--  查询购物车记录是否存在 -->
+    <select id="checkCartStatus" resultType="java.lang.Boolean">
+        select IF(count(*) =1, true, false)
+        from shopping_goodscart sg
+        <where>
+            sg.id = #{cartId ,jdbcType=VARCHAR}
+            and sg.deleteStatus = '0'
+            and sg.of_id is null
+        </where>
+    </select>
+</mapper>

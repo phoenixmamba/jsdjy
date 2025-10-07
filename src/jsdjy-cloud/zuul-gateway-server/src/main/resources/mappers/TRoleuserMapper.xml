@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.zuulgateway.dao.TRoleuserDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.zuulgateway.po.TRoleuser">
+        <id column="ROLEID" property="roleid" />
+        <result column="USERID" property="userid" />
+        <result column="REMARK" property="remark" />
+        <result column="CREATEUSERID" property="createuserid" />
+        <result column="CREATETIME" property="createtime" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        ROLEID, USERID, REMARK, CREATEUSERID, CREATETIME
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        ROLEID
+          ,
+        USERID
+          ,
+        REMARK
+          ,
+        CREATEUSERID
+          ,
+        CREATETIME
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="roleid != null and roleid != ''">
+            <![CDATA[
+                AND ROLEID = #{roleid ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="userid != null and userid != ''">
+            <![CDATA[
+                AND USERID = #{userid ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="remark != null and remark != ''">
+            <![CDATA[
+                AND REMARK = #{remark ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="createuserid != null and createuserid != ''">
+            <![CDATA[
+                AND CREATEUSERID = #{createuserid ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="createtime != null and createtime != ''">
+            <![CDATA[
+                AND CREATETIME = #{createtime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.zuulgateway.po.TRoleuser">
+        <![CDATA[
+			insert into T_ROLEUSER
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="roleid != '' and roleid != null" >
+                <![CDATA[
+                    ROLEID,
+                ]]>
+            </if>
+            <if test="userid != '' and userid != null" >
+                <![CDATA[
+                    USERID,
+                ]]>
+            </if>
+            <if test="remark != '' and remark != null" >
+                <![CDATA[
+                    REMARK,
+                ]]>
+            </if>
+            <if test="createuserid != '' and createuserid != null" >
+                <![CDATA[
+                    CREATEUSERID,
+                ]]>
+            </if>
+            <if test="createtime != '' and createtime != null" >
+                <![CDATA[
+                    CREATETIME,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="roleid != '' and roleid != null" >
+                <![CDATA[
+                    #{roleid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userid != '' and userid != null" >
+                <![CDATA[
+                    #{userid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="remark != '' and remark != null" >
+                <![CDATA[
+                    #{remark,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="createuserid != '' and createuserid != null" >
+                <![CDATA[
+                    #{createuserid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="createtime != '' and createtime != null" >
+                <![CDATA[
+                    #{createtime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.zuulgateway.po.TRoleuser" >
+        <![CDATA[
+        	update T_ROLEUSER
+        ]]>
+        <set >
+            <if test="roleid != '' and roleid != null" >
+                <![CDATA[
+                    ROLEID = #{roleid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userid != '' and userid != null" >
+                <![CDATA[
+                    USERID = #{userid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="remark != '' and remark != null" >
+                <![CDATA[
+                    REMARK = #{remark,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="createuserid != '' and createuserid != null" >
+                <![CDATA[
+                    CREATEUSERID = #{createuserid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="createtime != '' and createtime != null" >
+                <![CDATA[
+                    CREATETIME = #{createtime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and ROLEID = #{roleid ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.zuulgateway.po.TRoleuser">
+        <![CDATA[
+            delete from T_ROLEUSER
+        ]]>
+        <where>
+            <![CDATA[
+                and ROLEID = #{roleid ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.zuulgateway.po.TRoleuser">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from T_ROLEUSER t
+        ]]>
+        <where>
+            <![CDATA[
+                and ROLEID = #{roleid ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from T_ROLEUSER t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+</mapper>

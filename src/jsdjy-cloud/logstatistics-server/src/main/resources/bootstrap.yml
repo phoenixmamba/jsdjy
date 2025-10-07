@@ -1,0 +1,43 @@
+#日志与统计服务
+#Author: cui_jian
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:10080/eureka/
+
+server:
+  port: 10095
+
+spring:
+  application:
+    name: logstatistics,commonRetCodeMsg,commonDataSource,commonConfig
+  #    name: logstatistics,commonRetCodeMsg,commonConfig
+  cloud:
+    config:
+      label: master
+      #profile: dev
+      #profile: test
+      profile: prod
+      discovery:
+        enabled: true
+        serviceId: configServer
+
+management:
+  server:
+    port: 10095
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+#应用监控设置
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: '*'
+#  endpoint:
+#    health:
+#      show-details: always
+

@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.ParkDataHourlyflowDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.ParkDataHourlyflow">
+        <id column="statTime" property="statTime" />
+        <result column="totalTraffic" property="totalTraffic" />
+        <result column="inNum" property="inNum" />
+        <result column="outNum" property="outNum" />
+        <result column="abnormalNum" property="abnormalNum" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        statTime, totalTraffic, inNum, outNum, abnormalNum
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        statTime
+          ,
+        totalTraffic
+          ,
+        inNum
+          ,
+        outNum
+          ,
+        abnormalNum
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="statTime != null and statTime != ''">
+            <![CDATA[
+                AND statTime = #{statTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="totalTraffic != null and totalTraffic != ''">
+            <![CDATA[
+                AND totalTraffic = #{totalTraffic ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="inNum != null and inNum != ''">
+            <![CDATA[
+                AND inNum = #{inNum ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="outNum != null and outNum != ''">
+            <![CDATA[
+                AND outNum = #{outNum ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="abnormalNum != null and abnormalNum != ''">
+            <![CDATA[
+                AND abnormalNum = #{abnormalNum ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.ParkDataHourlyflow">
+        <![CDATA[
+			insert into park_data_hourlyflow
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="statTime != null and statTime != ''" >
+                <![CDATA[
+                    statTime,
+                ]]>
+            </if>
+            <if test="totalTraffic != null and totalTraffic != ''" >
+                <![CDATA[
+                    totalTraffic,
+                ]]>
+            </if>
+            <if test="inNum != null and inNum != ''" >
+                <![CDATA[
+                    inNum,
+                ]]>
+            </if>
+            <if test="outNum != null and outNum != ''" >
+                <![CDATA[
+                    outNum,
+                ]]>
+            </if>
+            <if test="abnormalNum != null and abnormalNum != ''" >
+                <![CDATA[
+                    abnormalNum,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="statTime != null and statTime != ''" >
+                <![CDATA[
+                    #{statTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="totalTraffic != null and totalTraffic != ''" >
+                <![CDATA[
+                    #{totalTraffic,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="inNum != null and inNum != ''" >
+                <![CDATA[
+                    #{inNum,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="outNum != null and outNum != ''" >
+                <![CDATA[
+                    #{outNum,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="abnormalNum != null and abnormalNum != ''" >
+                <![CDATA[
+                    #{abnormalNum,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.ParkDataHourlyflow" >
+        <![CDATA[
+        	update park_data_hourlyflow
+        ]]>
+        <set >
+            <if test="statTime != null and statTime != ''" >
+                <![CDATA[
+                    statTime = #{statTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="totalTraffic != null and totalTraffic != ''" >
+                <![CDATA[
+                    totalTraffic = #{totalTraffic,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="inNum != null and inNum != ''" >
+                <![CDATA[
+                    inNum = #{inNum,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="outNum != null and outNum != ''" >
+                <![CDATA[
+                    outNum = #{outNum,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="abnormalNum != null and abnormalNum != ''" >
+                <![CDATA[
+                    abnormalNum = #{abnormalNum,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and statTime = #{statTime ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.ParkDataHourlyflow">
+        <![CDATA[
+            delete from park_data_hourlyflow
+        ]]>
+        <where>
+            <![CDATA[
+                and statTime = #{statTime ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.ParkDataHourlyflow">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from park_data_hourlyflow t
+        ]]>
+        <where>
+            <![CDATA[
+                and statTime = #{statTime ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from park_data_hourlyflow t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+    <!--  新增 -->
+    <insert id="mergeInto" parameterType="com.centit.shopping.po.ParkDataHourlyflow">
+        <![CDATA[
+			replace into park_data_hourlyflow
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="statTime != null and statTime != ''" >
+                <![CDATA[
+                    statTime,
+                ]]>
+            </if>
+            <if test="totalTraffic != null" >
+                <![CDATA[
+                    totalTraffic,
+                ]]>
+            </if>
+            <if test="inNum != null" >
+                <![CDATA[
+                    inNum,
+                ]]>
+            </if>
+            <if test="outNum != null" >
+                <![CDATA[
+                    outNum,
+                ]]>
+            </if>
+            <if test="abnormalNum != null" >
+                <![CDATA[
+                    abnormalNum,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="statTime != null and statTime != ''" >
+                <![CDATA[
+                    #{statTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="totalTraffic != null" >
+                <![CDATA[
+                    #{totalTraffic,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="inNum != null" >
+                <![CDATA[
+                    #{inNum,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="outNum != null" >
+                <![CDATA[
+                    #{outNum,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="abnormalNum != null" >
+                <![CDATA[
+                    #{abnormalNum,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+</mapper>

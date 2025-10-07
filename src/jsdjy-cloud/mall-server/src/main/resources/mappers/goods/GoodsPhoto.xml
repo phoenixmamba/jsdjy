@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.mallserver.dao.GoodsPhotoDao">
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.mallserver.po.GoodsPhotoPo">
+        <result column="goods_id" property="goodsId"/>
+        <result column="photo_id" property="photoId"/>
+        <result column="photo_url" property="photoUrl"/>
+    </resultMap>
+
+    <!--  查询列表 -->
+    <select id="selectGoodsPhotos" resultMap="BaseResultMap">
+        select goods_id,
+               photo_id,
+               concat((select sc.imageWebServer from shopping_sysconfig sc), t.photo_id) photo_url
+        <![CDATA[
+        from shopping_goods_photo t
+        ]]>
+        <where>
+            goods_id = #{goodsId ,jdbcType=VARCHAR}
+        </where>
+    </select>
+</mapper>

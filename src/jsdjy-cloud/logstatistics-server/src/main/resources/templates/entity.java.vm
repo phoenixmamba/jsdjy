@@ -1,0 +1,25 @@
+package ${package.Entity};
+
+import java.util.Date;
+import java.io.Serializable;
+import lombok.Data;
+
+/**
+ * <p> <p>
+ * @version : 1.0
+ * @Author : cui_jian
+ * @Description : $!{table.comment} 实体类
+ * @Date : ${date}
+ **/
+@Data
+public class ${entity} implements Serializable {
+
+## ----------  BEGIN 字段循环遍历  ----------
+#foreach($field in ${table.fields})
+
+    private ${field.propertyType} ${field.propertyName};
+#end
+## ----------  END 字段循环遍历  ----------
+
+
+}

@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.ShoppingIntegralRecordDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.ShoppingIntegralRecord">
+        <id column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="integral_count" property="integralCount" />
+        <result column="remark" property="remark" />
+        <result column="add_time" property="addTime" />
+        <result column="status" property="status" />
+        <result column="asset_id" property="assetId" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, user_id, integral_count, remark, add_time, status, asset_id
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        user_id
+          ,
+        integral_count
+          ,
+        remark
+          ,
+        add_time
+          ,
+        status
+          ,
+        asset_id
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="userId != null and userId != ''">
+            <![CDATA[
+                AND user_id = #{userId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="integralCount != null and integralCount != ''">
+            <![CDATA[
+                AND integral_count = #{integralCount ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="remark != null and remark != ''">
+            <![CDATA[
+                AND remark = #{remark ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="addTime != null and addTime != ''">
+            <![CDATA[
+                AND add_time = #{addTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="status != null">
+            <![CDATA[
+                AND status = #{status ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="assetId != null and assetId != ''">
+            <![CDATA[
+                AND asset_id = #{assetId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.ShoppingIntegralRecord" useGeneratedKeys="true" keyProperty="id">
+        <![CDATA[
+			insert into shopping_integral_record
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+
+            <if test="userId != null and userId != ''" >
+                <![CDATA[
+                    user_id,
+                ]]>
+            </if>
+            <if test="integralCount != null and integralCount != ''" >
+                <![CDATA[
+                    integral_count,
+                ]]>
+            </if>
+            <if test="remark != null and remark != ''" >
+                <![CDATA[
+                    remark,
+                ]]>
+            </if>
+
+                <![CDATA[
+                    add_time,
+                ]]>
+            <if test="status != null" >
+                <![CDATA[
+                    status,
+                ]]>
+            </if>
+            <if test="assetId != null and assetId != ''" >
+                <![CDATA[
+                    asset_id,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+
+            <if test="userId != null and userId != ''" >
+                <![CDATA[
+                    #{userId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="integralCount != null and integralCount != ''" >
+                <![CDATA[
+                    #{integralCount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="remark != null and remark != ''" >
+                <![CDATA[
+                    #{remark,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            now(),
+            <if test="status != null" >
+                <![CDATA[
+                    #{status,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="assetId != null and assetId != ''" >
+                <![CDATA[
+                    #{assetId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.ShoppingIntegralRecord" >
+        <![CDATA[
+        	update shopping_integral_record
+        ]]>
+        <set >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userId != null and userId != ''" >
+                <![CDATA[
+                    user_id = #{userId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="integralCount != null and integralCount != ''" >
+                <![CDATA[
+                    integral_count = #{integralCount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="remark != null and remark != ''" >
+                <![CDATA[
+                    remark = #{remark,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="addTime != null and addTime != ''" >
+                <![CDATA[
+                    add_time = #{addTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="status != null" >
+                <![CDATA[
+                    status = #{status,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="assetId != null and assetId != ''" >
+                <![CDATA[
+                    asset_id = #{assetId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.ShoppingIntegralRecord">
+        <![CDATA[
+            delete from shopping_integral_record
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.ShoppingIntegralRecord">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_integral_record t
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_integral_record t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+    <!--  查询指定日期已赠送积分数量 -->
+    <select id="queryDailySum" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            SELECT IFNULL(SUM(integral_count), 0) FROM shopping_integral_record
+        ]]>
+        <where>
+            and DATE_FORMAT(add_time,'%Y-%m-%d') =#{dayStr ,jdbcType=VARCHAR }
+            <if test="remark != null and remark != ''">
+                <![CDATA[
+                AND remark = #{remark ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="userId != null and userId != ''">
+                <![CDATA[
+                AND user_id = #{userId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+        </where>
+    </select>
+
+    <!-- 更新 -->
+    <update id="updateIntegralStatus" parameterType="com.centit.shopping.po.ShoppingIntegralRecord" >
+        <![CDATA[
+        	update shopping_integral_record
+        ]]>
+        <set >
+                <![CDATA[
+                    status = #{status,jdbcType=VARCHAR},
+                ]]>
+
+                <![CDATA[
+                    asset_id = #{assetId,jdbcType=VARCHAR},
+                ]]>
+
+        </set>
+        <where>
+            <![CDATA[
+                and status = '0'
+            ]]>
+            <![CDATA[
+                AND user_id = #{userId ,jdbcType=VARCHAR}
+            ]]>
+        </where>
+    </update>
+</mapper>

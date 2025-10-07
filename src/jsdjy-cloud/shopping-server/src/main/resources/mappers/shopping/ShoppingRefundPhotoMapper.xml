@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.ShoppingRefundPhotoDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.ShoppingRefundPhoto">
+        <id column="id" property="id" />
+        <result column="refund_id" property="refundId" />
+        <result column="photo_id" property="photoId" />
+        <result column="sn" property="sn" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, refund_id, photo_id, sn
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        refund_id
+          ,
+        photo_id
+          ,
+        sn
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="refundId != null and refundId != ''">
+            <![CDATA[
+                AND refund_id = #{refundId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="photoId != null and photoId != ''">
+            <![CDATA[
+                AND photo_id = #{photoId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="sn != null and sn != ''">
+            <![CDATA[
+                AND sn = #{sn ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.ShoppingRefundPhoto">
+        <![CDATA[
+			insert into shopping_refund_photo
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="refundId != null and refundId != ''" >
+                <![CDATA[
+                    refund_id,
+                ]]>
+            </if>
+            <if test="photoId != null and photoId != ''" >
+                <![CDATA[
+                    photo_id,
+                ]]>
+            </if>
+            <if test="sn != null and sn != ''" >
+                <![CDATA[
+                    sn,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="refundId != null and refundId != ''" >
+                <![CDATA[
+                    #{refundId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="photoId != null and photoId != ''" >
+                <![CDATA[
+                    #{photoId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="sn != null and sn != ''" >
+                <![CDATA[
+                    #{sn,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.ShoppingRefundPhoto" >
+        <![CDATA[
+        	update shopping_refund_photo
+        ]]>
+        <set >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="refundId != null and refundId != ''" >
+                <![CDATA[
+                    refund_id = #{refundId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="photoId != null and photoId != ''" >
+                <![CDATA[
+                    photo_id = #{photoId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="sn != null and sn != ''" >
+                <![CDATA[
+                    sn = #{sn,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.ShoppingRefundPhoto">
+        <![CDATA[
+            delete from shopping_refund_photo
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.ShoppingRefundPhoto">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_refund_photo t
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_refund_photo t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+</mapper>

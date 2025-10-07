@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.TicketRedeemProjectDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.TicketRedeemProject">
+        <id column="project_id" property="projectId" />
+        <result column="project_name" property="projectName" />
+        <result column="project_seat_type" property="projectSeatType" />
+        <result column="project_sale_state" property="projectSaleState" />
+        <result column="first_class_id" property="firstClassId" />
+        <result column="first_class_name" property="firstClassName" />
+        <result column="second_class_id" property="secondClassId" />
+        <result column="second_class_name" property="secondClassName" />
+        <result column="project_img_url" property="projectImgUrl" />
+        <result column="project_round" property="projectRound" />
+        <result column="project_introduce" property="projectIntroduce" />
+        <result column="sn" property="sn" />
+        <result column="sale_start_time" property="saleStartTime" />
+        <result column="sale_end_time" property="saleEndTime" />
+        <result column="is_delete" property="isDelete" />
+        <result column="is_bindall" property="isBindall" />
+        <result column="write_off_count" property="writeOffCount" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        project_id, project_name, project_seat_type, project_sale_state, first_class_id, first_class_name, second_class_id, second_class_name, project_img_url, project_round, project_introduce, sn, sale_start_time, sale_end_time, is_delete,is_bindall, write_off_count
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        project_id
+          ,
+        project_name
+          ,
+        project_seat_type
+          ,
+        project_sale_state
+          ,
+        first_class_id
+          ,
+        first_class_name
+          ,
+        second_class_id
+          ,
+        second_class_name
+          ,
+        project_img_url
+          ,
+        project_round
+          ,
+        project_introduce
+          ,
+        sn
+          ,
+        sale_start_time
+          ,
+        sale_end_time
+         ,
+        is_delete
+          ,
+        is_bindall
+          ,
+        write_off_count
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="projectId != null and projectId != ''">
+            <![CDATA[
+                AND project_id = #{projectId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="projectName != null and projectName != ''">
+            <![CDATA[
+                AND project_name = #{projectName ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="projectSeatType != null and projectSeatType != ''">
+            <![CDATA[
+                AND project_seat_type = #{projectSeatType ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="projectSaleState != null and projectSaleState != ''">
+            <![CDATA[
+                AND project_sale_state = #{projectSaleState ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="firstClassId != null and firstClassId != ''">
+            <![CDATA[
+                AND first_class_id = #{firstClassId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="firstClassName != null and firstClassName != ''">
+            <![CDATA[
+                AND first_class_name = #{firstClassName ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="secondClassId != null and secondClassId != ''">
+            <![CDATA[
+                AND second_class_id = #{secondClassId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="secondClassName != null and secondClassName != ''">
+            <![CDATA[
+                AND second_class_name = #{secondClassName ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="projectImgUrl != null and projectImgUrl != ''">
+            <![CDATA[
+                AND project_img_url = #{projectImgUrl ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="projectRound != null and projectRound != ''">
+            <![CDATA[
+                AND project_round = #{projectRound ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="projectIntroduce != null and projectIntroduce != ''">
+            <![CDATA[
+                AND project_introduce = #{projectIntroduce ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="sn != null and sn != ''">
+            <![CDATA[
+                AND sn = #{sn ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="saleStartTime != null and saleStartTime != ''">
+            <![CDATA[
+                AND sale_start_time = #{saleStartTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="saleEndTime != null and saleEndTime != ''">
+            <![CDATA[
+                AND sale_end_time = #{saleEndTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="isDelete != null and isDelete != ''">
+            <![CDATA[
+                AND is_delete = #{isDelete ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="isBindall != null and isBindall != ''">
+            <![CDATA[
+                AND is_bindall = #{isBindall ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="writeOffCount != null and writeOffCount != ''">
+            <![CDATA[
+                AND write_off_count = #{writeOffCount ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.TicketRedeemProject"  useGeneratedKeys="true" keyProperty="projectId">
+        <![CDATA[
+			insert into ticket_redeem_project
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="projectId != null and projectId != ''" >
+                <![CDATA[
+                    project_id,
+                ]]>
+            </if>
+            <if test="projectName != null and projectName != ''" >
+                <![CDATA[
+                    project_name,
+                ]]>
+            </if>
+            <if test="projectSeatType != null and projectSeatType != ''" >
+                <![CDATA[
+                    project_seat_type,
+                ]]>
+            </if>
+            <if test="projectSaleState != null and projectSaleState != ''" >
+                <![CDATA[
+                    project_sale_state,
+                ]]>
+            </if>
+            <if test="firstClassId != null and firstClassId != ''" >
+                <![CDATA[
+                    first_class_id,
+                ]]>
+            </if>
+            <if test="firstClassName != null and firstClassName != ''" >
+                <![CDATA[
+                    first_class_name,
+                ]]>
+            </if>
+            <if test="secondClassId != null and secondClassId != ''" >
+                <![CDATA[
+                    second_class_id,
+                ]]>
+            </if>
+            <if test="secondClassName != null and secondClassName != ''" >
+                <![CDATA[
+                    second_class_name,
+                ]]>
+            </if>
+            <if test="projectImgUrl != null and projectImgUrl != ''" >
+                <![CDATA[
+                    project_img_url,
+                ]]>
+            </if>
+            <if test="projectRound != null and projectRound != ''" >
+                <![CDATA[
+                    project_round,
+                ]]>
+            </if>
+            <if test="projectIntroduce != null and projectIntroduce != ''" >
+                <![CDATA[
+                    project_introduce,
+                ]]>
+            </if>
+            <if test="sn != null and sn != ''" >
+                <![CDATA[
+                    sn,
+                ]]>
+            </if>
+            <if test="saleStartTime != null and saleStartTime != ''" >
+                <![CDATA[
+                    sale_start_time,
+                ]]>
+            </if>
+            <if test="saleEndTime != null and saleEndTime != ''" >
+                <![CDATA[
+                    sale_end_time,
+                ]]>
+            </if>
+            <if test="isDelete != null and isDelete != ''" >
+                <![CDATA[
+                    is_delete,
+                ]]>
+            </if>
+            <if test="isBindall != null and isBindall != ''" >
+                <![CDATA[
+                    is_bindall,
+                ]]>
+            </if>
+            <if test="writeOffCount != '' and writeOffCount != null" >
+                <![CDATA[
+                    write_off_count,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="projectId != null and projectId != ''" >
+                <![CDATA[
+                    #{projectId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="projectName != null and projectName != ''" >
+                <![CDATA[
+                    #{projectName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="projectSeatType != null and projectSeatType != ''" >
+                <![CDATA[
+                    #{projectSeatType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="projectSaleState != null and projectSaleState != ''" >
+                <![CDATA[
+                    #{projectSaleState,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="firstClassId != null and firstClassId != ''" >
+                <![CDATA[
+                    #{firstClassId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="firstClassName != null and firstClassName != ''" >
+                <![CDATA[
+                    #{firstClassName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="secondClassId != null and secondClassId != ''" >
+                <![CDATA[
+                    #{secondClassId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="secondClassName != null and secondClassName != ''" >
+                <![CDATA[
+                    #{secondClassName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="projectImgUrl != null and projectImgUrl != ''" >
+                <![CDATA[
+                    #{projectImgUrl,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="projectRound != null and projectRound != ''" >
+                <![CDATA[
+                    #{projectRound,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="projectIntroduce != null and projectIntroduce != ''" >
+                <![CDATA[
+                    #{projectIntroduce,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="sn != null and sn != ''" >
+                <![CDATA[
+                    #{sn,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="saleStartTime != null and saleStartTime != ''" >
+                <![CDATA[
+                    #{saleStartTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="saleEndTime != null and saleEndTime != ''" >
+                <![CDATA[
+                    #{saleEndTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isDelete != null and isDelete != ''" >
+                <![CDATA[
+                    #{isDelete,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isBindall != null and isBindall != ''" >
+                <![CDATA[
+                    #{isBindall,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="writeOffCount != '' and writeOffCount != null" >
+                <![CDATA[
+                    #{writeOffCount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.TicketRedeemProject" >
+        <![CDATA[
+        	update ticket_redeem_project
+        ]]>
+        <set >
+            <if test="projectId != null and projectId != ''" >
+                <![CDATA[
+                    project_id = #{projectId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="projectName != null and projectName != ''" >
+                <![CDATA[
+                    project_name = #{projectName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="projectSeatType != null and projectSeatType != ''" >
+                <![CDATA[
+                    project_seat_type = #{projectSeatType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="projectSaleState != null and projectSaleState != ''" >
+                <![CDATA[
+                    project_sale_state = #{projectSaleState,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="firstClassId != null and firstClassId != ''" >
+                <![CDATA[
+                    first_class_id = #{firstClassId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="firstClassName != null and firstClassName != ''" >
+                <![CDATA[
+                    first_class_name = #{firstClassName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="secondClassId != null and secondClassId != ''" >
+                <![CDATA[
+                    second_class_id = #{secondClassId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="secondClassName != null and secondClassName != ''" >
+                <![CDATA[
+                    second_class_name = #{secondClassName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="projectImgUrl != null and projectImgUrl != ''" >
+                <![CDATA[
+                    project_img_url = #{projectImgUrl,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="projectRound != null and projectRound != ''" >
+                <![CDATA[
+                    project_round = #{projectRound,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="projectIntroduce != null and projectIntroduce != ''" >
+                <![CDATA[
+                    project_introduce = #{projectIntroduce,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="sn != null and sn != ''" >
+                <![CDATA[
+                    sn = #{sn,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="saleStartTime != null and saleStartTime != ''" >
+                <![CDATA[
+                    sale_start_time = #{saleStartTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="saleEndTime != null and saleEndTime != ''" >
+                <![CDATA[
+                    sale_end_time = #{saleEndTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isDelete != null and isDelete != ''" >
+                <![CDATA[
+                    is_delete = #{isDelete,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isBindall != null and isBindall != ''" >
+                <![CDATA[
+                    is_bindall = #{isBindall,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="writeOffCount != '' and writeOffCount != null" >
+                <![CDATA[
+                    write_off_count = #{writeOffCount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and project_id = #{projectId ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.TicketRedeemProject">
+        <![CDATA[
+            delete from ticket_redeem_project
+        ]]>
+        <where>
+            <![CDATA[
+                and project_id = #{projectId ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.TicketRedeemProject">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from ticket_redeem_project t
+        ]]>
+        <where>
+            <![CDATA[
+                and project_id = #{projectId ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from ticket_redeem_project t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+        order by t.sale_start_time desc
+        <if test="pageSize != '' and pageSize != null">
+            <![CDATA[
+                    limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+                ]]>
+        </if>
+    </select>
+
+    <!--  查询列表数量 -->
+    <select id="queryTotalCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            SELECT count(0) FROM ticket_redeem_project
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+</mapper>

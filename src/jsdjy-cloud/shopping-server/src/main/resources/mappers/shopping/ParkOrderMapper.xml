@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.ParkOrderDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.ParkOrder">
+        <id column="id" property="id" />
+        <result column="order_id" property="orderId" />
+        <result column="park_id" property="parkId" />
+        <result column="order_no" property="orderNo" />
+        <result column="plate_no" property="plateNo" />
+        <result column="card_no" property="cardNo" />
+        <result column="park_name" property="parkName" />
+        <result column="entry_time" property="entryTime" />
+        <result column="pay_time" property="payTime" />
+        <result column="elapsed_time" property="elapsedTime" />
+        <result column="total_amount" property="totalAmount" />
+        <result column="payable" property="payable" />
+        <result column="deduction_amount" property="deductionAmount" />
+        <result column="paid_amount" property="paidAmount" />
+        <result column="delay_time" property="delayTime" />
+        <result column="img_name" property="imgName" />
+        <result column="expire_time" property="expireTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, order_id, park_id, order_no, plate_no, card_no, park_name, entry_time, pay_time, elapsed_time, total_amount, payable, deduction_amount, paid_amount, delay_time, img_name, expire_time
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        order_id
+          ,
+        park_id
+          ,
+        order_no
+          ,
+        plate_no
+          ,
+        card_no
+          ,
+        park_name
+          ,
+        entry_time
+          ,
+        pay_time
+          ,
+        elapsed_time
+          ,
+        total_amount
+          ,
+        payable
+          ,
+        deduction_amount
+          ,
+        paid_amount
+          ,
+        delay_time
+          ,
+        img_name
+          ,
+        expire_time
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="orderId != null and orderId != ''">
+            <![CDATA[
+                AND order_id = #{orderId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="parkId != null and parkId != ''">
+            <![CDATA[
+                AND park_id = #{parkId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="orderNo != null and orderNo != ''">
+            <![CDATA[
+                AND order_no = #{orderNo ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="plateNo != null and plateNo != ''">
+            <![CDATA[
+                AND plate_no = #{plateNo ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="cardNo != null and cardNo != ''">
+            <![CDATA[
+                AND card_no = #{cardNo ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="parkName != null and parkName != ''">
+            <![CDATA[
+                AND park_name = #{parkName ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="entryTime != null and entryTime != ''">
+            <![CDATA[
+                AND entry_time = #{entryTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="payTime != null and payTime != ''">
+            <![CDATA[
+                AND pay_time = #{payTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="elapsedTime != null and elapsedTime != ''">
+            <![CDATA[
+                AND elapsed_time = #{elapsedTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="totalAmount != null and totalAmount != ''">
+            <![CDATA[
+                AND total_amount = #{totalAmount ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="payable != null and payable != ''">
+            <![CDATA[
+                AND payable = #{payable ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="deductionAmount != null and deductionAmount != ''">
+            <![CDATA[
+                AND deduction_amount = #{deductionAmount ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="paidAmount != null and paidAmount != ''">
+            <![CDATA[
+                AND paid_amount = #{paidAmount ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="delayTime != null and delayTime != ''">
+            <![CDATA[
+                AND delay_time = #{delayTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="imgName != null and imgName != ''">
+            <![CDATA[
+                AND img_name = #{imgName ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="expireTime != null and expireTime != ''">
+            <![CDATA[
+                AND expire_time = #{expireTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.ParkOrder">
+        <![CDATA[
+			insert into park_order
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    id,
+                ]]>
+            </if>
+            <if test="orderId != '' and orderId != null" >
+                <![CDATA[
+                    order_id,
+                ]]>
+            </if>
+            <if test="parkId != '' and parkId != null" >
+                <![CDATA[
+                    park_id,
+                ]]>
+            </if>
+            <if test="orderNo != '' and orderNo != null" >
+                <![CDATA[
+                    order_no,
+                ]]>
+            </if>
+            <if test="plateNo != '' and plateNo != null" >
+                <![CDATA[
+                    plate_no,
+                ]]>
+            </if>
+            <if test="cardNo != '' and cardNo != null" >
+                <![CDATA[
+                    card_no,
+                ]]>
+            </if>
+            <if test="parkName != '' and parkName != null" >
+                <![CDATA[
+                    park_name,
+                ]]>
+            </if>
+            <if test="entryTime != '' and entryTime != null" >
+                <![CDATA[
+                    entry_time,
+                ]]>
+            </if>
+            <if test="payTime != '' and payTime != null" >
+                <![CDATA[
+                    pay_time,
+                ]]>
+            </if>
+            <if test="elapsedTime != '' and elapsedTime != null" >
+                <![CDATA[
+                    elapsed_time,
+                ]]>
+            </if>
+            <if test="totalAmount != '' and totalAmount != null" >
+                <![CDATA[
+                    total_amount,
+                ]]>
+            </if>
+            <if test="payable != '' and payable != null" >
+                <![CDATA[
+                    payable,
+                ]]>
+            </if>
+            <if test="deductionAmount != '' and deductionAmount != null" >
+                <![CDATA[
+                    deduction_amount,
+                ]]>
+            </if>
+            <if test="paidAmount != '' and paidAmount != null" >
+                <![CDATA[
+                    paid_amount,
+                ]]>
+            </if>
+            <if test="delayTime != '' and delayTime != null" >
+                <![CDATA[
+                    delay_time,
+                ]]>
+            </if>
+            <if test="imgName != '' and imgName != null" >
+                <![CDATA[
+                    img_name,
+                ]]>
+            </if>
+            <if test="expireTime != '' and expireTime != null" >
+                <![CDATA[
+                    expire_time,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="orderId != '' and orderId != null" >
+                <![CDATA[
+                    #{orderId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="parkId != '' and parkId != null" >
+                <![CDATA[
+                    #{parkId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="orderNo != '' and orderNo != null" >
+                <![CDATA[
+                    #{orderNo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="plateNo != '' and plateNo != null" >
+                <![CDATA[
+                    #{plateNo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="cardNo != '' and cardNo != null" >
+                <![CDATA[
+                    #{cardNo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="parkName != '' and parkName != null" >
+                <![CDATA[
+                    #{parkName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="entryTime != '' and entryTime != null" >
+                <![CDATA[
+                    #{entryTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="payTime != '' and payTime != null" >
+                <![CDATA[
+                    #{payTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="elapsedTime != '' and elapsedTime != null" >
+                <![CDATA[
+                    #{elapsedTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="totalAmount != '' and totalAmount != null" >
+                <![CDATA[
+                    #{totalAmount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="payable != '' and payable != null" >
+                <![CDATA[
+                    #{payable,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="deductionAmount != '' and deductionAmount != null" >
+                <![CDATA[
+                    #{deductionAmount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="paidAmount != '' and paidAmount != null" >
+                <![CDATA[
+                    #{paidAmount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="delayTime != '' and delayTime != null" >
+                <![CDATA[
+                    #{delayTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="imgName != '' and imgName != null" >
+                <![CDATA[
+                    #{imgName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="expireTime != '' and expireTime != null" >
+                <![CDATA[
+                    #{expireTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.ParkOrder" >
+        <![CDATA[
+        	update park_order
+        ]]>
+        <set >
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="orderId != '' and orderId != null" >
+                <![CDATA[
+                    order_id = #{orderId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="parkId != '' and parkId != null" >
+                <![CDATA[
+                    park_id = #{parkId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="orderNo != '' and orderNo != null" >
+                <![CDATA[
+                    order_no = #{orderNo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="plateNo != '' and plateNo != null" >
+                <![CDATA[
+                    plate_no = #{plateNo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="cardNo != '' and cardNo != null" >
+                <![CDATA[
+                    card_no = #{cardNo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="parkName != '' and parkName != null" >
+                <![CDATA[
+                    park_name = #{parkName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="entryTime != '' and entryTime != null" >
+                <![CDATA[
+                    entry_time = #{entryTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="payTime != '' and payTime != null" >
+                <![CDATA[
+                    pay_time = #{payTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="elapsedTime != '' and elapsedTime != null" >
+                <![CDATA[
+                    elapsed_time = #{elapsedTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="totalAmount != '' and totalAmount != null" >
+                <![CDATA[
+                    total_amount = #{totalAmount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="payable != '' and payable != null" >
+                <![CDATA[
+                    payable = #{payable,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="deductionAmount != '' and deductionAmount != null" >
+                <![CDATA[
+                    deduction_amount = #{deductionAmount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="paidAmount != '' and paidAmount != null" >
+                <![CDATA[
+                    paid_amount = #{paidAmount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="delayTime != '' and delayTime != null" >
+                <![CDATA[
+                    delay_time = #{delayTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="imgName != '' and imgName != null" >
+                <![CDATA[
+                    img_name = #{imgName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="expireTime != '' and expireTime != null" >
+                <![CDATA[
+                    expire_time = #{expireTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    and id = #{id,jdbcType=VARCHAR}
+                ]]>
+            </if>
+            <!--<if test="orderId != '' and orderId != null" >-->
+                <!--<![CDATA[-->
+                    <!--and order_id = #{orderId,jdbcType=VARCHAR}-->
+                <!--]]>-->
+            <!--</if>-->
+            <!--<if test="orderNo != '' and orderNo != null" >-->
+                <!--<![CDATA[-->
+                    <!--and order_no = #{orderNo,jdbcType=VARCHAR}-->
+                <!--]]>-->
+            <!--</if>-->
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.ParkOrder">
+        <![CDATA[
+            delete from park_order
+        ]]>
+        <where>
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    and id = #{id,jdbcType=VARCHAR}
+                ]]>
+            </if>
+            <if test="orderId != '' and orderId != null" >
+                <![CDATA[
+                    and order_id = #{orderId,jdbcType=VARCHAR}
+                ]]>
+            </if>
+            <if test="orderNo != '' and orderNo != null" >
+                <![CDATA[
+                    and order_no = #{orderNo,jdbcType=VARCHAR}
+                ]]>
+            </if>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.ParkOrder">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from park_order t
+        ]]>
+        <where>
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    and id = #{id,jdbcType=VARCHAR}
+                ]]>
+            </if>
+            <if test="orderId != '' and orderId != null" >
+                <![CDATA[
+                    and order_id = #{orderId,jdbcType=VARCHAR}
+                ]]>
+            </if>
+            <if test="orderNo != '' and orderNo != null" >
+                <![CDATA[
+                    and order_no = #{orderNo,jdbcType=VARCHAR}
+                ]]>
+            </if>
+        </where>
+        order by t.id desc limit 1
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from park_order t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+        order by t.id desc
+    </select>
+
+</mapper>

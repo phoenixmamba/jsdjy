@@ -1,0 +1,222 @@
+#统一组织用户平台服务配置文件
+#Author: li_hao
+
+spring:
+  application:
+    name: djy
+  #  datasource:
+  #    driver-class-name: oracle.jdbc.OracleDriver
+  #    url: jdbc:oracle:thin:@192.168.131.102:1521:mipdb
+  #    username: JSSJTT
+  #    password: JSSJTT
+  #    max-idle: 10
+  #    max-wait: 10000
+  #    min-idle: 5
+  #    initial-size: 5
+
+  #Redis配置
+  redis:
+    host: 192.168.135.40
+    #Redis服务器连接密码（默认为空）
+    password:
+    #Redis数据库索引（默认为0）
+    database: 5
+    port: 6379
+    #连接超时时间（毫秒）
+    timeout: 300
+    #这里使用的是lettuce，如果使用Jedis，把下面的lettuce改成Jedis即可
+    lettuce:
+      pool:
+        #连接池中的最大空闲连接
+        max-idle: 8
+        #连接池中的最小空闲连接
+        min-idle: 0
+        #连接池最大连接数（使用负值表示没有限制）
+        max-active: 8
+        #连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: -1
+
+
+
+
+#mybatis配置
+mybatis:
+  config-locations: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mappers/*.xml #指定resources下面的mappers文件夹
+  #  typeAliasesPackage: com.centit.organizeuser.organizeuserserver.webmgr.po
+
+  #spring boot集成mybatis的方式打印sql
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+#日志方式sql打印
+#logging:
+#  level:
+#    com.example.demo.dao: debug
+
+
+
+#用户目录
+userdirectory:
+  default:
+    rank: YG
+    station: ZY
+    rolecode: G-SYSADMIN
+  ldap:
+    url: LDAP://192.168.128.5:389
+    username: accounts@centit.com
+    userpassword: yhs@yhs1
+    searchbase: CN=Users,DC=centit,DC=com
+
+#系统属性
+app:
+  home: /D/Projects/RunData/ip_home
+#业务配置信息
+opt:
+  name: 框架测试项目
+  subsystem: false
+
+jdbc:
+  url:
+#单点登录相关配置信息
+cas:
+  sso: false
+  home: https://zou_wy:8443/centit-cas
+#登录成功后的首页
+local:
+  home: http://zouwuyangpc:8084/product-ip
+  firstpage: /system/mainframe/index
+
+#是否开放实施人员入口
+deploy:
+  enabled: true
+#框架相关的表主键生成规制， 目前关联的就是 userinfo 和 uintinfo 两个表
+#default value {"prefix":"U","length":8,"pad":"0"}
+framework:
+  userinfo:
+    id:
+      generator: \{"length":1\}
+  #default value {"prefix":"D","length":6,"pad":"0"}
+  unitinfo:
+    id:
+      generator: \{"length":1\}
+  roleinfo:
+    id:
+      generator: \{"length":1\}
+#多国语言设置
+sys:
+  multi_lang: true
+  defalut_lang: zh_CN
+
+session:
+  redis:
+    host: 193.168.1.233
+    port: 6379
+
+filter:
+  rest:
+    context:
+      check:
+        correlation: false
+        user: false
+
+
+#系统用户初始化密码
+initalPwdFUser: 123456
+#上传文件目录
+uploadFiledir: D:/data/upload/
+
+#用户登录默认失效时间（单位：分钟）
+loginExpireTime: 30
+
+#文件服务
+file:
+  upload:
+    dir: /data/upload/
+    url: http://193.168.1.233:8281/fileserver/fileserver/upload/file
+  download:
+    url: https://app.jsmot.com:10252/fileserver/fileserver/download/pfile/
+
+#短信服务
+sms:
+  appcheck:
+    mobile: 17766092369
+    content: 你好，系统监测到以下H5应用地址访问异常，请及时检查并处理。
+
+#飞友科技接口参数
+variflight:
+  #识别码
+  appid: 10465
+  #注册码
+  appsecurity: 5a7a61e7ba6b3
+  #火车查询接口地址
+  trainUrl: http://open-al.variflight.com/api/train?
+  #火车正晚点信息查询接口地址
+  trainOnTimeUrl: http://open-al.variflight.com/api/trainOnTime?
+  #航班时刻查询接口地址
+  flightUrl: http://open-al.variflight.com/api/flight?
+  #航班流量查询接口地址
+  flightFlowUrl: http://open-al.variflight.com/api/trafficv2?
+  #航班运力查询接口地址
+  flightCapacityUrl: http://open-al.variflight.com/api/capacityAnalytics?
+
+#高速
+vmp-web:
+  #高速视频接口地址
+  highSpeedUrl: http://10.1.31.119/vmp-web/common/getCameraList?loginName=ndxt-yxjc-app&pwd=827ccb0eea8a706c4c34a16891f84e7b
+  hynbUrl: http://10.1.31.119/vmp-web/common/getCameraList?loginName=ndxt-hynb-app&pwd=827ccb0eea8a706c4c34a16891f84e7b&lineid=11
+  hynbVideoUrl: http://10.1.31.119/vmp-web/common/getHls?lineid=100&cameraid=
+
+#高速视频（长天智远）
+videocenter:
+  #获取token
+  GetToken: http://193.168.1.203/videocenter/proxy/video.GetToken?user=ctzy&token=f5694ff1-982d-4ef8-9b44-259df0e37bfe
+  #获取单位节点信息
+  getChildCountByNodeId: http://193.168.1.203/videocenter/proxy/getChildCountByNodeId?unitNode=videos&token=TOKEN
+  #获取摄像机列表
+  getUnitCameraInStListAll: http://193.168.1.203/videocenter/proxy/getUnitCameraInStListAll?parentid=PARENTID&plateid=1&allflg=5&token=TOKEN
+  #获取播放地址（APP，m3u8格式）
+  GetDeviceStreamByType: http://193.168.1.203/videocenter/proxy/GetDeviceStreamByType?AD_CODE=CAMERAID&vtype=1&hightvideo=0&_=1548818802127&callbackparam=success_jsonpCallback&user=18951073668&amp&token=TOKEN
+
+#视频（3.0）
+openapi:
+  #获取摄像机列表信息
+  GetVideoDetailInfo: http://193.168.1.199:7072/oc/service/video.GetVideoDetailInfo?user=&currPage=1&pageSize=500&departmentId=&roadCode=&pileStart=&pileEnd=&regionCode=
+  #获取视频播放地址
+  GetCameraUrl: http://193.168.1.199:7072/oc/service/video.GetCameraUrl?videoSource=2&videoType=2&videoRate=0&cameraNum=
+
+#普通公路视频
+roadVideo:
+  #根据单位获取摄像机信息
+  getVideoInfo: http://193.168.1.199:7070/cloudserver/api/getVideoInfo?unitId=UNITID
+  #获取播放地址接口
+  getVideoUrl: http://193.168.1.199:7070/cloudserver/api/getVideoUrl?cameraId=CAMERAID&videoType=VIDEOTYPE
+
+#高速
+highSpeed:
+  #故障收费站
+  tollStationUrl: http://193.168.1.95:8031/shoufz
+
+#移动端公众首页展示的应用分类ID
+public:
+  apptypes: e319987021804dbeac2f99e3ed1c,89b0cad3c659492ebaf82e75295a,53208edea41a4524bbe5ffa1c3cb
+
+#获取聊天未读数接口地址
+im:
+  groupUrl: http://193.168.1.232:10251/webim/im/webimmsg/getGroupUnreadLastMsg/
+  chatUrl: http://193.168.1.232:10251/webim/im/webimmsg/getUnreadLastMsg/
+
+#定时任务开关
+sheduleSwitch:
+  #总开关
+  master: on
+  #预警任务开关
+  earlyWarningTask: on
+  #高速摄像头数据同步任务开关
+  cameraDataTask: on
+  #运行监测数据接口检测任务开关
+  opmCheckTask: on
+
+opmCheckTask:
+  mobiles: 13776407246

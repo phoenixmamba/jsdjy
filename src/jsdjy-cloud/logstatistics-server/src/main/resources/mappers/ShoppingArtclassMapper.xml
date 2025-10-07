@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.logstatistics.logstatisticsserver.webmgr.dao.ShoppingArtclassDao">
+
+        <!-- 通用查询映射结果 -->
+        <resultMap id="BaseResultMap" type="com.centit.logstatistics.logstatisticsserver.webmgr.po.ShoppingArtclass">
+                    <id column="id" property="id" />
+                    <result column="addTime" property="addTime" />
+                    <result column="deleteStatus" property="deleteStatus" />
+                    <result column="class_status" property="classStatus" />
+                    <result column="class_name" property="className" />
+                    <result column="class_num" property="classNum" />
+                    <result column="class_remark" property="classRemark" />
+                    <result column="main_photo_id" property="mainPhotoId" />
+                    <result column="details" property="details" />
+                    <result column="origin_price" property="originPrice" />
+                    <result column="current_price" property="currentPrice" />
+                    <result column="use_integral_set" property="useIntegralSet" />
+                    <result column="use_integral_value" property="useIntegralValue" />
+                    <result column="app_sort" property="appSort" />
+                    <result column="class_notice" property="classNotice" />
+                    <result column="return_explain" property="returnExplain" />
+                    <result column="addUser" property="addUser" />
+                    <result column="use_balance_set" property="useBalanceSet" />
+                    <result column="use_membership_set" property="useMembershipSet" />
+        </resultMap>
+
+        <!-- 通用查询结果列(横着排列) -->
+        <sql id="Base_Column_List1">
+        id, addTime, deleteStatus, class_status, class_name, class_num, class_remark, main_photo_id, details, origin_price, current_price, use_integral_set, use_integral_value, app_sort, class_notice, return_explain, addUser, use_balance_set, use_membership_set
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+            id
+          ,
+            addTime
+          ,
+            deleteStatus
+          ,
+            class_status
+          ,
+            class_name
+          ,
+            class_num
+          ,
+            class_remark
+          ,
+            main_photo_id
+          ,
+            details
+          ,
+            origin_price
+          ,
+            current_price
+          ,
+            use_integral_set
+          ,
+            use_integral_value
+          ,
+            app_sort
+          ,
+            class_notice
+          ,
+            return_explain
+          ,
+            addUser
+          ,
+            use_balance_set
+          ,
+            use_membership_set
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+                <if test="id != null and id != ''">
+                    <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="addTime != null and addTime != ''">
+                    <![CDATA[
+                AND addTime = #{addTime ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="deleteStatus != null and deleteStatus != ''">
+                    <![CDATA[
+                AND deleteStatus = #{deleteStatus ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="classStatus != null and classStatus != ''">
+                    <![CDATA[
+                AND class_status = #{classStatus ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="className != null and className != ''">
+                    <![CDATA[
+                AND class_name = #{className ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="classNum != null and classNum != ''">
+                    <![CDATA[
+                AND class_num = #{classNum ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="classRemark != null and classRemark != ''">
+                    <![CDATA[
+                AND class_remark = #{classRemark ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="mainPhotoId != null and mainPhotoId != ''">
+                    <![CDATA[
+                AND main_photo_id = #{mainPhotoId ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="details != null and details != ''">
+                    <![CDATA[
+                AND details = #{details ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="originPrice != null and originPrice != ''">
+                    <![CDATA[
+                AND origin_price = #{originPrice ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="currentPrice != null and currentPrice != ''">
+                    <![CDATA[
+                AND current_price = #{currentPrice ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="useIntegralSet != null and useIntegralSet != ''">
+                    <![CDATA[
+                AND use_integral_set = #{useIntegralSet ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="useIntegralValue != null and useIntegralValue != ''">
+                    <![CDATA[
+                AND use_integral_value = #{useIntegralValue ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="appSort != null and appSort != ''">
+                    <![CDATA[
+                AND app_sort = #{appSort ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="classNotice != null and classNotice != ''">
+                    <![CDATA[
+                AND class_notice = #{classNotice ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="returnExplain != null and returnExplain != ''">
+                    <![CDATA[
+                AND return_explain = #{returnExplain ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="addUser != null and addUser != ''">
+                    <![CDATA[
+                AND addUser = #{addUser ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="useBalanceSet != null and useBalanceSet != ''">
+                    <![CDATA[
+                AND use_balance_set = #{useBalanceSet ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="useMembershipSet != null and useMembershipSet != ''">
+                    <![CDATA[
+                AND use_membership_set = #{useMembershipSet ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.logstatistics.logstatisticsserver.webmgr.po.ShoppingArtclass">
+        <![CDATA[
+			insert into shopping_artclass
+		]]>
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                    <if test="id != '' and id != null" >
+                        <![CDATA[
+                    id,
+                ]]>
+                    </if>
+                    <if test="addTime != '' and addTime != null" >
+                        <![CDATA[
+                    addTime,
+                ]]>
+                    </if>
+                    <if test="deleteStatus != '' and deleteStatus != null" >
+                        <![CDATA[
+                    deleteStatus,
+                ]]>
+                    </if>
+                    <if test="classStatus != '' and classStatus != null" >
+                        <![CDATA[
+                    class_status,
+                ]]>
+                    </if>
+                    <if test="className != '' and className != null" >
+                        <![CDATA[
+                    class_name,
+                ]]>
+                    </if>
+                    <if test="classNum != '' and classNum != null" >
+                        <![CDATA[
+                    class_num,
+                ]]>
+                    </if>
+                    <if test="classRemark != '' and classRemark != null" >
+                        <![CDATA[
+                    class_remark,
+                ]]>
+                    </if>
+                    <if test="mainPhotoId != '' and mainPhotoId != null" >
+                        <![CDATA[
+                    main_photo_id,
+                ]]>
+                    </if>
+                    <if test="details != '' and details != null" >
+                        <![CDATA[
+                    details,
+                ]]>
+                    </if>
+                    <if test="originPrice != '' and originPrice != null" >
+                        <![CDATA[
+                    origin_price,
+                ]]>
+                    </if>
+                    <if test="currentPrice != '' and currentPrice != null" >
+                        <![CDATA[
+                    current_price,
+                ]]>
+                    </if>
+                    <if test="useIntegralSet != '' and useIntegralSet != null" >
+                        <![CDATA[
+                    use_integral_set,
+                ]]>
+                    </if>
+                    <if test="useIntegralValue != '' and useIntegralValue != null" >
+                        <![CDATA[
+                    use_integral_value,
+                ]]>
+                    </if>
+                    <if test="appSort != '' and appSort != null" >
+                        <![CDATA[
+                    app_sort,
+                ]]>
+                    </if>
+                    <if test="classNotice != '' and classNotice != null" >
+                        <![CDATA[
+                    class_notice,
+                ]]>
+                    </if>
+                    <if test="returnExplain != '' and returnExplain != null" >
+                        <![CDATA[
+                    return_explain,
+                ]]>
+                    </if>
+                    <if test="addUser != '' and addUser != null" >
+                        <![CDATA[
+                    addUser,
+                ]]>
+                    </if>
+                    <if test="useBalanceSet != '' and useBalanceSet != null" >
+                        <![CDATA[
+                    use_balance_set,
+                ]]>
+                    </if>
+                    <if test="useMembershipSet != '' and useMembershipSet != null" >
+                        <![CDATA[
+                    use_membership_set,
+                ]]>
+                    </if>
+            </trim>
+            <trim prefix="values (" suffix=")" suffixOverrides="," >
+                    <if test="id != '' and id != null" >
+                        <![CDATA[
+                    #{id,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="addTime != '' and addTime != null" >
+                        <![CDATA[
+                    #{addTime,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="deleteStatus != '' and deleteStatus != null" >
+                        <![CDATA[
+                    #{deleteStatus,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="classStatus != '' and classStatus != null" >
+                        <![CDATA[
+                    #{classStatus,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="className != '' and className != null" >
+                        <![CDATA[
+                    #{className,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="classNum != '' and classNum != null" >
+                        <![CDATA[
+                    #{classNum,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="classRemark != '' and classRemark != null" >
+                        <![CDATA[
+                    #{classRemark,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="mainPhotoId != '' and mainPhotoId != null" >
+                        <![CDATA[
+                    #{mainPhotoId,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="details != '' and details != null" >
+                        <![CDATA[
+                    #{details,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="originPrice != '' and originPrice != null" >
+                        <![CDATA[
+                    #{originPrice,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="currentPrice != '' and currentPrice != null" >
+                        <![CDATA[
+                    #{currentPrice,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="useIntegralSet != '' and useIntegralSet != null" >
+                        <![CDATA[
+                    #{useIntegralSet,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="useIntegralValue != '' and useIntegralValue != null" >
+                        <![CDATA[
+                    #{useIntegralValue,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="appSort != '' and appSort != null" >
+                        <![CDATA[
+                    #{appSort,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="classNotice != '' and classNotice != null" >
+                        <![CDATA[
+                    #{classNotice,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="returnExplain != '' and returnExplain != null" >
+                        <![CDATA[
+                    #{returnExplain,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="addUser != '' and addUser != null" >
+                        <![CDATA[
+                    #{addUser,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="useBalanceSet != '' and useBalanceSet != null" >
+                        <![CDATA[
+                    #{useBalanceSet,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="useMembershipSet != '' and useMembershipSet != null" >
+                        <![CDATA[
+                    #{useMembershipSet,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+            </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.logstatistics.logstatisticsserver.webmgr.po.ShoppingArtclass" >
+        <![CDATA[
+        	update shopping_artclass
+        ]]>
+        <set >
+                    <if test="id != '' and id != null" >
+                        <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="addTime != '' and addTime != null" >
+                        <![CDATA[
+                    addTime = #{addTime,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="deleteStatus != '' and deleteStatus != null" >
+                        <![CDATA[
+                    deleteStatus = #{deleteStatus,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="classStatus != '' and classStatus != null" >
+                        <![CDATA[
+                    class_status = #{classStatus,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="className != '' and className != null" >
+                        <![CDATA[
+                    class_name = #{className,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="classNum != '' and classNum != null" >
+                        <![CDATA[
+                    class_num = #{classNum,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="classRemark != '' and classRemark != null" >
+                        <![CDATA[
+                    class_remark = #{classRemark,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="mainPhotoId != '' and mainPhotoId != null" >
+                        <![CDATA[
+                    main_photo_id = #{mainPhotoId,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="details != '' and details != null" >
+                        <![CDATA[
+                    details = #{details,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="originPrice != '' and originPrice != null" >
+                        <![CDATA[
+                    origin_price = #{originPrice,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="currentPrice != '' and currentPrice != null" >
+                        <![CDATA[
+                    current_price = #{currentPrice,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="useIntegralSet != '' and useIntegralSet != null" >
+                        <![CDATA[
+                    use_integral_set = #{useIntegralSet,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="useIntegralValue != '' and useIntegralValue != null" >
+                        <![CDATA[
+                    use_integral_value = #{useIntegralValue,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="appSort != '' and appSort != null" >
+                        <![CDATA[
+                    app_sort = #{appSort,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="classNotice != '' and classNotice != null" >
+                        <![CDATA[
+                    class_notice = #{classNotice,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="returnExplain != '' and returnExplain != null" >
+                        <![CDATA[
+                    return_explain = #{returnExplain,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="addUser != '' and addUser != null" >
+                        <![CDATA[
+                    addUser = #{addUser,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="useBalanceSet != '' and useBalanceSet != null" >
+                        <![CDATA[
+                    use_balance_set = #{useBalanceSet,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="useMembershipSet != '' and useMembershipSet != null" >
+                        <![CDATA[
+                    use_membership_set = #{useMembershipSet,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+        </set>
+        <where>
+                        <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.logstatistics.logstatisticsserver.webmgr.po.ShoppingArtclass">
+        <![CDATA[
+            delete from shopping_artclass
+        ]]>
+        <where>
+                        <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.logstatistics.logstatisticsserver.webmgr.po.ShoppingArtclass">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_artclass t
+        ]]>
+        <where>
+                        <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_artclass t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+</mapper>

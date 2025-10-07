@@ -1,0 +1,93 @@
+#zuul路由网关服务配置文件
+#Author: cui_jian
+
+spring:
+  application:
+    name: gateway
+  servlet:
+    multipart:
+      max-file-size: 500MB
+      max-request-size: 500MB
+  cloud:
+    gateway:
+      httpclient:
+        connect-timeout: 50000
+        response-timeout: 50000
+    sentinel:
+      transport:
+        port: 9999 #跟控制台交流的端口,随意指定一个未使用的端口即可
+        dashboard: 172.21.1.141:8080 # 指定控制台服务的地址
+        #配置限流之后的响应内容
+      scg:
+        fallback:
+          mode: response
+          response-body: '{"retCode": 100,"retMsg": "当前访问人数过多，请稍后重试！"}'
+
+#mybatis配置
+mybatis:
+  config-locations: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mappers/*.xml #指定resources下面的mappers文件夹
+  #  typeAliasesPackage: com.centit.organizeuser.organizeuserserver.webmgr.po
+
+  #spring boot集成mybatis的方式打印sql
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+#日志方式sql打印
+#logging:
+#  level:
+#    com.example.demo.dao: debug
+
+
+##zuul路由网关服务
+#zuul:
+#  host:
+#    connect-timeout-millis: 45000 #HTTP连接超时大于Hystrix的超时时间
+#    socket-timeout-millis: 60000   #socket超时
+#  routes:
+#    api-a:
+#      path: /api-a/**
+#      serviceId: provider
+#    api-b:
+#      path: /api-b/**
+#      serviceId: consumer
+#    framework/system:
+#      path: /framework/system/**
+#      serviceId: framework
+#    file:
+#      path: /file/**
+#      serviceId: file
+#    pay:
+#      path: /pay/**
+#      serviceId: pay
+#    shop:
+#      path: /shop/**
+#      serviceId: shop
+#    user:
+#      path: /user/**
+#      serviceId: user
+#    capability:
+#      path: /capability/**
+#      serviceId: capability
+#    community:
+#      path: /community/**
+#      serviceId: community
+#    shopping:
+#      path: /shopping/**
+#      serviceId: shopping
+#    djy:
+#      path: /djy/**
+#      serviceId: djy
+#    admin:
+#      path: /admin/**
+#      serviceId: admin
+#    ticket:
+#      path: /ticket/**
+#      serviceId: ticket
+#    logstatistics:
+#      path: /logstatistics/**
+#      serviceId: logstatistics
+#    djyserv:
+#      path: /djyserv/**
+#      serviceId: djyserv

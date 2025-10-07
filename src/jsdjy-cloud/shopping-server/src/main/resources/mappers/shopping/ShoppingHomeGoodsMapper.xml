@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.ShoppingHomeGoodsDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.HomeGoods">
+        <result column="user_id" property="userId" />
+        <result column="goods_id" property="goodsId" />
+        <result column="goods_name" property="goodsName" />
+        <result column="photo_id" property="photoId" />
+        <result column="goods_price" property="goodsPrice" />
+        <result column="order_count" property="orderCount" />
+        <result column="type" property="type" />
+        <result column="weight" property="weight" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        user_id,goods_id, goods_name, photo_id, goods_price, order_count, type, weight
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        user_id
+          ,
+        goods_id
+          ,
+        goods_name
+          ,
+        photo_id
+          ,
+        goods_price
+          ,
+        order_count
+          ,
+        type
+          ,
+        weight
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="userId != null and userId != ''">
+            <![CDATA[
+                AND user_id = #{userId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="goodsId != null and goodsId != ''">
+            <![CDATA[
+                AND goods_id = #{goodsId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="goodsName != null and goodsName != ''">
+            <![CDATA[
+                AND goods_name = #{goodsName ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="photoId != null and photoId != ''">
+            <![CDATA[
+                AND photo_id = #{photoId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="goodsPrice != null and goodsPrice != ''">
+            <![CDATA[
+                AND goods_price = #{goodsPrice ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="orderCount != null and orderCount != ''">
+            <![CDATA[
+                AND order_count = #{orderCount ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="type != null and type != ''">
+            <![CDATA[
+                AND type = #{type ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="weight != null and weight != ''">
+            <![CDATA[
+                AND weight = #{weight ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="java.lang.String">
+        <![CDATA[
+            delete from shopping_home_goods
+        ]]>
+        <where>
+                <![CDATA[
+                AND user_id = #{userId,jdbcType=VARCHAR}
+            ]]>
+        </where>
+    </delete>
+
+
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_home_goods t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+        order by t.weight desc
+        <if test="pageSize != '' and pageSize != null" >
+            <![CDATA[
+                    limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+                ]]>
+        </if>
+    </select>
+
+    <!--  查询列表数量 -->
+    <select id="queryTotalCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            SELECT count(0) FROM shopping_home_goods
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+    <insert id="insertHomeGoods" parameterType="java.util.List">
+        INSERT INTO shopping_home_goods
+        (user_id,goods_id,goods_name,photo_id,goods_price,order_count,type,weight)
+        VALUES
+        <foreach collection ="list" item="item" index= "index" separator =",">
+            (
+            #{item.userId},
+            #{item.goodsId},
+            #{item.goodsName},
+            #{item.photoId},
+            #{item.goodsPrice},
+            #{item.orderCount},
+            #{item.type},
+            #{item.weight}
+            )
+        </foreach >
+    </insert>
+
+</mapper>

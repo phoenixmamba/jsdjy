@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.TInvoicePushDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.TInvoicePush">
+        <id column="id" property="id" />
+        <result column="invoice_id" property="invoiceId" />
+        <result column="push_phone" property="pushPhone" />
+        <result column="push_email" property="pushEmail" />
+        <result column="push_time" property="pushTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, invoice_id, push_phone, push_email, push_time
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        invoice_id
+          ,
+        push_phone
+          ,
+        push_email
+          ,
+        push_time
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="invoiceId != null and invoiceId != ''">
+            <![CDATA[
+                AND invoice_id = #{invoiceId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="pushPhone != null and pushPhone != ''">
+            <![CDATA[
+                AND push_phone = #{pushPhone ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="pushEmail != null and pushEmail != ''">
+            <![CDATA[
+                AND push_email = #{pushEmail ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="pushTime != null and pushTime != ''">
+            <![CDATA[
+                AND push_time = #{pushTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.TInvoicePush">
+        <![CDATA[
+			insert into t_invoice_push
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="invoiceId != null and invoiceId != ''" >
+                <![CDATA[
+                    invoice_id,
+                ]]>
+            </if>
+            <if test="pushPhone != null and pushPhone != ''" >
+                <![CDATA[
+                    push_phone,
+                ]]>
+            </if>
+            <if test="pushEmail != null and pushEmail != ''" >
+                <![CDATA[
+                    push_email,
+                ]]>
+            </if>
+
+                <![CDATA[
+                    push_time,
+                ]]>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="invoiceId != null and invoiceId != ''" >
+                <![CDATA[
+                    #{invoiceId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="pushPhone != null and pushPhone != ''" >
+                <![CDATA[
+                    #{pushPhone,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="pushEmail != null and pushEmail != ''" >
+                <![CDATA[
+                    #{pushEmail,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            now(),
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.TInvoicePush" >
+        <![CDATA[
+        	update t_invoice_push
+        ]]>
+        <set >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="invoiceId != null and invoiceId != ''" >
+                <![CDATA[
+                    invoice_id = #{invoiceId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="pushPhone != null and pushPhone != ''" >
+                <![CDATA[
+                    push_phone = #{pushPhone,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="pushEmail != null and pushEmail != ''" >
+                <![CDATA[
+                    push_email = #{pushEmail,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="pushTime != null and pushTime != ''" >
+                <![CDATA[
+                    push_time = #{pushTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.TInvoicePush">
+        <![CDATA[
+            delete from t_invoice_push
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.TInvoicePush">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from t_invoice_push t
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from t_invoice_push t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+        order by t.push_time desc
+    </select>
+
+    <!--  查询指定用户推送记录 -->
+    <select id="queryUserPushList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from t_invoice_push t
+        ]]>
+        <where>
+            and t.invoice_id in (select id from t_invoice ti where ti.userid =#{userId ,jdbcType=VARCHAR })
+        </where>
+        order by t.push_time desc
+    </select>
+</mapper>

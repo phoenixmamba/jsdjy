@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.VSearchDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.VSearch">
+        <result column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="photo" property="photo" />
+        <result column="photourl" property="photourl" />
+        <result column="timestr" property="timestr" />
+        <result column="type" property="type" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, name, photo, photourl, timestr, type
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        name
+          ,
+        photo
+          ,
+        photourl
+          ,
+        timestr
+          ,
+        type
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="name != null and name != ''">
+            <![CDATA[
+                AND name = #{name ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="str != null and str != ''">
+            <![CDATA[
+                AND name like concat('%', #{str,jdbcType=VARCHAR}, '%')
+            ]]>
+        </if>
+        <if test="photo != null and photo != ''">
+            <![CDATA[
+                AND photo = #{photo ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="photourl != null and photourl != ''">
+            <![CDATA[
+                AND photourl = #{photourl ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="timestr != null and timestr != ''">
+            <![CDATA[
+                AND timestr = #{timestr ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="type != null and type != ''">
+            <![CDATA[
+                AND type = #{type ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.VSearch">
+        <![CDATA[
+			insert into v_search
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    id,
+                ]]>
+            </if>
+            <if test="name != null and name != ''" >
+                <![CDATA[
+                    name,
+                ]]>
+            </if>
+            <if test="photo != null and photo != ''" >
+                <![CDATA[
+                    photo,
+                ]]>
+            </if>
+            <if test="photourl != null and photourl != ''" >
+                <![CDATA[
+                    photourl,
+                ]]>
+            </if>
+            <if test="timestr != null and timestr != ''" >
+                <![CDATA[
+                    timestr,
+                ]]>
+            </if>
+            <if test="type != null and type != ''" >
+                <![CDATA[
+                    type,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="name != null and name != ''" >
+                <![CDATA[
+                    #{name,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="photo != null and photo != ''" >
+                <![CDATA[
+                    #{photo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="photourl != null and photourl != ''" >
+                <![CDATA[
+                    #{photourl,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="timestr != null and timestr != ''" >
+                <![CDATA[
+                    #{timestr,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="type != null and type != ''" >
+                <![CDATA[
+                    #{type,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.VSearch" >
+        <![CDATA[
+        	update v_search
+        ]]>
+        <set >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="name != null and name != ''" >
+                <![CDATA[
+                    name = #{name,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="photo != null and photo != ''" >
+                <![CDATA[
+                    photo = #{photo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="photourl != null and photourl != ''" >
+                <![CDATA[
+                    photourl = #{photourl,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="timestr != null and timestr != ''" >
+                <![CDATA[
+                    timestr = #{timestr,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="type != null and type != ''" >
+                <![CDATA[
+                    type = #{type,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.VSearch">
+        <![CDATA[
+            delete from v_search
+        ]]>
+        <where>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.VSearch">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from v_search t
+        ]]>
+        <where>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from v_search t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+        order by t.timestr desc
+        <if test="pageSize != '' and pageSize != null">
+            limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+        </if>
+    </select>
+
+    <!--  查询列表数量 -->
+    <select id="queryTotalCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            SELECT count(0) FROM v_search
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+</mapper>

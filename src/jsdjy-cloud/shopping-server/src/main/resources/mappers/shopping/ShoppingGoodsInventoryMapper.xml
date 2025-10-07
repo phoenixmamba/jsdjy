@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.ShoppingGoodsInventoryDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.ShoppingGoodsInventory">
+        <result column="goods_id" property="goodsId" />
+        <result column="propertys" property="propertys" />
+        <result column="price" property="price" />
+        <result column="count" property="count" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        goods_id, propertys, price, count
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        goods_id
+          ,
+        propertys
+          ,
+        price
+          ,
+        count
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="goodsId != null and goodsId != ''">
+            <![CDATA[
+                AND goods_id = #{goodsId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="propertys != null and propertys != ''">
+            <![CDATA[
+                AND propertys = #{propertys ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="price != null and price != ''">
+            <![CDATA[
+                AND price = #{price ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="count != null and count != ''">
+            <![CDATA[
+                AND count = #{count ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.ShoppingGoodsInventory">
+        <![CDATA[
+			insert into shopping_goods_inventory
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="goodsId != '' and goodsId != null" >
+                <![CDATA[
+                    goods_id,
+                ]]>
+            </if>
+            <if test="propertys != '' and propertys != null" >
+                <![CDATA[
+                    propertys,
+                ]]>
+            </if>
+            <if test="price != null" >
+                <![CDATA[
+                    price,
+                ]]>
+            </if>
+            <if test="count != null" >
+                <![CDATA[
+                    count,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="goodsId != '' and goodsId != null" >
+                <![CDATA[
+                    #{goodsId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="propertys != '' and propertys != null" >
+                <![CDATA[
+                    #{propertys,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="price != null" >
+                <![CDATA[
+                    #{price,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="count != null" >
+                <![CDATA[
+                    #{count,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.ShoppingGoodsInventory" >
+        <![CDATA[
+        	update shopping_goods_inventory
+        ]]>
+        <set >
+            <if test="goodsId != '' and goodsId != null" >
+                <![CDATA[
+                    goods_id = #{goodsId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="propertys != '' and propertys != null" >
+                <![CDATA[
+                    propertys = #{propertys,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="price != null" >
+                <![CDATA[
+                    price = #{price,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="count != null" >
+                <![CDATA[
+                    count = #{count,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+
+                <![CDATA[
+                AND goods_id = #{goodsId ,jdbcType=VARCHAR}
+            ]]>
+
+                <![CDATA[
+                AND propertys = #{propertys ,jdbcType=VARCHAR}
+            ]]>
+        </where>
+    </update>
+
+    <!-- 更新 -->
+    <update id="cutInventory" parameterType="java.util.HashMap" >
+        <![CDATA[
+        	update shopping_goods_inventory
+        ]]>
+        <set >
+            <![CDATA[
+                    count = count - #{cutCount,jdbcType=INTEGER},
+                ]]>
+        </set>
+        <where>
+
+            <![CDATA[
+                AND goods_id = #{goodsId ,jdbcType=VARCHAR}
+            ]]>
+
+            <![CDATA[
+                AND propertys = #{propertys ,jdbcType=VARCHAR}
+            ]]>
+        </where>
+    </update>
+
+    <update id="addInventory" parameterType="java.util.HashMap" >
+        <![CDATA[
+        	update shopping_goods_inventory
+        ]]>
+        <set >
+            <![CDATA[
+                    count = count + #{addCount,jdbcType=INTEGER},
+                ]]>
+        </set>
+        <where>
+
+            <![CDATA[
+                AND goods_id = #{goodsId ,jdbcType=VARCHAR}
+            ]]>
+
+            <![CDATA[
+                AND propertys = #{propertys ,jdbcType=VARCHAR}
+            ]]>
+        </where>
+    </update>
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.ShoppingGoodsInventory">
+        <![CDATA[
+            delete from shopping_goods_inventory
+        ]]>
+        <where>
+                <![CDATA[
+                AND goods_id = #{goodsId ,jdbcType=VARCHAR}
+            ]]>
+
+            <if test="propertys != null and propertys != ''">
+                <![CDATA[
+                AND propertys = #{propertys ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.ShoppingGoodsInventory">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_goods_inventory t
+        ]]>
+        <where>
+                <![CDATA[
+                AND goods_id = #{goodsId ,jdbcType=VARCHAR}
+            ]]>
+                <![CDATA[
+                AND propertys = #{propertys ,jdbcType=VARCHAR}
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_goods_inventory t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+</mapper>

@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.TSystemStatusDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.TSystemStatus">
+        <id column="id" property="id"/>
+        <result column="ip" property="ip"/>
+        <result column="memory_uesd" property="memoryUesd"/>
+        <result column="memory_total" property="memoryTotal"/>
+        <result column="memory_free" property="memoryFree"/>
+        <result column="cpu_idle" property="cpuIdle"/>
+        <result column="cpu_combined" property="cpuCombined"/>
+        <result column="rx_packages" property="rxPackages"/>
+        <result column="rx_errors" property="rxErrors"/>
+        <result column="rx_dropped" property="rxDropped"/>
+        <result column="tx_packages" property="txPackages"/>
+        <result column="tx_errors" property="txErrors"/>
+        <result column="tx_dropped" property="txDropped"/>
+        <result column="file_system_total" property="fileSystemTotal"/>
+        <result column="file_system_free" property="fileSystemFree"/>
+        <result column="date" property="date"/>
+        <result column="rx_speed" property="rxSpeed"/>
+        <result column="tx_speed" property="txSpeed"/>
+        <result column="remark" property="remark"/>
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, ip, memory_uesd, memory_total, memory_free, cpu_idle, cpu_combined, rx_packages, rx_errors, rx_dropped, tx_packages, tx_errors, tx_dropped, file_system_total, file_system_free, date, rx_speed, tx_speed,remark
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        ip
+          ,
+        memory_uesd
+          ,
+        memory_total
+          ,
+        memory_free
+          ,
+        cpu_idle
+          ,
+        cpu_combined
+          ,
+        rx_packages
+          ,
+        rx_errors
+          ,
+        rx_dropped
+          ,
+        tx_packages
+          ,
+        tx_errors
+          ,
+        tx_dropped
+          ,
+        file_system_total
+          ,
+        file_system_free
+          ,
+        date
+          ,
+        rx_speed
+          ,
+        tx_speed
+          ,
+        remark
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="ip != null and ip != ''">
+            <![CDATA[
+                AND ip = #{ip ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="memoryUesd != null and memoryUesd != ''">
+            <![CDATA[
+                AND memory_uesd = #{memoryUesd ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="memoryTotal != null and memoryTotal != ''">
+            <![CDATA[
+                AND memory_total = #{memoryTotal ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="memoryFree != null and memoryFree != ''">
+            <![CDATA[
+                AND memory_free = #{memoryFree ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="cpuIdle != null and cpuIdle != ''">
+            <![CDATA[
+                AND cpu_idle = #{cpuIdle ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="cpuCombined != null and cpuCombined != ''">
+            <![CDATA[
+                AND cpu_combined = #{cpuCombined ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="rxPackages != null and rxPackages != ''">
+            <![CDATA[
+                AND rx_packages = #{rxPackages ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="rxErrors != null and rxErrors != ''">
+            <![CDATA[
+                AND rx_errors = #{rxErrors ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="rxDropped != null and rxDropped != ''">
+            <![CDATA[
+                AND rx_dropped = #{rxDropped ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="txPackages != null and txPackages != ''">
+            <![CDATA[
+                AND tx_packages = #{txPackages ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="txErrors != null and txErrors != ''">
+            <![CDATA[
+                AND tx_errors = #{txErrors ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="txDropped != null and txDropped != ''">
+            <![CDATA[
+                AND tx_dropped = #{txDropped ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="fileSystemTotal != null and fileSystemTotal != ''">
+            <![CDATA[
+                AND file_system_total = #{fileSystemTotal ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="fileSystemFree != null and fileSystemFree != ''">
+            <![CDATA[
+                AND file_system_free = #{fileSystemFree ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="date != null ">
+            <![CDATA[
+                AND date = #{date ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="starttime != null and starttime!='' ">
+            <![CDATA[
+                AND date >= date(#{starttime})
+            ]]>
+        </if>
+        <if test="endtime != null and endtime!='' ">
+            <![CDATA[
+                AND date < date(#{endtime})+1
+            ]]>
+        </if>
+        <if test="rxSpeed != null and rxSpeed != ''">
+            <![CDATA[
+                AND rx_speed = #{rxSpeed ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="txSpeed != null and txSpeed != ''">
+            <![CDATA[
+                AND tx_speed = #{txSpeed ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="remark != null and remark != ''">
+            <![CDATA[
+                AND remark = #{remark}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.TSystemStatus">
+        <![CDATA[
+			insert into t_system_status
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="ip != null and ip != ''">
+                <![CDATA[
+                    ip,
+                ]]>
+            </if>
+            <if test="memoryUesd != null and memoryUesd != ''">
+                <![CDATA[
+                    memory_uesd,
+                ]]>
+            </if>
+            <if test="memoryTotal != null and memoryTotal != ''">
+                <![CDATA[
+                    memory_total,
+                ]]>
+            </if>
+            <if test="memoryFree != null and memoryFree != ''">
+                <![CDATA[
+                    memory_free,
+                ]]>
+            </if>
+            <if test="cpuIdle != null and cpuIdle != ''">
+                <![CDATA[
+                    cpu_idle,
+                ]]>
+            </if>
+            <if test="cpuCombined != null and cpuCombined != ''">
+                <![CDATA[
+                    cpu_combined,
+                ]]>
+            </if>
+            <if test="rxPackages != null and rxPackages != ''">
+                <![CDATA[
+                    rx_packages,
+                ]]>
+            </if>
+            <if test="rxErrors != null and rxErrors != ''">
+                <![CDATA[
+                    rx_errors,
+                ]]>
+            </if>
+            <if test="rxDropped != null and rxDropped != ''">
+                <![CDATA[
+                    rx_dropped,
+                ]]>
+            </if>
+            <if test="txPackages != null and txPackages != ''">
+                <![CDATA[
+                    tx_packages,
+                ]]>
+            </if>
+            <if test="txErrors != null and txErrors != ''">
+                <![CDATA[
+                    tx_errors,
+                ]]>
+            </if>
+            <if test="txDropped != null and txDropped != ''">
+                <![CDATA[
+                    tx_dropped,
+                ]]>
+            </if>
+            <if test="fileSystemTotal != null and fileSystemTotal != ''">
+                <![CDATA[
+                    file_system_total,
+                ]]>
+            </if>
+            <if test="fileSystemFree != null and fileSystemFree != ''">
+                <![CDATA[
+                    file_system_free,
+                ]]>
+            </if>
+            date,
+            <if test="rxSpeed != null and rxSpeed != ''">
+                <![CDATA[
+                    rx_speed,
+                ]]>
+            </if>
+            <if test="txSpeed != null and txSpeed != ''">
+                <![CDATA[
+                    tx_speed,
+                ]]>
+            </if>
+            <if test="remark != null and remark != ''">
+                <![CDATA[
+                    remark,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="ip != null and ip != ''">
+                <![CDATA[
+                    #{ip,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="memoryUesd != null and memoryUesd != ''">
+                <![CDATA[
+                    #{memoryUesd,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="memoryTotal != null and memoryTotal != ''">
+                <![CDATA[
+                    #{memoryTotal,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="memoryFree != null and memoryFree != ''">
+                <![CDATA[
+                    #{memoryFree,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="cpuIdle != null and cpuIdle != ''">
+                <![CDATA[
+                    #{cpuIdle,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="cpuCombined != null and cpuCombined != ''">
+                <![CDATA[
+                    #{cpuCombined,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="rxPackages != null and rxPackages != ''">
+                <![CDATA[
+                    #{rxPackages,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="rxErrors != null and rxErrors != ''">
+                <![CDATA[
+                    #{rxErrors,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="rxDropped != null and rxDropped != ''">
+                <![CDATA[
+                    #{rxDropped,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="txPackages != null and txPackages != ''">
+                <![CDATA[
+                    #{txPackages,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="txErrors != null and txErrors != ''">
+                <![CDATA[
+                    #{txErrors,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="txDropped != null and txDropped != ''">
+                <![CDATA[
+                    #{txDropped,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="fileSystemTotal != null and fileSystemTotal != ''">
+                <![CDATA[
+                    #{fileSystemTotal,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="fileSystemFree != null and fileSystemFree != ''">
+                <![CDATA[
+                    #{fileSystemFree,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            now(),
+            <if test="rxSpeed != null and rxSpeed != ''">
+                <![CDATA[
+                    #{rxSpeed,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="txSpeed != null and txSpeed != ''">
+                <![CDATA[
+                    #{txSpeed,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="remark != null and remark != ''">
+                <![CDATA[
+                    #{remark},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 删除 -->
+    <delete id="delete" parameterType="com.centit.shopping.po.TSystemStatus">
+        <![CDATA[
+            delete from t_system_status
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.TSystemStatus">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1"/>
+        <![CDATA[
+            from t_system_status t
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1"/>
+        <![CDATA[
+            from t_system_status t
+        ]]>
+        <where>
+            <include refid="Base_Where_List"/>
+        </where>
+        order by t.date desc
+    </select>
+
+</mapper>

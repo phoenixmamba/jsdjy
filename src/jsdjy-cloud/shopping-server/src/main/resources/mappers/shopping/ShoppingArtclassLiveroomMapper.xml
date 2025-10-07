@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.ShoppingArtclassLiveroomDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.ShoppingArtclassLiveroom">
+        <result column="userid_pc" property="useridPc" />
+        <result column="userid_live" property="useridLive" />
+        <result column="room_id" property="roomId" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        userid_pc, userid_live, room_id
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        userid_pc
+          ,
+        userid_live
+          ,
+        room_id
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="useridPc != null and useridPc != ''">
+            <![CDATA[
+                AND userid_pc = #{useridPc ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="useridLive != null and useridLive != ''">
+            <![CDATA[
+                AND userid_live = #{useridLive ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="roomId != null and roomId != ''">
+            <![CDATA[
+                AND room_id = #{roomId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.ShoppingArtclassLiveroom">
+        <![CDATA[
+			insert into shopping_artclass_liveroom
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="useridPc != null and useridPc != ''" >
+                <![CDATA[
+                    userid_pc,
+                ]]>
+            </if>
+            <if test="useridLive != null and useridLive != ''" >
+                <![CDATA[
+                    userid_live,
+                ]]>
+            </if>
+            <if test="roomId != null and roomId != ''" >
+                <![CDATA[
+                    room_id,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="useridPc != null and useridPc != ''" >
+                <![CDATA[
+                    #{useridPc,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="useridLive != null and useridLive != ''" >
+                <![CDATA[
+                    #{useridLive,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="roomId != null and roomId != ''" >
+                <![CDATA[
+                    #{roomId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.ShoppingArtclassLiveroom" >
+        <![CDATA[
+        	update shopping_artclass_liveroom
+        ]]>
+        <set >
+            <if test="useridPc != null and useridPc != ''" >
+                <![CDATA[
+                    userid_pc = #{useridPc,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="useridLive != null and useridLive != ''" >
+                <![CDATA[
+                    userid_live = #{useridLive,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="roomId != null and roomId != ''" >
+                <![CDATA[
+                    room_id = #{roomId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+                <![CDATA[
+                AND userid_pc = #{useridPc ,jdbcType=VARCHAR}
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.ShoppingArtclassLiveroom">
+        <![CDATA[
+            delete from shopping_artclass_liveroom
+        ]]>
+        <where>
+            <![CDATA[
+                AND userid_pc = #{useridPc ,jdbcType=VARCHAR}
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.ShoppingArtclassLiveroom">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_artclass_liveroom t
+        ]]>
+        <where>
+            <if test="useridPc != null and useridPc != ''">
+                <![CDATA[
+                AND userid_pc = #{useridPc ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="useridLive != null and useridLive != ''">
+                <![CDATA[
+                AND userid_live = #{useridLive ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_artclass_liveroom t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+</mapper>

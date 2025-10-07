@@ -1,0 +1,45 @@
+package com.centit.shopping.dao;
+
+import com.centit.shopping.po.ShoppingAssetRecord;
+import java.util.HashMap;
+import java.util.List;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
+
+/**
+ * <p><p>
+ * @version : 1.0
+ * @Author : cui_jian
+ * @Description : Dao接口
+ * @Date : 2021-05-20
+ **/
+@Repository
+@Mapper
+public interface ShoppingAssetRecordDao {
+
+    /**
+     * 新增
+     */
+    int insert(ShoppingAssetRecord entity);
+
+    /**
+     * 更新
+     */
+    int update(ShoppingAssetRecord entity);
+
+    /**
+     * 删除
+     */
+    int delete(ShoppingAssetRecord entity);
+
+    /**
+     * 查询详情
+     */
+    ShoppingAssetRecord queryDetail(ShoppingAssetRecord entity);
+
+    /**
+     * 查询列表
+     */
+    List<ShoppingAssetRecord> queryList(HashMap<String, Object> reqMap);
+
+}

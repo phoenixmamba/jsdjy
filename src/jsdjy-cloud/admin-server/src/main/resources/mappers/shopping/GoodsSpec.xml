@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.admin.shopping.dao.GoodsSpecDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.admin.shopping.po.GoodsSpecPo">
+        <result column="goods_id" property="goodsId" />
+        <result column="spec_id" property="specId" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        goods_id, spec_id
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        goods_id
+          ,
+        spec_id
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="goodsId != null and goodsId != ''">
+            <![CDATA[
+                AND goods_id = #{goodsId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="specId != null and specId != ''">
+            <![CDATA[
+                AND spec_id = #{specId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.admin.shopping.po.GoodsSpecPo">
+        <![CDATA[
+			insert into shopping_goods_spec
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="goodsId != '' and goodsId != null" >
+                <![CDATA[
+                    goods_id,
+                ]]>
+            </if>
+            <if test="specId != '' and specId != null" >
+                <![CDATA[
+                    spec_id,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="goodsId != '' and goodsId != null" >
+                <![CDATA[
+                    #{goodsId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="specId != '' and specId != null" >
+                <![CDATA[
+                    #{specId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.admin.shopping.po.GoodsSpecPo" >
+        <![CDATA[
+        	update shopping_goods_spec
+        ]]>
+        <set >
+            <if test="goodsId != '' and goodsId != null" >
+                <![CDATA[
+                    goods_id = #{goodsId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="specId != '' and specId != null" >
+                <![CDATA[
+                    spec_id = #{specId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <if test="goodsId != null and goodsId != ''">
+                <![CDATA[
+                AND goods_id = #{goodsId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="specId != null and specId != ''">
+                <![CDATA[
+                AND spec_id = #{specId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.admin.shopping.po.GoodsSpecPo">
+        <![CDATA[
+            delete from shopping_goods_spec
+        ]]>
+        <where>
+            <if test="goodsId != null and goodsId != ''">
+                <![CDATA[
+                AND goods_id = #{goodsId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="specId != null and specId != ''">
+                <![CDATA[
+                AND spec_id = #{specId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.admin.shopping.po.GoodsSpecPo">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_goods_spec t
+        ]]>
+        <where>
+            <if test="goodsId != null and goodsId != ''">
+                <![CDATA[
+                AND goods_id = #{goodsId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="specId != null and specId != ''">
+                <![CDATA[
+                AND spec_id = #{specId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_goods_spec t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+    <insert id="batchInsertGoodsSpecs" parameterType="list">
+        INSERT INTO shopping_goods_spec (goods_id, spec_id)
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.goodsId}, #{item.specId})
+        </foreach>
+    </insert>
+</mapper>

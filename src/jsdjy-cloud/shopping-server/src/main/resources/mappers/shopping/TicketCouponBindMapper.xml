@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.TicketCouponBindDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.TicketCouponBind">
+        <id column="id" property="id" />
+        <result column="phone" property="phone" />
+        <result column="code_promotion_id" property="codePromotionId" />
+        <result column="msg" property="msg" />
+        <result column="add_time" property="addTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, phone, code_promotion_id, msg, add_time
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        phone
+          ,
+        code_promotion_id
+          ,
+        msg
+          ,
+        add_time
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="phone != null and phone != ''">
+            <![CDATA[
+                AND phone like concat('%', #{phone,jdbcType=VARCHAR}, '%')
+            ]]>
+        </if>
+        <if test="codePromotionId != null and codePromotionId != ''">
+            <![CDATA[
+                AND code_promotion_id like concat('%', #{codePromotionId,jdbcType=VARCHAR}, '%')
+            ]]>
+        </if>
+        <if test="msg != null and msg != ''">
+            <![CDATA[
+                AND msg = #{msg ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="status != null and status == 1">
+            <![CDATA[
+                AND msg = 'success'
+            ]]>
+        </if>
+        <if test="status != null and status != 1">
+            <![CDATA[
+                AND msg != 'success'
+            ]]>
+        </if>
+        <if test="addTime != null and addTime != ''">
+            <![CDATA[
+                AND add_time = #{addTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="startTime !=null and startTime !='' ">
+            <![CDATA[
+                AND add_time  >=  #{startTime}
+            ]]>
+        </if>
+        <if test="endTime !=null and endTime!='' "  >
+            <![CDATA[
+                and add_time <=  #{endTime}
+             ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.TicketCouponBind">
+        <![CDATA[
+			insert into ticket_coupon_bind
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+
+            <if test="phone != null and phone != ''" >
+                <![CDATA[
+                    phone,
+                ]]>
+            </if>
+            <if test="codePromotionId != null and codePromotionId != ''" >
+                <![CDATA[
+                    code_promotion_id,
+                ]]>
+            </if>
+            <if test="msg != null and msg != ''" >
+                <![CDATA[
+                    msg,
+                ]]>
+            </if>
+
+                <![CDATA[
+                    add_time,
+                ]]>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+
+            <if test="phone != null and phone != ''" >
+                <![CDATA[
+                    #{phone,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="codePromotionId != null and codePromotionId != ''" >
+                <![CDATA[
+                    #{codePromotionId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="msg != null and msg != ''" >
+                <![CDATA[
+                    #{msg,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            now(),
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.TicketCouponBind" >
+        <![CDATA[
+        	update ticket_coupon_bind
+        ]]>
+        <set >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="phone != null and phone != ''" >
+                <![CDATA[
+                    phone = #{phone,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="codePromotionId != null and codePromotionId != ''" >
+                <![CDATA[
+                    code_promotion_id = #{codePromotionId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="msg != null and msg != ''" >
+                <![CDATA[
+                    msg = #{msg,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="addTime != null and addTime != ''" >
+                <![CDATA[
+                    add_time = #{addTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.TicketCouponBind">
+        <![CDATA[
+            delete from ticket_coupon_bind
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.TicketCouponBind">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from ticket_coupon_bind t
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from ticket_coupon_bind t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+        order by t.add_time desc
+        <if test="pageSize != '' and pageSize != null">
+            <![CDATA[
+                    limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+                ]]>
+        </if>
+    </select>
+
+    <!--  查询列表数量 -->
+    <select id="queryTotalCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            SELECT count(0) from ticket_coupon_bind t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+    <!--  查询未绑定指定优惠码的用户列表 -->
+    <select id="queryUnBindUserList" resultType="java.util.HashMap" parameterType="java.util.HashMap">
+
+        select t.mobile,t.nick_name userName,DATE_FORMAT(t.addTime,'%Y-%m-%d %H:%i:%s') addTime from
+        (select tu.mobile,tu.addTime,tu.nick_name from shopping_user tu
+        <where>
+            AND tu.deleteStatus='0'
+            <if test="startTime !=null and startTime !='' ">
+                <![CDATA[
+                AND tu.addTime  >=  #{startTime}
+            ]]>
+            </if>
+            <if test="endTime !=null and endTime!='' "  >
+                <![CDATA[
+                AND tu.addTime <=  #{endTime}
+             ]]>
+            </if>
+            <if test="mobile !=null and mobile !='' ">
+                <![CDATA[
+                AND tu.mobile  like concat('%',#{mobile ,jdbcType=VARCHAR},'%')
+            ]]>
+            </if>
+        </where>
+        )t
+        left join (select tb.phone from ticket_coupon_bind tb where
+        tb.code_promotion_id = #{codePromotionId,jdbcType=VARCHAR} and tb.msg ='success') tt
+        on t.mobile=tt.phone
+        where tt.phone is null
+        <if test="filterMobiles !=null and filterMobiles !='' ">
+            <![CDATA[
+                AND #{filterMobiles ,jdbcType=VARCHAR} not like concat('%',t.mobile,'%')
+            ]]>
+        </if>
+        order by t.addTime desc
+        <if test="pageSize != '' and pageSize != null">
+            <![CDATA[
+                    limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+                ]]>
+        </if>
+    </select>
+
+    <!--  查询列表数量 -->
+    <select id="queryUnBindUserCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+            SELECT count(0) from
+            (select tu.mobile from shopping_user tu
+            <where>
+                AND tu.deleteStatus='0'
+                <if test="startTime !=null and startTime !='' ">
+                    <![CDATA[
+                AND tu.addTime  >=  #{startTime}
+            ]]>
+                </if>
+                <if test="endTime !=null and endTime!='' "  >
+                    <![CDATA[
+                AND tu.addTime <=  #{endTime}
+             ]]>
+                </if>
+                <if test="mobile !=null and mobile !='' ">
+                    <![CDATA[
+                AND tu.mobile  like concat('%',#{mobile ,jdbcType=VARCHAR},'%')
+            ]]>
+                </if>
+            </where>
+            )t
+        left join (select tb.phone from ticket_coupon_bind tb where
+        tb.msg ='success'
+        and tb.code_promotion_id = #{codePromotionId,jdbcType=VARCHAR}
+        ) tt
+        on t.mobile=tt.phone
+        where tt.phone is null
+        <if test="filterMobiles !=null and filterMobiles !='' ">
+            <![CDATA[
+                AND #{filterMobiles ,jdbcType=VARCHAR} not like concat('%',t.mobile,'%')
+            ]]>
+        </if>
+    </select>
+</mapper>

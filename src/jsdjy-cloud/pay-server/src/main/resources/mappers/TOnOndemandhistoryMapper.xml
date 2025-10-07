@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.pay.biz.dao.TOnOndemandhistoryDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.pay.biz.po.TOnOndemandhistory">
+        <id column="ID" property="id" />
+        <result column="ONDEMANDID" property="ondemandid" />
+        <result column="USERID" property="userid" />
+        <result column="CLASSID" property="classid" />
+        <result column="CLASSNAME" property="classname" />
+        <result column="EXITHOUR" property="exithour" />
+        <result column="EXITCOUNT" property="exitcount" />
+        <result column="CREATETIME" property="createtime" />
+        <result column="UPDATETIME" property="updatetime" />
+        <result column="ISBUY" property="isbuy" />
+        <result column="ISCLICK" property="isclick" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        ID, ONDEMANDID, USERID, CLASSID, CLASSNAME, EXITHOUR, EXITCOUNT, CREATETIME, UPDATETIME, ISBUY, ISCLICK
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        ID
+          ,
+        ONDEMANDID
+          ,
+        USERID
+          ,
+        CLASSID
+          ,
+        CLASSNAME
+          ,
+        EXITHOUR
+          ,
+        EXITCOUNT
+          ,
+        CREATETIME
+          ,
+        UPDATETIME
+          ,
+        ISBUY
+          ,
+        ISCLICK
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND ID = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="ondemandid != null and ondemandid != ''">
+            <![CDATA[
+                AND ONDEMANDID = #{ondemandid ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="userid != null and userid != ''">
+            <![CDATA[
+                AND USERID = #{userid ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="classid != null and classid != ''">
+            <![CDATA[
+                AND CLASSID = #{classid ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="classname != null and classname != ''">
+            <![CDATA[
+                AND CLASSNAME = #{classname ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="exithour != null and exithour != ''">
+            <![CDATA[
+                AND EXITHOUR = #{exithour ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="exitcount != null and exitcount != ''">
+            <![CDATA[
+                AND EXITCOUNT = #{exitcount ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="createtime != null and createtime != ''">
+            <![CDATA[
+                AND CREATETIME = #{createtime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="updatetime != null and updatetime != ''">
+            <![CDATA[
+                AND UPDATETIME = #{updatetime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="isbuy != null and isbuy != ''">
+            <![CDATA[
+                AND ISBUY = #{isbuy ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="isclick != null and isclick != ''">
+            <![CDATA[
+                AND ISCLICK = #{isclick ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.pay.biz.po.TOnOndemandhistory">
+        <![CDATA[
+			insert into t_on_ondemandhistory
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    ID,
+                ]]>
+            </if>
+            <if test="ondemandid != '' and ondemandid != null" >
+                <![CDATA[
+                    ONDEMANDID,
+                ]]>
+            </if>
+            <if test="userid != '' and userid != null" >
+                <![CDATA[
+                    USERID,
+                ]]>
+            </if>
+            <if test="classid != '' and classid != null" >
+                <![CDATA[
+                    CLASSID,
+                ]]>
+            </if>
+            <if test="classname != '' and classname != null" >
+                <![CDATA[
+                    CLASSNAME,
+                ]]>
+            </if>
+            <if test="exithour != '' and exithour != null" >
+                <![CDATA[
+                    EXITHOUR,
+                ]]>
+            </if>
+            <if test="exitcount != '' and exitcount != null" >
+                <![CDATA[
+                    EXITCOUNT,
+                ]]>
+            </if>
+            <if test="createtime != '' and createtime != null" >
+                <![CDATA[
+                    CREATETIME,
+                ]]>
+            </if>
+            <if test="updatetime != '' and updatetime != null" >
+                <![CDATA[
+                    UPDATETIME,
+                ]]>
+            </if>
+            <if test="isbuy != '' and isbuy != null" >
+                <![CDATA[
+                    ISBUY,
+                ]]>
+            </if>
+            <if test="isclick != '' and isclick != null" >
+                <![CDATA[
+                    ISCLICK,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="ondemandid != '' and ondemandid != null" >
+                <![CDATA[
+                    #{ondemandid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userid != '' and userid != null" >
+                <![CDATA[
+                    #{userid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="classid != '' and classid != null" >
+                <![CDATA[
+                    #{classid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="classname != '' and classname != null" >
+                <![CDATA[
+                    #{classname,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="exithour != '' and exithour != null" >
+                <![CDATA[
+                    #{exithour,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="exitcount != '' and exitcount != null" >
+                <![CDATA[
+                    #{exitcount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="createtime != '' and createtime != null" >
+                <![CDATA[
+                    #{createtime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="updatetime != '' and updatetime != null" >
+                <![CDATA[
+                    #{updatetime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isbuy != '' and isbuy != null" >
+                <![CDATA[
+                    #{isbuy,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isclick != '' and isclick != null" >
+                <![CDATA[
+                    #{isclick,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.pay.biz.po.TOnOndemandhistory" >
+        <![CDATA[
+        	update t_on_ondemandhistory
+        ]]>
+        <set >
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    ID = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="ondemandid != '' and ondemandid != null" >
+                <![CDATA[
+                    ONDEMANDID = #{ondemandid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userid != '' and userid != null" >
+                <![CDATA[
+                    USERID = #{userid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="classid != '' and classid != null" >
+                <![CDATA[
+                    CLASSID = #{classid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="classname != '' and classname != null" >
+                <![CDATA[
+                    CLASSNAME = #{classname,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="exithour != '' and exithour != null" >
+                <![CDATA[
+                    EXITHOUR = #{exithour,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="exitcount != '' and exitcount != null" >
+                <![CDATA[
+                    EXITCOUNT = #{exitcount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="createtime != '' and createtime != null" >
+                <![CDATA[
+                    CREATETIME = #{createtime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="updatetime != '' and updatetime != null" >
+                <![CDATA[
+                    UPDATETIME = #{updatetime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isbuy != '' and isbuy != null" >
+                <![CDATA[
+                    ISBUY = #{isbuy,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isclick != '' and isclick != null" >
+                <![CDATA[
+                    ISCLICK = #{isclick,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and ID = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.pay.biz.po.TOnOndemandhistory">
+        <![CDATA[
+            delete from t_on_ondemandhistory
+        ]]>
+        <where>
+            <![CDATA[
+                and ID = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.pay.biz.po.TOnOndemandhistory">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from t_on_ondemandhistory t
+        ]]>
+        <where>
+            <![CDATA[
+                and ID = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from t_on_ondemandhistory t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+    <!-- 更新 -->
+    <update id="setOndemandBuyStatus" parameterType="java.util.HashMap" >
+        <![CDATA[
+        	update t_on_ondemandhistory
+        ]]>
+        <set >
+
+            <if test="isbuy != '' and isbuy != null" >
+                <![CDATA[
+                    ISBUY = #{isbuy,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+                <![CDATA[
+                AND ONDEMANDID in
+                (select goods_id from shopping_goodscart where of_id=#{ofId ,jdbcType=VARCHAR} and deleteStatus = 0)
+            ]]>
+                <![CDATA[
+                AND USERID = #{userId ,jdbcType=VARCHAR}
+            ]]>
+        </where>
+    </update>
+</mapper>

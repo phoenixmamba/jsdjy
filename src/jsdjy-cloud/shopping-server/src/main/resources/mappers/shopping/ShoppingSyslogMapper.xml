@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.ShoppingSyslogDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.ShoppingSyslog">
+        <id column="id" property="id" />
+        <result column="addTime" property="addTime" />
+        <result column="deleteStatus" property="deleteStatus" />
+        <result column="content" property="content" />
+        <result column="ip" property="ip" />
+        <result column="title" property="title" />
+        <result column="type" property="type" />
+        <result column="user_id" property="userId" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, addTime, deleteStatus, content, ip, title, type, user_id
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        addTime
+          ,
+        deleteStatus
+          ,
+        content
+          ,
+        ip
+          ,
+        title
+          ,
+        type
+          ,
+        user_id
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="addTime != null and addTime != ''">
+            <![CDATA[
+                AND addTime = #{addTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="deleteStatus != null and deleteStatus != ''">
+            <![CDATA[
+                AND deleteStatus = #{deleteStatus ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="content != null and content != ''">
+            <![CDATA[
+                AND content = #{content ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="ip != null and ip != ''">
+            <![CDATA[
+                AND ip = #{ip ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="title != null and title != ''">
+            <![CDATA[
+                AND title = #{title ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="type != null and type != ''">
+            <![CDATA[
+                AND type = #{type ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="userId != null and userId != ''">
+            <![CDATA[
+                AND user_id = #{userId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.ShoppingSyslog">
+        <![CDATA[
+			insert into shopping_syslog
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    id,
+                ]]>
+            </if>
+            <if test="addTime != '' and addTime != null" >
+                <![CDATA[
+                    addTime,
+                ]]>
+            </if>
+            <if test="deleteStatus != '' and deleteStatus != null" >
+                <![CDATA[
+                    deleteStatus,
+                ]]>
+            </if>
+            <if test="content != '' and content != null" >
+                <![CDATA[
+                    content,
+                ]]>
+            </if>
+            <if test="ip != '' and ip != null" >
+                <![CDATA[
+                    ip,
+                ]]>
+            </if>
+            <if test="title != '' and title != null" >
+                <![CDATA[
+                    title,
+                ]]>
+            </if>
+            <if test="type != '' and type != null" >
+                <![CDATA[
+                    type,
+                ]]>
+            </if>
+            <if test="userId != '' and userId != null" >
+                <![CDATA[
+                    user_id,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="addTime != '' and addTime != null" >
+                <![CDATA[
+                    #{addTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="deleteStatus != '' and deleteStatus != null" >
+                <![CDATA[
+                    #{deleteStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="content != '' and content != null" >
+                <![CDATA[
+                    #{content,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="ip != '' and ip != null" >
+                <![CDATA[
+                    #{ip,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="title != '' and title != null" >
+                <![CDATA[
+                    #{title,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="type != '' and type != null" >
+                <![CDATA[
+                    #{type,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userId != '' and userId != null" >
+                <![CDATA[
+                    #{userId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.ShoppingSyslog" >
+        <![CDATA[
+        	update shopping_syslog
+        ]]>
+        <set >
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="addTime != '' and addTime != null" >
+                <![CDATA[
+                    addTime = #{addTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="deleteStatus != '' and deleteStatus != null" >
+                <![CDATA[
+                    deleteStatus = #{deleteStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="content != '' and content != null" >
+                <![CDATA[
+                    content = #{content,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="ip != '' and ip != null" >
+                <![CDATA[
+                    ip = #{ip,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="title != '' and title != null" >
+                <![CDATA[
+                    title = #{title,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="type != '' and type != null" >
+                <![CDATA[
+                    type = #{type,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userId != '' and userId != null" >
+                <![CDATA[
+                    user_id = #{userId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.ShoppingSyslog">
+        <![CDATA[
+            delete from shopping_syslog
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.ShoppingSyslog">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_syslog t
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_syslog t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+</mapper>

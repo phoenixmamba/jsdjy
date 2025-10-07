@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.zuulgateway.dao.ApiAuthorizeDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.zuulgateway.po.ApiAuthorize">
+        <id column="id" property="id" />
+        <result column="CUSTOMKEY" property="customKey" />
+        <result column="customsecret" property="customSecret" />
+        <result column="JSAPITICKET" property="jsapiticket" />
+        <result column="ACCESSTOKEN" property="accessToken" />
+        <result column="VALIDPERIOD" property="validperiod" />
+        <result column="TOPDEPTID" property="topDeptId" />
+        <result column="IPWHITELIST" property="ipWhiteList" />
+        <result column="CALLBACKURL" property="callBackUrl" />
+        <result column="DEPTID" property="deptId" />
+        <result column="USERID" property="userId" />
+        <result column="APPID" property="appId" />
+        <result column="TYPE" property="type" />
+        <result column="CREATETIME" property="createTime" />
+        <result column="UPDATETIME" property="updateTime" />
+        <result column="CREATOR" property="creator" />
+        <result column="UPDATOR" property="updator" />
+        <result column="RETOKENTIME" property="reTokenTime" />
+        <result column="ISVALID" property="isValid" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        ID, CUSTOMKEY, CUSTOMSECRET, JSAPITICKET, ACCESSTOKEN, VALIDPERIOD, TOPDEPTID, IPWHITELIST, CALLBACKURL, DEPTID, USERID, APPID, TYPE, CREATETIME, UPDATETIME, CREATOR, UPDATOR, RETOKENTIME, ISVALID
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        ID
+          ,
+        CUSTOMKEY
+          ,
+        CUSTOMSECRET
+          ,
+        JSAPITICKET
+          ,
+        ACCESSTOKEN
+          ,
+        VALIDPERIOD
+          ,
+        TOPDEPTID
+          ,
+        IPWHITELIST
+          ,
+        CALLBACKURL
+          ,
+        DEPTID
+          ,
+        USERID
+          ,
+        APPID
+          ,
+        TYPE
+          ,
+        CREATETIME
+          ,
+        UPDATETIME
+          ,
+        CREATOR
+          ,
+        UPDATOR
+          ,
+        RETOKENTIME
+          ,
+        ISVALID
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND ID = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="customKey != null and customKey != ''">
+            <![CDATA[
+                AND CUSTOMKEY = #{customKey ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="customSecret != null and customSecret != ''">
+            <![CDATA[
+                AND CUSTOMSECRET = #{customSecret ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="jsapiticket != null and jsapiticket != ''">
+            <![CDATA[
+                AND JSAPITICKET = #{jsapiticket ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="accessToken != null and accessToken != ''">
+            <![CDATA[
+                AND ACCESSTOKEN = #{accessToken ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="validperiod != null and validperiod != ''">
+            <![CDATA[
+                AND VALIDPERIOD = #{validperiod ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="topDeptId != null and topDeptId != ''">
+            <![CDATA[
+                AND TOPDEPTID = #{topDeptId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="ipWhiteList != null and ipWhiteList != ''">
+            <![CDATA[
+                AND IPWHITELIST = #{ipWhiteList ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="callBackUrl != null and callBackUrl != ''">
+            <![CDATA[
+                AND CALLBACKURL = #{callBackUrl ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="deptId != null and deptId != ''">
+            <![CDATA[
+                AND DEPTID = #{deptId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="userId != null and userId != ''">
+            <![CDATA[
+                AND USERID = #{userId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="appId != null and appId != ''">
+            <![CDATA[
+                AND APPID = #{appId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="type != null and type != ''">
+            <![CDATA[
+                AND TYPE = #{type ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="createTime != null and createTime != ''">
+            <![CDATA[
+                AND CREATETIME = #{createTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="updateTime != null and updateTime != ''">
+            <![CDATA[
+                AND UPDATETIME = #{updateTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="creator != null and creator != ''">
+            <![CDATA[
+                AND CREATOR = #{creator ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="updator != null and updator != ''">
+            <![CDATA[
+                AND UPDATOR = #{updator ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="reTokenTime != null and reTokenTime != ''">
+            <![CDATA[
+                AND RETOKENTIME = #{reTokenTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="isValid != null and isValid != ''">
+            <![CDATA[
+                AND ISVALID = #{isValid ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="com.centit.zuulgateway.po.ApiAuthorize">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from T_API_AUTHORIZE t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+
+    <!--  检测Ip白名单是否存在 -->
+    <select id="checkIPValid" resultType="java.lang.Integer" parameterType="java.lang.String">
+        <![CDATA[
+	    	SELECT count(0) from T_API_AUTHORIZE t
+	    ]]>
+        <where>
+            <![CDATA[
+	    	    and t.ISVALID = 'T'
+				and t.IPWHITELIST like '%'||#{ip,jdbcType=VARCHAR}||'%'
+	         ]]>
+        </where>
+    </select>
+
+    <!--  检测Ip白名单是否存在、IP最后一个字符为*的通配符则匹配-->
+    <select id="checkIPValid2" resultType="java.lang.Integer" parameterType="java.lang.String">
+        /*
+        oralce 11g及以后的版本不再支持WM_CONCAT方法
+        使用新的函数代替：
+            listagg(合并字段,'连接符号') within group (order by 排序字段)
+        但是这样使用如果内容多的话会报错‘返回的结果过长’，所以需要使用方法将其转换为glob：
+            xmlagg(xmlparse(content 合并字段||',' wellformed) order by 排序字段).getclobval()
+        */
+        <!--<![CDATA[
+            SELECT SUM(num) FROM
+            (
+                SELECT count(0) AS num FROM
+                    (
+                        select
+                            regexp_substr(tb.ip,'[^,]+',1,rownum) ip
+                        from
+                            (SELECT WM_CONCAT(t.IPWHITELIST) AS ip FROM T_API_AUTHORIZE t
+                             WHERE t.ISVALID ='T') tb
+                            connect by rownum <= length(regexp_replace(tb.ip,'[^,]+'))
+                    ) temp
+                WHERE
+                    substr(temp.ip, -1) = '*'
+                    AND temp.ip LIKE '%'||substr(#{ip,jdbcType=VARCHAR},1,instr(#{ip,jdbcType=VARCHAR},'.',-1)-1)||'%'
+                UNION ALL
+                SELECT count(0) from T_API_AUTHORIZE t
+                    where
+                        t.ISVALID = 'T'
+                        and t.IPWHITELIST like '%'||#{ip,jdbcType=VARCHAR}||'%'
+            )
+	    ]]>-->
+        <![CDATA[
+            SELECT SUM(num) FROM
+            (
+                SELECT count(0) AS num FROM
+                    (
+                        select
+                            regexp_substr(tb.ip,'[^,]+',1,rownum) ip
+                        from
+                            (SELECT listagg(t.IPWHITELIST,',') within group (order by t.IPWHITELIST) AS ip FROM T_API_AUTHORIZE t
+                             WHERE t.ISVALID ='T') tb
+                            connect by rownum <= length(regexp_replace(tb.ip,'[^,]+'))
+                    ) temp
+                WHERE
+                    substr(temp.ip, -1) = '*'
+                    AND temp.ip LIKE '%'||substr(#{ip,jdbcType=VARCHAR},1,instr(#{ip,jdbcType=VARCHAR},'.',-1)-1)||'%'
+                UNION ALL
+                SELECT count(0) from T_API_AUTHORIZE t
+                    where
+                        t.ISVALID = 'T'
+                        and t.IPWHITELIST like '%'||#{ip,jdbcType=VARCHAR}||'%'
+            )
+	    ]]>
+    </select>
+
+
+    <!--  检测accessToken是否过期 -->
+    <select id="checkAccessTokenExpire" resultType="java.lang.Integer" parameterType="com.centit.zuulgateway.po.ApiAuthorize">
+        <![CDATA[
+	    	SELECT count(0) from T_API_AUTHORIZE t
+	    ]]>
+        <where>
+            <if test="customKey != '' and customKey != null" >
+                <![CDATA[
+					and t.CUSTOMKEY = #{customKey ,jdbcType=VARCHAR}
+				]]>
+            </if>
+            <if test="customSecret != '' and customSecret != null" >
+                <![CDATA[
+					and t.CUSTOMSECRET = #{customSecret ,jdbcType=VARCHAR}
+				]]>
+            </if>
+            <if test="accessToken != '' and accessToken != null" >
+                <![CDATA[
+					and t.ACCESSTOKEN = #{accessToken ,jdbcType=VARCHAR}
+				]]>
+            </if>
+            <if test="isValid != '' and isValid != null" >
+                <![CDATA[
+					and t.ISVALID = #{isValid ,jdbcType=VARCHAR}
+				]]>
+            </if>
+            <![CDATA[
+				AND (t.RETOKENTIME + numtodsinterval(t.VALIDPERIOD,'second')) > SYSDATE
+	         ]]>
+        </where>
+    </select>
+
+</mapper>

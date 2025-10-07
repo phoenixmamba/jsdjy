@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.mallserver.dao.ShoppingGoodsDao">
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.mallserver.po.ShoppingGoodsPo">
+        <id column="id" property="id"/>
+        <result column="goods_name" property="goodsName"/>
+        <result column="store_price" property="storePrice"/>
+        <result column="goods_main_photo_id" property="goodsMainPhotoId"/>
+        <result column="order_count" property="orderCount"/>
+        <result column="use_integral_value" property="useIntegralValue"/>
+        <result column="use_integral_set" property="useIntegralSet"/>
+        <result column="use_balance_set" property="useBalanceSet"/>
+        <result column="use_membership_set" property="useMembershipSet"/>
+        <result column="goods_price" property="goodsPrice"/>
+        <result column="goods_inventory" property="goodsInventory"/>
+        <result column="goods_notice" property="goodsNotice"/>
+        <result column="return_explain" property="returnExplain"/>
+        <result column="limit_buy" property="limitBuy"/>
+        <result column="inventory_type" property="inventoryType"/>
+        <result column="goods_checkbox" property="goodsCheckbox"/>
+        <result column="goods_details" property="goodsDetails"/>
+        <result column="goods_status" property="goodsStatus"/>
+        <result column="goods_transfee" property="goodsTransfee"/>
+        <result column="transport_id" property="transportId"/>
+        <result column="express_trans_fee" property="expressTransFee"/>
+        <result column="selfextraction_set" property="selfextractionSet"/>
+        <result column="selfextraction_address" property="selfextractionAddress"/>
+        <result column="gc_id" property="gcId"/>
+        <result column="deleteStatus" property="deleteStatus"/>
+    </resultMap>
+
+    <!--  查询指定分类下的商品列表 -->
+    <select id="selectClassGoodsList" resultMap="BaseResultMap">
+        <![CDATA[
+        select t.id,
+               t.goods_name,
+               t.store_price,
+               t.goods_main_photo_id,
+               t.use_integral_set,
+               t.use_integral_value,
+               (SELECT count(0)
+                FROM shopping_orderform so
+                         left join shopping_goodscart sgc on so.id = sgc.of_id
+                where sgc.goods_id = t.id
+                  and so.deleteStatus = '0') order_count
+        ]]>
+        <![CDATA[
+            from shopping_goods t
+                 left join
+                 (select * from shopping_recommend where goods_type = '1') tr
+                 on t.id = tr.goods_id
+        ]]>
+        <where>
+            <![CDATA[
+            FIND_IN_SET(t.gc_id, queryChildrenGoodClass(#{gcId}))
+                ]]>
+            AND t.deleteStatus = '0'
+              AND t.goods_status = '0'
+        </where>
+        order by ISNULL(tr.sn), tr.sn asc, t.addTime desc
+    </select>
+
+    <!--  查询详情 -->
+    <select id="selectGoodsDetail" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select t.id,
+        t.goods_name,
+        t.store_price,
+        t.goods_main_photo_id,
+        t.use_integral_set,
+        t.use_integral_value,
+        t.use_balance_set,
+        t.use_membership_set,
+        t.goods_price,
+        t.goods_inventory,
+        t.goods_notice,
+        t.return_explain,
+        t.limit_buy,
+        t.inventory_type,
+        t.goods_checkbox,
+        t.goods_details,
+        t.goods_status,
+        t.goods_transfee,
+        t.transport_id,
+        t.express_trans_fee,
+        t.selfextraction_set,
+        t.selfextraction_address,
+        t.gc_id,
+        t.deleteStatus
+        <![CDATA[
+            from shopping_goods t
+        ]]>
+        <where>
+            <![CDATA[
+             id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <select id="selectGoodsStock" resultType="java.lang.Integer" parameterType="java.lang.String">
+        <![CDATA[
+            SELECT t.goods_inventory FROM shopping_goods t
+        ]]>
+        <where>
+            <![CDATA[
+              id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+</mapper>

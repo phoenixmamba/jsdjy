@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.ShoppingTransportDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.ShoppingTransport">
+        <id column="id" property="id" />
+        <result column="addTime" property="addTime" />
+        <result column="deleteStatus" property="deleteStatus" />
+        <result column="trans_ems" property="transEms" />
+        <result column="trans_ems_info" property="transEmsInfo" />
+        <result column="trans_express" property="transExpress" />
+        <result column="trans_express_info" property="transExpressInfo" />
+        <result column="trans_mail" property="transMail" />
+        <result column="trans_mail_info" property="transMailInfo" />
+        <result column="trans_name" property="transName" />
+        <result column="store_id" property="storeId" />
+        <result column="trans_time" property="transTime" />
+        <result column="trans_type" property="transType" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, addTime, deleteStatus, trans_ems, trans_ems_info, trans_express, trans_express_info, trans_mail, trans_mail_info, trans_name, store_id, trans_time, trans_type
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        addTime
+          ,
+        deleteStatus
+          ,
+        trans_ems
+          ,
+        trans_ems_info
+          ,
+        trans_express
+          ,
+        trans_express_info
+          ,
+        trans_mail
+          ,
+        trans_mail_info
+          ,
+        trans_name
+          ,
+        store_id
+          ,
+        trans_time
+          ,
+        trans_type
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="addTime != null and addTime != ''">
+            <![CDATA[
+                AND addTime = #{addTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="deleteStatus != null and deleteStatus != ''">
+            <![CDATA[
+                AND deleteStatus = #{deleteStatus ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="transEms != null and transEms != ''">
+            <![CDATA[
+                AND trans_ems = #{transEms ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="transEmsInfo != null and transEmsInfo != ''">
+            <![CDATA[
+                AND trans_ems_info = #{transEmsInfo ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="transExpress != null and transExpress != ''">
+            <![CDATA[
+                AND trans_express = #{transExpress ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="transExpressInfo != null and transExpressInfo != ''">
+            <![CDATA[
+                AND trans_express_info = #{transExpressInfo ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="transMail != null and transMail != ''">
+            <![CDATA[
+                AND trans_mail = #{transMail ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="transMailInfo != null and transMailInfo != ''">
+            <![CDATA[
+                AND trans_mail_info = #{transMailInfo ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="transName != null and transName != ''">
+            <![CDATA[
+                AND trans_name = #{transName ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="storeId != null and storeId != ''">
+            <![CDATA[
+                AND store_id = #{storeId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="transTime != null and transTime != ''">
+            <![CDATA[
+                AND trans_time = #{transTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="transType != null and transType != ''">
+            <![CDATA[
+                AND trans_type = #{transType ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.ShoppingTransport" useGeneratedKeys="true" keyProperty="id">
+        <![CDATA[
+			insert into shopping_transport
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+
+                <![CDATA[
+                    addTime,
+                ]]>
+
+            <if test="transEms != null" >
+                <![CDATA[
+                    trans_ems,
+                ]]>
+            </if>
+            <if test="transEmsInfo != '' and transEmsInfo != null" >
+                <![CDATA[
+                    trans_ems_info,
+                ]]>
+            </if>
+            <if test="transExpress != null" >
+                <![CDATA[
+                    trans_express,
+                ]]>
+            </if>
+            <if test="transExpressInfo != '' and transExpressInfo != null" >
+                <![CDATA[
+                    trans_express_info,
+                ]]>
+            </if>
+            <if test="transMail != null" >
+                <![CDATA[
+                    trans_mail,
+                ]]>
+            </if>
+            <if test="transMailInfo != '' and transMailInfo != null" >
+                <![CDATA[
+                    trans_mail_info,
+                ]]>
+            </if>
+            <if test="transName != '' and transName != null" >
+                <![CDATA[
+                    trans_name,
+                ]]>
+            </if>
+            <if test="storeId != '' and storeId != null" >
+                <![CDATA[
+                    store_id,
+                ]]>
+            </if>
+            <if test="transTime != '' and transTime != null" >
+                <![CDATA[
+                    trans_time,
+                ]]>
+            </if>
+            <if test="transType != '' and transType != null" >
+                <![CDATA[
+                    trans_type,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            now(),
+            <if test="transEms != null" >
+                <![CDATA[
+                    #{transEms,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="transEmsInfo != '' and transEmsInfo != null" >
+                <![CDATA[
+                    #{transEmsInfo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="transExpress != null" >
+                <![CDATA[
+                    #{transExpress,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="transExpressInfo != '' and transExpressInfo != null" >
+                <![CDATA[
+                    #{transExpressInfo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="transMail != null" >
+                <![CDATA[
+                    #{transMail,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="transMailInfo != '' and transMailInfo != null" >
+                <![CDATA[
+                    #{transMailInfo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="transName != '' and transName != null" >
+                <![CDATA[
+                    #{transName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="storeId != '' and storeId != null" >
+                <![CDATA[
+                    #{storeId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="transTime != '' and transTime != null" >
+                <![CDATA[
+                    #{transTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="transType != '' and transType != null" >
+                <![CDATA[
+                    #{transType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.ShoppingTransport" >
+        <![CDATA[
+        	update shopping_transport
+        ]]>
+        <set >
+            <!--<if test="id != '' and id != null" >-->
+                <!--<![CDATA[-->
+                    <!--id = #{id,jdbcType=VARCHAR},-->
+                <!--]]>-->
+            <!--</if>-->
+            <!--<if test="addTime != '' and addTime != null" >-->
+                <!--<![CDATA[-->
+                    <!--addTime = #{addTime,jdbcType=VARCHAR},-->
+                <!--]]>-->
+            <!--</if>-->
+            <if test="deleteStatus != '' and deleteStatus != null" >
+                <![CDATA[
+                    deleteStatus = #{deleteStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="transEms != null" >
+                <![CDATA[
+                    trans_ems = #{transEms,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="transEmsInfo != '' and transEmsInfo != null" >
+                <![CDATA[
+                    trans_ems_info = #{transEmsInfo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="transEmsInfo == null" >
+                <![CDATA[
+                    trans_ems_info = null,
+                ]]>
+            </if>
+            <if test="transExpress != null" >
+                <![CDATA[
+                    trans_express = #{transExpress,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="transExpressInfo != '' and transExpressInfo != null" >
+                <![CDATA[
+                    trans_express_info = #{transExpressInfo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="transExpressInfo == null" >
+                <![CDATA[
+                    trans_express_info = null,
+                ]]>
+            </if>
+            <if test="transMail != null" >
+                <![CDATA[
+                    trans_mail = #{transMail,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="transMailInfo != '' and transMailInfo != null" >
+                <![CDATA[
+                    trans_mail_info = #{transMailInfo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="transMailInfo == null" >
+                <![CDATA[
+                    trans_mail_info = null,
+                ]]>
+            </if>
+            <if test="transName != '' and transName != null" >
+                <![CDATA[
+                    trans_name = #{transName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="storeId != '' and storeId != null" >
+                <![CDATA[
+                    store_id = #{storeId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="transTime != '' and transTime != null" >
+                <![CDATA[
+                    trans_time = #{transTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="transType != '' and transType != null" >
+                <![CDATA[
+                    trans_type = #{transType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.ShoppingTransport">
+        <![CDATA[
+            delete from shopping_transport
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.ShoppingTransport">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_transport t
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_transport t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+        order by t.addTime desc
+        <if test="pageSize != '' and pageSize != null" >
+            <![CDATA[
+                    limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+                ]]>
+        </if>
+    </select>
+
+    <!--  查询列表数量 -->
+    <select id="queryTotalCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            SELECT count(0) FROM shopping_transport
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+    <select id="queryAreaPrice" resultType="java.math.BigDecimal" parameterType="java.lang.String">
+        <![CDATA[
+            SELECT ship_price FROM shopping_transport_areaprice
+        ]]>
+        <where>
+            <![CDATA[
+                and area_code = #{areaCode ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+</mapper>

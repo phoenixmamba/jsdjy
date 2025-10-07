@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.logstatistics.logstatisticsserver.webmgr.dao.TExportFileDao">
+
+        <!-- 通用查询映射结果 -->
+        <resultMap id="BaseResultMap" type="com.centit.logstatistics.logstatisticsserver.webmgr.po.TExportFile">
+                    <id column="ID" property="id" />
+                    <result column="DATA_TYPE" property="dataType" />
+                    <result column="FILE_NAME" property="fileName" />
+                    <result column="TASK_STATUS" property="taskStatus" />
+                    <result column="FINISH_TIME" property="finishTime" />
+                    <result column="CREATE_USER" property="createUser" />
+                    <result column="CREATE_TIME" property="createTime" />
+        </resultMap>
+
+        <!-- 通用查询结果列(横着排列) -->
+        <sql id="Base_Column_List1">
+        ID, DATA_TYPE, FILE_NAME, TASK_STATUS, FINISH_TIME, CREATE_USER, CREATE_TIME
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+            ID
+          ,
+            DATA_TYPE
+          ,
+            FILE_NAME
+          ,
+            TASK_STATUS
+          ,
+            FINISH_TIME
+          ,
+            CREATE_USER
+          ,
+            CREATE_TIME
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+                <if test="id != null and id != ''">
+                    <![CDATA[
+                AND ID = #{id ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="dataType != null and dataType != ''">
+                    <![CDATA[
+                AND DATA_TYPE = #{dataType ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="fileName != null and fileName != ''">
+                    <![CDATA[
+                AND FILE_NAME = #{fileName ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="taskStatus != null and taskStatus != ''">
+                    <![CDATA[
+                AND TASK_STATUS = #{taskStatus ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="finishTime != null and finishTime != ''">
+                    <![CDATA[
+                AND FINISH_TIME = #{finishTime ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="createUser != null and createUser != ''">
+                    <![CDATA[
+                AND CREATE_USER = #{createUser ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="createTime != null and createTime != ''">
+                    <![CDATA[
+                AND CREATE_TIME = #{createTime ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.logstatistics.logstatisticsserver.webmgr.po.TExportFile">
+        <![CDATA[
+			insert into t_export_file
+		]]>
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                    <if test="id != '' and id != null" >
+                        <![CDATA[
+                    ID,
+                ]]>
+                    </if>
+                    <if test="dataType != '' and dataType != null" >
+                        <![CDATA[
+                    DATA_TYPE,
+                ]]>
+                    </if>
+                    <if test="fileName != '' and fileName != null" >
+                        <![CDATA[
+                    FILE_NAME,
+                ]]>
+                    </if>
+                    <if test="taskStatus != '' and taskStatus != null" >
+                        <![CDATA[
+                    TASK_STATUS,
+                ]]>
+                    </if>
+                    <if test="finishTime != '' and finishTime != null" >
+                        <![CDATA[
+                    FINISH_TIME,
+                ]]>
+                    </if>
+                    <if test="createUser != '' and createUser != null" >
+                        <![CDATA[
+                    CREATE_USER,
+                ]]>
+                    </if>
+                    <if test="createTime != '' and createTime != null" >
+                        <![CDATA[
+                    CREATE_TIME,
+                ]]>
+                    </if>
+            </trim>
+            <trim prefix="values (" suffix=")" suffixOverrides="," >
+                    <if test="id != '' and id != null" >
+                        <![CDATA[
+                    #{id,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="dataType != '' and dataType != null" >
+                        <![CDATA[
+                    #{dataType,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="fileName != '' and fileName != null" >
+                        <![CDATA[
+                    #{fileName,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="taskStatus != '' and taskStatus != null" >
+                        <![CDATA[
+                    #{taskStatus,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="finishTime != '' and finishTime != null" >
+                        <![CDATA[
+                    #{finishTime,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="createUser != '' and createUser != null" >
+                        <![CDATA[
+                    #{createUser,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="createTime != '' and createTime != null" >
+                        <![CDATA[
+                    #{createTime,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+            </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.logstatistics.logstatisticsserver.webmgr.po.TExportFile" >
+        <![CDATA[
+        	update t_export_file
+        ]]>
+        <set >
+                    <if test="id != '' and id != null" >
+                        <![CDATA[
+                    ID = #{id,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="dataType != '' and dataType != null" >
+                        <![CDATA[
+                    DATA_TYPE = #{dataType,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="fileName != '' and fileName != null" >
+                        <![CDATA[
+                    FILE_NAME = #{fileName,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="taskStatus != '' and taskStatus != null" >
+                        <![CDATA[
+                    TASK_STATUS = #{taskStatus,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="finishTime != '' and finishTime != null" >
+                        <![CDATA[
+                    FINISH_TIME = #{finishTime,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="createUser != '' and createUser != null" >
+                        <![CDATA[
+                    CREATE_USER = #{createUser,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="createTime != '' and createTime != null" >
+                        <![CDATA[
+                    CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+        </set>
+        <where>
+                        <![CDATA[
+                and ID = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.logstatistics.logstatisticsserver.webmgr.po.TExportFile">
+        <![CDATA[
+            delete from t_export_file
+        ]]>
+        <where>
+                        <![CDATA[
+                and ID = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.logstatistics.logstatisticsserver.webmgr.po.TExportFile">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from t_export_file t
+        ]]>
+        <where>
+                        <![CDATA[
+                and ID = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from t_export_file t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+</mapper>

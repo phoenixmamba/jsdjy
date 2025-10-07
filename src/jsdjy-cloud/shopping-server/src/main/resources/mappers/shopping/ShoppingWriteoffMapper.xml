@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.ShoppingWriteoffDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.ShoppingWriteoff">
+        <id column="gcId" property="gcId" />
+        <result column="off_code" property="offCode" />
+        <result column="goods_count" property="goodsCount" />
+        <result column="off_count" property="offCount" />
+        <result column="off_status" property="offStatus" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        gcId, off_code, goods_count, off_count, off_status
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        gcId
+          ,
+        off_code
+          ,
+        goods_count
+          ,
+        off_count
+          ,
+        off_status
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="gcId != null and gcId != ''">
+            <![CDATA[
+                AND gcId = #{gcId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="offCode != null and offCode != ''">
+            <![CDATA[
+                AND off_code = #{offCode ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="goodsCount != null and goodsCount != ''">
+            <![CDATA[
+                AND goods_count = #{goodsCount ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="offCount != null and offCount != ''">
+            <![CDATA[
+                AND off_count = #{offCount ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="offStatus != null and offStatus != ''">
+            <![CDATA[
+                AND off_status = #{offStatus ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.ShoppingWriteoff">
+        <![CDATA[
+			insert into shopping_writeoff
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="gcId != null and gcId != ''" >
+                <![CDATA[
+                    gcId,
+                ]]>
+            </if>
+            <if test="offCode != null and offCode != ''" >
+                <![CDATA[
+                    off_code,
+                ]]>
+            </if>
+            <if test="goodsCount != null and goodsCount != ''" >
+                <![CDATA[
+                    goods_count,
+                ]]>
+            </if>
+            <if test="offCount != null and offCount != ''" >
+                <![CDATA[
+                    off_count,
+                ]]>
+            </if>
+            <if test="offStatus != null and offStatus != ''" >
+                <![CDATA[
+                    off_status,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="gcId != null and gcId != ''" >
+                <![CDATA[
+                    #{gcId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="offCode != null and offCode != ''" >
+                <![CDATA[
+                    #{offCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="goodsCount != null and goodsCount != ''" >
+                <![CDATA[
+                    #{goodsCount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="offCount != null and offCount != ''" >
+                <![CDATA[
+                    #{offCount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="offStatus != null and offStatus != ''" >
+                <![CDATA[
+                    #{offStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.ShoppingWriteoff" >
+        <![CDATA[
+        	update shopping_writeoff
+        ]]>
+        <set >
+            <if test="gcId != null and gcId != ''" >
+                <![CDATA[
+                    gcId = #{gcId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="offCode != null and offCode != ''" >
+                <![CDATA[
+                    off_code = #{offCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="goodsCount != null and goodsCount != ''" >
+                <![CDATA[
+                    goods_count = #{goodsCount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="offCount != null and offCount != ''" >
+                <![CDATA[
+                    off_count = #{offCount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="offStatus != null and offStatus != ''" >
+                <![CDATA[
+                    off_status = #{offStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and gcId = #{gcId ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.ShoppingWriteoff">
+        <![CDATA[
+            delete from shopping_writeoff
+        ]]>
+        <where>
+            <![CDATA[
+                and gcId = #{gcId ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.ShoppingWriteoff">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_writeoff t
+        ]]>
+        <where>
+            <if test="gcId != null and gcId != ''">
+                <![CDATA[
+                AND gcId = #{gcId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="offCode != null and offCode != ''">
+                <![CDATA[
+                AND off_code = #{offCode ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_writeoff t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+    <!--  查询详情 -->
+    <select id="queryGoodsWriteoff" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select t1.*
+        ]]>
+        <![CDATA[
+            from shopping_writeoff t1 left join shopping_goodscart t2 on t1.gcId = t2.id
+        ]]>
+        <where>
+                <![CDATA[
+                AND t2.of_id = #{ofId ,jdbcType=VARCHAR}
+            ]]>
+                <![CDATA[
+                AND t2.goods_id = #{goodsId ,jdbcType=VARCHAR}
+            ]]>
+            AND (t2.cart_type = 1 or t2.cart_type = 2)
+        </where>
+    </select>
+
+    <!--  查询详情 -->
+    <select id="queryActivityWriteoff" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select t1.*
+        ]]>
+        <![CDATA[
+            from shopping_writeoff t1 left join shopping_goodscart t2 on t1.gcId = t2.id
+        ]]>
+        <where>
+            <![CDATA[
+                AND t2.of_id = #{ofId ,jdbcType=VARCHAR}
+            ]]>
+            <![CDATA[
+                AND t2.goods_id = #{goodsId ,jdbcType=VARCHAR}
+            ]]>
+            AND t2.cart_type = 3
+        </where>
+    </select>
+
+    <select id="queryOrderWriteoff" resultType="java.util.HashMap" parameterType="java.lang.String">
+        <![CDATA[
+            select t1.off_status,t2.off_account,t2.add_time,tf.USER_NAME
+        ]]>
+        <![CDATA[
+            from shopping_writeoff t1 left join shopping_writeoff_record t2 on t1.gcId=t2.gcId
+                left join f_userinfo tf on t2.off_account = tf.user_code
+        ]]>
+        <where>
+            <![CDATA[
+                AND t1.gcId in
+                    (select t3.id from shopping_goodscart t3 where t3.of_id=#{ofId ,jdbcType=VARCHAR})
+            ]]>
+        </where>
+    </select>
+</mapper>

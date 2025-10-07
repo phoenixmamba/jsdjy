@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.admin.shopping.dao.ShoppingSpecificationDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.admin.shopping.po.ShoppingSpecification">
+        <id column="id" property="id" />
+        <result column="addTime" property="addTime" />
+        <result column="deleteStatus" property="deleteStatus" />
+        <result column="name" property="name" />
+        <result column="sequence" property="sequence" />
+        <result column="type" property="type" />
+        <result column="store_id" property="storeId" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, addTime, deleteStatus, name, sequence, type, store_id
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        addTime
+          ,
+        deleteStatus
+          ,
+        name
+          ,
+        sequence
+          ,
+        type
+          ,
+        store_id
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="addTime != null and addTime != ''">
+            <![CDATA[
+                AND addTime = #{addTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="deleteStatus != null and deleteStatus != ''">
+            <![CDATA[
+                AND deleteStatus = #{deleteStatus ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="name != null and name != ''">
+            <![CDATA[
+                AND name = #{name ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="sequence != null and sequence != ''">
+            <![CDATA[
+                AND sequence = #{sequence ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="type != null and type != ''">
+            <![CDATA[
+                AND type = #{type ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="storeId != null and storeId != ''">
+            <![CDATA[
+                AND store_id = #{storeId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.admin.shopping.po.ShoppingSpecification" useGeneratedKeys="true" keyProperty="id">
+        <![CDATA[
+			insert into shopping_goodsspecification
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+
+                <![CDATA[
+                    addTime,
+                ]]>
+
+                <![CDATA[
+                    deleteStatus,
+                ]]>
+
+            <if test="name != '' and name != null" >
+                <![CDATA[
+                    name,
+                ]]>
+            </if>
+            <if test="sequence != '' and sequence != null" >
+                <![CDATA[
+                    sequence,
+                ]]>
+            </if>
+            <if test="type != '' and type != null" >
+                <![CDATA[
+                    type,
+                ]]>
+            </if>
+            <if test="storeId != '' and storeId != null" >
+                <![CDATA[
+                    store_id,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            now(),
+            0,
+            <if test="name != '' and name != null" >
+                <![CDATA[
+                    #{name,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="sequence != '' and sequence != null" >
+                <![CDATA[
+                    #{sequence,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="type != '' and type != null" >
+                <![CDATA[
+                    #{type,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="storeId != '' and storeId != null" >
+                <![CDATA[
+                    #{storeId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.admin.shopping.po.ShoppingSpecification" >
+        <![CDATA[
+        	update shopping_goodsspecification
+        ]]>
+        <set >
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="addTime != '' and addTime != null" >
+                <![CDATA[
+                    addTime = #{addTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="deleteStatus != '' and deleteStatus != null" >
+                <![CDATA[
+                    deleteStatus = #{deleteStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="name != '' and name != null" >
+                <![CDATA[
+                    name = #{name,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="sequence != '' and sequence != null" >
+                <![CDATA[
+                    sequence = #{sequence,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="type != '' and type != null" >
+                <![CDATA[
+                    type = #{type,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="storeId != '' and storeId != null" >
+                <![CDATA[
+                    store_id = #{storeId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.admin.shopping.po.ShoppingSpecification">
+        <![CDATA[
+            delete from shopping_goodsspecification
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.admin.shopping.po.ShoppingSpecification">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_goodsspecification t
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_goodsspecification t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+        order by t.sequence asc
+        <if test="pageSize != '' and pageSize != null" >
+            <![CDATA[
+                    limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+                ]]>
+        </if>
+    </select>
+
+    <!--  查询列表数量 -->
+    <select id="queryTotalCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            SELECT count(0) FROM shopping_goodsspecification
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+    <!--  查询商品关联的规格分类 -->
+    <select id="queryGoodsSpecs" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_goodsspecification t
+        ]]>
+        <where>
+            <![CDATA[
+                and t.id in (
+                select spec_id from shopping_goodsspecproperty p  where p.id in
+                (select spec_id from shopping_goods_spec gs where gs.goods_id = #{goodsId ,jdbcType=VARCHAR })
+                )
+            ]]>
+            <![CDATA[
+                and t.deleteStatus='0' order by t.sequence asc,t.id asc
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询商品类型关联的规格 -->
+    <select id="queryTypeSpecs" resultMap="BaseResultMap" parameterType="java.lang.String">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_goodsspecification t
+        ]]>
+        <where>
+            <![CDATA[
+                and t.id in (
+                select spec_id from shopping_goodstype_spec p  where p.type_id=#{typeId ,jdbcType=VARCHAR })
+            ]]>
+            <![CDATA[
+                and t.deleteStatus='0' order by t.sequence asc,t.id asc
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询活动关联的规格 -->
+    <select id="queryActSpecs" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_goodsspecification t
+        ]]>
+        <where>
+            <![CDATA[
+                and t.id in (
+                select spec_id from shopping_goodsspecproperty where id in (select spec_id from shopping_artactivity_spec p  where p.activity_id=#{activityId ,jdbcType=VARCHAR }) )
+            ]]>
+            <![CDATA[
+                and t.deleteStatus='0'  order by t.sequence asc,t.id asc
+            ]]>
+        </where>
+
+    </select>
+
+    <!--  查询爱艺计划关联的规格 -->
+    <select id="queryPlanSpecs" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_goodsspecification t
+        ]]>
+        <where>
+            <![CDATA[
+                and t.id in (
+                select spec_id from shopping_goodsspecproperty where id in (select spec_id from shopping_artplan_spec p  where p.activity_id=#{activityId ,jdbcType=VARCHAR }) )
+            ]]>
+            <![CDATA[
+                and t.deleteStatus='0' order by t.sequence asc,t.id asc
+            ]]>
+        </where>
+    </select>
+</mapper>

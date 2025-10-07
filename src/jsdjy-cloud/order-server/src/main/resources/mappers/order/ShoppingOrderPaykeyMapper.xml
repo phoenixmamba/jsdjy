@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.order.dao.ShoppingOrderPaykeyDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.order.po.ShoppingOrderPaykeyPo">
+        <result column="of_id" property="ofId" />
+        <result column="account_point_pay_key" property="accountPointPayKey" />
+        <result column="account_money_pay_key" property="accountMoneyPayKey" />
+    </resultMap>
+
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.order.po.ShoppingOrderPaykeyPo">
+        <![CDATA[
+			insert into shopping_order_paykey
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="ofId != '' and ofId != null" >
+                <![CDATA[
+                    of_id,
+                ]]>
+            </if>
+            <if test="accountPointPayKey != '' and accountPointPayKey != null" >
+                <![CDATA[
+                    account_point_pay_key,
+                ]]>
+            </if>
+            <if test="accountMoneyPayKey != '' and accountMoneyPayKey != null" >
+                <![CDATA[
+                    account_money_pay_key,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="ofId != '' and ofId != null" >
+                <![CDATA[
+                    #{ofId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="accountPointPayKey != '' and accountPointPayKey != null" >
+                <![CDATA[
+                    #{accountPointPayKey,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="accountMoneyPayKey != '' and accountMoneyPayKey != null" >
+                <![CDATA[
+                    #{accountMoneyPayKey,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+</mapper>

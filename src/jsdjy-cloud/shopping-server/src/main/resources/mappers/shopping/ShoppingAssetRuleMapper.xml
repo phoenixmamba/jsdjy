@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.ShoppingAssetRuleDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.ShoppingAssetRule">
+        <result column="point_avoid_pay" property="pointAvoidPay" />
+        <result column="point_avoid_limit" property="pointAvoidLimit" />
+        <result column="account_avoid_pay" property="accountAvoidPay" />
+        <result column="account_avoid_limit" property="accountAvoidLimit" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        point_avoid_pay, point_avoid_limit, account_avoid_pay, account_avoid_limit
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        point_avoid_pay
+          ,
+        point_avoid_limit
+          ,
+        account_avoid_pay
+          ,
+        account_avoid_limit
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="pointAvoidPay != null and pointAvoidPay != ''">
+            <![CDATA[
+                AND point_avoid_pay = #{pointAvoidPay ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="pointAvoidLimit != null and pointAvoidLimit != ''">
+            <![CDATA[
+                AND point_avoid_limit = #{pointAvoidLimit ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="accountAvoidPay != null and accountAvoidPay != ''">
+            <![CDATA[
+                AND account_avoid_pay = #{accountAvoidPay ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="accountAvoidLimit != null and accountAvoidLimit != ''">
+            <![CDATA[
+                AND account_avoid_limit = #{accountAvoidLimit ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.ShoppingAssetRule">
+        <![CDATA[
+			insert into shopping_asset_rule
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="pointAvoidPay != null and pointAvoidPay != ''" >
+                <![CDATA[
+                    point_avoid_pay,
+                ]]>
+            </if>
+            <if test="pointAvoidLimit != null and pointAvoidLimit != ''" >
+                <![CDATA[
+                    point_avoid_limit,
+                ]]>
+            </if>
+            <if test="accountAvoidPay != null and accountAvoidPay != ''" >
+                <![CDATA[
+                    account_avoid_pay,
+                ]]>
+            </if>
+            <if test="accountAvoidLimit != null and accountAvoidLimit != ''" >
+                <![CDATA[
+                    account_avoid_limit,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="pointAvoidPay != null and pointAvoidPay != ''" >
+                <![CDATA[
+                    #{pointAvoidPay,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="pointAvoidLimit != null and pointAvoidLimit != ''" >
+                <![CDATA[
+                    #{pointAvoidLimit,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="accountAvoidPay != null and accountAvoidPay != ''" >
+                <![CDATA[
+                    #{accountAvoidPay,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="accountAvoidLimit != null and accountAvoidLimit != ''" >
+                <![CDATA[
+                    #{accountAvoidLimit,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.ShoppingAssetRule" >
+        <![CDATA[
+        	update shopping_asset_rule
+        ]]>
+        <set >
+            <if test="pointAvoidPay != null and pointAvoidPay != ''" >
+                <![CDATA[
+                    point_avoid_pay = #{pointAvoidPay,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="pointAvoidLimit != null and pointAvoidLimit != ''" >
+                <![CDATA[
+                    point_avoid_limit = #{pointAvoidLimit,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="accountAvoidPay != null and accountAvoidPay != ''" >
+                <![CDATA[
+                    account_avoid_pay = #{accountAvoidPay,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="accountAvoidLimit != null and accountAvoidLimit != ''" >
+                <![CDATA[
+                    account_avoid_limit = #{accountAvoidLimit,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.ShoppingAssetRule">
+        <![CDATA[
+            delete from shopping_asset_rule
+        ]]>
+        <where>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.ShoppingAssetRule">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_asset_rule t
+        ]]>
+        <where>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_asset_rule t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+</mapper>

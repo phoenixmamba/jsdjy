@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.ShoppingCouponGrantDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.ShoppingCouponGrant">
+        <id column="id" property="id" />
+        <result column="add_time" property="addTime" />
+        <result column="reg_phone" property="regPhone" />
+        <result column="right_no" property="rightNo" />
+        <result column="nick_name" property="nickName" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, add_time, reg_phone, right_no
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        add_time
+          ,
+        reg_phone
+          ,
+        right_no
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="addTime != null and addTime != ''">
+            <![CDATA[
+                AND add_time = #{addTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="regPhone != null and regPhone != ''">
+            <![CDATA[
+                AND reg_phone like concat('%', #{regPhone,jdbcType=VARCHAR}, '%')
+            ]]>
+        </if>
+        <if test="rightNo != null and rightNo != ''">
+            <![CDATA[
+                AND right_no = #{rightNo ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="startTime !=null and startTime !='' ">
+            <![CDATA[
+                AND add_time  >=  #{startTime}
+            ]]>
+        </if>
+        <if test="endTime !=null and endTime!='' "  >
+            <![CDATA[
+                and add_time <=  #{endTime}
+             ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.ShoppingCouponGrant">
+        <![CDATA[
+			insert into shopping_coupon_grant
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+
+                <![CDATA[
+                    add_time,
+                ]]>
+
+            <if test="regPhone != null and regPhone != ''" >
+                <![CDATA[
+                    reg_phone,
+                ]]>
+            </if>
+            <if test="rightNo != null and rightNo != ''" >
+                <![CDATA[
+                    right_no,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            now(),
+            <if test="regPhone != null and regPhone != ''" >
+                <![CDATA[
+                    #{regPhone,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="rightNo != null and rightNo != ''" >
+                <![CDATA[
+                    #{rightNo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.ShoppingCouponGrant" >
+        <![CDATA[
+        	update shopping_coupon_grant
+        ]]>
+        <set >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="addTime != null and addTime != ''" >
+                <![CDATA[
+                    add_time = #{addTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="regPhone != null and regPhone != ''" >
+                <![CDATA[
+                    reg_phone = #{regPhone,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="rightNo != null and rightNo != ''" >
+                <![CDATA[
+                    right_no = #{rightNo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.ShoppingCouponGrant">
+        <![CDATA[
+            delete from shopping_coupon_grant
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.ShoppingCouponGrant">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_coupon_grant t
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select t.*,u.nick_name
+        ]]>
+        <![CDATA[
+            from shopping_coupon_grant t left join shopping_user u on t.reg_phone = u.mobile
+        ]]>
+        <where>
+            <if test="regPhone != null and regPhone != ''">
+                <![CDATA[
+                AND t.reg_phone like concat('%', #{regPhone,jdbcType=VARCHAR}, '%')
+            ]]>
+            </if>
+            <if test="rightNo != null and rightNo != ''">
+                <![CDATA[
+                AND t.right_no = #{rightNo ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="startTime !=null and startTime !='' ">
+                <![CDATA[
+                AND t.add_time  >=  #{startTime}
+            ]]>
+            </if>
+            <if test="endTime !=null and endTime!='' "  >
+            <![CDATA[
+                and t.add_time <=  #{endTime}
+             ]]>
+            </if>
+        </where>
+        order by t.add_time desc
+        <if test="pageSize != '' and pageSize != null">
+            <![CDATA[
+                    limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+                ]]>
+        </if>
+    </select>
+
+    <select id="queryListCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            select count(1)
+        ]]>
+        <![CDATA[
+            from shopping_coupon_grant t
+        ]]>
+        <where>
+            <if test="regPhone != null and regPhone != ''">
+                <![CDATA[
+                AND t.reg_phone like concat('%', #{regPhone,jdbcType=VARCHAR}, '%')
+            ]]>
+            </if>
+            <if test="rightNo != null and rightNo != ''">
+                <![CDATA[
+                AND t.right_no = #{rightNo ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="startTime !=null and startTime !='' ">
+                <![CDATA[
+                AND t.add_time  >=  #{startTime}
+            ]]>
+            </if>
+            <if test="endTime !=null and endTime!='' "  >
+                <![CDATA[
+                and t.add_time <=  #{endTime}
+             ]]>
+            </if>
+        </where>
+    </select>
+
+</mapper>

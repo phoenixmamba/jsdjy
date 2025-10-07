@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.TicketRedeemProjectWatchingNoticeDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.TicketRedeemProjectWatchingNotice">
+        <id column="project_id" property="projectId" />
+        <result column="show_length_tips" property="showLengthTips" />
+        <result column="entry_time_tips" property="entryTimeTips" />
+        <result column="children_entry_tips" property="childrenEntryTips" />
+        <result column="deposit_tips" property="depositTips" />
+        <result column="prohibit_goods_tips" property="prohibitGoodsTips" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        project_id, show_length_tips, entry_time_tips, children_entry_tips, deposit_tips, prohibit_goods_tips
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        project_id
+          ,
+        show_length_tips
+          ,
+        entry_time_tips
+          ,
+        children_entry_tips
+          ,
+        deposit_tips
+          ,
+        prohibit_goods_tips
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="projectId != null and projectId != ''">
+            <![CDATA[
+                AND project_id = #{projectId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="showLengthTips != null and showLengthTips != ''">
+            <![CDATA[
+                AND show_length_tips = #{showLengthTips ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="entryTimeTips != null and entryTimeTips != ''">
+            <![CDATA[
+                AND entry_time_tips = #{entryTimeTips ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="childrenEntryTips != null and childrenEntryTips != ''">
+            <![CDATA[
+                AND children_entry_tips = #{childrenEntryTips ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="depositTips != null and depositTips != ''">
+            <![CDATA[
+                AND deposit_tips = #{depositTips ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="prohibitGoodsTips != null and prohibitGoodsTips != ''">
+            <![CDATA[
+                AND prohibit_goods_tips = #{prohibitGoodsTips ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.TicketRedeemProjectWatchingNotice">
+        <![CDATA[
+			insert into ticket_redeem_project_watching_notice
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="projectId != null and projectId != ''" >
+                <![CDATA[
+                    project_id,
+                ]]>
+            </if>
+            <if test="showLengthTips != null and showLengthTips != ''" >
+                <![CDATA[
+                    show_length_tips,
+                ]]>
+            </if>
+            <if test="entryTimeTips != null and entryTimeTips != ''" >
+                <![CDATA[
+                    entry_time_tips,
+                ]]>
+            </if>
+            <if test="childrenEntryTips != null and childrenEntryTips != ''" >
+                <![CDATA[
+                    children_entry_tips,
+                ]]>
+            </if>
+            <if test="depositTips != null and depositTips != ''" >
+                <![CDATA[
+                    deposit_tips,
+                ]]>
+            </if>
+            <if test="prohibitGoodsTips != null and prohibitGoodsTips != ''" >
+                <![CDATA[
+                    prohibit_goods_tips,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="projectId != null and projectId != ''" >
+                <![CDATA[
+                    #{projectId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="showLengthTips != null and showLengthTips != ''" >
+                <![CDATA[
+                    #{showLengthTips,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="entryTimeTips != null and entryTimeTips != ''" >
+                <![CDATA[
+                    #{entryTimeTips,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="childrenEntryTips != null and childrenEntryTips != ''" >
+                <![CDATA[
+                    #{childrenEntryTips,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="depositTips != null and depositTips != ''" >
+                <![CDATA[
+                    #{depositTips,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="prohibitGoodsTips != null and prohibitGoodsTips != ''" >
+                <![CDATA[
+                    #{prohibitGoodsTips,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.TicketRedeemProjectWatchingNotice" >
+        <![CDATA[
+        	update ticket_redeem_project_watching_notice
+        ]]>
+        <set >
+            <if test="projectId != null and projectId != ''" >
+                <![CDATA[
+                    project_id = #{projectId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="showLengthTips != null and showLengthTips != ''" >
+                <![CDATA[
+                    show_length_tips = #{showLengthTips,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="entryTimeTips != null and entryTimeTips != ''" >
+                <![CDATA[
+                    entry_time_tips = #{entryTimeTips,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="childrenEntryTips != null and childrenEntryTips != ''" >
+                <![CDATA[
+                    children_entry_tips = #{childrenEntryTips,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="depositTips != null and depositTips != ''" >
+                <![CDATA[
+                    deposit_tips = #{depositTips,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="prohibitGoodsTips != null and prohibitGoodsTips != ''" >
+                <![CDATA[
+                    prohibit_goods_tips = #{prohibitGoodsTips,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and project_id = #{projectId ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.TicketRedeemProjectWatchingNotice">
+        <![CDATA[
+            delete from ticket_redeem_project_watching_notice
+        ]]>
+        <where>
+            <![CDATA[
+                and project_id = #{projectId ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.TicketRedeemProjectWatchingNotice">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from ticket_redeem_project_watching_notice t
+        ]]>
+        <where>
+            <![CDATA[
+                and project_id = #{projectId ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from ticket_redeem_project_watching_notice t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+</mapper>

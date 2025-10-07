@@ -1,0 +1,808 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.TInvoiceDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.TInvoice">
+        <id column="id" property="id" />
+        <result column="userid" property="userid" />
+        <result column="invoice_type" property="invoiceType" />
+        <result column="invoice_time" property="invoiceTime" />
+        <result column="invoice_serial_num" property="invoiceSerialNum" />
+        <result column="invoice_amount" property="invoiceAmount" />
+        <result column="invoice_line" property="invoiceLine" />
+        <result column="invoice_code" property="invoiceCode" />
+        <result column="invoice_no" property="invoiceNo" />
+        <result column="buyer_name" property="buyerName" />
+        <result column="buyer_tax_num" property="buyerTaxNum" />
+        <result column="buyer_addrrss" property="buyerAddress" />
+        <result column="buyer_tel" property="buyerTel" />
+        <result column="buyer_bank" property="buyerBank" />
+        <result column="buyer_account" property="buyerAccount" />
+        <result column="order_type" property="orderType" />
+        <result column="invoice_status" property="invoiceStatus" />
+        <result column="fail_cause" property="failCause" />
+        <result column="img_urls" property="imgUrls" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, userid, invoice_type, invoice_time, invoice_serial_num, invoice_amount, invoice_line, invoice_code, invoice_no, buyer_name, buyer_tax_num, buyer_addrrss, buyer_tel, buyer_bank, buyer_account, order_type,invoice_status,fail_cause,img_urls
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        userid
+          ,
+        invoice_type
+          ,
+        invoice_time
+          ,
+        invoice_serial_num
+          ,
+        invoice_amount
+          ,
+        invoice_line
+          ,
+        invoice_code
+          ,
+        invoice_no
+          ,
+        buyer_name
+          ,
+        buyer_tax_num
+          ,
+        buyer_addrrss
+          ,
+        buyer_tel
+          ,
+        buyer_bank
+          ,
+        buyer_account
+          ,
+        order_type
+          ,
+        invoice_status
+          ,
+        fail_cause
+          ,
+        img_urls
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="userid != null and userid != ''">
+            <![CDATA[
+                AND userid = #{userid ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="invoiceType != null and invoiceType != ''">
+            <![CDATA[
+                AND invoice_type = #{invoiceType ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="invoiceTime != null and invoiceTime != ''">
+            <![CDATA[
+                AND invoice_time = #{invoiceTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="invoiceSerialNum != null and invoiceSerialNum != ''">
+            <![CDATA[
+                AND invoice_serial_num = #{invoiceSerialNum ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="invoiceAmount != null and invoiceAmount != ''">
+            <![CDATA[
+                AND invoice_amount = #{invoiceAmount ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="invoiceLine != null and invoiceLine != ''">
+            <![CDATA[
+                AND invoice_line = #{invoiceLine ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="invoiceCode != null and invoiceCode != ''">
+            <![CDATA[
+                AND invoice_code = #{invoiceCode ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="invoiceNo != null and invoiceNo != ''">
+            <![CDATA[
+                AND invoice_no = #{invoiceNo ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="buyerName != null and buyerName != ''">
+            <![CDATA[
+                AND buyer_name = #{buyerName ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="buyerTaxNum != null and buyerTaxNum != ''">
+            <![CDATA[
+                AND buyer_tax_num = #{buyerTaxNum ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="buyerAddress != null and buyerAddress != ''">
+            <![CDATA[
+                AND buyer_addrrss = #{buyerAddress ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="buyerTel != null and buyerTel != ''">
+            <![CDATA[
+                AND buyer_tel = #{buyerTel ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="buyerBank != null and buyerBank != ''">
+            <![CDATA[
+                AND buyer_bank = #{buyerBank ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="buyerAccount != null and buyerAccount != ''">
+            <![CDATA[
+                AND buyer_account = #{buyerAccount ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="orderType != null and orderType != ''">
+            <![CDATA[
+                AND order_type = #{orderType ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="invoiceStatus != null and invoiceStatus != ''">
+            <![CDATA[
+                AND invoice_status = #{invoiceStatus ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="failCause != null and failCause != ''">
+            <![CDATA[
+                AND fail_cause = #{failCause ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="imgUrls != null and imgUrls != ''">
+            <![CDATA[
+                AND img_urls = #{imgUrls ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.TInvoice" useGeneratedKeys="true" keyProperty="id">
+        <![CDATA[
+			insert into t_invoice
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+
+            <if test="userid != null and userid != ''" >
+                <![CDATA[
+                    userid,
+                ]]>
+            </if>
+            <if test="invoiceType != null and invoiceType != ''" >
+                <![CDATA[
+                    invoice_type,
+                ]]>
+            </if>
+            <if test="invoiceTime != null and invoiceTime != ''" >
+                <![CDATA[
+                    invoice_time,
+                ]]>
+            </if>
+            <if test="invoiceSerialNum != null and invoiceSerialNum != ''" >
+                <![CDATA[
+                    invoice_serial_num,
+                ]]>
+            </if>
+            <if test="invoiceAmount != null and invoiceAmount != ''" >
+                <![CDATA[
+                    invoice_amount,
+                ]]>
+            </if>
+            <if test="invoiceLine != null and invoiceLine != ''" >
+                <![CDATA[
+                    invoice_line,
+                ]]>
+            </if>
+            <if test="invoiceCode != null and invoiceCode != ''" >
+                <![CDATA[
+                    invoice_code,
+                ]]>
+            </if>
+            <if test="invoiceNo != null and invoiceNo != ''" >
+                <![CDATA[
+                    invoice_no,
+                ]]>
+            </if>
+            <if test="buyerName != null and buyerName != ''" >
+                <![CDATA[
+                    buyer_name,
+                ]]>
+            </if>
+            <if test="buyerTaxNum != null and buyerTaxNum != ''" >
+                <![CDATA[
+                    buyer_tax_num,
+                ]]>
+            </if>
+            <if test="buyerAddress != null and buyerAddress != ''" >
+                <![CDATA[
+                    buyer_addrrss,
+                ]]>
+            </if>
+            <if test="buyerTel != null and buyerTel != ''" >
+                <![CDATA[
+                    buyer_tel,
+                ]]>
+            </if>
+            <if test="buyerBank != null and buyerBank != ''" >
+                <![CDATA[
+                    buyer_bank,
+                ]]>
+            </if>
+            <if test="buyerAccount != null and buyerAccount != ''" >
+                <![CDATA[
+                    buyer_account,
+                ]]>
+            </if>
+            <if test="orderType != null and orderType != ''" >
+                <![CDATA[
+                    order_type,
+                ]]>
+            </if>
+            <if test="invoiceStatus != null and invoiceStatus != ''" >
+                <![CDATA[
+                    invoice_status,
+                ]]>
+            </if>
+            <if test="failCause != null and failCause != ''" >
+                <![CDATA[
+                    fail_cause,
+                ]]>
+            </if>
+            <if test="imgUrls != null and imgUrls != ''" >
+                <![CDATA[
+                    img_urls,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+
+            <if test="userid != null and userid != ''" >
+                <![CDATA[
+                    #{userid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="invoiceType != null and invoiceType != ''" >
+                <![CDATA[
+                    #{invoiceType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="invoiceTime != null and invoiceTime != ''" >
+                <![CDATA[
+                    #{invoiceTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="invoiceSerialNum != null and invoiceSerialNum != ''" >
+                <![CDATA[
+                    #{invoiceSerialNum,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="invoiceAmount != null and invoiceAmount != ''" >
+                <![CDATA[
+                    #{invoiceAmount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="invoiceLine != null and invoiceLine != ''" >
+                <![CDATA[
+                    #{invoiceLine,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="invoiceCode != null and invoiceCode != ''" >
+                <![CDATA[
+                    #{invoiceCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="invoiceNo != null and invoiceNo != ''" >
+                <![CDATA[
+                    #{invoiceNo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="buyerName != null and buyerName != ''" >
+                <![CDATA[
+                    #{buyerName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="buyerTaxNum != null and buyerTaxNum != ''" >
+                <![CDATA[
+                    #{buyerTaxNum,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="buyerAddress != null and buyerAddress != ''" >
+                <![CDATA[
+                    #{buyerAddress,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="buyerTel != null and buyerTel != ''" >
+                <![CDATA[
+                    #{buyerTel,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="buyerBank != null and buyerBank != ''" >
+                <![CDATA[
+                    #{buyerBank,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="buyerAccount != null and buyerAccount != ''" >
+                <![CDATA[
+                    #{buyerAccount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="orderType != null and orderType != ''" >
+                <![CDATA[
+                    #{orderType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="invoiceStatus != null and invoiceStatus != ''" >
+                <![CDATA[
+                    #{invoiceStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="failCause != null and failCause != ''" >
+                <![CDATA[
+                    #{failCause,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="imgUrls != null and imgUrls != ''" >
+                <![CDATA[
+                    #{imgUrls,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.TInvoice" >
+        <![CDATA[
+        	update t_invoice
+        ]]>
+        <set >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userid != null and userid != ''" >
+                <![CDATA[
+                    userid = #{userid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="invoiceType != null and invoiceType != ''" >
+                <![CDATA[
+                    invoice_type = #{invoiceType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="invoiceTime != null and invoiceTime != ''" >
+                <![CDATA[
+                    invoice_time = #{invoiceTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="invoiceSerialNum != null and invoiceSerialNum != ''" >
+                <![CDATA[
+                    invoice_serial_num = #{invoiceSerialNum,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="invoiceAmount != null and invoiceAmount != ''" >
+                <![CDATA[
+                    invoice_amount = #{invoiceAmount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="invoiceLine != null and invoiceLine != ''" >
+                <![CDATA[
+                    invoice_line = #{invoiceLine,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="invoiceCode != null and invoiceCode != ''" >
+                <![CDATA[
+                    invoice_code = #{invoiceCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="invoiceNo != null and invoiceNo != ''" >
+                <![CDATA[
+                    invoice_no = #{invoiceNo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="buyerName != null and buyerName != ''" >
+                <![CDATA[
+                    buyer_name = #{buyerName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="buyerTaxNum != null and buyerTaxNum != ''" >
+                <![CDATA[
+                    buyer_tax_num = #{buyerTaxNum,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="buyerAddress != null and buyerAddress != ''" >
+                <![CDATA[
+                    buyer_addrrss = #{buyerAddress,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="buyerTel != null and buyerTel != ''" >
+                <![CDATA[
+                    buyer_tel = #{buyerTel,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="buyerBank != null and buyerBank != ''" >
+                <![CDATA[
+                    buyer_bank = #{buyerBank,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="buyerAccount != null and buyerAccount != ''" >
+                <![CDATA[
+                    buyer_account = #{buyerAccount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="orderType != null and orderType != ''" >
+                <![CDATA[
+                    order_type = #{orderType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="invoiceStatus != null and invoiceStatus != ''" >
+                <![CDATA[
+                    invoice_status = #{invoiceStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="failCause != null and failCause != ''" >
+                <![CDATA[
+                    fail_cause = #{failCause,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="imgUrls != null and imgUrls != ''" >
+                <![CDATA[
+                    img_urls = #{imgUrls,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.TInvoice">
+        <![CDATA[
+            delete from t_invoice
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.TInvoice">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from t_invoice t
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from t_invoice t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+        order by t.invoice_time desc
+        <if test="pageSize != '' and pageSize != null">
+            limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+        </if>
+    </select>
+
+    <select id="queryListCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            select count(0)
+        ]]>
+        <![CDATA[
+            from t_invoice t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryRecordList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select t.*
+        ]]>
+        <![CDATA[
+            from t_invoice t left join shopping_user tu on t.userid = tu.id
+        ]]>
+        <where>
+            <if test="mobile != null and mobile != ''">
+                <![CDATA[
+                AND tu.mobile = #{mobile ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="starttime != null and starttime != ''">
+                <![CDATA[
+                AND t.invoice_time >= #{starttime ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="endtime != null and endtime != ''">
+                <![CDATA[
+                AND t.invoice_time < (date(#{endtime})+1)
+            ]]>
+            </if>
+            <if test="invoiceType != null and invoiceType != ''">
+                <![CDATA[
+                AND t.invoice_type = #{invoiceType ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="invoiceLine != null and invoiceLine != ''">
+                <![CDATA[
+                AND t.invoice_line = #{invoiceLine ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="invoiceCode != null and invoiceCode != ''">
+                <![CDATA[
+                AND t.invoice_code like concat('%', #{invoiceCode,jdbcType=VARCHAR}, '%')
+            ]]>
+            </if>
+            <if test="invoiceNo != null and invoiceNo != ''">
+                <![CDATA[
+                AND t.invoice_no like concat('%', #{invoiceNo,jdbcType=VARCHAR}, '%')
+            ]]>
+            </if>
+            <if test="buyerName != null and buyerName != ''">
+                <![CDATA[
+                AND t.buyer_name like concat('%', #{buyerName,jdbcType=VARCHAR}, '%')
+            ]]>
+            </if>
+            <if test="buyerTaxNum != null and buyerTaxNum != ''">
+                <![CDATA[
+                AND t.buyer_tax_num like concat('%', #{buyerTaxNum,jdbcType=VARCHAR}, '%')
+            ]]>
+            </if>
+            <if test="orderType != null and orderType != ''">
+                <![CDATA[
+                AND t.order_type = #{orderType ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="invoiceStatus != null and invoiceStatus != ''">
+                <![CDATA[
+                AND t.invoice_status = #{invoiceStatus ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+        </where>
+        order by t.invoice_time desc
+        <if test="pageSize != '' and pageSize != null">
+            limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+        </if>
+    </select>
+
+    <select id="queryRecordListCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            select count(0)
+        ]]>
+        <![CDATA[
+            from t_invoice t left join shopping_user tu on t.userid = tu.id
+        ]]>
+        <where>
+            <if test="mobile != null and mobile != ''">
+                <![CDATA[
+                AND tu.mobile = #{mobile ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="starttime != null and starttime != ''">
+                <![CDATA[
+                AND t.invoice_time >= #{starttime ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="endtime != null and endtime != ''">
+                <![CDATA[
+                AND t.invoice_time < (date(#{endtime})+1)
+            ]]>
+            </if>
+            <if test="invoiceType != null and invoiceType != ''">
+                <![CDATA[
+                AND t.invoice_type = #{invoiceType ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="invoiceLine != null and invoiceLine != ''">
+                <![CDATA[
+                AND t.invoice_line = #{invoiceLine ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="invoiceCode != null and invoiceCode != ''">
+                <![CDATA[
+                AND t.invoice_code like concat('%', #{invoiceCode,jdbcType=VARCHAR}, '%')
+            ]]>
+            </if>
+            <if test="invoiceNo != null and invoiceNo != ''">
+                <![CDATA[
+                AND t.invoice_no like concat('%', #{invoiceNo,jdbcType=VARCHAR}, '%')
+            ]]>
+            </if>
+            <if test="buyerName != null and buyerName != ''">
+                <![CDATA[
+                AND t.buyer_name like concat('%', #{buyerName,jdbcType=VARCHAR}, '%')
+            ]]>
+            </if>
+            <if test="buyerTaxNum != null and buyerTaxNum != ''">
+                <![CDATA[
+                AND t.buyer_tax_num like concat('%', #{buyerTaxNum,jdbcType=VARCHAR}, '%')
+            ]]>
+            </if>
+            <if test="orderType != null and orderType != ''">
+                <![CDATA[
+                AND t.order_type = #{orderType ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="invoiceStatus != null and invoiceStatus != ''">
+                <![CDATA[
+                AND t.invoice_status = #{invoiceStatus ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+        </where>
+
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryProjectRecordList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select t.*
+        ]]>
+        <![CDATA[
+            from t_invoice t left join shopping_user tu on t.userid = tu.id
+        ]]>
+        <where>
+            <![CDATA[
+                AND t.id in (select invoice_id from t_invoice_ticket where project_id =#{projrctId ,jdbcType=VARCHAR})
+            ]]>
+            <if test="mobile != null and mobile != ''">
+                <![CDATA[
+                AND tu.mobile = #{mobile ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="starttime != null and starttime != ''">
+                <![CDATA[
+                AND t.invoice_time >= #{starttime ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="endtime != null and endtime != ''">
+                <![CDATA[
+                AND t.invoice_time < (date(#{endtime})+1)
+            ]]>
+            </if>
+            <if test="invoiceType != null and invoiceType != ''">
+                <![CDATA[
+                AND t.invoice_type = #{invoiceType ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="invoiceLine != null and invoiceLine != ''">
+                <![CDATA[
+                AND t.invoice_line = #{invoiceLine ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="invoiceCode != null and invoiceCode != ''">
+                <![CDATA[
+                AND t.invoice_code like concat('%', #{invoiceCode,jdbcType=VARCHAR}, '%')
+            ]]>
+            </if>
+            <if test="invoiceNo != null and invoiceNo != ''">
+                <![CDATA[
+                AND t.invoice_no like concat('%', #{invoiceNo,jdbcType=VARCHAR}, '%')
+            ]]>
+            </if>
+            <if test="buyerName != null and buyerName != ''">
+                <![CDATA[
+                AND t.buyer_name like concat('%', #{buyerName,jdbcType=VARCHAR}, '%')
+            ]]>
+            </if>
+            <if test="buyerTaxNum != null and buyerTaxNum != ''">
+                <![CDATA[
+                AND t.buyer_tax_num like concat('%', #{buyerTaxNum,jdbcType=VARCHAR}, '%')
+            ]]>
+            </if>
+            <if test="invoiceStatus != null and invoiceStatus != ''">
+                <![CDATA[
+                AND t.invoice_status = #{invoiceStatus ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+        </where>
+        order by t.invoice_time desc
+        <if test="pageSize != '' and pageSize != null">
+            limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+        </if>
+    </select>
+
+    <select id="queryProjectRecordListCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            select count(0)
+        ]]>
+        <![CDATA[
+            from t_invoice t left join shopping_user tu on t.userid = tu.id
+        ]]>
+        <where>
+            <![CDATA[
+                AND t.id in (select invoice_id from t_invoice_ticket where project_id =#{projrctId ,jdbcType=VARCHAR})
+            ]]>
+            <if test="mobile != null and mobile != ''">
+                <![CDATA[
+                AND tu.mobile = #{mobile ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="starttime != null and starttime != ''">
+                <![CDATA[
+                AND t.invoice_time >= #{starttime ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="endtime != null and endtime != ''">
+                <![CDATA[
+                AND t.invoice_time < (date(#{endtime})+1)
+            ]]>
+            </if>
+            <if test="invoiceType != null and invoiceType != ''">
+                <![CDATA[
+                AND t.invoice_type = #{invoiceType ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="invoiceLine != null and invoiceLine != ''">
+                <![CDATA[
+                AND t.invoice_line = #{invoiceLine ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="invoiceCode != null and invoiceCode != ''">
+                <![CDATA[
+                AND t.invoice_code like concat('%', #{invoiceCode,jdbcType=VARCHAR}, '%')
+            ]]>
+            </if>
+            <if test="invoiceNo != null and invoiceNo != ''">
+                <![CDATA[
+                AND t.invoice_no like concat('%', #{invoiceNo,jdbcType=VARCHAR}, '%')
+            ]]>
+            </if>
+            <if test="buyerName != null and buyerName != ''">
+                <![CDATA[
+                AND t.buyer_name like concat('%', #{buyerName,jdbcType=VARCHAR}, '%')
+            ]]>
+            </if>
+            <if test="buyerTaxNum != null and buyerTaxNum != ''">
+                <![CDATA[
+                AND t.buyer_tax_num like concat('%', #{buyerTaxNum,jdbcType=VARCHAR}, '%')
+            ]]>
+            </if>
+            <if test="invoiceStatus != null and invoiceStatus != ''">
+                <![CDATA[
+                AND t.invoice_status = #{invoiceStatus ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+        </where>
+
+    </select>
+</mapper>

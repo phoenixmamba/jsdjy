@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.ParkPlateDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.ParkPlate">
+        <id column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="plate_no" property="plateNo" />
+        <result column="default_plate_boolean" property="defaultPlateBoolean" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, user_id, plate_no, default_plate_boolean
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        user_id
+          ,
+        plate_no
+          ,
+        default_plate_boolean
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="userId != null and userId != ''">
+            <![CDATA[
+                AND user_id = #{userId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="plateNo != null and plateNo != ''">
+            <![CDATA[
+                AND plate_no = #{plateNo ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="defaultPlateBoolean != null and defaultPlateBoolean != ''">
+            <![CDATA[
+                AND default_plate_boolean = #{defaultPlateBoolean ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.ParkPlate">
+        <![CDATA[
+			insert into park_plate
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="userId != '' and userId != null" >
+                <![CDATA[
+                    user_id,
+                ]]>
+            </if>
+            <if test="plateNo != '' and plateNo != null" >
+                <![CDATA[
+                    plate_no,
+                ]]>
+            </if>
+            <if test="defaultPlateBoolean != '' and defaultPlateBoolean != null" >
+                <![CDATA[
+                    default_plate_boolean,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="userId != '' and userId != null" >
+                <![CDATA[
+                    #{userId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="plateNo != '' and plateNo != null" >
+                <![CDATA[
+                    #{plateNo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="defaultPlateBoolean != '' and defaultPlateBoolean != null" >
+                <![CDATA[
+                    #{defaultPlateBoolean,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.ParkPlate" >
+        <![CDATA[
+        	update park_plate
+        ]]>
+        <set >
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userId != '' and userId != null" >
+                <![CDATA[
+                    user_id = #{userId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="plateNo != '' and plateNo != null" >
+                <![CDATA[
+                    plate_no = #{plateNo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="defaultPlateBoolean != '' and defaultPlateBoolean != null" >
+                <![CDATA[
+                    default_plate_boolean = #{defaultPlateBoolean,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+    <!-- 更新 -->
+    <update id="cancelDefaultPlateNo" parameterType="com.centit.shopping.po.ParkPlate" >
+        <![CDATA[
+        	update park_plate
+        ]]>
+        <set >
+                <![CDATA[
+                    default_plate_boolean = '0',
+                ]]>
+        </set>
+        <where>
+
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.ParkPlate">
+        <![CDATA[
+            delete from park_plate
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.ParkPlate">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from park_plate t
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from park_plate t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+</mapper>

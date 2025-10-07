@@ -1,0 +1,34 @@
+package ${package.Controller};
+
+import com.alibaba.fastjson.JSONObject;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.bind.annotation.*;
+import ${package.Service}.${table.serviceName};
+
+/**
+ * <p> <p>
+ * @version : 1.0
+ * @Author : cui_jian
+ * @Description : $!{table.comment} 前端控制器
+ * @Date : ${date}
+ **/
+@RestController
+public class ${table.controllerName} {
+
+    @Resource
+    private ${table.serviceName} ;
+
+    /**
+     * 查询列表
+     * @return
+     */
+    @PostMapping("/queryList")
+    public JSONObject queryList(@RequestBody JSONObject reqJson, HttpServletRequest request, HttpServletResponse response){
+        JSONObject retJson = new JSONObject();
+        return retJson;
+    }
+
+}

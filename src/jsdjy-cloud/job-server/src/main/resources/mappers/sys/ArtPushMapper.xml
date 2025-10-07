@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.jobserver.dao.ArtPushDao">
+    <resultMap id="BaseResultMap" type="com.centit.jobserver.po.ArtPushPo">
+        <id column="id" property="id"/>
+        <result column="activity_id" property="activityId"/>
+        <result column="activity_type" property="activityType"/>
+        <result column="push_title" property="pushTitle"/>
+        <result column="push_content" property="pushContent"/>
+        <result column="push_type" property="pushType"/>
+        <result column="push_time" property="pushTime"/>
+        <result column="push_range" property="pushRange"/>
+        <result column="push_mobiles" property="pushMobiles"/>
+        <result column="push_status" property="pushStatus"/>
+        <result column="done_time" property="doneTime"/>
+    </resultMap>
+
+    <!--  查询待处理的定时推送任务 -->
+    <select id="selectToPushActivitys" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        select id,
+               activity_id,
+               1 as activity_type,
+               push_title,
+               push_content,
+               push_type,
+               push_time,
+               push_range,
+               push_mobiles,
+               push_status,
+               done_time
+            from shopping_artactivity_push t
+        <where>
+            <![CDATA[
+             t.push_type= #{pushType ,jdbcType=VARCHAR}
+            and t.push_status= #{pushStatus ,jdbcType=VARCHAR}
+            and t.push_time >= #{startTime ,jdbcType=VARCHAR}
+            and t.push_time <= #{endTime ,jdbcType=VARCHAR}
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询活动用户 -->
+    <select id="selectArtactivityUserMobiles" resultType="java.lang.String">
+        <![CDATA[
+        select t.mobile
+        ]]>
+        <![CDATA[
+            from shopping_user t
+        ]]>
+        <where>
+            and t.id in (
+            select so.user_id
+            from shopping_goodscart sg
+                     left join shopping_orderform so on sg.of_id = so.id
+            where sg.goods_id = #{activityId,jdbcType=VARCHAR}
+              and sg.cart_type = #{cartType,jdbcType=INTEGER}
+              and (so.order_status = 20 or so.order_status = 30 or so.order_status = 50)
+        )
+                  and t.deleteStatus = '0'
+        </where>
+    </select>
+
+    <!-- 更新 -->
+    <update id="updateActivityPushStatus" parameterType="com.centit.jobserver.po.ArtPushPo" >
+        <![CDATA[
+        	update shopping_artactivity_push
+        ]]>
+        <set >
+            <if test="pushStatus != null" >
+                <![CDATA[
+                    push_status = #{pushStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="doneTime != null and doneTime != ''" >
+                <![CDATA[
+                    done_time = #{doneTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+    <select id="selectToPushPlans" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        select id,
+        activity_id,
+        2 as activity_type,
+        push_title,
+        push_content,
+        push_type,
+        push_time,
+        push_range,
+        push_mobiles,
+        push_status,
+        done_time
+        from shopping_artplan_push t
+        <where>
+            <![CDATA[
+            and t.push_type= #{pushType ,jdbcType=VARCHAR}
+            and t.push_status= #{pushStatus ,jdbcType=VARCHAR}
+            and t.push_time >= #{startTime ,jdbcType=VARCHAR}
+            and t.push_time <= #{endTime ,jdbcType=VARCHAR}
+            ]]>
+        </where>
+    </select>
+
+    <!-- 更新 -->
+    <update id="updatePlanPushStatus" parameterType="com.centit.jobserver.po.ArtPushPo" >
+        <![CDATA[
+        	update shopping_artplan_push
+        ]]>
+        <set >
+            <if test="pushStatus != null" >
+                <![CDATA[
+                    push_status = #{pushStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="doneTime != null and doneTime != ''" >
+                <![CDATA[
+                    done_time = #{doneTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+</mapper>

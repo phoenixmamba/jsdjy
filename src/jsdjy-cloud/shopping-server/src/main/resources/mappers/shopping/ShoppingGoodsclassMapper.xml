@@ -1,0 +1,648 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.ShoppingGoodsclassDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.ShoppingGoodsclass">
+        <id column="id" property="id" />
+        <result column="addTime" property="addTime" />
+        <result column="deleteStatus" property="deleteStatus" />
+        <result column="className" property="className" />
+        <result column="display" property="display" />
+        <result column="level" property="level" />
+        <result column="recommend" property="recommend" />
+        <result column="sequence" property="sequence" />
+        <result column="goodsType_id" property="goodstypeId" />
+        <result column="parent_id" property="parentId" />
+        <result column="seo_description" property="seoDescription" />
+        <result column="seo_keywords" property="seoKeywords" />
+        <result column="icon_sys" property="iconSys" />
+        <result column="icon_type" property="iconType" />
+        <result column="icon_acc_id" property="iconAccId" />
+        <result column="store_id" property="storeId" />
+        <result column="place" property="place" />
+        <result column="sellingPointGroup_id" property="sellingpointgroupId" />
+        <result column="idle_recommend" property="idleRecommend" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, addTime, deleteStatus, className, display, level, recommend, sequence, goodsType_id, parent_id, seo_description, seo_keywords, icon_sys, icon_type, icon_acc_id, store_id, place, sellingPointGroup_id, idle_recommend
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        addTime
+          ,
+        deleteStatus
+          ,
+        className
+          ,
+        display
+          ,
+        level
+          ,
+        recommend
+          ,
+        sequence
+          ,
+        goodsType_id
+          ,
+        parent_id
+          ,
+        seo_description
+          ,
+        seo_keywords
+          ,
+        icon_sys
+          ,
+        icon_type
+          ,
+        icon_acc_id
+          ,
+        store_id
+          ,
+        place
+          ,
+        sellingPointGroup_id
+          ,
+        idle_recommend
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="addTime != null and addTime != ''">
+            <![CDATA[
+                AND addTime = #{addTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="deleteStatus != null and deleteStatus != ''">
+            <![CDATA[
+                AND deleteStatus = #{deleteStatus ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="className != null and className != ''">
+            <![CDATA[
+                AND className = #{className ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="display != null and display != ''">
+            <![CDATA[
+                AND display = #{display ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="level != null and level != ''">
+            <![CDATA[
+                AND level = #{level ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="recommend != null and recommend != ''">
+            <![CDATA[
+                AND recommend = #{recommend ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="sequence != null and sequence != ''">
+            <![CDATA[
+                AND sequence = #{sequence ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="goodstypeId != null and goodstypeId != ''">
+            <![CDATA[
+                AND goodsType_id = #{goodstypeId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="parentId != null and parentId != ''">
+            <![CDATA[
+                AND parent_id = #{parentId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <!--<if test="parentId == null or parentId == ''">-->
+            <!--<![CDATA[-->
+                <!--AND parent_id is null-->
+            <!--]]>-->
+        <!--</if>-->
+        <if test="seoDescription != null and seoDescription != ''">
+            <![CDATA[
+                AND seo_description = #{seoDescription ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="seoKeywords != null and seoKeywords != ''">
+            <![CDATA[
+                AND seo_keywords = #{seoKeywords ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="iconSys != null and iconSys != ''">
+            <![CDATA[
+                AND icon_sys = #{iconSys ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="iconType != null and iconType != ''">
+            <![CDATA[
+                AND icon_type = #{iconType ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="iconAccId != null and iconAccId != ''">
+            <![CDATA[
+                AND icon_acc_id = #{iconAccId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="storeId != null and storeId != ''">
+            <![CDATA[
+                AND store_id = #{storeId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="place != null and place != ''">
+            <![CDATA[
+                AND place = #{place ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="sellingpointgroupId != null and sellingpointgroupId != ''">
+            <![CDATA[
+                AND sellingPointGroup_id = #{sellingpointgroupId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="idleRecommend != null and idleRecommend != ''">
+            <![CDATA[
+                AND idle_recommend = #{idleRecommend ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.ShoppingGoodsclass" useGeneratedKeys="true" keyProperty="id">
+        <![CDATA[
+			insert into shopping_goodsclass
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+
+                <![CDATA[
+                    addTime,
+                ]]>
+
+
+                <![CDATA[
+                    deleteStatus,
+                ]]>
+
+            <if test="className != '' and className != null" >
+                <![CDATA[
+                    className,
+                ]]>
+            </if>
+            <if test="display != '' and display != null" >
+                <![CDATA[
+                    display,
+                ]]>
+            </if>
+            <if test="level != '' and level != null" >
+                <![CDATA[
+                    level,
+                ]]>
+            </if>
+            <if test="recommend != '' and recommend != null" >
+                <![CDATA[
+                    recommend,
+                ]]>
+            </if>
+            <if test="sequence != '' and sequence != null" >
+                <![CDATA[
+                    sequence,
+                ]]>
+            </if>
+            <if test="goodstypeId != '' and goodstypeId != null" >
+                <![CDATA[
+                    goodsType_id,
+                ]]>
+            </if>
+            <if test="parentId != '' and parentId != null" >
+                <![CDATA[
+                    parent_id,
+                ]]>
+            </if>
+            <if test="seoDescription != '' and seoDescription != null" >
+                <![CDATA[
+                    seo_description,
+                ]]>
+            </if>
+            <if test="seoKeywords != '' and seoKeywords != null" >
+                <![CDATA[
+                    seo_keywords,
+                ]]>
+            </if>
+            <if test="iconSys != '' and iconSys != null" >
+                <![CDATA[
+                    icon_sys,
+                ]]>
+            </if>
+            <if test="iconType != '' and iconType != null" >
+                <![CDATA[
+                    icon_type,
+                ]]>
+            </if>
+            <if test="iconAccId != '' and iconAccId != null" >
+                <![CDATA[
+                    icon_acc_id,
+                ]]>
+            </if>
+            <if test="storeId != '' and storeId != null" >
+                <![CDATA[
+                    store_id,
+                ]]>
+            </if>
+            <if test="place != '' and place != null" >
+                <![CDATA[
+                    place,
+                ]]>
+            </if>
+            <if test="sellingpointgroupId != '' and sellingpointgroupId != null" >
+                <![CDATA[
+                    sellingPointGroup_id,
+                ]]>
+            </if>
+            <if test="idleRecommend != '' and idleRecommend != null" >
+                <![CDATA[
+                    idle_recommend,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            now(),
+            0,
+            <if test="className != '' and className != null" >
+                <![CDATA[
+                    #{className,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="display != '' and display != null" >
+                <![CDATA[
+                    #{display,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="level != '' and level != null" >
+                <![CDATA[
+                    #{level,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="recommend != '' and recommend != null" >
+                <![CDATA[
+                    #{recommend,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="sequence != '' and sequence != null" >
+                <![CDATA[
+                    #{sequence,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="goodstypeId != '' and goodstypeId != null" >
+                <![CDATA[
+                    #{goodstypeId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="parentId != '' and parentId != null" >
+                <![CDATA[
+                    #{parentId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="seoDescription != '' and seoDescription != null" >
+                <![CDATA[
+                    #{seoDescription,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="seoKeywords != '' and seoKeywords != null" >
+                <![CDATA[
+                    #{seoKeywords,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="iconSys != '' and iconSys != null" >
+                <![CDATA[
+                    #{iconSys,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="iconType != '' and iconType != null" >
+                <![CDATA[
+                    #{iconType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="iconAccId != '' and iconAccId != null" >
+                <![CDATA[
+                    #{iconAccId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="storeId != '' and storeId != null" >
+                <![CDATA[
+                    #{storeId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="place != '' and place != null" >
+                <![CDATA[
+                    #{place,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="sellingpointgroupId != '' and sellingpointgroupId != null" >
+                <![CDATA[
+                    #{sellingpointgroupId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="idleRecommend != '' and idleRecommend != null" >
+                <![CDATA[
+                    #{idleRecommend,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.ShoppingGoodsclass" >
+        <![CDATA[
+        	update shopping_goodsclass
+        ]]>
+        <set >
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="addTime != '' and addTime != null" >
+                <![CDATA[
+                    addTime = #{addTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="deleteStatus != '' and deleteStatus != null" >
+                <![CDATA[
+                    deleteStatus = #{deleteStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="className != '' and className != null" >
+                <![CDATA[
+                    className = #{className,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="display != '' and display != null" >
+                <![CDATA[
+                    display = #{display,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="level != '' and level != null" >
+                <![CDATA[
+                    level = #{level,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="recommend != '' and recommend != null" >
+                <![CDATA[
+                    recommend = #{recommend,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="sequence != '' and sequence != null" >
+                <![CDATA[
+                    sequence = #{sequence,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="goodstypeId != '' and goodstypeId != null" >
+                <![CDATA[
+                    goodsType_id = #{goodstypeId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="parentId != '' and parentId != null" >
+                <![CDATA[
+                    parent_id = #{parentId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="seoDescription != '' and seoDescription != null" >
+                <![CDATA[
+                    seo_description = #{seoDescription,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="seoKeywords != '' and seoKeywords != null" >
+                <![CDATA[
+                    seo_keywords = #{seoKeywords,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="iconSys != '' and iconSys != null" >
+                <![CDATA[
+                    icon_sys = #{iconSys,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="iconType != '' and iconType != null" >
+                <![CDATA[
+                    icon_type = #{iconType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="iconAccId != '' and iconAccId != null" >
+                <![CDATA[
+                    icon_acc_id = #{iconAccId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="storeId != '' and storeId != null" >
+                <![CDATA[
+                    store_id = #{storeId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="place != '' and place != null" >
+                <![CDATA[
+                    place = #{place,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="sellingpointgroupId != '' and sellingpointgroupId != null" >
+                <![CDATA[
+                    sellingPointGroup_id = #{sellingpointgroupId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="idleRecommend != '' and idleRecommend != null" >
+                <![CDATA[
+                    idle_recommend = #{idleRecommend,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.ShoppingGoodsclass">
+        <![CDATA[
+            delete from shopping_goodsclass
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.ShoppingGoodsclass">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_goodsclass t
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_goodsclass t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+        order by t.sequence asc
+        <if test="pageSize != '' and pageSize != null" >
+            <![CDATA[
+                    limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+                ]]>
+        </if>
+    </select>
+
+    <!-- 更新所有子分类类型信息 -->
+    <update id="updateChildClassType" parameterType="com.centit.shopping.po.ShoppingGoodsclass" >
+        <![CDATA[
+        	update shopping_goodsclass
+        ]]>
+        <set >
+
+                <![CDATA[
+                    goodsType_id = #{goodstypeId,jdbcType=VARCHAR},
+                ]]>
+
+        </set>
+        <where>
+            <![CDATA[
+                and FIND_IN_SET(id,queryChildrenGoodClass(#{id ,jdbcType=VARCHAR }))
+            ]]>
+        </where>
+    </update>
+
+    <!--  查询列表 -->
+    <select id="queryPageList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_goodsclass t
+        ]]>
+        <where>
+            <if test="id != null and id != ''">
+                <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="deleteStatus != null and deleteStatus != ''">
+                <![CDATA[
+                AND deleteStatus = #{deleteStatus ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="className != null and className != ''">
+                <![CDATA[
+                AND className like concat('%', #{className,jdbcType=VARCHAR}, '%')
+            ]]>
+            </if>
+            <if test="display != null and display != ''">
+                <![CDATA[
+                AND display = #{display ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="level != null and level != ''">
+                <![CDATA[
+                AND level = #{level ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="parentId != null and parentId != ''">
+                <![CDATA[
+                AND parent_id = #{parentId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="parentId == null or parentId == ''">
+            <![CDATA[
+            AND parent_id is null
+            ]]>
+            </if>
+            <if test="storeId != null and storeId != ''">
+                <![CDATA[
+                AND store_id = #{storeId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+
+        </where>
+        order by t.sequence asc
+        <if test="pageSize != '' and pageSize != null" >
+            <![CDATA[
+                    limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+                ]]>
+        </if>
+    </select>
+
+    <!--  查询列表数量 -->
+    <select id="queryTotalCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            SELECT count(0) FROM shopping_goodsclass
+        ]]>
+        <where>
+            <if test="id != null and id != ''">
+                <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="deleteStatus != null and deleteStatus != ''">
+                <![CDATA[
+                AND deleteStatus = #{deleteStatus ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="className != null and className != ''">
+                <![CDATA[
+                AND className like concat('%', #{className,jdbcType=VARCHAR}, '%')
+            ]]>
+            </if>
+            <if test="display != null and display != ''">
+                <![CDATA[
+                AND display = #{display ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="level != null and level != ''">
+                <![CDATA[
+                AND level = #{level ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="parentId != null and parentId != ''">
+                <![CDATA[
+                AND parent_id = #{parentId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="parentId == null or parentId == ''">
+                <![CDATA[
+            AND parent_id is null
+            ]]>
+            </if>
+            <if test="storeId != null and storeId != ''">
+                <![CDATA[
+                AND store_id = #{storeId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+        </where>
+    </select>
+</mapper>

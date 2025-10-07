@@ -1,0 +1,1718 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.ticket.dao.ShoppingOrderformDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.ticket.po.ShoppingOrderform">
+        <id column="id" property="id" />
+        <result column="addTime" property="addTime" />
+        <result column="deleteStatus" property="deleteStatus" />
+        <result column="finishTime" property="finishTime" />
+        <result column="goods_amount" property="goodsAmount" />
+        <result column="invoice" property="invoice" />
+        <result column="invoiceType" property="invoiceType" />
+        <result column="msg" property="msg" />
+        <result column="order_id" property="orderId" />
+        <result column="order_status" property="orderStatus" />
+        <result column="payTime" property="payTime" />
+        <result column="pay_msg" property="payMsg" />
+        <result column="refund" property="refund" />
+        <result column="refund_type" property="refundType" />
+        <result column="shipCode" property="shipCode" />
+        <result column="shipTime" property="shipTime" />
+        <result column="ship_price" property="shipPrice" />
+        <result column="totalPrice" property="totalPrice" />
+        <result column="addr_id" property="addrId" />
+        <result column="payment_id" property="paymentId" />
+        <result column="store_id" property="storeId" />
+        <result column="user_id" property="userId" />
+        <result column="auto_confirm_email" property="autoConfirmEmail" />
+        <result column="auto_confirm_app" property="autoConfirmApp" />
+        <result column="auto_confirm_sms" property="autoConfirmSms" />
+        <result column="transport" property="transport" />
+        <result column="out_order_id" property="outOrderId" />
+        <result column="ec_id" property="ecId" />
+        <result column="ci_id" property="ciId" />
+        <result column="order_seller_intro" property="orderSellerIntro" />
+        <result column="return_shipCode" property="returnShipcode" />
+        <result column="return_ec_id" property="returnEcId" />
+        <result column="return_content" property="returnContent" />
+        <result column="return_shipTime" property="returnShiptime" />
+        <result column="order_type" property="orderType" />
+        <result column="weixinpay_order_id" property="weixinpayOrderId" />
+        <result column="goods_dgold" property="goodsDgold" />
+        <result column="total_integral" property="totalIntegral" />
+        <result column="wx_prepay_id" property="wxPrepayId" />
+        <result column="pay_price" property="payPrice" />
+        <result column="sign_endTime" property="signEndtime" />
+        <result column="weixinpay_time" property="weixinpayTime" />
+        <result column="invoice1" property="invoice1" />
+        <result column="deduction_integral" property="deductionIntegral" />
+        <result column="group_id" property="groupId" />
+        <result column="maintain_code" property="maintainCode" />
+        <result column="home_maintain" property="homeMaintain" />
+        <result column="maintain_money" property="maintainMoney" />
+        <result column="home_maintain_money" property="homeMaintainMoney" />
+        <result column="bargain_already_price" property="bargainAlreadyPrice" />
+        <result column="bargain_can_price" property="bargainCanPrice" />
+        <result column="bargain_end_time" property="bargainEndTime" />
+        <result column="bargain_number" property="bargainNumber" />
+        <result column="order_tol_price" property="orderTolPrice" />
+        <result column="applyfor_bargain_id" property="applyforBargainId" />
+        <result column="red_status" property="redStatus" />
+        <result column="confirm_time" property="confirmTime" />
+        <result column="share_count" property="shareCount" />
+        <result column="share_end_time" property="shareEndTime" />
+        <result column="share_total_price" property="shareTotalPrice" />
+        <result column="orderShareRedGoods_id" property="ordershareredgoodsId" />
+        <result column="share_died_time" property="shareDiedTime" />
+        <result column="coupon_id" property="couponId" />
+        <result column="deduction_integral_price" property="deductionIntegralPrice" />
+        <result column="deduction_member_price" property="deductionMemberPrice" />
+        <result column="deduction_balance_price" property="deductionBalancePrice" />
+        <result column="deduction_coupon_price" property="deductionCouponPrice" />
+        <result column="deduction_giftcard_price" property="deductionGiftcardPrice" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, addTime, deleteStatus, finishTime, goods_amount, invoice, invoiceType, msg, order_id, order_status, payTime, pay_msg, refund, refund_type, shipCode, shipTime, ship_price, totalPrice, addr_id, payment_id, store_id, user_id, auto_confirm_email, auto_confirm_app, auto_confirm_sms, transport, out_order_id, ec_id, ci_id, order_seller_intro, return_shipCode, return_ec_id, return_content, return_shipTime, order_type, weixinpay_order_id, goods_dgold, total_integral, wx_prepay_id, pay_price, sign_endTime, weixinpay_time, invoice1, deduction_integral, group_id, maintain_code, home_maintain, maintain_money, home_maintain_money, bargain_already_price, bargain_can_price, bargain_end_time, bargain_number, order_tol_price, applyfor_bargain_id, red_status, confirm_time, share_count, share_end_time, share_total_price, orderShareRedGoods_id, share_died_time, coupon_id, deduction_integral_price, deduction_member_price, deduction_balance_price, deduction_coupon_price, deduction_giftcard_price
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        addTime
+          ,
+        deleteStatus
+          ,
+        finishTime
+          ,
+        goods_amount
+          ,
+        invoice
+          ,
+        invoiceType
+          ,
+        msg
+          ,
+        order_id
+          ,
+        order_status
+          ,
+        payTime
+          ,
+        pay_msg
+          ,
+        refund
+          ,
+        refund_type
+          ,
+        shipCode
+          ,
+        shipTime
+          ,
+        ship_price
+          ,
+        totalPrice
+          ,
+        addr_id
+          ,
+        payment_id
+          ,
+        store_id
+          ,
+        user_id
+          ,
+        auto_confirm_email
+          ,
+        auto_confirm_app
+          ,
+        auto_confirm_sms
+          ,
+        transport
+          ,
+        out_order_id
+          ,
+        ec_id
+          ,
+        ci_id
+          ,
+        order_seller_intro
+          ,
+        return_shipCode
+          ,
+        return_ec_id
+          ,
+        return_content
+          ,
+        return_shipTime
+          ,
+        order_type
+          ,
+        weixinpay_order_id
+          ,
+        goods_dgold
+          ,
+        total_integral
+          ,
+        wx_prepay_id
+          ,
+        pay_price
+          ,
+        sign_endTime
+          ,
+        weixinpay_time
+          ,
+        invoice1
+          ,
+        deduction_integral
+          ,
+        group_id
+          ,
+        maintain_code
+          ,
+        home_maintain
+          ,
+        maintain_money
+          ,
+        home_maintain_money
+          ,
+        bargain_already_price
+          ,
+        bargain_can_price
+          ,
+        bargain_end_time
+          ,
+        bargain_number
+          ,
+        order_tol_price
+          ,
+        applyfor_bargain_id
+          ,
+        red_status
+          ,
+        confirm_time
+          ,
+        share_count
+          ,
+        share_end_time
+          ,
+        share_total_price
+          ,
+        orderShareRedGoods_id
+          ,
+        share_died_time
+          ,
+        coupon_id
+          ,
+        deduction_integral_price
+          ,
+        deduction_member_price
+          ,
+        deduction_balance_price
+          ,
+        deduction_coupon_price
+          ,
+        deduction_giftcard_price
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="addTime != null and addTime != ''">
+            <![CDATA[
+                AND addTime = #{addTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="deleteStatus != null and deleteStatus != ''">
+            <![CDATA[
+                AND deleteStatus = #{deleteStatus ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="finishTime != null and finishTime != ''">
+            <![CDATA[
+                AND finishTime = #{finishTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="goodsAmount != null and goodsAmount != ''">
+            <![CDATA[
+                AND goods_amount = #{goodsAmount ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="invoice != null and invoice != ''">
+            <![CDATA[
+                AND invoice = #{invoice ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="invoiceType != null and invoiceType != ''">
+            <![CDATA[
+                AND invoiceType = #{invoiceType ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="msg != null and msg != ''">
+            <![CDATA[
+                AND msg = #{msg ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="orderId != null and orderId != ''">
+            <![CDATA[
+                AND order_id = #{orderId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="orderStatus != null and orderStatus != ''">
+            <![CDATA[
+                AND order_status = #{orderStatus ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="payTime != null and payTime != ''">
+            <![CDATA[
+                AND payTime = #{payTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="payMsg != null and payMsg != ''">
+            <![CDATA[
+                AND pay_msg = #{payMsg ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="refund != null and refund != ''">
+            <![CDATA[
+                AND refund = #{refund ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="refundType != null and refundType != ''">
+            <![CDATA[
+                AND refund_type = #{refundType ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="shipCode != null and shipCode != ''">
+            <![CDATA[
+                AND shipCode = #{shipCode ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="shipTime != null and shipTime != ''">
+            <![CDATA[
+                AND shipTime = #{shipTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="shipPrice != null and shipPrice != ''">
+            <![CDATA[
+                AND ship_price = #{shipPrice ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="totalPrice != null and totalPrice != ''">
+            <![CDATA[
+                AND totalPrice = #{totalPrice ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="addrId != null and addrId != ''">
+            <![CDATA[
+                AND addr_id = #{addrId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="paymentId != null and paymentId != ''">
+            <![CDATA[
+                AND payment_id = #{paymentId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="storeId != null and storeId != ''">
+            <![CDATA[
+                AND store_id = #{storeId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="userId != null and userId != ''">
+            <![CDATA[
+                AND user_id = #{userId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="autoConfirmEmail != null and autoConfirmEmail != ''">
+            <![CDATA[
+                AND auto_confirm_email = #{autoConfirmEmail ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="autoConfirmApp != null and autoConfirmApp != ''">
+            <![CDATA[
+                AND auto_confirm_app = #{autoConfirmApp ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="autoConfirmSms != null and autoConfirmSms != ''">
+            <![CDATA[
+                AND auto_confirm_sms = #{autoConfirmSms ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="transport != null and transport != ''">
+            <![CDATA[
+                AND transport = #{transport ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="outOrderId != null and outOrderId != ''">
+            <![CDATA[
+                AND out_order_id = #{outOrderId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="ecId != null and ecId != ''">
+            <![CDATA[
+                AND ec_id = #{ecId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="ciId != null and ciId != ''">
+            <![CDATA[
+                AND ci_id = #{ciId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="orderSellerIntro != null and orderSellerIntro != ''">
+            <![CDATA[
+                AND order_seller_intro = #{orderSellerIntro ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="returnShipcode != null and returnShipcode != ''">
+            <![CDATA[
+                AND return_shipCode = #{returnShipcode ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="returnEcId != null and returnEcId != ''">
+            <![CDATA[
+                AND return_ec_id = #{returnEcId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="returnContent != null and returnContent != ''">
+            <![CDATA[
+                AND return_content = #{returnContent ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="returnShiptime != null and returnShiptime != ''">
+            <![CDATA[
+                AND return_shipTime = #{returnShiptime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="orderType != null">
+            <![CDATA[
+                AND order_type = #{orderType ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="weixinpayOrderId != null and weixinpayOrderId != ''">
+            <![CDATA[
+                AND weixinpay_order_id = #{weixinpayOrderId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="goodsDgold != null and goodsDgold != ''">
+            <![CDATA[
+                AND goods_dgold = #{goodsDgold ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="totalIntegral != null and totalIntegral != ''">
+            <![CDATA[
+                AND total_integral = #{totalIntegral ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="wxPrepayId != null and wxPrepayId != ''">
+            <![CDATA[
+                AND wx_prepay_id = #{wxPrepayId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="payPrice != null and payPrice != ''">
+            <![CDATA[
+                AND pay_price = #{payPrice ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="signEndtime != null and signEndtime != ''">
+            <![CDATA[
+                AND sign_endTime = #{signEndtime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="weixinpayTime != null and weixinpayTime != ''">
+            <![CDATA[
+                AND weixinpay_time = #{weixinpayTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="invoice1 != null and invoice1 != ''">
+            <![CDATA[
+                AND invoice1 = #{invoice1 ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="deductionIntegral != null and deductionIntegral != ''">
+            <![CDATA[
+                AND deduction_integral = #{deductionIntegral ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="groupId != null and groupId != ''">
+            <![CDATA[
+                AND group_id = #{groupId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="maintainCode != null and maintainCode != ''">
+            <![CDATA[
+                AND maintain_code = #{maintainCode ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="homeMaintain != null and homeMaintain != ''">
+            <![CDATA[
+                AND home_maintain = #{homeMaintain ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="maintainMoney != null and maintainMoney != ''">
+            <![CDATA[
+                AND maintain_money = #{maintainMoney ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="homeMaintainMoney != null and homeMaintainMoney != ''">
+            <![CDATA[
+                AND home_maintain_money = #{homeMaintainMoney ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="bargainAlreadyPrice != null and bargainAlreadyPrice != ''">
+            <![CDATA[
+                AND bargain_already_price = #{bargainAlreadyPrice ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="bargainCanPrice != null and bargainCanPrice != ''">
+            <![CDATA[
+                AND bargain_can_price = #{bargainCanPrice ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="bargainEndTime != null and bargainEndTime != ''">
+            <![CDATA[
+                AND bargain_end_time = #{bargainEndTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="bargainNumber != null and bargainNumber != ''">
+            <![CDATA[
+                AND bargain_number = #{bargainNumber ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="orderTolPrice != null and orderTolPrice != ''">
+            <![CDATA[
+                AND order_tol_price = #{orderTolPrice ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="applyforBargainId != null and applyforBargainId != ''">
+            <![CDATA[
+                AND applyfor_bargain_id = #{applyforBargainId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="redStatus != null and redStatus != ''">
+            <![CDATA[
+                AND red_status = #{redStatus ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="confirmTime != null and confirmTime != ''">
+            <![CDATA[
+                AND confirm_time = #{confirmTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="shareCount != null and shareCount != ''">
+            <![CDATA[
+                AND share_count = #{shareCount ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="shareEndTime != null and shareEndTime != ''">
+            <![CDATA[
+                AND share_end_time = #{shareEndTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="shareTotalPrice != null and shareTotalPrice != ''">
+            <![CDATA[
+                AND share_total_price = #{shareTotalPrice ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="ordershareredgoodsId != null and ordershareredgoodsId != ''">
+            <![CDATA[
+                AND orderShareRedGoods_id = #{ordershareredgoodsId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="shareDiedTime != null and shareDiedTime != ''">
+            <![CDATA[
+                AND share_died_time = #{shareDiedTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="couponId != null and couponId != ''">
+            <![CDATA[
+                AND coupon_id = #{couponId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="deductionIntegralPrice != null and deductionIntegralPrice != ''">
+            <![CDATA[
+                AND deduction_integral_price = #{deductionIntegralPrice ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="deductionMemberPrice != null and deductionMemberPrice != ''">
+            <![CDATA[
+                AND deduction_member_price = #{deductionMemberPrice ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="deductionBalancePrice != null and deductionBalancePrice != ''">
+            <![CDATA[
+                AND deduction_balance_price = #{deductionBalancePrice ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="deductionCouponPrice != null and deductionCouponPrice != ''">
+            <![CDATA[
+                AND deduction_coupon_price = #{deductionCouponPrice ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="deductionGiftcardPrice != null and deductionGiftcardPrice != ''">
+            <![CDATA[
+                AND deduction_giftcard_price = #{deductionGiftcardPrice ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="startTime !=null and startTime !='' ">
+            <![CDATA[
+                AND addTime  >=  #{startTime}
+            ]]>
+        </if>
+        <if test="endTime !=null and endTime!='' "  >
+            <![CDATA[
+                and addTime <=  #{endTime}
+             ]]>
+        </if>
+        <if test="goodsId !=null and goodsId!='' "  >
+            <![CDATA[
+                and id in (select of_id from shopping_goodscart where goods_id = #{goodsId ,jdbcType=VARCHAR})
+             ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.ticket.po.ShoppingOrderform" useGeneratedKeys="true" keyProperty="id">
+        <![CDATA[
+			insert into shopping_orderform
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+
+
+                <![CDATA[
+                    addTime,
+                ]]>
+            <if test="deleteStatus != '' and deleteStatus != null" >
+                <![CDATA[
+                    deleteStatus,
+                ]]>
+            </if>
+            <if test="finishTime != '' and finishTime != null" >
+                <![CDATA[
+                    finishTime,
+                ]]>
+            </if>
+            <if test="goodsAmount != '' and goodsAmount != null" >
+                <![CDATA[
+                    goods_amount,
+                ]]>
+            </if>
+            <if test="invoice != '' and invoice != null" >
+                <![CDATA[
+                    invoice,
+                ]]>
+            </if>
+            <if test="invoiceType != '' and invoiceType != null" >
+                <![CDATA[
+                    invoiceType,
+                ]]>
+            </if>
+            <if test="msg != '' and msg != null" >
+                <![CDATA[
+                    msg,
+                ]]>
+            </if>
+            <if test="orderId != '' and orderId != null" >
+                <![CDATA[
+                    order_id,
+                ]]>
+            </if>
+            <if test="orderStatus != '' and orderStatus != null" >
+                <![CDATA[
+                    order_status,
+                ]]>
+            </if>
+            <if test="payTime != '' and payTime != null" >
+                <![CDATA[
+                    payTime,
+                ]]>
+            </if>
+            <if test="payMsg != '' and payMsg != null" >
+                <![CDATA[
+                    pay_msg,
+                ]]>
+            </if>
+            <if test="refund != '' and refund != null" >
+                <![CDATA[
+                    refund,
+                ]]>
+            </if>
+            <if test="refundType != '' and refundType != null" >
+                <![CDATA[
+                    refund_type,
+                ]]>
+            </if>
+            <if test="shipCode != '' and shipCode != null" >
+                <![CDATA[
+                    shipCode,
+                ]]>
+            </if>
+            <if test="shipTime != '' and shipTime != null" >
+                <![CDATA[
+                    shipTime,
+                ]]>
+            </if>
+            <if test="shipPrice != '' and shipPrice != null" >
+                <![CDATA[
+                    ship_price,
+                ]]>
+            </if>
+            <if test="totalPrice != '' and totalPrice != null" >
+                <![CDATA[
+                    totalPrice,
+                ]]>
+            </if>
+            <if test="addrId != '' and addrId != null" >
+                <![CDATA[
+                    addr_id,
+                ]]>
+            </if>
+            <if test="paymentId != '' and paymentId != null" >
+                <![CDATA[
+                    payment_id,
+                ]]>
+            </if>
+            <if test="storeId != '' and storeId != null" >
+                <![CDATA[
+                    store_id,
+                ]]>
+            </if>
+            <if test="userId != '' and userId != null" >
+                <![CDATA[
+                    user_id,
+                ]]>
+            </if>
+            <if test="autoConfirmEmail != '' and autoConfirmEmail != null" >
+                <![CDATA[
+                    auto_confirm_email,
+                ]]>
+            </if>
+            <if test="autoConfirmApp != '' and autoConfirmApp != null" >
+                <![CDATA[
+                    auto_confirm_app,
+                ]]>
+            </if>
+            <if test="autoConfirmSms != '' and autoConfirmSms != null" >
+                <![CDATA[
+                    auto_confirm_sms,
+                ]]>
+            </if>
+            <if test="transport != '' and transport != null" >
+                <![CDATA[
+                    transport,
+                ]]>
+            </if>
+            <if test="outOrderId != '' and outOrderId != null" >
+                <![CDATA[
+                    out_order_id,
+                ]]>
+            </if>
+            <if test="ecId != '' and ecId != null" >
+                <![CDATA[
+                    ec_id,
+                ]]>
+            </if>
+            <if test="ciId != '' and ciId != null" >
+                <![CDATA[
+                    ci_id,
+                ]]>
+            </if>
+            <if test="orderSellerIntro != '' and orderSellerIntro != null" >
+                <![CDATA[
+                    order_seller_intro,
+                ]]>
+            </if>
+            <if test="returnShipcode != '' and returnShipcode != null" >
+                <![CDATA[
+                    return_shipCode,
+                ]]>
+            </if>
+            <if test="returnEcId != '' and returnEcId != null" >
+                <![CDATA[
+                    return_ec_id,
+                ]]>
+            </if>
+            <if test="returnContent != '' and returnContent != null" >
+                <![CDATA[
+                    return_content,
+                ]]>
+            </if>
+            <if test="returnShiptime != '' and returnShiptime != null" >
+                <![CDATA[
+                    return_shipTime,
+                ]]>
+            </if>
+            <if test="orderType != null" >
+                <![CDATA[
+                    order_type,
+                ]]>
+            </if>
+            <if test="weixinpayOrderId != '' and weixinpayOrderId != null" >
+                <![CDATA[
+                    weixinpay_order_id,
+                ]]>
+            </if>
+            <if test="goodsDgold != '' and goodsDgold != null" >
+                <![CDATA[
+                    goods_dgold,
+                ]]>
+            </if>
+            <if test="totalIntegral != '' and totalIntegral != null" >
+                <![CDATA[
+                    total_integral,
+                ]]>
+            </if>
+            <if test="wxPrepayId != '' and wxPrepayId != null" >
+                <![CDATA[
+                    wx_prepay_id,
+                ]]>
+            </if>
+            <if test="payPrice != '' and payPrice != null" >
+                <![CDATA[
+                    pay_price,
+                ]]>
+            </if>
+            <if test="signEndtime != '' and signEndtime != null" >
+                <![CDATA[
+                    sign_endTime,
+                ]]>
+            </if>
+            <if test="weixinpayTime != '' and weixinpayTime != null" >
+                <![CDATA[
+                    weixinpay_time,
+                ]]>
+            </if>
+            <if test="invoice1 != '' and invoice1 != null" >
+                <![CDATA[
+                    invoice1,
+                ]]>
+            </if>
+            <if test="deductionIntegral != '' and deductionIntegral != null" >
+                <![CDATA[
+                    deduction_integral,
+                ]]>
+            </if>
+            <if test="groupId != '' and groupId != null" >
+                <![CDATA[
+                    group_id,
+                ]]>
+            </if>
+            <if test="maintainCode != '' and maintainCode != null" >
+                <![CDATA[
+                    maintain_code,
+                ]]>
+            </if>
+            <if test="homeMaintain != '' and homeMaintain != null" >
+                <![CDATA[
+                    home_maintain,
+                ]]>
+            </if>
+            <if test="maintainMoney != '' and maintainMoney != null" >
+                <![CDATA[
+                    maintain_money,
+                ]]>
+            </if>
+            <if test="homeMaintainMoney != '' and homeMaintainMoney != null" >
+                <![CDATA[
+                    home_maintain_money,
+                ]]>
+            </if>
+            <if test="bargainAlreadyPrice != '' and bargainAlreadyPrice != null" >
+                <![CDATA[
+                    bargain_already_price,
+                ]]>
+            </if>
+            <if test="bargainCanPrice != '' and bargainCanPrice != null" >
+                <![CDATA[
+                    bargain_can_price,
+                ]]>
+            </if>
+            <if test="bargainEndTime != '' and bargainEndTime != null" >
+                <![CDATA[
+                    bargain_end_time,
+                ]]>
+            </if>
+            <if test="bargainNumber != '' and bargainNumber != null" >
+                <![CDATA[
+                    bargain_number,
+                ]]>
+            </if>
+            <if test="orderTolPrice != '' and orderTolPrice != null" >
+                <![CDATA[
+                    order_tol_price,
+                ]]>
+            </if>
+            <if test="applyforBargainId != '' and applyforBargainId != null" >
+                <![CDATA[
+                    applyfor_bargain_id,
+                ]]>
+            </if>
+            <if test="redStatus != '' and redStatus != null" >
+                <![CDATA[
+                    red_status,
+                ]]>
+            </if>
+            <if test="confirmTime != '' and confirmTime != null" >
+                <![CDATA[
+                    confirm_time,
+                ]]>
+            </if>
+            <if test="shareCount != '' and shareCount != null" >
+                <![CDATA[
+                    share_count,
+                ]]>
+            </if>
+            <if test="shareEndTime != '' and shareEndTime != null" >
+                <![CDATA[
+                    share_end_time,
+                ]]>
+            </if>
+            <if test="shareTotalPrice != '' and shareTotalPrice != null" >
+                <![CDATA[
+                    share_total_price,
+                ]]>
+            </if>
+            <if test="ordershareredgoodsId != '' and ordershareredgoodsId != null" >
+                <![CDATA[
+                    orderShareRedGoods_id,
+                ]]>
+            </if>
+            <if test="shareDiedTime != '' and shareDiedTime != null" >
+                <![CDATA[
+                    share_died_time,
+                ]]>
+            </if>
+            <if test="couponId != '' and couponId != null" >
+                <![CDATA[
+                    coupon_id,
+                ]]>
+            </if>
+            <if test="deductionIntegralPrice != '' and deductionIntegralPrice != null" >
+                <![CDATA[
+                    deduction_integral_price,
+                ]]>
+            </if>
+            <if test="deductionMemberPrice != '' and deductionMemberPrice != null" >
+                <![CDATA[
+                    deduction_member_price,
+                ]]>
+            </if>
+            <if test="deductionBalancePrice != '' and deductionBalancePrice != null" >
+                <![CDATA[
+                    deduction_balance_price,
+                ]]>
+            </if>
+            <if test="deductionCouponPrice != '' and deductionCouponPrice != null" >
+                <![CDATA[
+                    deduction_coupon_price,
+                ]]>
+            </if>
+            <if test="deductionGiftcardPrice != '' and deductionGiftcardPrice != null" >
+                <![CDATA[
+                    deduction_giftcard_price,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+
+            now(),
+            <if test="deleteStatus != '' and deleteStatus != null" >
+                <![CDATA[
+                    #{deleteStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="finishTime != '' and finishTime != null" >
+                <![CDATA[
+                    #{finishTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="goodsAmount != '' and goodsAmount != null" >
+                <![CDATA[
+                    #{goodsAmount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="invoice != '' and invoice != null" >
+                <![CDATA[
+                    #{invoice,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="invoiceType != '' and invoiceType != null" >
+                <![CDATA[
+                    #{invoiceType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="msg != '' and msg != null" >
+                <![CDATA[
+                    #{msg,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="orderId != '' and orderId != null" >
+                <![CDATA[
+                    #{orderId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="orderStatus != '' and orderStatus != null" >
+                <![CDATA[
+                    #{orderStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="payTime != '' and payTime != null" >
+                <![CDATA[
+                    #{payTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="payMsg != '' and payMsg != null" >
+                <![CDATA[
+                    #{payMsg,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="refund != '' and refund != null" >
+                <![CDATA[
+                    #{refund,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="refundType != '' and refundType != null" >
+                <![CDATA[
+                    #{refundType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="shipCode != '' and shipCode != null" >
+                <![CDATA[
+                    #{shipCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="shipTime != '' and shipTime != null" >
+                <![CDATA[
+                    #{shipTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="shipPrice != '' and shipPrice != null" >
+                <![CDATA[
+                    #{shipPrice,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="totalPrice != '' and totalPrice != null" >
+                <![CDATA[
+                    #{totalPrice,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="addrId != '' and addrId != null" >
+                <![CDATA[
+                    #{addrId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="paymentId != '' and paymentId != null" >
+                <![CDATA[
+                    #{paymentId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="storeId != '' and storeId != null" >
+                <![CDATA[
+                    #{storeId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userId != '' and userId != null" >
+                <![CDATA[
+                    #{userId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="autoConfirmEmail != '' and autoConfirmEmail != null" >
+                <![CDATA[
+                    #{autoConfirmEmail,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="autoConfirmApp != '' and autoConfirmApp != null" >
+                <![CDATA[
+                    #{autoConfirmApp,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="autoConfirmSms != '' and autoConfirmSms != null" >
+                <![CDATA[
+                    #{autoConfirmSms,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="transport != '' and transport != null" >
+                <![CDATA[
+                    #{transport,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="outOrderId != '' and outOrderId != null" >
+                <![CDATA[
+                    #{outOrderId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="ecId != '' and ecId != null" >
+                <![CDATA[
+                    #{ecId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="ciId != '' and ciId != null" >
+                <![CDATA[
+                    #{ciId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="orderSellerIntro != '' and orderSellerIntro != null" >
+                <![CDATA[
+                    #{orderSellerIntro,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="returnShipcode != '' and returnShipcode != null" >
+                <![CDATA[
+                    #{returnShipcode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="returnEcId != '' and returnEcId != null" >
+                <![CDATA[
+                    #{returnEcId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="returnContent != '' and returnContent != null" >
+                <![CDATA[
+                    #{returnContent,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="returnShiptime != '' and returnShiptime != null" >
+                <![CDATA[
+                    #{returnShiptime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="orderType != null" >
+                <![CDATA[
+                    #{orderType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="weixinpayOrderId != '' and weixinpayOrderId != null" >
+                <![CDATA[
+                    #{weixinpayOrderId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="goodsDgold != '' and goodsDgold != null" >
+                <![CDATA[
+                    #{goodsDgold,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="totalIntegral != '' and totalIntegral != null" >
+                <![CDATA[
+                    #{totalIntegral,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="wxPrepayId != '' and wxPrepayId != null" >
+                <![CDATA[
+                    #{wxPrepayId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="payPrice != '' and payPrice != null" >
+                <![CDATA[
+                    #{payPrice,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="signEndtime != '' and signEndtime != null" >
+                <![CDATA[
+                    #{signEndtime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="weixinpayTime != '' and weixinpayTime != null" >
+                <![CDATA[
+                    #{weixinpayTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="invoice1 != '' and invoice1 != null" >
+                <![CDATA[
+                    #{invoice1,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="deductionIntegral != '' and deductionIntegral != null" >
+                <![CDATA[
+                    #{deductionIntegral,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="groupId != '' and groupId != null" >
+                <![CDATA[
+                    #{groupId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="maintainCode != '' and maintainCode != null" >
+                <![CDATA[
+                    #{maintainCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="homeMaintain != '' and homeMaintain != null" >
+                <![CDATA[
+                    #{homeMaintain,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="maintainMoney != '' and maintainMoney != null" >
+                <![CDATA[
+                    #{maintainMoney,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="homeMaintainMoney != '' and homeMaintainMoney != null" >
+                <![CDATA[
+                    #{homeMaintainMoney,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="bargainAlreadyPrice != '' and bargainAlreadyPrice != null" >
+                <![CDATA[
+                    #{bargainAlreadyPrice,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="bargainCanPrice != '' and bargainCanPrice != null" >
+                <![CDATA[
+                    #{bargainCanPrice,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="bargainEndTime != '' and bargainEndTime != null" >
+                <![CDATA[
+                    #{bargainEndTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="bargainNumber != '' and bargainNumber != null" >
+                <![CDATA[
+                    #{bargainNumber,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="orderTolPrice != '' and orderTolPrice != null" >
+                <![CDATA[
+                    #{orderTolPrice,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="applyforBargainId != '' and applyforBargainId != null" >
+                <![CDATA[
+                    #{applyforBargainId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="redStatus != '' and redStatus != null" >
+                <![CDATA[
+                    #{redStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="confirmTime != '' and confirmTime != null" >
+                <![CDATA[
+                    #{confirmTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="shareCount != '' and shareCount != null" >
+                <![CDATA[
+                    #{shareCount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="shareEndTime != '' and shareEndTime != null" >
+                <![CDATA[
+                    #{shareEndTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="shareTotalPrice != '' and shareTotalPrice != null" >
+                <![CDATA[
+                    #{shareTotalPrice,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="ordershareredgoodsId != '' and ordershareredgoodsId != null" >
+                <![CDATA[
+                    #{ordershareredgoodsId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="shareDiedTime != '' and shareDiedTime != null" >
+                <![CDATA[
+                    #{shareDiedTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="couponId != '' and couponId != null" >
+                <![CDATA[
+                    #{couponId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="deductionIntegralPrice != '' and deductionIntegralPrice != null" >
+                <![CDATA[
+                    #{deductionIntegralPrice,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="deductionMemberPrice != '' and deductionMemberPrice != null" >
+                <![CDATA[
+                    #{deductionMemberPrice,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="deductionBalancePrice != '' and deductionBalancePrice != null" >
+                <![CDATA[
+                    #{deductionBalancePrice,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="deductionCouponPrice != '' and deductionCouponPrice != null" >
+                <![CDATA[
+                    #{deductionCouponPrice,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="deductionGiftcardPrice != '' and deductionGiftcardPrice != null" >
+                <![CDATA[
+                    #{deductionGiftcardPrice,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.ticket.po.ShoppingOrderform" >
+        <![CDATA[
+        	update shopping_orderform
+        ]]>
+        <set >
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="addTime != '' and addTime != null" >
+                <![CDATA[
+                    addTime = #{addTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="deleteStatus != '' and deleteStatus != null" >
+                <![CDATA[
+                    deleteStatus = #{deleteStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="finishTime != '' and finishTime != null" >
+                <![CDATA[
+                    finishTime = #{finishTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="goodsAmount != '' and goodsAmount != null" >
+                <![CDATA[
+                    goods_amount = #{goodsAmount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="invoice != '' and invoice != null" >
+                <![CDATA[
+                    invoice = #{invoice,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="invoiceType != '' and invoiceType != null" >
+                <![CDATA[
+                    invoiceType = #{invoiceType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="msg != '' and msg != null" >
+                <![CDATA[
+                    msg = #{msg,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="orderId != '' and orderId != null" >
+                <![CDATA[
+                    order_id = #{orderId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="orderStatus != null" >
+                <![CDATA[
+                    order_status = #{orderStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="payTime != '' and payTime != null" >
+                <![CDATA[
+                    payTime = #{payTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="payMsg != '' and payMsg != null" >
+                <![CDATA[
+                    pay_msg = #{payMsg,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="refund != '' and refund != null" >
+                <![CDATA[
+                    refund = #{refund,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="refundType != '' and refundType != null" >
+                <![CDATA[
+                    refund_type = #{refundType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="shipCode != '' and shipCode != null" >
+                <![CDATA[
+                    shipCode = #{shipCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="shipCode == null || shipCode == ''" >
+                <![CDATA[
+                    shipCode = null,
+                ]]>
+            </if>
+            <if test="shipTime != '' and shipTime != null" >
+                <![CDATA[
+                    shipTime = #{shipTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="shipPrice != '' and shipPrice != null" >
+                <![CDATA[
+                    ship_price = #{shipPrice,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="totalPrice != '' and totalPrice != null" >
+                <![CDATA[
+                    totalPrice = #{totalPrice,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="addrId != '' and addrId != null" >
+                <![CDATA[
+                    addr_id = #{addrId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="paymentId != '' and paymentId != null" >
+                <![CDATA[
+                    payment_id = #{paymentId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="storeId != '' and storeId != null" >
+                <![CDATA[
+                    store_id = #{storeId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userId != '' and userId != null" >
+                <![CDATA[
+                    user_id = #{userId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="autoConfirmEmail != '' and autoConfirmEmail != null" >
+                <![CDATA[
+                    auto_confirm_email = #{autoConfirmEmail,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="autoConfirmApp != '' and autoConfirmApp != null" >
+                <![CDATA[
+                    auto_confirm_app = #{autoConfirmApp,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="autoConfirmSms != '' and autoConfirmSms != null" >
+                <![CDATA[
+                    auto_confirm_sms = #{autoConfirmSms,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="transport != '' and transport != null" >
+                <![CDATA[
+                    transport = #{transport,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="outOrderId != '' and outOrderId != null" >
+                <![CDATA[
+                    out_order_id = #{outOrderId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="ecId != '' and ecId != null" >
+                <![CDATA[
+                    ec_id = #{ecId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="ecId == null || ecId == ''" >
+                <![CDATA[
+                    ec_id = null,
+                ]]>
+            </if>
+            <if test="ciId != '' and ciId != null" >
+                <![CDATA[
+                    ci_id = #{ciId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="orderSellerIntro != '' and orderSellerIntro != null" >
+                <![CDATA[
+                    order_seller_intro = #{orderSellerIntro,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="returnShipcode != '' and returnShipcode != null" >
+                <![CDATA[
+                    return_shipCode = #{returnShipcode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="returnEcId != '' and returnEcId != null" >
+                <![CDATA[
+                    return_ec_id = #{returnEcId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="returnContent != '' and returnContent != null" >
+                <![CDATA[
+                    return_content = #{returnContent,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="returnShiptime != '' and returnShiptime != null" >
+                <![CDATA[
+                    return_shipTime = #{returnShiptime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="orderType != null" >
+                <![CDATA[
+                    order_type = #{orderType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="weixinpayOrderId != '' and weixinpayOrderId != null" >
+                <![CDATA[
+                    weixinpay_order_id = #{weixinpayOrderId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="goodsDgold != '' and goodsDgold != null" >
+                <![CDATA[
+                    goods_dgold = #{goodsDgold,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="totalIntegral != '' and totalIntegral != null" >
+                <![CDATA[
+                    total_integral = #{totalIntegral,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="wxPrepayId != '' and wxPrepayId != null" >
+                <![CDATA[
+                    wx_prepay_id = #{wxPrepayId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="payPrice != '' and payPrice != null" >
+                <![CDATA[
+                    pay_price = #{payPrice,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="signEndtime != '' and signEndtime != null" >
+                <![CDATA[
+                    sign_endTime = #{signEndtime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="weixinpayTime != '' and weixinpayTime != null" >
+                <![CDATA[
+                    weixinpay_time = #{weixinpayTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="invoice1 != '' and invoice1 != null" >
+                <![CDATA[
+                    invoice1 = #{invoice1,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="deductionIntegral != '' and deductionIntegral != null" >
+                <![CDATA[
+                    deduction_integral = #{deductionIntegral,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="groupId != '' and groupId != null" >
+                <![CDATA[
+                    group_id = #{groupId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="maintainCode != '' and maintainCode != null" >
+                <![CDATA[
+                    maintain_code = #{maintainCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="homeMaintain != '' and homeMaintain != null" >
+                <![CDATA[
+                    home_maintain = #{homeMaintain,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="maintainMoney != '' and maintainMoney != null" >
+                <![CDATA[
+                    maintain_money = #{maintainMoney,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="homeMaintainMoney != '' and homeMaintainMoney != null" >
+                <![CDATA[
+                    home_maintain_money = #{homeMaintainMoney,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="bargainAlreadyPrice != '' and bargainAlreadyPrice != null" >
+                <![CDATA[
+                    bargain_already_price = #{bargainAlreadyPrice,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="bargainCanPrice != '' and bargainCanPrice != null" >
+                <![CDATA[
+                    bargain_can_price = #{bargainCanPrice,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="bargainEndTime != '' and bargainEndTime != null" >
+                <![CDATA[
+                    bargain_end_time = #{bargainEndTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="bargainNumber != '' and bargainNumber != null" >
+                <![CDATA[
+                    bargain_number = #{bargainNumber,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="orderTolPrice != '' and orderTolPrice != null" >
+                <![CDATA[
+                    order_tol_price = #{orderTolPrice,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="applyforBargainId != '' and applyforBargainId != null" >
+                <![CDATA[
+                    applyfor_bargain_id = #{applyforBargainId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="redStatus != '' and redStatus != null" >
+                <![CDATA[
+                    red_status = #{redStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="confirmTime != '' and confirmTime != null" >
+                <![CDATA[
+                    confirm_time = #{confirmTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="shareCount != '' and shareCount != null" >
+                <![CDATA[
+                    share_count = #{shareCount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="shareEndTime != '' and shareEndTime != null" >
+                <![CDATA[
+                    share_end_time = #{shareEndTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="shareTotalPrice != '' and shareTotalPrice != null" >
+                <![CDATA[
+                    share_total_price = #{shareTotalPrice,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="ordershareredgoodsId != '' and ordershareredgoodsId != null" >
+                <![CDATA[
+                    orderShareRedGoods_id = #{ordershareredgoodsId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="shareDiedTime != '' and shareDiedTime != null" >
+                <![CDATA[
+                    share_died_time = #{shareDiedTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="couponId != '' and couponId != null" >
+                <![CDATA[
+                    coupon_id = #{couponId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="deductionIntegralPrice != '' and deductionIntegralPrice != null" >
+                <![CDATA[
+                    deduction_integral_price = #{deductionIntegralPrice,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="deductionMemberPrice != '' and deductionMemberPrice != null" >
+                <![CDATA[
+                    deduction_member_price = #{deductionMemberPrice,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="deductionBalancePrice != '' and deductionBalancePrice != null" >
+                <![CDATA[
+                    deduction_balance_price = #{deductionBalancePrice,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="deductionCouponPrice != '' and deductionCouponPrice != null" >
+                <![CDATA[
+                    deduction_coupon_price = #{deductionCouponPrice,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="deductionGiftcardPrice != '' and deductionGiftcardPrice != null" >
+                <![CDATA[
+                    deduction_giftcard_price = #{deductionGiftcardPrice,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.ticket.po.ShoppingOrderform">
+        <![CDATA[
+            delete from shopping_orderform
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.ticket.po.ShoppingOrderform">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_orderform t
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询详情 -->
+    <select id="queryDetailByOrderId" resultMap="BaseResultMap" parameterType="com.centit.ticket.po.ShoppingOrderform">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_orderform t
+        ]]>
+        <where>
+            <![CDATA[
+                and order_id = #{orderId,jdbcType=VARCHAR}
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_orderform t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+        order by t.addTime desc
+        <if test="pageSize != '' and pageSize != null" >
+            <![CDATA[
+                    limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+                ]]>
+        </if>
+    </select>
+
+    <!--  查询列表数量 -->
+    <select id="queryTotalCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            SELECT count(0) FROM shopping_orderform
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+    <!-- 更新 -->
+    <update id="cancelOrder" parameterType="com.centit.ticket.po.ShoppingOrderform" >
+        <![CDATA[
+        	update shopping_orderform
+        ]]>
+        <set >
+                <![CDATA[
+                    order_status = 0,
+                ]]>
+                <![CDATA[
+                    finishTime = now(),
+                ]]>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+</mapper>

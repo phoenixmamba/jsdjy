@@ -1,0 +1,55 @@
+package ${package.ServiceImpl};
+
+
+import java.util.HashMap;
+import java.util.List;
+import javax.annotation.Resource;
+
+import ${package.Entity}.${entity};
+import ${package.Mapper}.${table.mapperName};
+import ${package.Service}.${table.serviceName};
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import com.alibaba.fastjson.JSONObject;
+
+/**
+ * <p>$!{table.comment}<p>
+ * @version : 1.0
+ * @Author : cui_jian
+ * @Description : 服务实现类
+ * @Date : ${date}
+ **/
+@Transactional
+@Service
+public class ${table.serviceImplName} implements ${table.serviceName} {
+    public static final Log log = LogFactory.getLog(${table.serviceName}.class);
+
+    @Resource
+    private ${table.mapperName} ;
+
+
+    /**
+     * 查询列表
+     */
+    @Override
+    public JSONObject queryList(JSONObject reqJson) {
+        JSONObject retJson = new JSONObject();
+        String retCode = "1";
+        String retMsg = "操作失败！";
+        JSONObject bizDataJson = new JSONObject();
+        try {
+
+            retCode = "0";
+            retMsg = "操作成功！";
+        } catch (Exception e) {
+            log.error(e);
+        }
+        retJson.put("retCode", retCode);
+        retJson.put("retMsg", retMsg);
+        retJson.put("bizData", bizDataJson);
+        return retJson;
+    }
+
+}

@@ -1,0 +1,33 @@
+#移动支付服务
+#Author: cui_jian
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:10080/eureka/
+      #生产prod
+      #defaultZone: http://10.1.31.201:10080/eureka/
+
+server:
+  port: 10090
+
+spring:
+  application:
+    #配置文件名称，多个配置文件用英文逗号分隔
+    name: pay
+  #从config-server配置中心获取配置信息
+  cloud:
+    config:
+      name: pay,commonRetCodeMsg,commonDataSource,commonConfig
+      label: master
+      profile: prod
+      discovery:
+        enabled: true
+        serviceId: configServer
+
+#微信/支付宝关闭未支付订单的时间阈值(单位：分钟)
+#演出订单
+orderExpireMinutes_ticket: 8
+#其它订单
+orderExpireMinutes_other: 15
+

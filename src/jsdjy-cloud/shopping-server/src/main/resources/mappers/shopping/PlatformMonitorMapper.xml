@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.PlatformMonitorDao">
+
+
+    <select id="selectRegisterUser" resultType="com.centit.shopping.po.PlatformMonitorInfo">
+        SELECT
+        <if test="searchType=='year'">
+            year(u.addTime)
+        </if>
+        <if test="searchType=='month'">
+            date_format(u.addTime,'%Y-%m')
+        </if>
+        <if test="searchType=='day'">
+            date(u.addTime)
+        </if>
+        as createDate,
+        count(0) userNum
+        FROM shopping_user u
+        <where>
+            <if test="start!=null and start !=''">
+                AND u.addTime &gt; #{start}
+            </if>
+            <if test="end!=null and end !=''">
+                AND u.addTime &lt; adddate(#{end}, interval 1 ${searchType})
+            </if>
+        </where>
+
+        GROUP BY
+        <if test="searchType=='year'">
+            year(u.addTime)
+        </if>
+        <if test="searchType=='month'">
+            date_format(u.addTime,'%Y-%m')
+        </if>
+        <if test="searchType=='day'">
+            date(u.addTime)
+        </if>
+        order by createDate
+    </select>
+
+    <!--  查询列表数量 -->
+    <select id="queryUserCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            SELECT count(0) FROM shopping_user
+        ]]>
+    </select>
+
+    <select id="selectActivityUser" resultType="com.centit.shopping.po.PlatformMonitorInfo">
+        SELECT count(0) userNum,
+        a.loginTime createDate
+        FROM (
+        SELECT
+        <if test="searchType=='year'">
+            year(t.loginTime)
+        </if>
+        <if test="searchType=='month'">
+            date_format(t.loginTime,'%Y-%m')
+        </if>
+        <if test="searchType=='day'">
+            date(t.loginTime)
+        </if>
+        as
+        loginTime
+        FROM t_st_login t
+        WHERE USERID IS NOT NULL
+        <if test="deviceType!=null and deviceType!=''">
+            AND t.terminal_type=#{deviceType}
+        </if>
+        <if test="start!=null ">
+            AND t.loginTime &gt; #{start}
+        </if>
+        <if test="end!=null ">
+            AND t.loginTime &lt; adddate(#{end}, interval 1 ${searchType})
+        </if>
+        GROUP BY USERID,
+        <if test="searchType=='year'">
+            year(t.loginTime)
+        </if>
+        <if test="searchType=='month'">
+            date_format(t.loginTime,'%Y-%m')
+        </if>
+        <if test="searchType=='day'">
+            date(t.loginTime)
+        </if>
+        ) a
+        GROUP BY a.loginTime
+        order by createDate
+    </select>
+
+    <select id="selectEquipmentStatistics" resultType="com.centit.shopping.po.PlatformMonitorInfo">
+        SELECT TERMINAL_BRANDVALUE brand,
+        count(0) brandNum
+        FROM (SELECT TERMINAL_BRANDVALUE
+        FROM t_st_login
+        <where>
+            <if test="deviceType!=null and deviceType!=''">
+                AND TERMINAL_TYPE=#{deviceType}
+            </if>
+            AND USERID IS NOT NULL
+        </where>
+        GROUP BY TERMINAL_NUMBER, TERMINAL_BRANDVALUE) a
+        GROUP BY a.TERMINAL_BRANDVALUE
+        order by brandNum desc
+    </select>
+
+    <select id="selectInstallVersionStatistics" resultType="com.centit.shopping.po.PlatformMonitorInfo">
+        SELECT APP_VERSION as version,
+        count(0) as versionNum
+        FROM (SELECT max(APP_VERSION) APP_VERSION FROM t_st_login
+        <where>
+            <if test="deviceType!=null and deviceType!=''">
+                AND TERMINAL_TYPE=#{deviceType}
+            </if>
+        </where>
+        GROUP BY terminal_number) a
+        GROUP BY a.APP_VERSION
+        order by version
+    </select>
+
+
+    <select id="selectRegisterUserByDate" resultType="com.centit.shopping.po.PlatformMonitorInfo">
+        select max(userNum) userNum, createDate from (
+        <foreach collection="list" separator="union" item="info">
+            SELECT
+            count( 0 ) userNum,
+            <if test="searchType=='year'">
+                year(#{info})
+            </if>
+            <if test="searchType=='month'">
+                date_format(#{info},'%Y-%m')
+            </if>
+            <if test="searchType=='day'">
+                date(#{info})
+            </if>
+             as createDate
+            FROM
+            shopping_user u
+            <where>
+                <if test="info!=null ">
+                    AND u.addTime &lt;adddate(#{info}, interval 1 ${searchType})
+                </if>
+            </where>
+
+        </foreach>
+        order by createDate) temp group by createDate
+    </select>
+    <select id="queryMostEarlyDate" resultType="Date">
+        select LOGINTIME
+        from t_st_login
+        order by LOGINTIME asc
+        limit 1
+    </select>
+
+
+    <select id="selectActUserByDate" resultType="com.centit.shopping.po.PlatformMonitorInfo">
+        select * from (
+        select count(DISTINCT(userid)) userNum,datestr createDate from
+        (select t.USERID userid,date(t.LOGINTIME) datestr from t_st_login t
+        <where>
+            <if test="start!=null and start !=''">
+                AND date(t.logintime) &gt;= #{start}
+            </if>
+            <if test="end!=null and end !=''">
+                AND date(t.logintime) &lt;= #{end}
+            </if>
+        </where>
+        )td
+        group by datestr) ta
+        order by ta.createDate desc
+        <if test="pageSize != '' and pageSize != null" >
+            <![CDATA[
+                    limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+                ]]>
+        </if>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryMoneyList" resultType="java.util.HashMap" parameterType="java.util.HashMap">
+        <![CDATA[
+select tb.payTimeStr dateStr,sum(tb.totalprice) totalprice
+ from
+        ]]>
+
+            (select t.*,
+            <if test="searchType=='month'">
+            date_format(t.payTime,'%Y-%m')
+            </if>
+            <if test="searchType=='day'">
+            date(t.payTime)
+            </if>
+            as payTimeStr
+            from shopping_orderform t
+        <where>
+            AND (t.order_status = 20 or t.order_status = 30 or t.order_status = 50 or t.order_status = 60 or
+            t.order_status = 70 or t.order_status = -1 or t.order_status = -10)
+            AND t.deleteStatus = 0
+            <if test="searchType=='month'">
+                <if test="start !=null and start !='' ">
+                    <![CDATA[
+                AND date_format(t.payTime,'%Y-%m')  >=  #{start}
+            ]]>
+                </if>
+                <if test="end !=null and end!='' ">
+                    <![CDATA[
+                and date_format(t.payTime,'%Y-%m') <=  #{end}
+             ]]>
+                </if>
+            </if>
+            <if test="searchType=='day'">
+                <if test="start !=null and start !='' ">
+                    <![CDATA[
+                AND date(t.payTime)  >=  #{start}
+            ]]>
+                </if>
+                <if test="end !=null and end!='' ">
+                    <![CDATA[
+                and date(t.payTime) <=  #{end}
+             ]]>
+                </if>
+            </if>
+        </where>
+        )tb GROUP BY tb.payTimeStr
+        order by tb.payTimeStr asc
+    </select>
+</mapper>

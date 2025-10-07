@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.ticket.dao.TicketProjectImgDao">
+
+    <!--  查询列表 -->
+    <select id="queryImgId" resultType="java.lang.String" parameterType="java.lang.String">
+        <![CDATA[
+            select img_id imgId
+        ]]>
+        <![CDATA[
+            from ticket_project_img t
+        ]]>
+        <where>
+                <![CDATA[
+                AND project_img_url = #{projectImgUrl ,jdbcType=VARCHAR}
+            ]]>
+        </where>
+    </select>
+
+</mapper>

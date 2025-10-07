@@ -1,0 +1,666 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.TOnOndemandDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.TOnOndemand">
+        <id column="ID" property="id" />
+        <result column="TITLE" property="title" />
+        <result column="CONTENT" property="content" />
+        <result column="CLASSID" property="classid" />
+        <result column="ONDEMANDUSERID" property="ondemanduserid" />
+        <result column="COVERFILEPATH" property="coverfilepath" />
+        <result column="CREATETIME" property="createtime" />
+        <result column="ISPROJECT" property="isproject" />
+        <result column="ISREAD" property="isread" />
+        <result column="ISDEL" property="isdel" />
+        <result column="UPDATETIME" property="updatetime" />
+        <result column="ISAUDIT" property="isaudit" />
+        <result column="ISTOP" property="istop" />
+        <result column="ISFREE" property="isfree" />
+        <result column="CLASSNAME" property="classname" />
+        <result column="ORIGIN_PRICE" property="originPrice" />
+        <result column="CURRENT_PRICE" property="currentPrice" />
+        <result column="USE_INTEGRAL_SET" property="useIntegralSet" />
+        <result column="USE_INTEGRAL_VALUE" property="useIntegralValue" />
+        <result column="USE_BALANCE_SET" property="useBalanceSet" />
+        <result column="USE_MEMBERSHIP_SET" property="useMembershipSet" />
+        <result column="ISTRANSCORD" property="istranscord" />
+        <result column="ISSHELVES" property="isshelves" />
+        <result column="CLASSID1" property="classid1" />
+        <result column="CLASSNAME1" property="classname1" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        ID, TITLE, CONTENT, CLASSID, ONDEMANDUSERID, COVERFILEPATH, CREATETIME, ISPROJECT, ISREAD, ISDEL, UPDATETIME, ISAUDIT, ISTOP, ISFREE, CLASSNAME, ORIGIN_PRICE, CURRENT_PRICE, USE_INTEGRAL_SET, USE_INTEGRAL_VALUE, USE_BALANCE_SET, USE_MEMBERSHIP_SET, ISTRANSCORD, ISSHELVES, CLASSID1, CLASSNAME1
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        ID
+          ,
+        TITLE
+          ,
+        CONTENT
+          ,
+        CLASSID
+          ,
+        ONDEMANDUSERID
+          ,
+        COVERFILEPATH
+          ,
+        CREATETIME
+          ,
+        ISPROJECT
+          ,
+        ISREAD
+          ,
+        ISDEL
+          ,
+        UPDATETIME
+          ,
+        ISAUDIT
+          ,
+        ISTOP
+          ,
+        ISFREE
+          ,
+        CLASSNAME
+          ,
+        ORIGIN_PRICE
+          ,
+        CURRENT_PRICE
+          ,
+        USE_INTEGRAL_SET
+          ,
+        USE_INTEGRAL_VALUE
+          ,
+        USE_BALANCE_SET
+          ,
+        USE_MEMBERSHIP_SET
+          ,
+        ISTRANSCORD
+          ,
+        ISSHELVES
+          ,
+        CLASSID1
+          ,
+        CLASSNAME1
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND ID = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="title != null and title != ''">
+            <![CDATA[
+                AND TITLE = #{title ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="content != null and content != ''">
+            <![CDATA[
+                AND CONTENT = #{content ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="classid != null and classid != ''">
+            <![CDATA[
+                AND CLASSID = #{classid ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="ondemanduserid != null and ondemanduserid != ''">
+            <![CDATA[
+                AND ONDEMANDUSERID = #{ondemanduserid ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="coverfilepath != null and coverfilepath != ''">
+            <![CDATA[
+                AND COVERFILEPATH = #{coverfilepath ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="createtime != null and createtime != ''">
+            <![CDATA[
+                AND CREATETIME = #{createtime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="isproject != null and isproject != ''">
+            <![CDATA[
+                AND ISPROJECT = #{isproject ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="isread != null and isread != ''">
+            <![CDATA[
+                AND ISREAD = #{isread ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="isdel != null and isdel != ''">
+            <![CDATA[
+                AND ISDEL = #{isdel ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="updatetime != null and updatetime != ''">
+            <![CDATA[
+                AND UPDATETIME = #{updatetime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="isaudit != null and isaudit != ''">
+            <![CDATA[
+                AND ISAUDIT = #{isaudit ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="istop != null and istop != ''">
+            <![CDATA[
+                AND ISTOP = #{istop ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="isfree != null and isfree != ''">
+            <![CDATA[
+                AND ISFREE = #{isfree ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="classname != null and classname != ''">
+            <![CDATA[
+                AND CLASSNAME = #{classname ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="originPrice != null and originPrice != ''">
+            <![CDATA[
+                AND ORIGIN_PRICE = #{originPrice ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="currentPrice != null and currentPrice != ''">
+            <![CDATA[
+                AND CURRENT_PRICE = #{currentPrice ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="useIntegralSet != null and useIntegralSet != ''">
+            <![CDATA[
+                AND USE_INTEGRAL_SET = #{useIntegralSet ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="useIntegralValue != null and useIntegralValue != ''">
+            <![CDATA[
+                AND USE_INTEGRAL_VALUE = #{useIntegralValue ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="useBalanceSet != null and useBalanceSet != ''">
+            <![CDATA[
+                AND USE_BALANCE_SET = #{useBalanceSet ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="useMembershipSet != null and useMembershipSet != ''">
+            <![CDATA[
+                AND USE_MEMBERSHIP_SET = #{useMembershipSet ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="istranscord != null and istranscord != ''">
+            <![CDATA[
+                AND ISTRANSCORD = #{istranscord ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="isshelves != null and isshelves != ''">
+            <![CDATA[
+                AND ISSHELVES = #{isshelves ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="classid1 != null and classid1 != ''">
+            <![CDATA[
+                AND CLASSID1 = #{classid1 ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="classname1 != null and classname1 != ''">
+            <![CDATA[
+                AND CLASSNAME1 = #{classname1 ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.TOnOndemand">
+        <![CDATA[
+			insert into t_on_ondemand
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    ID,
+                ]]>
+            </if>
+            <if test="title != '' and title != null" >
+                <![CDATA[
+                    TITLE,
+                ]]>
+            </if>
+            <if test="content != '' and content != null" >
+                <![CDATA[
+                    CONTENT,
+                ]]>
+            </if>
+            <if test="classid != '' and classid != null" >
+                <![CDATA[
+                    CLASSID,
+                ]]>
+            </if>
+            <if test="ondemanduserid != '' and ondemanduserid != null" >
+                <![CDATA[
+                    ONDEMANDUSERID,
+                ]]>
+            </if>
+            <if test="coverfilepath != '' and coverfilepath != null" >
+                <![CDATA[
+                    COVERFILEPATH,
+                ]]>
+            </if>
+            <if test="createtime != '' and createtime != null" >
+                <![CDATA[
+                    CREATETIME,
+                ]]>
+            </if>
+            <if test="isproject != '' and isproject != null" >
+                <![CDATA[
+                    ISPROJECT,
+                ]]>
+            </if>
+            <if test="isread != '' and isread != null" >
+                <![CDATA[
+                    ISREAD,
+                ]]>
+            </if>
+            <if test="isdel != '' and isdel != null" >
+                <![CDATA[
+                    ISDEL,
+                ]]>
+            </if>
+            <if test="updatetime != '' and updatetime != null" >
+                <![CDATA[
+                    UPDATETIME,
+                ]]>
+            </if>
+            <if test="isaudit != '' and isaudit != null" >
+                <![CDATA[
+                    ISAUDIT,
+                ]]>
+            </if>
+            <if test="istop != '' and istop != null" >
+                <![CDATA[
+                    ISTOP,
+                ]]>
+            </if>
+            <if test="isfree != '' and isfree != null" >
+                <![CDATA[
+                    ISFREE,
+                ]]>
+            </if>
+            <if test="classname != '' and classname != null" >
+                <![CDATA[
+                    CLASSNAME,
+                ]]>
+            </if>
+            <if test="originPrice != '' and originPrice != null" >
+                <![CDATA[
+                    ORIGIN_PRICE,
+                ]]>
+            </if>
+            <if test="currentPrice != '' and currentPrice != null" >
+                <![CDATA[
+                    CURRENT_PRICE,
+                ]]>
+            </if>
+            <if test="useIntegralSet != '' and useIntegralSet != null" >
+                <![CDATA[
+                    USE_INTEGRAL_SET,
+                ]]>
+            </if>
+            <if test="useIntegralValue != '' and useIntegralValue != null" >
+                <![CDATA[
+                    USE_INTEGRAL_VALUE,
+                ]]>
+            </if>
+            <if test="useBalanceSet != '' and useBalanceSet != null" >
+                <![CDATA[
+                    USE_BALANCE_SET,
+                ]]>
+            </if>
+            <if test="useMembershipSet != '' and useMembershipSet != null" >
+                <![CDATA[
+                    USE_MEMBERSHIP_SET,
+                ]]>
+            </if>
+            <if test="istranscord != '' and istranscord != null" >
+                <![CDATA[
+                    ISTRANSCORD,
+                ]]>
+            </if>
+            <if test="isshelves != '' and isshelves != null" >
+                <![CDATA[
+                    ISSHELVES,
+                ]]>
+            </if>
+            <if test="classid1 != '' and classid1 != null" >
+                <![CDATA[
+                    CLASSID1,
+                ]]>
+            </if>
+            <if test="classname1 != '' and classname1 != null" >
+                <![CDATA[
+                    CLASSNAME1,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="title != '' and title != null" >
+                <![CDATA[
+                    #{title,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="content != '' and content != null" >
+                <![CDATA[
+                    #{content,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="classid != '' and classid != null" >
+                <![CDATA[
+                    #{classid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="ondemanduserid != '' and ondemanduserid != null" >
+                <![CDATA[
+                    #{ondemanduserid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="coverfilepath != '' and coverfilepath != null" >
+                <![CDATA[
+                    #{coverfilepath,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="createtime != '' and createtime != null" >
+                <![CDATA[
+                    #{createtime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isproject != '' and isproject != null" >
+                <![CDATA[
+                    #{isproject,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isread != '' and isread != null" >
+                <![CDATA[
+                    #{isread,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isdel != '' and isdel != null" >
+                <![CDATA[
+                    #{isdel,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="updatetime != '' and updatetime != null" >
+                <![CDATA[
+                    #{updatetime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isaudit != '' and isaudit != null" >
+                <![CDATA[
+                    #{isaudit,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="istop != '' and istop != null" >
+                <![CDATA[
+                    #{istop,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isfree != '' and isfree != null" >
+                <![CDATA[
+                    #{isfree,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="classname != '' and classname != null" >
+                <![CDATA[
+                    #{classname,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="originPrice != '' and originPrice != null" >
+                <![CDATA[
+                    #{originPrice,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="currentPrice != '' and currentPrice != null" >
+                <![CDATA[
+                    #{currentPrice,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="useIntegralSet != '' and useIntegralSet != null" >
+                <![CDATA[
+                    #{useIntegralSet,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="useIntegralValue != '' and useIntegralValue != null" >
+                <![CDATA[
+                    #{useIntegralValue,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="useBalanceSet != '' and useBalanceSet != null" >
+                <![CDATA[
+                    #{useBalanceSet,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="useMembershipSet != '' and useMembershipSet != null" >
+                <![CDATA[
+                    #{useMembershipSet,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="istranscord != '' and istranscord != null" >
+                <![CDATA[
+                    #{istranscord,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isshelves != '' and isshelves != null" >
+                <![CDATA[
+                    #{isshelves,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="classid1 != '' and classid1 != null" >
+                <![CDATA[
+                    #{classid1,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="classname1 != '' and classname1 != null" >
+                <![CDATA[
+                    #{classname1,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.TOnOndemand" >
+        <![CDATA[
+        	update t_on_ondemand
+        ]]>
+        <set >
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    ID = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="title != '' and title != null" >
+                <![CDATA[
+                    TITLE = #{title,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="content != '' and content != null" >
+                <![CDATA[
+                    CONTENT = #{content,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="classid != '' and classid != null" >
+                <![CDATA[
+                    CLASSID = #{classid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="ondemanduserid != '' and ondemanduserid != null" >
+                <![CDATA[
+                    ONDEMANDUSERID = #{ondemanduserid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="coverfilepath != '' and coverfilepath != null" >
+                <![CDATA[
+                    COVERFILEPATH = #{coverfilepath,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="createtime != '' and createtime != null" >
+                <![CDATA[
+                    CREATETIME = #{createtime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isproject != '' and isproject != null" >
+                <![CDATA[
+                    ISPROJECT = #{isproject,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isread != '' and isread != null" >
+                <![CDATA[
+                    ISREAD = #{isread,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isdel != '' and isdel != null" >
+                <![CDATA[
+                    ISDEL = #{isdel,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="updatetime != '' and updatetime != null" >
+                <![CDATA[
+                    UPDATETIME = #{updatetime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isaudit != '' and isaudit != null" >
+                <![CDATA[
+                    ISAUDIT = #{isaudit,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="istop != '' and istop != null" >
+                <![CDATA[
+                    ISTOP = #{istop,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isfree != '' and isfree != null" >
+                <![CDATA[
+                    ISFREE = #{isfree,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="classname != '' and classname != null" >
+                <![CDATA[
+                    CLASSNAME = #{classname,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="originPrice != '' and originPrice != null" >
+                <![CDATA[
+                    ORIGIN_PRICE = #{originPrice,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="currentPrice != '' and currentPrice != null" >
+                <![CDATA[
+                    CURRENT_PRICE = #{currentPrice,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="useIntegralSet != '' and useIntegralSet != null" >
+                <![CDATA[
+                    USE_INTEGRAL_SET = #{useIntegralSet,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="useIntegralValue != '' and useIntegralValue != null" >
+                <![CDATA[
+                    USE_INTEGRAL_VALUE = #{useIntegralValue,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="useBalanceSet != '' and useBalanceSet != null" >
+                <![CDATA[
+                    USE_BALANCE_SET = #{useBalanceSet,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="useMembershipSet != '' and useMembershipSet != null" >
+                <![CDATA[
+                    USE_MEMBERSHIP_SET = #{useMembershipSet,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="istranscord != '' and istranscord != null" >
+                <![CDATA[
+                    ISTRANSCORD = #{istranscord,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isshelves != '' and isshelves != null" >
+                <![CDATA[
+                    ISSHELVES = #{isshelves,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="classid1 != '' and classid1 != null" >
+                <![CDATA[
+                    CLASSID1 = #{classid1,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="classname1 != '' and classname1 != null" >
+                <![CDATA[
+                    CLASSNAME1 = #{classname1,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and ID = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.TOnOndemand">
+        <![CDATA[
+            delete from t_on_ondemand
+        ]]>
+        <where>
+            <![CDATA[
+                and ID = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.TOnOndemand">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from t_on_ondemand t
+        ]]>
+        <where>
+            <![CDATA[
+                and ID = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from t_on_ondemand t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+</mapper>

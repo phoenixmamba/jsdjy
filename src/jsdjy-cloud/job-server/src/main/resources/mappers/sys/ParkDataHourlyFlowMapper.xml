@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.jobserver.dao.ParkDataHourlyFlowDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.jobserver.po.ParkDataHourlyFlowPo">
+        <id column="statTime" property="statTime" />
+        <result column="totalTraffic" property="totalTraffic" />
+        <result column="inNum" property="inNum" />
+        <result column="outNum" property="outNum" />
+        <result column="abnormalNum" property="abnormalNum" />
+    </resultMap>
+
+<!--    &lt;!&ndash;  新增 &ndash;&gt;-->
+<!--    <insert id="mergeInto" parameterType="com.centit.jobserver.po.ParkDataHourlyFlowPo">-->
+<!--        <![CDATA[-->
+<!--			replace into park_data_hourlyflow-->
+<!--		]]>-->
+<!--        <trim prefix="(" suffix=")" suffixOverrides="," >-->
+<!--            <if test="statTime != null and statTime != ''" >-->
+<!--                <![CDATA[-->
+<!--                    statTime,-->
+<!--                ]]>-->
+<!--            </if>-->
+<!--            <if test="totalTraffic != null" >-->
+<!--                <![CDATA[-->
+<!--                    totalTraffic,-->
+<!--                ]]>-->
+<!--            </if>-->
+<!--            <if test="inNum != null" >-->
+<!--                <![CDATA[-->
+<!--                    inNum,-->
+<!--                ]]>-->
+<!--            </if>-->
+<!--            <if test="outNum != null" >-->
+<!--                <![CDATA[-->
+<!--                    outNum,-->
+<!--                ]]>-->
+<!--            </if>-->
+<!--            <if test="abnormalNum != null" >-->
+<!--                <![CDATA[-->
+<!--                    abnormalNum,-->
+<!--                ]]>-->
+<!--            </if>-->
+<!--        </trim>-->
+<!--        <trim prefix="values (" suffix=")" suffixOverrides="," >-->
+<!--            <if test="statTime != null and statTime != ''" >-->
+<!--                <![CDATA[-->
+<!--                    #{statTime,jdbcType=VARCHAR},-->
+<!--                ]]>-->
+<!--            </if>-->
+<!--            <if test="totalTraffic != null" >-->
+<!--                <![CDATA[-->
+<!--                    #{totalTraffic,jdbcType=VARCHAR},-->
+<!--                ]]>-->
+<!--            </if>-->
+<!--            <if test="inNum != null" >-->
+<!--                <![CDATA[-->
+<!--                    #{inNum,jdbcType=VARCHAR},-->
+<!--                ]]>-->
+<!--            </if>-->
+<!--            <if test="outNum != null" >-->
+<!--                <![CDATA[-->
+<!--                    #{outNum,jdbcType=VARCHAR},-->
+<!--                ]]>-->
+<!--            </if>-->
+<!--            <if test="abnormalNum != null" >-->
+<!--                <![CDATA[-->
+<!--                    #{abnormalNum,jdbcType=VARCHAR},-->
+<!--                ]]>-->
+<!--            </if>-->
+<!--        </trim>-->
+<!--    </insert>-->
+
+    <insert id="mergeIntoDatas" parameterType="java.util.List">
+        replace INTO park_data_hourlyflow
+        (
+        statTime,totalTraffic,inNum,outNum,abnormalNum
+        )
+        VALUES
+        <foreach collection ="list" item="item" index= "index" separator =",">
+            (
+            #{item.statTime,jdbcType=VARCHAR},
+            #{item.totalTraffic,jdbcType=VARCHAR},
+            #{item.inNum,jdbcType=VARCHAR},
+            #{item.outNum,jdbcType=VARCHAR},
+            #{item.abnormalNum,jdbcType=VARCHAR}
+            )
+        </foreach >
+    </insert>
+</mapper>

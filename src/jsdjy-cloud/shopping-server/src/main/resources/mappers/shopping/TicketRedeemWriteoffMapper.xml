@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.TicketRedeemWriteoffDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.TicketRedeemWriteoff">
+        <id column="CODE" property="code" />
+        <result column="OFF_CODE" property="offCode" />
+        <result column="EXP_TIME" property="expTime" />
+        <result column="OFF_TIME" property="offTime" />
+        <result column="OFF_COUNT" property="offCount" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        CODE, OFF_CODE, EXP_TIME, OFF_TIME, OFF_COUNT
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        CODE
+          ,
+        OFF_CODE
+          ,
+        EXP_TIME
+          ,
+        OFF_TIME
+          ,
+        OFF_COUNT
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="code != null and code != ''">
+            <![CDATA[
+                AND CODE = #{code ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="offCode != null and offCode != ''">
+            <![CDATA[
+                AND OFF_CODE = #{offCode ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="expTime != null and expTime != ''">
+            <![CDATA[
+                AND EXP_TIME = #{expTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="offTime != null and offTime != ''">
+            <![CDATA[
+                AND OFF_TIME = #{offTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="offCount != null and offCount != ''">
+            <![CDATA[
+                AND OFF_COUNT = #{offCount ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.TicketRedeemWriteoff">
+        <![CDATA[
+			insert into ticket_redeem_writeoff
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="code != null and code != ''" >
+                <![CDATA[
+                    CODE,
+                ]]>
+            </if>
+            <if test="offCode != null and offCode != ''" >
+                <![CDATA[
+                    OFF_CODE,
+                ]]>
+            </if>
+            <if test="expTime != null and expTime != ''" >
+                <![CDATA[
+                    EXP_TIME,
+                ]]>
+            </if>
+            <if test="offTime != null and offTime != ''" >
+                <![CDATA[
+                    OFF_TIME,
+                ]]>
+            </if>
+            <if test="offCount != null and offCount != ''" >
+                <![CDATA[
+                    OFF_COUNT,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="code != null and code != ''" >
+                <![CDATA[
+                    #{code,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="offCode != null and offCode != ''" >
+                <![CDATA[
+                    #{offCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="expTime != null and expTime != ''" >
+                <![CDATA[
+                    #{expTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="offTime != null and offTime != ''" >
+                <![CDATA[
+                    #{offTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="offCount != null and offCount != ''" >
+                <![CDATA[
+                    #{offCount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.TicketRedeemWriteoff" >
+        <![CDATA[
+        	update ticket_redeem_writeoff
+        ]]>
+        <set >
+            <if test="code != null and code != ''" >
+                <![CDATA[
+                    CODE = #{code,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="offCode != null and offCode != ''" >
+                <![CDATA[
+                    OFF_CODE = #{offCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="expTime != null and expTime != ''" >
+                <![CDATA[
+                    EXP_TIME = #{expTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="offTime != null and offTime != ''" >
+                <![CDATA[
+                    OFF_TIME = #{offTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="offCount != null and offCount != ''" >
+                <![CDATA[
+                    OFF_COUNT = #{offCount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and CODE = #{code ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.TicketRedeemWriteoff">
+        <![CDATA[
+            delete from ticket_redeem_writeoff
+        ]]>
+        <where>
+            <![CDATA[
+                and CODE = #{code ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.TicketRedeemWriteoff">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from ticket_redeem_writeoff t
+        ]]>
+        <where>
+            <if test="code != null and code != ''" >
+                <![CDATA[
+                    AND CODE = #{code,jdbcType=VARCHAR}
+                ]]>
+            </if>
+            <if test="offCode != null and offCode != ''" >
+                <![CDATA[
+                    AND OFF_CODE = #{offCode,jdbcType=VARCHAR}
+                ]]>
+            </if>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from ticket_redeem_writeoff t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+</mapper>

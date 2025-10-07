@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.pay.biz.dao.ShoppingOrderPaylogDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.pay.biz.po.ShoppingOrderPaylog">
+        <id column="id" property="id" />
+        <result column="addTime" property="addTime" />
+        <result column="of_id" property="ofId" />
+        <result column="trade_type" property="tradeType" />
+        <result column="out_trade_no" property="outTradeNo" />
+        <result column="req_info" property="reqInfo" />
+        <result column="log_info" property="logInfo" />
+        <result column="log_content" property="logContent" />
+        <result column="ip" property="ip" />
+        <result column="state_info" property="stateInfo" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, addTime, of_id, trade_type, out_trade_no, req_info, log_info, log_content, ip, state_info
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        addTime
+          ,
+        of_id
+          ,
+        trade_type
+          ,
+        out_trade_no
+          ,
+        req_info
+          ,
+        log_info
+          ,
+        log_content
+          ,
+        ip
+          ,
+        state_info
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="addTime != null and addTime != ''">
+            <![CDATA[
+                AND addTime = #{addTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="ofId != null and ofId != ''">
+            <![CDATA[
+                AND of_id = #{ofId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="tradeType != null and tradeType != ''">
+            <![CDATA[
+                AND trade_type = #{tradeType ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="outTradeNo != null and outTradeNo != ''">
+            <![CDATA[
+                AND out_trade_no = #{outTradeNo ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="reqInfo != null and reqInfo != ''">
+            <![CDATA[
+                AND req_info = #{reqInfo ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="logInfo != null and logInfo != ''">
+            <![CDATA[
+                AND log_info = #{logInfo ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="logContent != null and logContent != ''">
+            <![CDATA[
+                AND log_content = #{logContent ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="ip != null and ip != ''">
+            <![CDATA[
+                AND ip = #{ip ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="stateInfo != null and stateInfo != ''">
+            <![CDATA[
+                AND state_info = #{stateInfo ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.pay.biz.po.ShoppingOrderPaylog">
+        <![CDATA[
+			insert into shopping_order_paylog
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+
+
+                <![CDATA[
+                    addTime,
+                ]]>
+
+            <if test="ofId != '' and ofId != null" >
+                <![CDATA[
+                    of_id,
+                ]]>
+            </if>
+            <if test="tradeType != '' and tradeType != null" >
+                <![CDATA[
+                    trade_type,
+                ]]>
+            </if>
+            <if test="outTradeNo != '' and outTradeNo != null" >
+                <![CDATA[
+                    out_trade_no,
+                ]]>
+            </if>
+            <if test="reqInfo != '' and reqInfo != null" >
+                <![CDATA[
+                    req_info,
+                ]]>
+            </if>
+            <if test="logInfo != '' and logInfo != null" >
+                <![CDATA[
+                    log_info,
+                ]]>
+            </if>
+            <if test="logContent != '' and logContent != null" >
+                <![CDATA[
+                    log_content,
+                ]]>
+            </if>
+            <if test="ip != '' and ip != null" >
+                <![CDATA[
+                    ip,
+                ]]>
+            </if>
+            <if test="stateInfo != '' and stateInfo != null" >
+                <![CDATA[
+                    state_info,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+
+            now(),
+            <if test="ofId != '' and ofId != null" >
+                <![CDATA[
+                    #{ofId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="tradeType != '' and tradeType != null" >
+                <![CDATA[
+                    #{tradeType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="outTradeNo != '' and outTradeNo != null" >
+                <![CDATA[
+                    #{outTradeNo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="reqInfo != '' and reqInfo != null" >
+                <![CDATA[
+                    #{reqInfo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="logInfo != '' and logInfo != null" >
+                <![CDATA[
+                    #{logInfo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="logContent != '' and logContent != null" >
+                <![CDATA[
+                    #{logContent,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="ip != '' and ip != null" >
+                <![CDATA[
+                    #{ip,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="stateInfo != '' and stateInfo != null" >
+                <![CDATA[
+                    #{stateInfo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.pay.biz.po.ShoppingOrderPaylog" >
+        <![CDATA[
+        	update shopping_order_paylog
+        ]]>
+        <set >
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="addTime != '' and addTime != null" >
+                <![CDATA[
+                    addTime = #{addTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="ofId != '' and ofId != null" >
+                <![CDATA[
+                    of_id = #{ofId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="tradeType != '' and tradeType != null" >
+                <![CDATA[
+                    trade_type = #{tradeType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="outTradeNo != '' and outTradeNo != null" >
+                <![CDATA[
+                    out_trade_no = #{outTradeNo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="reqInfo != '' and reqInfo != null" >
+                <![CDATA[
+                    req_info = #{reqInfo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="logInfo != '' and logInfo != null" >
+                <![CDATA[
+                    log_info = #{logInfo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="logContent != '' and logContent != null" >
+                <![CDATA[
+                    log_content = #{logContent,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="ip != '' and ip != null" >
+                <![CDATA[
+                    ip = #{ip,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="stateInfo != '' and stateInfo != null" >
+                <![CDATA[
+                    state_info = #{stateInfo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.pay.biz.po.ShoppingOrderPaylog">
+        <![CDATA[
+            delete from shopping_order_paylog
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.pay.biz.po.ShoppingOrderPaylog">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_order_paylog t
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_order_paylog t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+    <!--  查询详情 -->
+    <select id="queryDetailById" resultMap="BaseResultMap" parameterType="java.lang.String">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_order_paylog t
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+</mapper>

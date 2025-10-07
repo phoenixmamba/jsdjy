@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.TicketCouponExchangeRecordDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.TicketCouponExchangeRecord">
+        <id column="ID" property="id" />
+        <result column="ACT_ID" property="actId" />
+        <result column="PROMOTION_ID" property="promotionId" />
+        <result column="COUPON_CODE" property="couponCode" />
+        <result column="COUPON_PWD" property="couponPwd" />
+        <result column="CREATE_TIME" property="createTime" />
+        <result column="EXCHANGE_USER" property="exchangeUser" />
+        <result column="EXCHANGE_MOBILE" property="exchangeMobile" />
+        <result column="EXCHANGE_TIME" property="exchangeTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        ID, ACT_ID, PROMOTION_ID, COUPON_CODE, COUPON_PWD, CREATE_TIME, EXCHANGE_USER, EXCHANGE_MOBILE, EXCHANGE_TIME
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        ID
+          ,
+        ACT_ID
+          ,
+        PROMOTION_ID
+          ,
+        COUPON_CODE
+          ,
+        COUPON_PWD
+          ,
+        CREATE_TIME
+          ,
+        EXCHANGE_USER
+          ,
+        EXCHANGE_MOBILE
+          ,
+        EXCHANGE_TIME
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND ID = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="actId != null and actId != ''">
+            <![CDATA[
+                AND ACT_ID = #{actId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="promotionId != null and promotionId != ''">
+            <![CDATA[
+                AND PROMOTION_ID = #{promotionId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="couponCode != null and couponCode != ''">
+            <![CDATA[
+                AND COUPON_CODE = #{couponCode ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="couponPwd != null and couponPwd != ''">
+            <![CDATA[
+                AND COUPON_PWD = #{couponPwd ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="createTime != null and createTime != ''">
+            <![CDATA[
+                AND CREATE_TIME = #{createTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="exchangeUser != null and exchangeUser != ''">
+            <![CDATA[
+                AND EXCHANGE_USER = #{exchangeUser ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="exchangeMobile != null and exchangeMobile != ''">
+            <![CDATA[
+                AND EXCHANGE_MOBILE = #{exchangeMobile ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="exchangeTime != null and exchangeTime != ''">
+            <![CDATA[
+                AND EXCHANGE_TIME = #{exchangeTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="used != null and used == 1">
+            <![CDATA[
+                AND EXCHANGE_USER is not null
+            ]]>
+        </if>
+        <if test="used != null and used == 0">
+            <![CDATA[
+                AND EXCHANGE_USER is  null
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.TicketCouponExchangeRecord">
+        <![CDATA[
+			insert into ticket_coupon_exchange_record
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    ID,
+                ]]>
+            </if>
+            <if test="actId != null and actId != ''" >
+                <![CDATA[
+                    ACT_ID,
+                ]]>
+            </if>
+            <if test="promotionId != null and promotionId != ''" >
+                <![CDATA[
+                    PROMOTION_ID,
+                ]]>
+            </if>
+            <if test="couponCode != null and couponCode != ''" >
+                <![CDATA[
+                    COUPON_CODE,
+                ]]>
+            </if>
+            <if test="couponPwd != null and couponPwd != ''" >
+                <![CDATA[
+                    COUPON_PWD,
+                ]]>
+            </if>
+
+                <![CDATA[
+                    CREATE_TIME,
+                ]]>
+
+            <if test="exchangeUser != null and exchangeUser != ''" >
+                <![CDATA[
+                    EXCHANGE_USER,
+                ]]>
+            </if>
+            <if test="exchangeMobile != null and exchangeMobile != ''" >
+                <![CDATA[
+                    EXCHANGE_MOBILE,
+                ]]>
+            </if>
+            <if test="exchangeTime != null and exchangeTime != ''" >
+                <![CDATA[
+                    EXCHANGE_TIME,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="actId != null and actId != ''" >
+                <![CDATA[
+                    #{actId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="promotionId != null and promotionId != ''" >
+                <![CDATA[
+                    #{promotionId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="couponCode != null and couponCode != ''" >
+                <![CDATA[
+                    #{couponCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="couponPwd != null and couponPwd != ''" >
+                <![CDATA[
+                    #{couponPwd,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            now(),
+            <if test="exchangeUser != null and exchangeUser != ''" >
+                <![CDATA[
+                    #{exchangeUser,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="exchangeMobile != null and exchangeMobile != ''" >
+                <![CDATA[
+                    #{exchangeMobile,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="exchangeTime != null and exchangeTime != ''" >
+                <![CDATA[
+                    #{exchangeTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.TicketCouponExchangeRecord" >
+        <![CDATA[
+        	update ticket_coupon_exchange_record
+        ]]>
+        <set >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    ID = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="actId != null and actId != ''" >
+                <![CDATA[
+                    ACT_ID = #{actId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="promotionId != null and promotionId != ''" >
+                <![CDATA[
+                    PROMOTION_ID = #{promotionId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="couponCode != null and couponCode != ''" >
+                <![CDATA[
+                    COUPON_CODE = #{couponCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="couponPwd != null and couponPwd != ''" >
+                <![CDATA[
+                    COUPON_PWD = #{couponPwd,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="exchangeUser != null and exchangeUser != ''" >
+                <![CDATA[
+                    EXCHANGE_USER = #{exchangeUser,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="exchangeMobile != null and exchangeMobile != ''" >
+                <![CDATA[
+                    EXCHANGE_MOBILE = #{exchangeMobile,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="exchangeTime != null and exchangeTime != ''" >
+                <![CDATA[
+                    EXCHANGE_TIME = #{exchangeTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and ID = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.TicketCouponExchangeRecord">
+        <![CDATA[
+            delete from ticket_coupon_exchange_record
+        ]]>
+        <where>
+            <![CDATA[
+                and ID = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.TicketCouponExchangeRecord">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from ticket_coupon_exchange_record t
+        ]]>
+        <where>
+            <![CDATA[
+                AND COUPON_CODE = #{couponCode ,jdbcType=VARCHAR}
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from ticket_coupon_exchange_record t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+        order by t.EXCHANGE_TIME desc,t.CREATE_TIME desc
+        <if test="pageSize != '' and pageSize != null">
+            <![CDATA[
+                    limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+                ]]>
+        </if>
+    </select>
+
+    <!--  查询列表数量 -->
+    <select id="queryTotalCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            SELECT count(0) from ticket_coupon_exchange_record t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+</mapper>

@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.TicketRedeemWatchingDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.TicketRedeemWatching">
+        <id column="ID" property="id" />
+        <result column="CODE" property="code" />
+        <result column="WATCHING_USER" property="watchingUser" />
+        <result column="WATCHING_MOBILE" property="watchingMobile" />
+        <result column="WATCHING_CARD" property="watchingCard" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        ID, CODE, WATCHING_USER, WATCHING_MOBILE, WATCHING_CARD
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        ID
+          ,
+        CODE
+          ,
+        WATCHING_USER
+          ,
+        WATCHING_MOBILE
+          ,
+        WATCHING_CARD
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND ID = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="code != null and code != ''">
+            <![CDATA[
+                AND CODE = #{code ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="watchingUser != null and watchingUser != ''">
+            <![CDATA[
+                AND WATCHING_USER = #{watchingUser ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="watchingMobile != null and watchingMobile != ''">
+            <![CDATA[
+                AND WATCHING_MOBILE = #{watchingMobile ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="watchingCard != null and watchingCard != ''">
+            <![CDATA[
+                AND WATCHING_CARD = #{watchingCard ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.TicketRedeemWatching">
+        <![CDATA[
+			insert into ticket_redeem_watching
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    ID,
+                ]]>
+            </if>
+            <if test="code != null and code != ''" >
+                <![CDATA[
+                    CODE,
+                ]]>
+            </if>
+            <if test="watchingUser != null and watchingUser != ''" >
+                <![CDATA[
+                    WATCHING_USER,
+                ]]>
+            </if>
+            <if test="watchingMobile != null and watchingMobile != ''" >
+                <![CDATA[
+                    WATCHING_MOBILE,
+                ]]>
+            </if>
+            <if test="watchingCard != null and watchingCard != ''" >
+                <![CDATA[
+                    WATCHING_CARD,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="code != null and code != ''" >
+                <![CDATA[
+                    #{code,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="watchingUser != null and watchingUser != ''" >
+                <![CDATA[
+                    #{watchingUser,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="watchingMobile != null and watchingMobile != ''" >
+                <![CDATA[
+                    #{watchingMobile,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="watchingCard != null and watchingCard != ''" >
+                <![CDATA[
+                    #{watchingCard,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.TicketRedeemWatching" >
+        <![CDATA[
+        	update ticket_redeem_watching
+        ]]>
+        <set >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    ID = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="code != null and code != ''" >
+                <![CDATA[
+                    CODE = #{code,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="watchingUser != null and watchingUser != ''" >
+                <![CDATA[
+                    WATCHING_USER = #{watchingUser,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="watchingMobile != null and watchingMobile != ''" >
+                <![CDATA[
+                    WATCHING_MOBILE = #{watchingMobile,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="watchingCard != null and watchingCard != ''" >
+                <![CDATA[
+                    WATCHING_CARD = #{watchingCard,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and ID = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.TicketRedeemWatching">
+        <![CDATA[
+            delete from ticket_redeem_watching
+        ]]>
+        <where>
+            <![CDATA[
+                and ID = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.TicketRedeemWatching">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from ticket_redeem_watching t
+        ]]>
+        <where>
+            <![CDATA[
+                and ID = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from ticket_redeem_watching t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+</mapper>

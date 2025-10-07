@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.ShoppingImgtextDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.ShoppingImgtext">
+        <id column="id" property="id" />
+        <result column="add_time" property="addTime" />
+        <result column="add_user" property="addUser" />
+        <result column="sn" property="sn" />
+        <result column="type" property="type" />
+        <result column="title" property="title" />
+        <result column="cover" property="cover" />
+        <result column="content" property="content" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, add_time, add_user, sn, type, title, cover, content
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        add_time
+          ,
+        add_user
+          ,
+        sn
+          ,
+        type
+          ,
+        title
+          ,
+        cover
+          ,
+        content
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="addTime != null and addTime != ''">
+            <![CDATA[
+                AND add_time = #{addTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="addUser != null and addUser != ''">
+            <![CDATA[
+                AND add_user = #{addUser ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="sn != null and sn != ''">
+            <![CDATA[
+                AND sn = #{sn ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="type != null and type != ''">
+            <![CDATA[
+                AND type = #{type ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="title != null and title != ''">
+            <![CDATA[
+                AND title = #{title ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="cover != null and cover != ''">
+            <![CDATA[
+                AND cover = #{cover ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="content != null and content != ''">
+            <![CDATA[
+                AND content = #{content ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.ShoppingImgtext">
+        <![CDATA[
+			insert into shopping_imgtext
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <![CDATA[
+                    add_time,
+                ]]>
+            <if test="addUser != null and addUser != ''" >
+                <![CDATA[
+                    add_user,
+                ]]>
+            </if>
+            <if test="sn != null" >
+                <![CDATA[
+                    sn,
+                ]]>
+            </if>
+            <if test="type != null and type != ''" >
+                <![CDATA[
+                    type,
+                ]]>
+            </if>
+            <if test="title != null and title != ''" >
+                <![CDATA[
+                    title,
+                ]]>
+            </if>
+            <if test="cover != null and cover != ''" >
+                <![CDATA[
+                    cover,
+                ]]>
+            </if>
+            <if test="content != null and content != ''" >
+                <![CDATA[
+                    content,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+
+            now(),
+            <if test="addUser != null and addUser != ''" >
+                <![CDATA[
+                    #{addUser,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="sn != null" >
+                <![CDATA[
+                    #{sn,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="type != null and type != ''" >
+                <![CDATA[
+                    #{type,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="title != null and title != ''" >
+                <![CDATA[
+                    #{title,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="cover != null and cover != ''" >
+                <![CDATA[
+                    #{cover,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="content != null and content != ''" >
+                <![CDATA[
+                    #{content,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.ShoppingImgtext" >
+        <![CDATA[
+        	update shopping_imgtext
+        ]]>
+        <set >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="addTime != null and addTime != ''" >
+                <![CDATA[
+                    add_time = #{addTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="addUser != null and addUser != ''" >
+                <![CDATA[
+                    add_user = #{addUser,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="sn != null" >
+                <![CDATA[
+                    sn = #{sn,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="type != null and type != ''" >
+                <![CDATA[
+                    type = #{type,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="title != null and title != ''" >
+                <![CDATA[
+                    title = #{title,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="title == null || title == ''" >
+                <![CDATA[
+                    title = null,
+                ]]>
+            </if>
+            <if test="cover != null and cover != ''" >
+                <![CDATA[
+                    cover = #{cover,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="cover == null || cover == ''" >
+                <![CDATA[
+                    cover = null,
+                ]]>
+            </if>
+            <if test="content != null and content != ''" >
+                <![CDATA[
+                    content = #{content,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.ShoppingImgtext">
+        <![CDATA[
+            delete from shopping_imgtext
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.ShoppingImgtext">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_imgtext t
+        ]]>
+        <where>
+            <if test="id != null and id != ''">
+                <![CDATA[
+                AND id != #{id ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <![CDATA[
+                AND code = #{code ,jdbcType=VARCHAR}
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_imgtext t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+        order by t.type asc,t.sn asc,t.add_time desc
+        <if test="pageSize != '' and pageSize != null">
+            <![CDATA[
+                    limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+                ]]>
+        </if>
+    </select>
+
+    <!--  查询列表数量 -->
+    <select id="queryTotalCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            SELECT count(0) from shopping_imgtext t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+    <!--&lt;!&ndash;  查询列表 &ndash;&gt;-->
+    <!--<select id="queryExistCode" resultMap="BaseResultMap" parameterType="java.util.HashMap">-->
+        <!--<![CDATA[-->
+            <!--select-->
+        <!--]]>-->
+        <!--<include refid="Base_Column_List1" />-->
+        <!--<![CDATA[-->
+            <!--from shopping_imgtext t-->
+        <!--]]>-->
+        <!--<where>-->
+            <!--<if test="id != null and id != ''">-->
+                <!--<![CDATA[-->
+                <!--AND id != #{id ,jdbcType=VARCHAR}-->
+            <!--]]>-->
+        <!--</where>-->
+    <!--</select>-->
+</mapper>

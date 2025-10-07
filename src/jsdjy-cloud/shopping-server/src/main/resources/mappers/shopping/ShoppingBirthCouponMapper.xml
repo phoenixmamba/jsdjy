@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.ShoppingBirthCouponDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.ShoppingBirthCoupon">
+        <result column="right_No" property="rightNo" />
+        <result column="ac_per_limit" property="acPerLimit" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        right_No, ac_per_limit
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        right_No
+          ,
+        ac_per_limit
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="rightNo != null and rightNo != ''">
+            <![CDATA[
+                AND right_No = #{rightNo ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="acPerLimit != null and acPerLimit != ''">
+            <![CDATA[
+                AND ac_per_limit = #{acPerLimit ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.ShoppingBirthCoupon">
+        <![CDATA[
+			insert into shopping_birth_coupon
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="rightNo != null and rightNo != ''" >
+                <![CDATA[
+                    right_No,
+                ]]>
+            </if>
+            <if test="acPerLimit != null" >
+                <![CDATA[
+                    ac_per_limit,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="rightNo != null and rightNo != ''" >
+                <![CDATA[
+                    #{rightNo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="acPerLimit != null" >
+                <![CDATA[
+                    #{acPerLimit,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.ShoppingBirthCoupon" >
+        <![CDATA[
+        	update shopping_birth_coupon
+        ]]>
+        <set >
+            <if test="rightNo != null and rightNo != ''" >
+                <![CDATA[
+                    right_No = #{rightNo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="acPerLimit != null" >
+                <![CDATA[
+                    ac_per_limit = #{acPerLimit,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.ShoppingBirthCoupon">
+        <![CDATA[
+            delete from shopping_birth_coupon
+        ]]>
+        <where>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.ShoppingBirthCoupon">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_birth_coupon t
+        ]]>
+        <where>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_birth_coupon t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+</mapper>

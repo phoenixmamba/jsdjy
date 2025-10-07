@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.zuulgateway.dao.FUserloginTokenDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.zuulgateway.po.FUserloginToken">
+        <id column="USERCODE" property="usercode" />
+        <result column="TOKEN" property="token" />
+        <result column="EXPIRETIME" property="expiretime" />
+        <result column="IS_VALID" property="isValid" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        USERCODE, TOKEN, EXPIRETIME, IS_VALID
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        USERCODE
+          ,
+        TOKEN
+          ,
+        EXPIRETIME
+          ,
+        IS_VALID
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="usercode != null and usercode != ''">
+            <![CDATA[
+                AND USERCODE = #{usercode ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="token != null and token != ''">
+            <![CDATA[
+                AND TOKEN = #{token ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="expiretime != null and expiretime != ''">
+            <![CDATA[
+                AND EXPIRETIME = #{expiretime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="isValid != null and isValid != ''">
+            <![CDATA[
+                AND IS_VALID = #{isValid ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.zuulgateway.po.FUserloginToken">
+        <![CDATA[
+			insert into f_userlogin_token
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="usercode != '' and usercode != null" >
+                <![CDATA[
+                    USERCODE,
+                ]]>
+            </if>
+            <if test="token != '' and token != null" >
+                <![CDATA[
+                    TOKEN,
+                ]]>
+            </if>
+            <if test="expiretime != '' and expiretime != null" >
+                <![CDATA[
+                    EXPIRETIME,
+                ]]>
+            </if>
+            <if test="isValid != '' and isValid != null" >
+                <![CDATA[
+                    IS_VALID,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="usercode != '' and usercode != null" >
+                <![CDATA[
+                    #{usercode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="token != '' and token != null" >
+                <![CDATA[
+                    #{token,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="expiretime != '' and expiretime != null" >
+                <![CDATA[
+                    #{expiretime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isValid != '' and isValid != null" >
+                <![CDATA[
+                    #{isValid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.zuulgateway.po.FUserloginToken" >
+        <![CDATA[
+        	update f_userlogin_token
+        ]]>
+        <set >
+            <if test="usercode != '' and usercode != null" >
+                <![CDATA[
+                    USERCODE = #{usercode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="token != '' and token != null" >
+                <![CDATA[
+                    TOKEN = #{token,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="expiretime != '' and expiretime != null" >
+                <![CDATA[
+                    EXPIRETIME = #{expiretime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isValid != '' and isValid != null" >
+                <![CDATA[
+                    IS_VALID = #{isValid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and USERCODE = #{usercode ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.zuulgateway.po.FUserloginToken">
+        <![CDATA[
+            delete from f_userlogin_token
+        ]]>
+        <where>
+            <![CDATA[
+                and USERCODE = #{usercode ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.zuulgateway.po.FUserloginToken">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from f_userlogin_token t
+        ]]>
+        <where>
+            <![CDATA[
+                and USERCODE = #{usercode ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from f_userlogin_token t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+</mapper>

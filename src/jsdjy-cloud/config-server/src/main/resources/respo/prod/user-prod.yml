@@ -1,0 +1,126 @@
+#统一组织用户平台服务配置文件
+#Author: li_hao
+
+spring:
+  application:
+    name: user
+#  datasource:
+#    driver-class-name: oracle.jdbc.OracleDriver
+#    url: jdbc:oracle:thin:@192.168.131.102:1521:mipdb
+#    username: JSSJTT
+#    password: JSSJTT
+#    max-idle: 10
+#    max-wait: 10000
+#    min-idle: 5
+#    initial-size: 5
+
+  #Redis配置
+  redis:
+    host: 192.168.135.40
+    #Redis服务器连接密码（默认为空）
+    password:
+    #Redis数据库索引（默认为0）
+    database: 5
+    port: 6379
+    #连接超时时间（毫秒）
+    timeout: 300
+    #这里使用的是lettuce，如果使用Jedis，把下面的lettuce改成Jedis即可
+    lettuce:
+      pool:
+        #连接池中的最大空闲连接
+        max-idle: 8
+        #连接池中的最小空闲连接
+        min-idle: 0
+        #连接池最大连接数（使用负值表示没有限制）
+        max-active: 8
+        #连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: -1
+
+
+
+
+#mybatis配置
+mybatis:
+  config-locations: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mappers/*.xml #指定resources下面的mappers文件夹
+  typeAliasesPackage: com.centit.jsdjy.user.po
+
+  #spring boot集成mybatis的方式打印sql
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+#日志方式sql打印
+#logging:
+#  level:
+#    com.example.demo.dao: debug
+
+
+
+#用户目录
+userdirectory:
+  default:
+    rank: YG
+    station: ZY
+    rolecode: G-SYSADMIN
+  ldap:
+    url: LDAP://192.168.128.5:389
+    username: accounts@centit.com
+    userpassword: yhs@yhs1
+    searchbase: CN=Users,DC=centit,DC=com
+
+#系统属性
+app:
+  home: /D/Projects/RunData/ip_home
+#业务配置信息
+opt:
+  name: 框架测试项目
+  subsystem: false
+
+jdbc:
+  url:
+#单点登录相关配置信息
+cas:
+  sso: false
+  home: https://zou_wy:8443/centit-cas
+#登录成功后的首页
+local:
+  home: http://zouwuyangpc:8084/product-ip
+  firstpage: /system/mainframe/index
+
+#是否开放实施人员入口
+deploy:
+  enabled: true
+#框架相关的表主键生成规制， 目前关联的就是 userinfo 和 uintinfo 两个表
+#default value {"prefix":"U","length":8,"pad":"0"}
+framework:
+  userinfo:
+    id:
+      generator: \{"length":1\}
+#default value {"prefix":"D","length":6,"pad":"0"}
+  unitinfo:
+    id:
+      generator: \{"length":1\}
+  roleinfo:
+    id:
+      generator: \{"length":1\}
+#多国语言设置
+sys:
+  multi_lang: true
+  defalut_lang: zh_CN
+
+session:
+    redis:
+      host: 193.168.1.233
+      port: 6379
+
+filter:
+  rest:
+    context:
+      check:
+        correlation: false
+        user: false
+
+
+#上传文件目录
+uploadFiledir: D:/data/upload/

@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.ShoppingEvaluatePhotoDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.ShoppingEvaluatePhoto">
+        <id column="id" property="id" />
+        <result column="addTime" property="addTime" />
+        <result column="deleteStatus" property="deleteStatus" />
+        <result column="photo" property="photo" />
+        <result column="sort" property="sort" />
+        <result column="evaluate_id" property="evaluateId" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, addTime, deleteStatus, photo, sort, evaluate_id
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        addTime
+          ,
+        deleteStatus
+          ,
+        photo
+          ,
+        sort
+          ,
+        evaluate_id
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="addTime != null and addTime != ''">
+            <![CDATA[
+                AND addTime = #{addTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="deleteStatus != null">
+            <![CDATA[
+                AND deleteStatus = #{deleteStatus ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="photo != null and photo != ''">
+            <![CDATA[
+                AND photo = #{photo ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="sort != null and sort != ''">
+            <![CDATA[
+                AND sort = #{sort ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="evaluateId != null and evaluateId != ''">
+            <![CDATA[
+                AND evaluate_id = #{evaluateId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.ShoppingEvaluatePhoto">
+        <![CDATA[
+			insert into shopping_evaluate_photo
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <![CDATA[
+                    addTime,
+                ]]>
+            <if test="deleteStatus != '' and deleteStatus != null" >
+                <![CDATA[
+                    deleteStatus,
+                ]]>
+            </if>
+            <if test="photo != '' and photo != null" >
+                <![CDATA[
+                    photo,
+                ]]>
+            </if>
+            <if test="sort != '' and sort != null" >
+                <![CDATA[
+                    sort,
+                ]]>
+            </if>
+            <if test="evaluateId != '' and evaluateId != null" >
+                <![CDATA[
+                    evaluate_id,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+                now(),
+            <if test="deleteStatus != '' and deleteStatus != null" >
+                <![CDATA[
+                    #{deleteStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="photo != '' and photo != null" >
+                <![CDATA[
+                    #{photo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="sort != '' and sort != null" >
+                <![CDATA[
+                    #{sort,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="evaluateId != '' and evaluateId != null" >
+                <![CDATA[
+                    #{evaluateId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.ShoppingEvaluatePhoto" >
+        <![CDATA[
+        	update shopping_evaluate_photo
+        ]]>
+        <set >
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="addTime != '' and addTime != null" >
+                <![CDATA[
+                    addTime = #{addTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="deleteStatus != '' and deleteStatus != null" >
+                <![CDATA[
+                    deleteStatus = #{deleteStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="photo != '' and photo != null" >
+                <![CDATA[
+                    photo = #{photo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="sort != '' and sort != null" >
+                <![CDATA[
+                    sort = #{sort,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="evaluateId != '' and evaluateId != null" >
+                <![CDATA[
+                    evaluate_id = #{evaluateId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.ShoppingEvaluatePhoto">
+        <![CDATA[
+            delete from shopping_evaluate_photo
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.ShoppingEvaluatePhoto">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_evaluate_photo t
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_evaluate_photo t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+        order by sort asc
+    </select>
+
+</mapper>

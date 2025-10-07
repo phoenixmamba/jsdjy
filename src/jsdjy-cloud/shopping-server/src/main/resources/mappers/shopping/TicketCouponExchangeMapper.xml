@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.TicketCouponExchangeDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.TicketCouponExchange">
+        <id column="ID" property="id" />
+        <result column="TITLE" property="title" />
+        <result column="REMARK" property="remark" />
+        <result column="AMOUNT" property="amount" />
+        <result column="PROMOTION_ID" property="promotionId" />
+        <result column="NEED_PWD" property="needPwd" />
+        <result column="START_TIME" property="startTime" />
+        <result column="END_TIME" property="endTime" />
+        <result column="SINGLE_LIMIT" property="singleLimit" />
+        <result column="CREATE_TIME" property="createTime" />
+        <result column="CREATE_USER" property="createUser" />
+        <result column="PUB_STATUS" property="pubStatus" />
+        <result column="IS_DELETE" property="isDelete" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        ID, TITLE, REMARK, AMOUNT, PROMOTION_ID, NEED_PWD, START_TIME, END_TIME, SINGLE_LIMIT, CREATE_TIME, CREATE_USER, PUB_STATUS, IS_DELETE
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        ID
+          ,
+        TITLE
+          ,
+        REMARK
+          ,
+        AMOUNT
+          ,
+        PROMOTION_ID
+          ,
+        NEED_PWD
+          ,
+        START_TIME
+          ,
+        END_TIME
+          ,
+        SINGLE_LIMIT
+          ,
+        CREATE_TIME
+          ,
+        CREATE_USER
+          ,
+        PUB_STATUS
+          ,
+        IS_DELETE
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND ID = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="title != null and title != ''">
+            <![CDATA[
+                AND TITLE = #{title ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="remark != null and remark != ''">
+            <![CDATA[
+                AND REMARK = #{remark ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="amount != null and amount != ''">
+            <![CDATA[
+                AND AMOUNT = #{amount ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="promotionId != null and promotionId != ''">
+            <![CDATA[
+                AND PROMOTION_ID = #{promotionId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="needPwd != null and needPwd != ''">
+            <![CDATA[
+                AND NEED_PWD = #{needPwd ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="startTime != null and startTime != ''">
+            <![CDATA[
+                AND START_TIME = #{startTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="endTime != null and endTime != ''">
+            <![CDATA[
+                AND END_TIME = #{endTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="singleLimit != null and singleLimit != ''">
+            <![CDATA[
+                AND SINGLE_LIMIT = #{singleLimit ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="createTime != null and createTime != ''">
+            <![CDATA[
+                AND CREATE_TIME = #{createTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="createUser != null and createUser != ''">
+            <![CDATA[
+                AND CREATE_USER = #{createUser ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="pubStatus != null and pubStatus != ''">
+            <![CDATA[
+                AND PUB_STATUS = #{pubStatus ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="isDelete != null and isDelete != ''">
+            <![CDATA[
+                AND IS_DELETE = #{isDelete ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.TicketCouponExchange"  useGeneratedKeys="true" keyProperty="id">
+        <![CDATA[
+			insert into ticket_coupon_exchange
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    ID,
+                ]]>
+            </if>
+            <if test="title != null and title != ''" >
+                <![CDATA[
+                    TITLE,
+                ]]>
+            </if>
+            <if test="remark != null and remark != ''" >
+                <![CDATA[
+                    REMARK,
+                ]]>
+            </if>
+            <if test="amount != null and amount != ''" >
+                <![CDATA[
+                    AMOUNT,
+                ]]>
+            </if>
+            <if test="promotionId != null and promotionId != ''" >
+                <![CDATA[
+                    PROMOTION_ID,
+                ]]>
+            </if>
+            <if test="needPwd != null and needPwd != ''" >
+                <![CDATA[
+                    NEED_PWD,
+                ]]>
+            </if>
+            <if test="startTime != null and startTime != ''" >
+                <![CDATA[
+                    START_TIME,
+                ]]>
+            </if>
+            <if test="endTime != null and endTime != ''" >
+                <![CDATA[
+                    END_TIME,
+                ]]>
+            </if>
+            <if test="singleLimit != null and singleLimit != ''" >
+                <![CDATA[
+                    SINGLE_LIMIT,
+                ]]>
+            </if>
+
+                <![CDATA[
+                    CREATE_TIME,
+                ]]>
+
+            <if test="createUser != null and createUser != ''" >
+                <![CDATA[
+                    CREATE_USER,
+                ]]>
+            </if>
+            <if test="pubStatus != null and pubStatus != ''" >
+                <![CDATA[
+                    PUB_STATUS,
+                ]]>
+            </if>
+            <if test="isDelete != null and isDelete != ''" >
+                <![CDATA[
+                    IS_DELETE,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="title != null and title != ''" >
+                <![CDATA[
+                    #{title,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="remark != null and remark != ''" >
+                <![CDATA[
+                    #{remark,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="amount != null and amount != ''" >
+                <![CDATA[
+                    #{amount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="promotionId != null and promotionId != ''" >
+                <![CDATA[
+                    #{promotionId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="needPwd != null and needPwd != ''" >
+                <![CDATA[
+                    #{needPwd,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="startTime != null and startTime != ''" >
+                <![CDATA[
+                    #{startTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="endTime != null and endTime != ''" >
+                <![CDATA[
+                    #{endTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="singleLimit != null and singleLimit != ''" >
+                <![CDATA[
+                    #{singleLimit,jdbcType=VARCHAR},
+                ]]>
+            </if>
+
+               now(),
+
+            <if test="createUser != null and createUser != ''" >
+                <![CDATA[
+                    #{createUser,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="pubStatus != null and pubStatus != ''" >
+                <![CDATA[
+                    #{pubStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isDelete != null and isDelete != ''" >
+                <![CDATA[
+                    #{isDelete,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.TicketCouponExchange" >
+        <![CDATA[
+        	update ticket_coupon_exchange
+        ]]>
+        <set >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    ID = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="title != null and title != ''" >
+                <![CDATA[
+                    TITLE = #{title,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="remark != null and remark != ''" >
+                <![CDATA[
+                    REMARK = #{remark,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="amount != null and amount != ''" >
+                <![CDATA[
+                    AMOUNT = #{amount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="promotionId != null and promotionId != ''" >
+                <![CDATA[
+                    PROMOTION_ID = #{promotionId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="needPwd != null and needPwd != ''" >
+                <![CDATA[
+                    NEED_PWD = #{needPwd,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="startTime != null and startTime != ''" >
+                <![CDATA[
+                    START_TIME = #{startTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="startTime == null || startTime == ''" >
+                <![CDATA[
+                    START_TIME = null,
+                ]]>
+            </if>
+            <if test="endTime != null and endTime != ''" >
+                <![CDATA[
+                    END_TIME = #{endTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="endTime == null || endTime == ''" >
+                <![CDATA[
+                    END_TIME = null,
+                ]]>
+            </if>
+            <if test="singleLimit != null and singleLimit != ''" >
+                <![CDATA[
+                    SINGLE_LIMIT = #{singleLimit,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="createTime != null and createTime != ''" >
+                <![CDATA[
+                    CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="createUser != null and createUser != ''" >
+                <![CDATA[
+                    CREATE_USER = #{createUser,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="pubStatus != null and pubStatus != ''" >
+                <![CDATA[
+                    PUB_STATUS = #{pubStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isDelete != null and isDelete != ''" >
+                <![CDATA[
+                    IS_DELETE = #{isDelete,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and ID = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.TicketCouponExchange">
+        <![CDATA[
+            delete from ticket_coupon_exchange
+        ]]>
+        <where>
+            <![CDATA[
+                and ID = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.TicketCouponExchange">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from ticket_coupon_exchange t
+        ]]>
+        <where>
+            <![CDATA[
+                and ID = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from ticket_coupon_exchange t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+        order by t.CREATE_TIME desc
+        <if test="pageSize != '' and pageSize != null">
+            <![CDATA[
+                    limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+                ]]>
+        </if>
+    </select>
+
+    <!--  查询列表数量 -->
+    <select id="queryTotalCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            SELECT count(0) from ticket_coupon_exchange t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+</mapper>

@@ -1,0 +1,1388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.zuulgateway.dao.GUserinfoDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.zuulgateway.po.GUserinfo">
+        <id column="USER_CODE" property="userCode" />
+        <result column="USER_NAME" property="userName" />
+        <result column="USER_PIN" property="userPin" />
+        <result column="USER_PWD" property="userPwd" />
+        <result column="LOGIN_NAME" property="loginName" />
+        <result column="USER_DESC" property="userDesc" />
+        <result column="REG_CELL_PHONE" property="regCellPhone" />
+        <result column="NICK_NAME" property="nickName" />
+        <result column="REG_EMAIL" property="regEmail" />
+        <result column="SEX" property="sex" />
+        <result column="PHOTO" property="photo" />
+        <result column="IS_VALID" property="isValid" />
+        <result column="USER_TYPE" property="userType" />
+        <result column="ENGLISH_NAME" property="englishName" />
+        <result column="ID_CARD_NO" property="idCardNo" />
+        <result column="UPDATE_DATE" property="updateDate" />
+        <result column="CREATE_DATE" property="createDate" />
+        <result column="CREATOR" property="creator" />
+        <result column="UPDATOR" property="updator" />
+        <result column="SIGNATURE" property="signature" />
+        <result column="ROLETYPE" property="roletype" />
+        <result column="SYSTEMNAME" property="systemname" />
+        <result column="URL" property="url" />
+        <result column="CRMID" property="crmid" />
+    </resultMap>
+
+    <!-- 通用查询映射结果_人员pojo增强类 -->
+    <resultMap id="GUserCustomer_ResultMap" type="com.centit.zuulgateway.po.GUserCustomer">
+        <id column="USER_CODE" property="userCode" />
+        <result column="USER_NAME" property="userName" />
+        <result column="USER_PIN" property="userPin" />
+        <result column="USER_PWD" property="userPwd" />
+        <result column="LOGIN_NAME" property="loginName" />
+        <result column="USER_DESC" property="userDesc" />
+        <result column="REG_CELL_PHONE" property="regCellPhone" />
+        <result column="NICK_NAME" property="nickName" />
+        <result column="REG_EMAIL" property="regEmail" />
+        <result column="SEX" property="sex" />
+        <result column="PHOTO" property="photo" />
+        <result column="IS_VALID" property="isValid" />
+        <result column="USER_TYPE" property="userType" />
+        <result column="ENGLISH_NAME" property="englishName" />
+        <result column="ID_CARD_NO" property="idCardNo" />
+        <result column="UPDATE_DATE" property="updateDate" />
+        <result column="CREATE_DATE" property="createDate" />
+        <result column="CREATOR" property="creator" />
+        <result column="UPDATOR" property="updator" />
+        <result column="SIGNATURE" property="signature" />
+
+        <result column="CORP_USER_TYPE" property="corpUserType" />
+        <result column="IS_PRIMARY" property="isPrimary" />
+        <result column="USER_ORDER" property="userOrder" />
+    </resultMap>
+
+    <!-- 通用查询映射结果Vo -->
+    <resultMap id="BaseResultMap_Vo" type="com.centit.zuulgateway.po.GUserinfoVo">
+        <id column="USER_CODE" property="userCode" />
+        <result column="USER_NAME" property="userName" />
+        <result column="USER_PIN" property="userPin" />
+        <result column="USER_PWD" property="userPwd" />
+        <result column="LOGIN_NAME" property="loginName" />
+        <result column="USER_DESC" property="userDesc" />
+        <result column="REG_CELL_PHONE" property="regCellPhone" />
+        <result column="NICK_NAME" property="nickName" />
+        <result column="REG_EMAIL" property="regEmail" />
+        <result column="SEX" property="sex" />
+        <result column="BIRTHDAY" property="birthday" />
+        <result column="PHOTO" property="photo" />
+        <result column="IS_VALID" property="isValid" />
+        <result column="USER_TYPE" property="userType" />
+        <result column="ENGLISH_NAME" property="englishName" />
+        <result column="ID_CARD_NO" property="idCardNo" />
+        <result column="UPDATE_DATE" property="updateDate" />
+        <result column="CREATE_DATE" property="createDate" />
+        <result column="CREATOR" property="creator" />
+        <result column="UPDATOR" property="updator" />
+        <result column="SIGNATURE" property="signature" />
+        <result column="FINGER_PRINT" property="fingerPrint" />
+        <result column="GESTURE_CODE" property="gestureCode" />
+        <result column="UNLOCK_TYPE" property="unlockType" />
+        <result column="TODO_MSG_SWITCH" property="todoMsgSwitch" />
+        <result column="TALK_MSG_SWITCH" property="talkMsgSwitch" />
+        <result column="FONT_SIZE" property="fontSize" />
+        <result column="EP_STATUS" property="epStatus" />
+        <result column="TELEPHONENUMBER" property="telephonenumber" />
+        <result column="HIDE_STATUS" property="hideStatus" />
+        <result column="LAST_LOGIN_FAIL_TIMES" property="lastLoginFailTimes" />
+        <result column="LAST_LOGIN_FAIL_DATE" property="lastLoginFailDate" />
+        <result column="AREA_CODE" property="areaCode" />
+        <result column="USER_MARK1" property="userMark1" />
+        <result column="USER_MARK2" property="userMark2" />
+        <result column="USER_MARK3" property="userMark3" />
+        <result column="USER_MARK4" property="userMark4" />
+        <result column="USER_MARK5" property="userMark5" />
+        <result column="USER_MARK6" property="userMark6" />
+        <result column="USER_MARK7" property="userMark7" />
+        <result column="USER_MARK8" property="userMark8" />
+        <result column="USER_MARK9" property="userMark9" />
+        <result column="LABELID" property="labelid" />
+        <result column="areaName" property="areaName" />
+        <result column="MZUSERID" property="mzuserid" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        USER_CODE, USER_NAME, USER_PIN, USER_PWD, LOGIN_NAME, USER_DESC, REG_CELL_PHONE, NICK_NAME, REG_EMAIL, SEX, PHOTO, IS_VALID, USER_TYPE, ENGLISH_NAME, ID_CARD_NO, UPDATE_DATE, CREATE_DATE, CREATOR, UPDATOR, SIGNATURE
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        USER_CODE
+          ,
+        USER_NAME
+          ,
+        USER_PIN
+          ,
+        USER_PWD
+          ,
+        LOGIN_NAME
+          ,
+        USER_DESC
+          ,
+        REG_CELL_PHONE
+          ,
+        NICK_NAME
+          ,
+        REG_EMAIL
+          ,
+        SEX
+          ,
+        PHOTO
+          ,
+        IS_VALID
+          ,
+        USER_TYPE
+          ,
+        ENGLISH_NAME
+          ,
+        ID_CARD_NO
+          ,
+        UPDATE_DATE
+          ,
+        CREATE_DATE
+          ,
+        CREATOR
+          ,
+        UPDATOR
+          ,
+        SIGNATURE
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="userCode != null and userCode != ''">
+            <![CDATA[
+                AND USER_CODE = #{userCode ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="userName != null and userName != ''">
+            <![CDATA[
+                AND USER_NAME = #{userName ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="userPin != null and userPin != ''">
+            <![CDATA[
+                AND USER_PIN = #{userPin ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="userPwd != null and userPwd != ''">
+            <![CDATA[
+                AND USER_PWD = #{userPwd ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="loginName != null and loginName != ''">
+            <![CDATA[
+                AND LOGIN_NAME = #{loginName ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="userDesc != null and userDesc != ''">
+            <![CDATA[
+                AND USER_DESC = #{userDesc ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="regCellPhone != null and regCellPhone != ''">
+            <![CDATA[
+                AND mobile = #{regCellPhone ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="nickName != null and nickName != ''">
+            <![CDATA[
+                AND NICK_NAME = #{nickName ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="regEmail != null and regEmail != ''">
+            <![CDATA[
+                AND REG_EMAIL = #{regEmail ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="sex != null and sex != ''">
+            <![CDATA[
+                AND SEX = #{sex ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="photo != null and photo != ''">
+            <![CDATA[
+                AND PHOTO = #{photo ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="isValid != null and isValid != ''">
+            <![CDATA[
+                AND IS_VALID = #{isValid ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="userType != null and userType != ''">
+            <![CDATA[
+                AND USER_TYPE = #{userType ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="englishName != null and englishName != ''">
+            <![CDATA[
+                AND ENGLISH_NAME = #{englishName ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="idCardNo != null and idCardNo != ''">
+            <![CDATA[
+                AND ID_CARD_NO = #{idCardNo ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="updateDate != null and updateDate != ''">
+            <![CDATA[
+                AND UPDATE_DATE = #{updateDate ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="createDate != null and createDate != ''">
+            <![CDATA[
+                AND CREATE_DATE = #{createDate ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="creator != null and creator != ''">
+            <![CDATA[
+                AND CREATOR = #{creator ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="updator != null and updator != ''">
+            <![CDATA[
+                AND UPDATOR = #{updator ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="signature != null and signature != ''">
+            <![CDATA[
+                AND SIGNATURE = #{signature ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--&lt;!&ndash;  新增 &ndash;&gt;-->
+    <!--<insert id="insert" parameterType="com.centit.zuulgateway.po.GUserinfo">-->
+        <!--<![CDATA[-->
+			<!--insert into G_USERINFO-->
+		<!--]]>-->
+        <!--<trim prefix="(" suffix=")" suffixOverrides="," >-->
+            <!--<if test="userCode != '' and userCode != null" >-->
+                <!--<![CDATA[-->
+                    <!--USER_CODE,-->
+                <!--]]>-->
+            <!--</if>-->
+            <!--<if test="userName != '' and userName != null" >-->
+                <!--<![CDATA[-->
+                    <!--USER_NAME,-->
+                <!--]]>-->
+            <!--</if>-->
+            <!--<if test="userPin != '' and userPin != null" >-->
+                <!--<![CDATA[-->
+                    <!--USER_PIN,-->
+                <!--]]>-->
+            <!--</if>-->
+            <!--<if test="userPwd != '' and userPwd != null" >-->
+                <!--<![CDATA[-->
+                    <!--USER_PWD,-->
+                <!--]]>-->
+            <!--</if>-->
+            <!--<if test="loginName != '' and loginName != null" >-->
+                <!--<![CDATA[-->
+                    <!--LOGIN_NAME,-->
+                <!--]]>-->
+            <!--</if>-->
+            <!--<if test="userDesc != '' and userDesc != null" >-->
+                <!--<![CDATA[-->
+                    <!--USER_DESC,-->
+                <!--]]>-->
+            <!--</if>-->
+            <!--<if test="regCellPhone != '' and regCellPhone != null" >-->
+                <!--<![CDATA[-->
+                    <!--REG_CELL_PHONE,-->
+                <!--]]>-->
+            <!--</if>-->
+            <!--<if test="nickName != '' and nickName != null" >-->
+                <!--<![CDATA[-->
+                    <!--NICK_NAME,-->
+                <!--]]>-->
+            <!--</if>-->
+            <!--<if test="regEmail != '' and regEmail != null" >-->
+                <!--<![CDATA[-->
+                    <!--REG_EMAIL,-->
+                <!--]]>-->
+            <!--</if>-->
+            <!--<if test="sex != '' and sex != null" >-->
+                <!--<![CDATA[-->
+                    <!--SEX,-->
+                <!--]]>-->
+            <!--</if>-->
+            <!--<if test="photo != '' and photo != null" >-->
+                <!--<![CDATA[-->
+                    <!--PHOTO,-->
+                <!--]]>-->
+            <!--</if>-->
+            <!--<if test="isValid != '' and isValid != null" >-->
+                <!--<![CDATA[-->
+                    <!--IS_VALID,-->
+                <!--]]>-->
+            <!--</if>-->
+            <!--<if test="userType != '' and userType != null" >-->
+                <!--<![CDATA[-->
+                    <!--USER_TYPE,-->
+                <!--]]>-->
+            <!--</if>-->
+            <!--<if test="englishName != '' and englishName != null" >-->
+                <!--<![CDATA[-->
+                    <!--ENGLISH_NAME,-->
+                <!--]]>-->
+            <!--</if>-->
+            <!--<if test="idCardNo != '' and idCardNo != null" >-->
+                <!--<![CDATA[-->
+                    <!--ID_CARD_NO,-->
+                <!--]]>-->
+            <!--</if>-->
+            <!--<if test="updateDate != '' and updateDate != null" >-->
+                <!--<![CDATA[-->
+                    <!--UPDATE_DATE,-->
+                <!--]]>-->
+            <!--</if>-->
+            <!--&lt;!&ndash;<if test="createDate != '' and createDate != null" >&ndash;&gt;-->
+                <!--<![CDATA[-->
+                    <!--CREATE_DATE,-->
+                <!--]]>-->
+            <!--&lt;!&ndash;</if>&ndash;&gt;-->
+            <!--<if test="creator != '' and creator != null" >-->
+                <!--<![CDATA[-->
+                    <!--CREATOR,-->
+                <!--]]>-->
+            <!--</if>-->
+            <!--<if test="updator != '' and updator != null" >-->
+                <!--<![CDATA[-->
+                    <!--UPDATOR,-->
+                <!--]]>-->
+            <!--</if>-->
+            <!--<if test="signature != '' and signature != null" >-->
+                <!--<![CDATA[-->
+                    <!--SIGNATURE,-->
+                <!--]]>-->
+            <!--</if>-->
+        <!--</trim>-->
+        <!--<trim prefix="values (" suffix=")" suffixOverrides="," >-->
+            <!--<if test="userCode != '' and userCode != null" >-->
+                <!--<![CDATA[-->
+                    <!--#{userCode,jdbcType=VARCHAR},-->
+                <!--]]>-->
+            <!--</if>-->
+            <!--<if test="userName != '' and userName != null" >-->
+                <!--<![CDATA[-->
+                    <!--#{userName,jdbcType=VARCHAR},-->
+                <!--]]>-->
+            <!--</if>-->
+            <!--<if test="userPin != '' and userPin != null" >-->
+                <!--<![CDATA[-->
+                    <!--#{userPin,jdbcType=VARCHAR},-->
+                <!--]]>-->
+            <!--</if>-->
+            <!--<if test="userPwd != '' and userPwd != null" >-->
+                <!--<![CDATA[-->
+                    <!--#{userPwd,jdbcType=VARCHAR},-->
+                <!--]]>-->
+            <!--</if>-->
+            <!--<if test="loginName != '' and loginName != null" >-->
+                <!--<![CDATA[-->
+                    <!--#{loginName,jdbcType=VARCHAR},-->
+                <!--]]>-->
+            <!--</if>-->
+            <!--<if test="userDesc != '' and userDesc != null" >-->
+                <!--<![CDATA[-->
+                    <!--#{userDesc,jdbcType=VARCHAR},-->
+                <!--]]>-->
+            <!--</if>-->
+            <!--<if test="regCellPhone != '' and regCellPhone != null" >-->
+                <!--<![CDATA[-->
+                    <!--#{regCellPhone,jdbcType=VARCHAR},-->
+                <!--]]>-->
+            <!--</if>-->
+            <!--<if test="nickName != '' and nickName != null" >-->
+                <!--<![CDATA[-->
+                    <!--#{nickName,jdbcType=VARCHAR},-->
+                <!--]]>-->
+            <!--</if>-->
+            <!--<if test="regEmail != '' and regEmail != null" >-->
+                <!--<![CDATA[-->
+                    <!--#{regEmail,jdbcType=VARCHAR},-->
+                <!--]]>-->
+            <!--</if>-->
+            <!--<if test="sex != '' and sex != null" >-->
+                <!--<![CDATA[-->
+                    <!--#{sex,jdbcType=VARCHAR},-->
+                <!--]]>-->
+            <!--</if>-->
+            <!--<if test="photo != '' and photo != null" >-->
+                <!--<![CDATA[-->
+                    <!--#{photo,jdbcType=VARCHAR},-->
+                <!--]]>-->
+            <!--</if>-->
+            <!--<if test="isValid != '' and isValid != null" >-->
+                <!--<![CDATA[-->
+                    <!--#{isValid,jdbcType=VARCHAR},-->
+                <!--]]>-->
+            <!--</if>-->
+            <!--<if test="userType != '' and userType != null" >-->
+                <!--<![CDATA[-->
+                    <!--#{userType,jdbcType=VARCHAR},-->
+                <!--]]>-->
+            <!--</if>-->
+            <!--<if test="englishName != '' and englishName != null" >-->
+                <!--<![CDATA[-->
+                    <!--#{englishName,jdbcType=VARCHAR},-->
+                <!--]]>-->
+            <!--</if>-->
+            <!--<if test="idCardNo != '' and idCardNo != null" >-->
+                <!--<![CDATA[-->
+                    <!--#{idCardNo,jdbcType=VARCHAR},-->
+                <!--]]>-->
+            <!--</if>-->
+            <!--<if test="updateDate != '' and updateDate != null" >-->
+                <!--<![CDATA[-->
+                    <!--#{updateDate,jdbcType=VARCHAR},-->
+                <!--]]>-->
+            <!--</if>-->
+            <!--&lt;!&ndash;<if test="createDate != '' and createDate != null" >&ndash;&gt;-->
+                <!--<![CDATA[-->
+                    <!--now(),-->
+                <!--]]>-->
+            <!--&lt;!&ndash;</if>&ndash;&gt;-->
+            <!--<if test="creator != '' and creator != null" >-->
+                <!--<![CDATA[-->
+                    <!--#{creator,jdbcType=VARCHAR},-->
+                <!--]]>-->
+            <!--</if>-->
+            <!--<if test="updator != '' and updator != null" >-->
+                <!--<![CDATA[-->
+                    <!--#{updator,jdbcType=VARCHAR},-->
+                <!--]]>-->
+            <!--</if>-->
+            <!--<if test="signature != '' and signature != null" >-->
+                <!--<![CDATA[-->
+                    <!--#{signature,jdbcType=VARCHAR},-->
+                <!--]]>-->
+            <!--</if>-->
+        <!--</trim>-->
+    <!--</insert>-->
+
+    <!--  新增2：新增2：新增前根据登录账号和密码判断用户是否存在 -->
+    <insert id="insert" parameterType="com.centit.zuulgateway.po.GUserinfo">
+        <![CDATA[
+			insert into shopping_user
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="crmid != '' and crmid != null" >
+                <![CDATA[
+                    crmid,
+                ]]>
+            </if>
+            <if test="mzuserid != '' and mzuserid != null" >
+            <![CDATA[
+                    mzuserid,
+                ]]>
+            </if>
+            <![CDATA[
+                    addTime,
+                ]]>
+            <if test="regEmail != '' and regEmail != null" >
+                <![CDATA[
+                    email,
+                ]]>
+            </if>
+            <if test="regCellPhone != '' and regCellPhone != null" >
+                <![CDATA[
+                    mobile,
+                ]]>
+            </if>
+
+            <if test="userPwd != '' and userPwd != null" >
+                <![CDATA[
+                    password,
+                ]]>
+            </if>
+            <if test="sex != '' and sex != null" >
+                <![CDATA[
+                    sex,
+                ]]>
+            </if>
+            <if test="userName != '' and userName != null" >
+                <![CDATA[
+                    trueName,
+                ]]>
+            </if>
+            <if test="loginName != '' and loginName != null" >
+                <![CDATA[
+                    userName,
+                ]]>
+            </if>
+            <if test="photo != '' and photo != null" >
+                <![CDATA[
+                    photo_id,
+                ]]>
+            </if>
+            <if test="nickName != '' and nickName != null" >
+                <![CDATA[
+                    nick_name,
+                ]]>
+            </if>
+            <if test="idCardNo != '' and idCardNo != null" >
+                <![CDATA[
+                    IDCard,
+                ]]>
+            </if>
+            <if test="signature != '' and signature != null" >
+                <![CDATA[
+                    SIGNATURE,
+                ]]>
+            </if>
+            <if test="isValid != '' and isValid != null" >
+                <![CDATA[
+                    IS_VALID,
+                ]]>
+            </if>
+            <if test="userPin != '' and userPin != null" >
+                <![CDATA[
+                    USER_PIN,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="select " suffix=" " suffixOverrides="," >
+            <if test="crmid != '' and crmid != null" >
+                <![CDATA[
+                    #{crmid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="mzuserid != '' and mzuserid != null" >
+            <![CDATA[
+                    #{mzuserid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <![CDATA[
+                    now(),
+                ]]>
+            <if test="regEmail != '' and regEmail != null" >
+                <![CDATA[
+                     #{regEmail,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="regCellPhone != '' and regCellPhone != null" >
+                <![CDATA[
+                    #{regCellPhone,jdbcType=VARCHAR},
+                ]]>
+            </if>
+
+            <if test="userPwd != '' and userPwd != null" >
+                <![CDATA[
+                   #{userPwd,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="sex != '' and sex != null" >
+                <![CDATA[
+                    #{sex,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userName != '' and userName != null" >
+                <![CDATA[
+                     #{userName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="loginName != '' and loginName != null" >
+                <![CDATA[
+                    #{loginName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="photo != '' and photo != null" >
+                <![CDATA[
+                    #{photo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="nickName != '' and nickName != null" >
+                <![CDATA[
+                     #{nickName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="idCardNo != '' and idCardNo != null" >
+                <![CDATA[
+                     #{idCardNo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="signature != '' and signature != null" >
+                <![CDATA[
+                     #{signature,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isValid != '' and isValid != null" >
+                <![CDATA[
+                     #{isValid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userPin != '' and userPin != null" >
+                <![CDATA[
+                    #{userPin,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+        <![CDATA[
+            from
+            dual
+            where not exists
+            (select 1 from SHOPPING_USER where IS_VALID='T' and mobile=#{regCellPhone,jdbcType=VARCHAR})
+        ]]>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.zuulgateway.po.GUserinfo" >
+        <![CDATA[
+        	update shopping_user
+        ]]>
+        <set >
+            <!--<if test="userCode != '' and userCode != null" >
+                <![CDATA[
+                    USER_CODE = #{userCode,jdbcType=VARCHAR},
+                ]]>
+            </if>-->
+            <if test="crmid != '' and crmid != null" >
+                <![CDATA[
+                    crmid= #{crmid ,jdbcType=VARCHAR },
+                ]]>
+            </if>
+            <if test="mzuserid != '' and mzuserid != null" >
+                <![CDATA[
+                    mzuserid= #{mzuserid ,jdbcType=VARCHAR },
+                ]]>
+            </if>
+            <if test="regEmail != '' and regEmail != null" >
+                <![CDATA[
+                    email= #{regEmail ,jdbcType=VARCHAR },
+                ]]>
+            </if>
+            <if test="regCellPhone != '' and regCellPhone != null" >
+                <![CDATA[
+                    mobile= #{regCellPhone ,jdbcType=VARCHAR },
+                ]]>
+            </if>
+            <if test="birthday != '' and birthday != null" >
+                <![CDATA[
+                    birthday= #{birthday ,jdbcType=VARCHAR },
+                ]]>
+            </if>
+
+            <if test="userPwd != '' and userPwd != null" >
+                <![CDATA[
+                    password= #{userPwd ,jdbcType=VARCHAR },
+                ]]>
+            </if>
+            <if test="sex != '' and sex != null" >
+                <![CDATA[
+                    sex= #{sex,jdbcType=VARCHAR },
+                ]]>
+            </if>
+            <if test="userName != '' and userName != null" >
+                <![CDATA[
+                    trueName= #{userName ,jdbcType=VARCHAR },
+                ]]>
+            </if>
+            <if test="loginName != '' and loginName != null" >
+                <![CDATA[
+                    userName= #{loginName ,jdbcType=VARCHAR },
+                ]]>
+            </if>
+            <if test="photo != '' and photo != null" >
+                <![CDATA[
+                    photo_id= #{photo ,jdbcType=VARCHAR },
+                ]]>
+            </if>
+            <if test="nickName != '' and nickName != null" >
+                <![CDATA[
+                    nick_name= #{nickName ,jdbcType=VARCHAR },
+                ]]>
+            </if>
+            <if test="idCardNo != '' and idCardNo != null" >
+                <![CDATA[
+                    IDCard= #{idCardNo ,jdbcType=VARCHAR },
+                ]]>
+            </if>
+            <if test="signature != '' and signature != null" >
+                <![CDATA[
+                    SIGNATURE= #{signature ,jdbcType=VARCHAR },
+                ]]>
+            </if>
+            <if test="isValid != '' and isValid != null" >
+                <![CDATA[
+                    IS_VALID= #{isValid ,jdbcType=VARCHAR },
+                ]]>
+            </if>
+            <if test="labelid != '' and labelid != null" >
+                <![CDATA[
+                    LABELID= #{labelid ,jdbcType=VARCHAR },
+                ]]>
+            </if>
+            <if test="labelname != '' and labelname != null" >
+                <![CDATA[
+                    LABELNAME= #{labelname ,jdbcType=VARCHAR },
+                ]]>
+            </if>
+            <if test="userPin != '' and userPin != null" >
+                <![CDATA[
+                    USER_PIN= #{userPin ,jdbcType=VARCHAR },
+                ]]>
+            </if>
+        </set>
+        <where>
+            <if test="userCode != '' and userCode != null" >
+           <![CDATA[
+                and id= #{userCode ,jdbcType=VARCHAR }
+        	   ]]>
+           </if>
+            <if test="regCellPhone != '' and regCellPhone != null" >
+                <![CDATA[
+                   and mobile= #{regCellPhone ,jdbcType=VARCHAR }
+                ]]>
+            </if>
+        </where>
+    </update>
+
+    <!-- 更新 -->
+    <update id="updateMobile" parameterType="com.centit.zuulgateway.po.GUserinfo" >
+        <![CDATA[
+        	update shopping_user
+        ]]>
+        <set >
+            <!--<if test="userCode != '' and userCode != null" >
+                <![CDATA[
+                    USER_CODE = #{userCode,jdbcType=VARCHAR},
+                ]]>
+            </if>-->
+            <if test="regEmail != '' and regEmail != null" >
+                <![CDATA[
+                    email= #{regEmail ,jdbcType=VARCHAR },
+                ]]>
+            </if>
+            <if test="regCellPhone != '' and regCellPhone != null" >
+                <![CDATA[
+                    mobile= #{regCellPhone ,jdbcType=VARCHAR },
+                ]]>
+            </if>
+            <if test="birthday != '' and birthday != null" >
+                <![CDATA[
+                    birthday= #{birthday ,jdbcType=VARCHAR },
+                ]]>
+            </if>
+
+            <if test="userPwd != '' and userPwd != null" >
+                <![CDATA[
+                    password= #{userPwd ,jdbcType=VARCHAR },
+                ]]>
+            </if>
+            <if test="sex != '' and sex != null" >
+                <![CDATA[
+                    sex= #{sex,jdbcType=VARCHAR },
+                ]]>
+            </if>
+            <if test="userName != '' and userName != null" >
+                <![CDATA[
+                    trueName= #{userName ,jdbcType=VARCHAR },
+                ]]>
+            </if>
+            <if test="loginName != '' and loginName != null" >
+                <![CDATA[
+                    userName= #{loginName ,jdbcType=VARCHAR },
+                ]]>
+            </if>
+            <if test="photo != '' and photo != null" >
+                <![CDATA[
+                    photo_id= #{photo ,jdbcType=VARCHAR },
+                ]]>
+            </if>
+            <if test="nickName != '' and nickName != null" >
+                <![CDATA[
+                    nick_name= #{nickName ,jdbcType=VARCHAR },
+                ]]>
+            </if>
+            <if test="idCardNo != '' and idCardNo != null" >
+                <![CDATA[
+                    IDCard= #{idCardNo ,jdbcType=VARCHAR },
+                ]]>
+            </if>
+            <if test="signature != '' and signature != null" >
+                <![CDATA[
+                    SIGNATURE= #{signature ,jdbcType=VARCHAR },
+                ]]>
+            </if>
+            <if test="isValid != '' and isValid != null" >
+                <![CDATA[
+                    IS_VALID= #{isValid ,jdbcType=VARCHAR },
+                ]]>
+            </if>
+            <if test="labelid != '' and labelid != null" >
+                <![CDATA[
+                    LABELID= #{labelid ,jdbcType=VARCHAR },
+                ]]>
+            </if>
+            <if test="labelname != '' and labelname != null" >
+                <![CDATA[
+                    LABELNAME= #{labelname ,jdbcType=VARCHAR },
+                ]]>
+            </if>
+            <if test="userPin != '' and userPin != null" >
+                <![CDATA[
+                    USER_PIN= #{userPin ,jdbcType=VARCHAR },
+                ]]>
+            </if>
+        </set>
+        <where>
+            <if test="userCode != '' and userCode != null" >
+                <![CDATA[
+                and id= #{userCode ,jdbcType=VARCHAR }
+        	   ]]>
+            </if>
+        </where>
+    </update>
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.zuulgateway.po.GUserinfo">
+        <![CDATA[
+            delete from shopping_user
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{userCode ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.zuulgateway.po.GUserinfo">
+        <![CDATA[
+            select
+                   t.id USER_CODE,
+                   t.crmid CRMID,
+                   t.IS_VALID IS_VALID,
+                   t.mobile LOGIN_NAME,
+                   t.userName USER_NAME,
+                   t.password USER_PWD,
+                   t.email REG_EMAIL,
+                   t.mobile REG_CELL_PHONE,
+                   t.IDCard ID_CARD_NO,
+                   t.nick_name NICK_NAME,
+                   t.photo_id PHOTO,
+                   t.sex SEX,
+                   t.USER_PIN USER_PIN,
+                   t.SIGNATURE SIGNATURE
+        ]]>
+        <![CDATA[
+            from shopping_user t
+        ]]>
+        <where>
+            <if test="userCode != '' and userCode != null" >
+                <![CDATA[
+                    and id = #{userCode ,jdbcType=VARCHAR }
+                ]]>
+            </if>
+            <if test="regCellPhone != '' and regCellPhone != null" >
+                <![CDATA[
+                    and mobile = #{regCellPhone ,jdbcType=VARCHAR }
+                ]]>
+            </if>
+            <if test="idCardNo != '' and idCardNo != null" >
+                <![CDATA[
+                    and ID_CARD_NO = #{idCardNo ,jdbcType=VARCHAR }
+                ]]>
+            </if>
+            <if test="isValid != '' and isValid != null" >
+                <![CDATA[
+                    and IS_VALID = #{isValid ,jdbcType=VARCHAR }
+                ]]>
+            </if>
+            <if test="loginName != '' and loginName != null" >
+                <![CDATA[
+                    LOGIN_NAME = #{loginName,jdbcType=VARCHAR}
+                ]]>
+            </if>
+            <if test="nickName != '' and nickName != null" >
+                <![CDATA[
+                    NICK_NAME = #{nickName,jdbcType=VARCHAR}
+                ]]>
+            </if>
+        </where>
+    </select>
+
+    <!--  查询详情Vo -->
+    <select id="queryDetailVo" resultMap="BaseResultMap_Vo" parameterType="com.centit.zuulgateway.po.GUserinfoVo">
+        <![CDATA[
+            select
+                   t.id USER_CODE,
+                   t.IS_VALID IS_VALID,
+                   t.mobile LOGIN_NAME,
+                   t.userName USER_NAME,
+                   t.password USER_PWD,
+                   t.email REG_EMAIL,
+                   t.mobile REG_MOBILE,
+                   t.IDCard ID_CARD_NO,
+                   t.nick_name NICK_NAME,
+                   t.photo_id PHOTO,
+                   t.sex SEX,
+                   t.SIGNATURE SIGNATURE,
+                   ue.*
+            from shopping_user t left join G_USERINFO_EXTENSION ue on t.USER_CODE = ue.USER_CODE
+        ]]>
+        <where>
+            <![CDATA[
+                and t.USER_CODE = #{userCode ,jdbcType=VARCHAR }
+            ]]>
+            <if test="isValid != null and isValid != ''">
+                <![CDATA[
+                    AND t.IS_VALID = #{isValid ,jdbcType=VARCHAR }
+                ]]>
+            </if>
+        </where>
+    </select>
+
+    <!--  查询详情queryDetailByPropertiesVo -->
+    <select id="queryDetailByPropertiesVo" resultMap="BaseResultMap_Vo" parameterType="com.centit.zuulgateway.po.GUserinfoVo">
+        <![CDATA[
+            select t.id USER_CODE,
+                   t.mzuserid MZUSERID,
+                   t.IS_VALID IS_VALID,
+                   t.mobile LOGIN_NAME,
+                   t.userName USER_NAME,
+                   t.password USER_PWD,
+                   t.email REG_EMAIL,
+                   t.mobile REG_CELL_PHONE,
+                   t.IDCard ID_CARD_NO,
+                   t.nick_name NICK_NAME,
+                   t.photo_id PHOTO,
+                   t.sex SEX,
+                   date_format(t.birthday,'%Y-%m-%d') BIRTHDAY,
+                   t.SIGNATURE SIGNATURE,
+                   t.USER_PIN USER_PIN,
+                   t.LABELID LABELID,
+                   ue.*,
+                   a.NAME as areaName
+            from SHOPPING_USER t
+            left join G_USERINFO_EXTENSION ue on t.mobile = ue.USER_CODE
+            left join C_ADMINISTRATIVE_AREA a on ue.AREA_CODE = a.CODE
+        ]]>
+        <where>
+            <if test="userCode != null and userCode != ''">
+                <![CDATA[
+                AND t.id = #{userCode ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="userName != null and userName != ''">
+                <![CDATA[
+                AND t.USER_NAME = #{userName ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="userPin != null and userPin != ''">
+                <![CDATA[
+                AND t.USER_PIN = #{userPin ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="userPwd != null and userPwd != ''">
+                <![CDATA[
+                AND t.USER_PWD = #{userPwd ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+           <if test="loginName != null and loginName != ''">
+                <![CDATA[
+                AND t.mobile = #{loginName ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="userDesc != null and userDesc != ''">
+                <![CDATA[
+                AND t.USER_DESC = #{userDesc ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="regCellPhone != null and regCellPhone != ''">
+                <![CDATA[
+                AND t.mobile = #{regCellPhone ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="nickName != null and nickName != ''">
+                <![CDATA[
+                AND t.NICK_NAME = #{nickName ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="regEmail != null and regEmail != ''">
+                <![CDATA[
+                AND t.REG_EMAIL = #{regEmail ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="sex != null and sex != ''">
+                <![CDATA[
+                AND t.SEX = #{sex ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="photo != null and photo != ''">
+                <![CDATA[
+                AND t.PHOTO = #{photo ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="isValid != null and isValid != ''">
+                <![CDATA[
+                AND t.IS_VALID = #{isValid ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="userType != null and userType != ''">
+                <![CDATA[
+                AND t.USER_TYPE = #{userType ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="englishName != null and englishName != ''">
+                <![CDATA[
+                AND t.ENGLISH_NAME = #{englishName ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="idCardNo != null and idCardNo != ''">
+                <![CDATA[
+                AND t.ID_CARD_NO = #{idCardNo ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="updateDate != null and updateDate != ''">
+                <![CDATA[
+                AND t.UPDATE_DATE = #{updateDate ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="createDate != null and createDate != ''">
+                <![CDATA[
+                AND t.CREATE_DATE = #{createDate ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="creator != null and creator != ''">
+                <![CDATA[
+                AND t.CREATOR = #{creator ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="updator != null and updator != ''">
+                <![CDATA[
+                AND t.UPDATOR = #{updator ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="signature != null and signature != ''">
+                <![CDATA[
+                AND t.SIGNATURE = #{signature ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="fingerPrint != null and fingerPrint != ''">
+                <![CDATA[
+                AND ue.FINGER_PRINT = #{fingerPrint ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="gestureCode != null and gestureCode != ''">
+                <![CDATA[
+                AND ue.GESTURE_CODE = #{gestureCode ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="unlockType != null and unlockType != ''">
+                <![CDATA[
+                AND ue.UNLOCK_TYPE = #{unlockType ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="todoMsgSwitch != null and todoMsgSwitch != ''">
+                <![CDATA[
+                AND ue.TODO_MSG_SWITCH = #{todoMsgSwitch ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="talkMsgSwitch != null and talkMsgSwitch != ''">
+                <![CDATA[
+                AND ue.TALK_MSG_SWITCH = #{talkMsgSwitch ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="fontSize != null and fontSize != ''">
+                <![CDATA[
+                AND ue.FONT_SIZE = #{fontSize ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="epStatus != null and epStatus != ''">
+                <![CDATA[
+                AND ue.EP_STATUS = #{epStatus ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="telephonenumber != null and telephonenumber != ''">
+                <![CDATA[
+                AND ue.TELEPHONENUMBER = #{telephonenumber ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="hideStatus != null and hideStatus != ''">
+                <![CDATA[
+                AND ue.HIDE_STATUS = #{hideStatus ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="lastLoginFailTimes != null and lastLoginFailTimes != ''">
+                <![CDATA[
+                AND ue.LAST_LOGIN_FAIL_TIMES = #{lastLoginFailTimes ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="lastLoginFailDate != null and lastLoginFailDate != ''">
+                <![CDATA[
+                AND ue.LAST_LOGIN_FAIL_DATE = #{lastLoginFailDate ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="areaCode != null and areaCode != ''">
+                <![CDATA[
+                    AND ue.AREA_CODE = #{areaCode ,jdbcType=VARCHAR}
+                ]]>
+            </if>
+            <if test="userMark1 != null and userMark1 != ''">
+                <![CDATA[
+                    AND ue.USER_MARK1 = #{userMark1 ,jdbcType=VARCHAR}
+                ]]>
+            </if>
+            <if test="userMark2 != null and userMark2 != ''">
+                <![CDATA[
+                    AND ue.USER_MARK2 = #{userMark2 ,jdbcType=VARCHAR}
+                ]]>
+            </if>
+            <if test="userMark3 != null and userMark3 != ''">
+                <![CDATA[
+                    AND ue.USER_MARK3 = #{userMark3 ,jdbcType=VARCHAR}
+                ]]>
+            </if>
+            <if test="userMark4 != null and userMark4 != ''">
+                <![CDATA[
+                    AND ue.USER_MARK4 = #{userMark4 ,jdbcType=VARCHAR}
+                ]]>
+            </if>
+            <if test="userMark5 != null and userMark5 != ''">
+                <![CDATA[
+                    AND ue.USER_MARK5 = #{userMark5 ,jdbcType=VARCHAR}
+                ]]>
+            </if>
+            <if test="userMark6 != null and userMark6 != ''">
+                <![CDATA[
+                    AND ue.USER_MARK6 = #{userMark6 ,jdbcType=VARCHAR}
+                ]]>
+            </if>
+            <if test="userMark7 != null and userMark7 != ''">
+                <![CDATA[
+                    AND ue.USER_MARK7 = #{userMark7 ,jdbcType=VARCHAR}
+                ]]>
+            </if>
+            <if test="userMark8 != null and userMark8 != ''">
+                <![CDATA[
+                    AND ue.USER_MARK8 = #{userMark8 ,jdbcType=VARCHAR}
+                ]]>
+            </if>
+            <if test="userMark9 != null and userMark9 != ''">
+                <![CDATA[
+                    AND ue.USER_MARK9 = #{userMark9 ,jdbcType=VARCHAR}
+                ]]>
+            </if>
+        </where>
+    </select>
+
+    <!--  查询详情 -->
+    <select id="queryUserInfoList" resultMap="BaseResultMap" parameterType="com.centit.zuulgateway.po.GUserinfo">
+        <![CDATA[
+            select
+                   t.id USER_CODE,
+                   t.crmid CRMID,
+                   t.IS_VALID IS_VALID,
+                   t.mobile LOGIN_NAME,
+                   t.userName USER_NAME,
+                   t.password USER_PWD,
+                   t.email REG_EMAIL,
+                   t.mobile REG_CELL_PHONE,
+                   t.IDCard ID_CARD_NO,
+                   t.nick_name NICK_NAME,
+                   t.photo_id PHOTO,
+                   t.sex SEX,
+                   t.USER_PIN USER_PIN,
+                   t.SIGNATURE SIGNATURE
+        ]]>
+        <![CDATA[
+            from shopping_user t
+        ]]>
+        <where>
+            <if test="userCode != '' and userCode != null" >
+                <![CDATA[
+                    and id = #{userCode ,jdbcType=VARCHAR }
+                ]]>
+            </if>
+            <if test="regCellPhone != '' and regCellPhone != null" >
+                <![CDATA[
+                    and mobile = #{regCellPhone ,jdbcType=VARCHAR }
+                ]]>
+            </if>
+            <if test="isValid != '' and isValid != null" >
+                <![CDATA[
+                    and IS_VALID = #{isValid ,jdbcType=VARCHAR }
+                ]]>
+            </if>
+            <if test="loginName != '' and loginName != null" >
+                <![CDATA[
+                    LOGIN_NAME = #{loginName,jdbcType=VARCHAR}
+                ]]>
+            </if>
+            <if test="nickName != '' and nickName != null" >
+                <![CDATA[
+                    NICK_NAME = #{nickName,jdbcType=VARCHAR}
+                ]]>
+            </if>
+        </where>
+    </select>
+    <!--  查询数量 -->
+    <select id="queryCount" resultType="java.lang.Integer" parameterType="com.centit.zuulgateway.po.GUserinfo">
+        <![CDATA[
+            select count(0) from SHOPPING_USER t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+    <!--  查询分页列表 -->
+    <select id="queryPageList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            SELECT * FROM
+            (
+                SELECT A.*, ROWNUM RN
+                FROM (SELECT * FROM G_USERINFO gu right join G_USERROLE gur on gu.USER_CODE = gur.USER_CODE
+        ]]>
+                        <where>
+                            <![CDATA[
+                                and gu.IS_VALID = 'T'
+                            ]]>
+                            <if test="regCellPhone != '' and regCellPhone != null" >
+                                <![CDATA[
+                                    and gu.REG_CELL_PHONE like '%'||#{regCellPhone,jdbcType=VARCHAR}||'%'
+                                ]]>
+                            </if>
+                            <if test="sex != '' and sex != null" >
+                                <![CDATA[
+                                    and gu.sex = #{sex,jdbcType=VARCHAR}
+                                ]]>
+                            </if>
+                            <if test="roleCode != '' and roleCode != null" >
+                                <![CDATA[
+                                    and gur.ROLE_CODE = #{roleCode,jdbcType=VARCHAR}
+                                ]]>
+                            </if>
+                            <if test="name != '' and name != null" >
+                                <![CDATA[
+                                    and
+                                    (
+                                      gu.USER_NAME like '%'||#{name,jdbcType=VARCHAR}||'%'
+                                      or gu.NICK_NAME like '%'||#{name,jdbcType=VARCHAR}||'%'
+                                    )
+                                ]]>
+                            </if>
+                        </where>
+        <![CDATA[
+                      ORDER BY gu.CREATE_DATE) A
+                WHERE ROWNUM <= #{rownum ,jdbcType=INTEGER }
+            )
+            WHERE RN >= #{rn ,jdbcType=INTEGER }
+        ]]>
+    </select>
+
+    <!--  查询分页列表数量 -->
+    <select id="queryPageListCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            SELECT count(0) FROM G_USERINFO gu right join G_USERROLE gur on gu.USER_CODE = gur.USER_CODE
+        ]]>
+        <where>
+            <![CDATA[
+                and gu.IS_VALID = 'T'
+            ]]>
+            <if test="regCellPhone != '' and regCellPhone != null" >
+                <![CDATA[
+                    and gu.REG_CELL_PHONE like '%'||#{regCellPhone,jdbcType=VARCHAR}||'%'
+                ]]>
+            </if>
+            <if test="sex != '' and sex != null" >
+                <![CDATA[
+                    and gu.sex = #{sex,jdbcType=VARCHAR}
+                ]]>
+            </if>
+            <if test="roleCode != '' and roleCode != null" >
+                <![CDATA[
+                and gur.ROLE_CODE = #{roleCode,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="name != '' and name != null" >
+                <![CDATA[
+                    and
+                    (
+                      gu.USER_NAME like '%'||#{name,jdbcType=VARCHAR}||'%'
+                      or gu.NICK_NAME like '%'||#{name,jdbcType=VARCHAR}||'%'
+                    )
+                ]]>
+            </if>
+        </where>
+    </select>
+
+
+
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from G_USERINFO t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+
+    <!--  查询企业用户列表 -->
+    <select id="queryCorpUserList" resultMap="GUserCustomer_ResultMap" parameterType="com.centit.zuulgateway.po.GUserCustomer">
+        <![CDATA[
+            SELECT
+                   ccu.CORP_USER_TYPE,
+                   ccu.IS_PRIMARY,
+                   ccu.USER_ORDER,
+                   gu.*
+            FROM C_CORP_USER ccu LEFT JOIN G_USERINFO gu ON ccu.USERID = gu.USER_CODE
+        ]]>
+        <where>
+            <![CDATA[
+                AND gu.IS_VALID = 'T'
+            ]]>
+            <if test="corpid != '' and corpid != null" >
+                <![CDATA[
+                    and ccu.CORPID = #{corpid ,jdbcType=VARCHAR }
+                ]]>
+            </if>
+            <if test="corpUserType != '' and corpUserType != null" >
+                <![CDATA[
+                    and ccu.CORP_USER_TYPE = #{corpUserType ,jdbcType=VARCHAR }
+                ]]>
+            </if>
+            <if test="isPrimary != '' and isPrimary != null" >
+                <![CDATA[
+                    and ccu.IS_PRIMARY = #{isPrimary ,jdbcType=VARCHAR }
+                ]]>
+            </if>
+        </where>
+    </select>
+
+
+    <!--  查询分页列表 -->
+    <select id="queryCrmUrl" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            SELECT t.* FROM t_cm_crmurl t
+
+        ]]>
+        <where>
+            <if test="crmname != '' and crmname != null" >
+                <![CDATA[
+                    and t.crmname = #{crmname,jdbcType=VARCHAR}
+                 ]]>
+            </if>
+        </where>
+    </select>
+
+</mapper>

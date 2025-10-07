@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.order.dao.ShoppingWriteoffDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.order.po.ShoppingWriteoffPo">
+        <id column="gcId" property="gcId" />
+        <result column="off_code" property="offCode" />
+        <result column="goods_count" property="goodsCount" />
+        <result column="off_count" property="offCount" />
+        <result column="off_status" property="offStatus" />
+    </resultMap>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.order.po.ShoppingWriteoffPo">
+        <![CDATA[
+			insert into shopping_writeoff
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="gcId != null and gcId != ''" >
+                <![CDATA[
+                    gcId,
+                ]]>
+            </if>
+            <if test="offCode != null and offCode != ''" >
+                <![CDATA[
+                    off_code,
+                ]]>
+            </if>
+            <if test="goodsCount != null and goodsCount != ''" >
+                <![CDATA[
+                    goods_count,
+                ]]>
+            </if>
+            <if test="offCount != null and offCount != ''" >
+                <![CDATA[
+                    off_count,
+                ]]>
+            </if>
+            <if test="offStatus != null and offStatus != ''" >
+                <![CDATA[
+                    off_status,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="gcId != null and gcId != ''" >
+                <![CDATA[
+                    #{gcId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="offCode != null and offCode != ''" >
+                <![CDATA[
+                    #{offCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="goodsCount != null and goodsCount != ''" >
+                <![CDATA[
+                    #{goodsCount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="offCount != null and offCount != ''" >
+                <![CDATA[
+                    #{offCount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="offStatus != null and offStatus != ''" >
+                <![CDATA[
+                    #{offStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+</mapper>

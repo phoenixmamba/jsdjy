@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.ShoppingFavoriteDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.ShoppingFavorite">
+        <id column="id" property="id" />
+        <result column="addTime" property="addTime" />
+        <result column="deleteStatus" property="deleteStatus" />
+        <result column="type" property="type" />
+        <result column="goods_id" property="goodsId" />
+        <result column="user_id" property="userId" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, addTime, deleteStatus, type, goods_id, user_id
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        addTime
+          ,
+        deleteStatus
+          ,
+        type
+          ,
+        goods_id
+          ,
+        user_id
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="addTime != null and addTime != ''">
+            <![CDATA[
+                AND addTime = #{addTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="deleteStatus != null and deleteStatus != ''">
+            <![CDATA[
+                AND deleteStatus = #{deleteStatus ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="type != null and type != ''">
+            <![CDATA[
+                AND type = #{type ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="goodsType != null and goodsType != ''">
+            <![CDATA[
+                AND (type = 1 || type = 2)
+            ]]>
+        </if>
+        <if test="goodsId != null and goodsId != ''">
+            <![CDATA[
+                AND goods_id = #{goodsId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="userId != null and userId != ''">
+            <![CDATA[
+                AND user_id = #{userId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.ShoppingFavorite">
+        <![CDATA[
+			insert into shopping_favorite
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <![CDATA[
+                    addTime,
+                ]]>
+            <if test="deleteStatus != null and deleteStatus != ''" >
+                <![CDATA[
+                    deleteStatus,
+                ]]>
+            </if>
+            <if test="type != null and type != ''" >
+                <![CDATA[
+                    type,
+                ]]>
+            </if>
+            <if test="goodsId != null and goodsId != ''" >
+                <![CDATA[
+                    goods_id,
+                ]]>
+            </if>
+            <if test="userId != null and userId != ''" >
+                <![CDATA[
+                    user_id,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+                now(),
+            <if test="deleteStatus != null and deleteStatus != ''" >
+                <![CDATA[
+                    #{deleteStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="type != null and type != ''" >
+                <![CDATA[
+                    #{type,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="goodsId != null and goodsId != ''" >
+                <![CDATA[
+                    #{goodsId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userId != null and userId != ''" >
+                <![CDATA[
+                    #{userId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.ShoppingFavorite" >
+        <![CDATA[
+        	update shopping_favorite
+        ]]>
+        <set >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="addTime != null and addTime != ''" >
+                <![CDATA[
+                    addTime = #{addTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="deleteStatus != null and deleteStatus != ''" >
+                <![CDATA[
+                    deleteStatus = #{deleteStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="type != null and type != ''" >
+                <![CDATA[
+                    type = #{type,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="goodsId != null and goodsId != ''" >
+                <![CDATA[
+                    goods_id = #{goodsId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userId != null and userId != ''" >
+                <![CDATA[
+                    user_id = #{userId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.ShoppingFavorite">
+        <![CDATA[
+            delete from shopping_favorite
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.ShoppingFavorite">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_favorite t
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_favorite t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+        order by t.addTime desc
+        <if test="pageSize != '' and pageSize != null" >
+            <![CDATA[
+                    limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+                ]]>
+        </if>
+    </select>
+
+    <!--  查询列表数量 -->
+    <select id="queryTotalCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            SELECT count(0) FROM shopping_favorite
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+    <!-- 取消收藏 -->
+    <update id="cancelFav" parameterType="com.centit.shopping.po.ShoppingFavorite" >
+        <![CDATA[
+        	update shopping_favorite
+        ]]>
+        <set >
+                <![CDATA[
+                    deleteStatus = '1',
+                ]]>
+        </set>
+        <where>
+            <if test="type != null and type != ''">
+                <![CDATA[
+                AND type = #{type ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="goodsId != null and goodsId != ''">
+                <![CDATA[
+                AND goods_id = #{goodsId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="userId != null and userId != ''">
+                <![CDATA[
+                AND user_id = #{userId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+        </where>
+    </update>
+</mapper>

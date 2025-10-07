@@ -1,0 +1,912 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.pay.biz.dao.ShoppingPaymentDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.pay.biz.po.ShoppingPayment">
+        <id column="id" property="id" />
+        <result column="addTime" property="addTime" />
+        <result column="deleteStatus" property="deleteStatus" />
+        <result column="content" property="content" />
+        <result column="install" property="install" />
+        <result column="store_id" property="storeId" />
+        <result column="type" property="type" />
+        <result column="name" property="name" />
+        <result column="mark" property="mark" />
+        <result column="weixin_appId" property="weixinAppid" />
+        <result column="weixin_appSecret" property="weixinAppsecret" />
+        <result column="weixin_partnerId" property="weixinPartnerid" />
+        <result column="weixin_partnerKey" property="weixinPartnerkey" />
+        <result column="weixin_paySignKey" property="weixinPaysignkey" />
+        <result column="close_content" property="closeContent" />
+        <result column="useing" property="useing" />
+        <result column="alipay_divide_rate" property="alipayDivideRate" />
+        <result column="alipay_rate" property="alipayRate" />
+        <result column="balance_divide_rate" property="balanceDivideRate" />
+        <result column="chinabank_account" property="chinabankAccount" />
+        <result column="chinabank_key" property="chinabankKey" />
+        <result column="currency_code" property="currencyCode" />
+        <result column="interfaceType" property="interfaceType" />
+        <result column="merchantAcctId" property="merchantAcctId" />
+        <result column="partner" property="partner" />
+        <result column="paypal_userId" property="paypalUserid" />
+        <result column="pid" property="pid" />
+        <result column="poundage" property="poundage" />
+        <result column="rmbKey" property="rmbKey" />
+        <result column="safeKey" property="safeKey" />
+        <result column="seller_email" property="sellerEmail" />
+        <result column="spname" property="spname" />
+        <result column="tenpay_key" property="tenpayKey" />
+        <result column="tenpay_partner" property="tenpayPartner" />
+        <result column="trade_mode" property="tradeMode" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, addTime, deleteStatus, content, install, store_id, type, name, mark, weixin_appId, weixin_appSecret, weixin_partnerId, weixin_partnerKey, weixin_paySignKey, close_content, useing, alipay_divide_rate, alipay_rate, balance_divide_rate, chinabank_account, chinabank_key, currency_code, interfaceType, merchantAcctId, partner, paypal_userId, pid, poundage, rmbKey, safeKey, seller_email, spname, tenpay_key, tenpay_partner, trade_mode
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        addTime
+          ,
+        deleteStatus
+          ,
+        content
+          ,
+        install
+          ,
+        store_id
+          ,
+        type
+          ,
+        name
+          ,
+        mark
+          ,
+        weixin_appId
+          ,
+        weixin_appSecret
+          ,
+        weixin_partnerId
+          ,
+        weixin_partnerKey
+          ,
+        weixin_paySignKey
+          ,
+        close_content
+          ,
+        useing
+          ,
+        alipay_divide_rate
+          ,
+        alipay_rate
+          ,
+        balance_divide_rate
+          ,
+        chinabank_account
+          ,
+        chinabank_key
+          ,
+        currency_code
+          ,
+        interfaceType
+          ,
+        merchantAcctId
+          ,
+        partner
+          ,
+        paypal_userId
+          ,
+        pid
+          ,
+        poundage
+          ,
+        rmbKey
+          ,
+        safeKey
+          ,
+        seller_email
+          ,
+        spname
+          ,
+        tenpay_key
+          ,
+        tenpay_partner
+          ,
+        trade_mode
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="addTime != null and addTime != ''">
+            <![CDATA[
+                AND addTime = #{addTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="deleteStatus != null">
+            <![CDATA[
+                AND deleteStatus = #{deleteStatus ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="content != null and content != ''">
+            <![CDATA[
+                AND content = #{content ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="install != null and install != ''">
+            <![CDATA[
+                AND install = #{install ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="storeId != null and storeId != ''">
+            <![CDATA[
+                AND store_id = #{storeId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="type != null and type != ''">
+            <![CDATA[
+                AND type = #{type ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="name != null and name != ''">
+            <![CDATA[
+                AND name = #{name ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="mark != null and mark != ''">
+            <![CDATA[
+                AND mark = #{mark ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="weixinAppid != null and weixinAppid != ''">
+            <![CDATA[
+                AND weixin_appId = #{weixinAppid ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="weixinAppsecret != null and weixinAppsecret != ''">
+            <![CDATA[
+                AND weixin_appSecret = #{weixinAppsecret ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="weixinPartnerid != null and weixinPartnerid != ''">
+            <![CDATA[
+                AND weixin_partnerId = #{weixinPartnerid ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="weixinPartnerkey != null and weixinPartnerkey != ''">
+            <![CDATA[
+                AND weixin_partnerKey = #{weixinPartnerkey ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="weixinPaysignkey != null and weixinPaysignkey != ''">
+            <![CDATA[
+                AND weixin_paySignKey = #{weixinPaysignkey ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="closeContent != null and closeContent != ''">
+            <![CDATA[
+                AND close_content = #{closeContent ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="useing != null and useing != ''">
+            <![CDATA[
+                AND useing = #{useing ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="alipayDivideRate != null and alipayDivideRate != ''">
+            <![CDATA[
+                AND alipay_divide_rate = #{alipayDivideRate ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="alipayRate != null and alipayRate != ''">
+            <![CDATA[
+                AND alipay_rate = #{alipayRate ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="balanceDivideRate != null and balanceDivideRate != ''">
+            <![CDATA[
+                AND balance_divide_rate = #{balanceDivideRate ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="chinabankAccount != null and chinabankAccount != ''">
+            <![CDATA[
+                AND chinabank_account = #{chinabankAccount ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="chinabankKey != null and chinabankKey != ''">
+            <![CDATA[
+                AND chinabank_key = #{chinabankKey ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="currencyCode != null and currencyCode != ''">
+            <![CDATA[
+                AND currency_code = #{currencyCode ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="interfaceType != null and interfaceType != ''">
+            <![CDATA[
+                AND interfaceType = #{interfaceType ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="merchantAcctId != null and merchantAcctId != ''">
+            <![CDATA[
+                AND merchantAcctId = #{merchantAcctId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="partner != null and partner != ''">
+            <![CDATA[
+                AND partner = #{partner ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="paypalUserid != null and paypalUserid != ''">
+            <![CDATA[
+                AND paypal_userId = #{paypalUserid ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="pid != null and pid != ''">
+            <![CDATA[
+                AND pid = #{pid ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="poundage != null and poundage != ''">
+            <![CDATA[
+                AND poundage = #{poundage ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="rmbKey != null and rmbKey != ''">
+            <![CDATA[
+                AND rmbKey = #{rmbKey ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="safeKey != null and safeKey != ''">
+            <![CDATA[
+                AND safeKey = #{safeKey ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="sellerEmail != null and sellerEmail != ''">
+            <![CDATA[
+                AND seller_email = #{sellerEmail ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="spname != null and spname != ''">
+            <![CDATA[
+                AND spname = #{spname ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="tenpayKey != null and tenpayKey != ''">
+            <![CDATA[
+                AND tenpay_key = #{tenpayKey ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="tenpayPartner != null and tenpayPartner != ''">
+            <![CDATA[
+                AND tenpay_partner = #{tenpayPartner ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="tradeMode != null and tradeMode != ''">
+            <![CDATA[
+                AND trade_mode = #{tradeMode ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.pay.biz.po.ShoppingPayment">
+        <![CDATA[
+			insert into shopping_payment
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    id,
+                ]]>
+            </if>
+            <if test="addTime != '' and addTime != null" >
+                <![CDATA[
+                    addTime,
+                ]]>
+            </if>
+            <if test="deleteStatus != '' and deleteStatus != null" >
+                <![CDATA[
+                    deleteStatus,
+                ]]>
+            </if>
+            <if test="content != '' and content != null" >
+                <![CDATA[
+                    content,
+                ]]>
+            </if>
+            <if test="install != '' and install != null" >
+                <![CDATA[
+                    install,
+                ]]>
+            </if>
+            <if test="storeId != '' and storeId != null" >
+                <![CDATA[
+                    store_id,
+                ]]>
+            </if>
+            <if test="type != '' and type != null" >
+                <![CDATA[
+                    type,
+                ]]>
+            </if>
+            <if test="name != '' and name != null" >
+                <![CDATA[
+                    name,
+                ]]>
+            </if>
+            <if test="mark != '' and mark != null" >
+                <![CDATA[
+                    mark,
+                ]]>
+            </if>
+            <if test="weixinAppid != '' and weixinAppid != null" >
+                <![CDATA[
+                    weixin_appId,
+                ]]>
+            </if>
+            <if test="weixinAppsecret != '' and weixinAppsecret != null" >
+                <![CDATA[
+                    weixin_appSecret,
+                ]]>
+            </if>
+            <if test="weixinPartnerid != '' and weixinPartnerid != null" >
+                <![CDATA[
+                    weixin_partnerId,
+                ]]>
+            </if>
+            <if test="weixinPartnerkey != '' and weixinPartnerkey != null" >
+                <![CDATA[
+                    weixin_partnerKey,
+                ]]>
+            </if>
+            <if test="weixinPaysignkey != '' and weixinPaysignkey != null" >
+                <![CDATA[
+                    weixin_paySignKey,
+                ]]>
+            </if>
+            <if test="closeContent != '' and closeContent != null" >
+                <![CDATA[
+                    close_content,
+                ]]>
+            </if>
+            <if test="useing != '' and useing != null" >
+                <![CDATA[
+                    useing,
+                ]]>
+            </if>
+            <if test="alipayDivideRate != '' and alipayDivideRate != null" >
+                <![CDATA[
+                    alipay_divide_rate,
+                ]]>
+            </if>
+            <if test="alipayRate != '' and alipayRate != null" >
+                <![CDATA[
+                    alipay_rate,
+                ]]>
+            </if>
+            <if test="balanceDivideRate != '' and balanceDivideRate != null" >
+                <![CDATA[
+                    balance_divide_rate,
+                ]]>
+            </if>
+            <if test="chinabankAccount != '' and chinabankAccount != null" >
+                <![CDATA[
+                    chinabank_account,
+                ]]>
+            </if>
+            <if test="chinabankKey != '' and chinabankKey != null" >
+                <![CDATA[
+                    chinabank_key,
+                ]]>
+            </if>
+            <if test="currencyCode != '' and currencyCode != null" >
+                <![CDATA[
+                    currency_code,
+                ]]>
+            </if>
+            <if test="interfaceType != '' and interfaceType != null" >
+                <![CDATA[
+                    interfaceType,
+                ]]>
+            </if>
+            <if test="merchantAcctId != '' and merchantAcctId != null" >
+                <![CDATA[
+                    merchantAcctId,
+                ]]>
+            </if>
+            <if test="partner != '' and partner != null" >
+                <![CDATA[
+                    partner,
+                ]]>
+            </if>
+            <if test="paypalUserid != '' and paypalUserid != null" >
+                <![CDATA[
+                    paypal_userId,
+                ]]>
+            </if>
+            <if test="pid != '' and pid != null" >
+                <![CDATA[
+                    pid,
+                ]]>
+            </if>
+            <if test="poundage != '' and poundage != null" >
+                <![CDATA[
+                    poundage,
+                ]]>
+            </if>
+            <if test="rmbKey != '' and rmbKey != null" >
+                <![CDATA[
+                    rmbKey,
+                ]]>
+            </if>
+            <if test="safeKey != '' and safeKey != null" >
+                <![CDATA[
+                    safeKey,
+                ]]>
+            </if>
+            <if test="sellerEmail != '' and sellerEmail != null" >
+                <![CDATA[
+                    seller_email,
+                ]]>
+            </if>
+            <if test="spname != '' and spname != null" >
+                <![CDATA[
+                    spname,
+                ]]>
+            </if>
+            <if test="tenpayKey != '' and tenpayKey != null" >
+                <![CDATA[
+                    tenpay_key,
+                ]]>
+            </if>
+            <if test="tenpayPartner != '' and tenpayPartner != null" >
+                <![CDATA[
+                    tenpay_partner,
+                ]]>
+            </if>
+            <if test="tradeMode != '' and tradeMode != null" >
+                <![CDATA[
+                    trade_mode,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="addTime != '' and addTime != null" >
+                <![CDATA[
+                    #{addTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="deleteStatus != '' and deleteStatus != null" >
+                <![CDATA[
+                    #{deleteStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="content != '' and content != null" >
+                <![CDATA[
+                    #{content,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="install != '' and install != null" >
+                <![CDATA[
+                    #{install,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="storeId != '' and storeId != null" >
+                <![CDATA[
+                    #{storeId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="type != '' and type != null" >
+                <![CDATA[
+                    #{type,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="name != '' and name != null" >
+                <![CDATA[
+                    #{name,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="mark != '' and mark != null" >
+                <![CDATA[
+                    #{mark,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="weixinAppid != '' and weixinAppid != null" >
+                <![CDATA[
+                    #{weixinAppid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="weixinAppsecret != '' and weixinAppsecret != null" >
+                <![CDATA[
+                    #{weixinAppsecret,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="weixinPartnerid != '' and weixinPartnerid != null" >
+                <![CDATA[
+                    #{weixinPartnerid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="weixinPartnerkey != '' and weixinPartnerkey != null" >
+                <![CDATA[
+                    #{weixinPartnerkey,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="weixinPaysignkey != '' and weixinPaysignkey != null" >
+                <![CDATA[
+                    #{weixinPaysignkey,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="closeContent != '' and closeContent != null" >
+                <![CDATA[
+                    #{closeContent,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="useing != '' and useing != null" >
+                <![CDATA[
+                    #{useing,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="alipayDivideRate != '' and alipayDivideRate != null" >
+                <![CDATA[
+                    #{alipayDivideRate,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="alipayRate != '' and alipayRate != null" >
+                <![CDATA[
+                    #{alipayRate,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="balanceDivideRate != '' and balanceDivideRate != null" >
+                <![CDATA[
+                    #{balanceDivideRate,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="chinabankAccount != '' and chinabankAccount != null" >
+                <![CDATA[
+                    #{chinabankAccount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="chinabankKey != '' and chinabankKey != null" >
+                <![CDATA[
+                    #{chinabankKey,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="currencyCode != '' and currencyCode != null" >
+                <![CDATA[
+                    #{currencyCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="interfaceType != '' and interfaceType != null" >
+                <![CDATA[
+                    #{interfaceType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="merchantAcctId != '' and merchantAcctId != null" >
+                <![CDATA[
+                    #{merchantAcctId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="partner != '' and partner != null" >
+                <![CDATA[
+                    #{partner,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="paypalUserid != '' and paypalUserid != null" >
+                <![CDATA[
+                    #{paypalUserid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="pid != '' and pid != null" >
+                <![CDATA[
+                    #{pid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="poundage != '' and poundage != null" >
+                <![CDATA[
+                    #{poundage,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="rmbKey != '' and rmbKey != null" >
+                <![CDATA[
+                    #{rmbKey,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="safeKey != '' and safeKey != null" >
+                <![CDATA[
+                    #{safeKey,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="sellerEmail != '' and sellerEmail != null" >
+                <![CDATA[
+                    #{sellerEmail,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="spname != '' and spname != null" >
+                <![CDATA[
+                    #{spname,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="tenpayKey != '' and tenpayKey != null" >
+                <![CDATA[
+                    #{tenpayKey,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="tenpayPartner != '' and tenpayPartner != null" >
+                <![CDATA[
+                    #{tenpayPartner,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="tradeMode != '' and tradeMode != null" >
+                <![CDATA[
+                    #{tradeMode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.pay.biz.po.ShoppingPayment" >
+        <![CDATA[
+        	update shopping_payment
+        ]]>
+        <set >
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="addTime != '' and addTime != null" >
+                <![CDATA[
+                    addTime = #{addTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="deleteStatus != '' and deleteStatus != null" >
+                <![CDATA[
+                    deleteStatus = #{deleteStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="content != '' and content != null" >
+                <![CDATA[
+                    content = #{content,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="install != '' and install != null" >
+                <![CDATA[
+                    install = #{install,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="storeId != '' and storeId != null" >
+                <![CDATA[
+                    store_id = #{storeId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="type != '' and type != null" >
+                <![CDATA[
+                    type = #{type,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="name != '' and name != null" >
+                <![CDATA[
+                    name = #{name,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="mark != '' and mark != null" >
+                <![CDATA[
+                    mark = #{mark,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="weixinAppid != '' and weixinAppid != null" >
+                <![CDATA[
+                    weixin_appId = #{weixinAppid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="weixinAppsecret != '' and weixinAppsecret != null" >
+                <![CDATA[
+                    weixin_appSecret = #{weixinAppsecret,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="weixinPartnerid != '' and weixinPartnerid != null" >
+                <![CDATA[
+                    weixin_partnerId = #{weixinPartnerid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="weixinPartnerkey != '' and weixinPartnerkey != null" >
+                <![CDATA[
+                    weixin_partnerKey = #{weixinPartnerkey,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="weixinPaysignkey != '' and weixinPaysignkey != null" >
+                <![CDATA[
+                    weixin_paySignKey = #{weixinPaysignkey,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="closeContent != '' and closeContent != null" >
+                <![CDATA[
+                    close_content = #{closeContent,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="useing != '' and useing != null" >
+                <![CDATA[
+                    useing = #{useing,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="alipayDivideRate != '' and alipayDivideRate != null" >
+                <![CDATA[
+                    alipay_divide_rate = #{alipayDivideRate,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="alipayRate != '' and alipayRate != null" >
+                <![CDATA[
+                    alipay_rate = #{alipayRate,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="balanceDivideRate != '' and balanceDivideRate != null" >
+                <![CDATA[
+                    balance_divide_rate = #{balanceDivideRate,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="chinabankAccount != '' and chinabankAccount != null" >
+                <![CDATA[
+                    chinabank_account = #{chinabankAccount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="chinabankKey != '' and chinabankKey != null" >
+                <![CDATA[
+                    chinabank_key = #{chinabankKey,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="currencyCode != '' and currencyCode != null" >
+                <![CDATA[
+                    currency_code = #{currencyCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="interfaceType != '' and interfaceType != null" >
+                <![CDATA[
+                    interfaceType = #{interfaceType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="merchantAcctId != '' and merchantAcctId != null" >
+                <![CDATA[
+                    merchantAcctId = #{merchantAcctId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="partner != '' and partner != null" >
+                <![CDATA[
+                    partner = #{partner,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="paypalUserid != '' and paypalUserid != null" >
+                <![CDATA[
+                    paypal_userId = #{paypalUserid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="pid != '' and pid != null" >
+                <![CDATA[
+                    pid = #{pid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="poundage != '' and poundage != null" >
+                <![CDATA[
+                    poundage = #{poundage,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="rmbKey != '' and rmbKey != null" >
+                <![CDATA[
+                    rmbKey = #{rmbKey,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="safeKey != '' and safeKey != null" >
+                <![CDATA[
+                    safeKey = #{safeKey,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="sellerEmail != '' and sellerEmail != null" >
+                <![CDATA[
+                    seller_email = #{sellerEmail,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="spname != '' and spname != null" >
+                <![CDATA[
+                    spname = #{spname,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="tenpayKey != '' and tenpayKey != null" >
+                <![CDATA[
+                    tenpay_key = #{tenpayKey,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="tenpayPartner != '' and tenpayPartner != null" >
+                <![CDATA[
+                    tenpay_partner = #{tenpayPartner,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="tradeMode != '' and tradeMode != null" >
+                <![CDATA[
+                    trade_mode = #{tradeMode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.pay.biz.po.ShoppingPayment">
+        <![CDATA[
+            delete from shopping_payment
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.pay.biz.po.ShoppingPayment">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_payment t
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询详情 -->
+    <select id="queryDetailById" resultMap="BaseResultMap" parameterType="java.lang.String">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_payment t
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_payment t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+</mapper>

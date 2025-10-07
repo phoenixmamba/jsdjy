@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.order.dao.ShoppingCouponUsertempDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.order.po.ShoppingCouponUsertempPo">
+        <result column="coupon_id" property="couponId" />
+        <result column="user_id" property="userId" />
+    </resultMap>
+
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="couponId != null and couponId != ''">
+            <![CDATA[
+                AND coupon_id = #{couponId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="userId != null and userId != ''">
+            <![CDATA[
+                AND user_id = #{userId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.order.po.ShoppingCouponUsertempPo">
+        <![CDATA[
+			insert into shopping_coupon_usertemp
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="couponId != null and couponId != ''" >
+                <![CDATA[
+                    coupon_id,
+                ]]>
+            </if>
+            <if test="userId != null and userId != ''" >
+                <![CDATA[
+                    user_id,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="couponId != null and couponId != ''" >
+                <![CDATA[
+                    #{couponId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userId != null and userId != ''" >
+                <![CDATA[
+                    #{userId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+</mapper>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.ShoppingAssetDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.ShoppingAsset">
+        <id column="user_id" property="userId" />
+        <result column="integral_value" property="integralValue" />
+        <result column="balance_value" property="balanceValue" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        user_id, integral_value, balance_value
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        user_id
+          ,
+        integral_value
+          ,
+        balance_value
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="userId != null and userId != ''">
+            <![CDATA[
+                AND user_id = #{userId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="integralValue != null and integralValue != ''">
+            <![CDATA[
+                AND integral_value = #{integralValue ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="balanceValue != null and balanceValue != ''">
+            <![CDATA[
+                AND balance_value = #{balanceValue ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.ShoppingAsset">
+        <![CDATA[
+			insert into shopping_asset
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="userId != null and userId != ''" >
+                <![CDATA[
+                    user_id,
+                ]]>
+            </if>
+            <if test="integralValue != null" >
+                <![CDATA[
+                    integral_value,
+                ]]>
+            </if>
+            <if test="balanceValue != null" >
+                <![CDATA[
+                    balance_value,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="userId != null and userId != ''" >
+                <![CDATA[
+                    #{userId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="integralValue != null" >
+                <![CDATA[
+                    #{integralValue,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="balanceValue != null" >
+                <![CDATA[
+                    #{balanceValue,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.ShoppingAsset" >
+        <![CDATA[
+        	update shopping_asset
+        ]]>
+        <set >
+            <if test="userId != null and userId != ''" >
+                <![CDATA[
+                    user_id = #{userId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="integralValue != null" >
+                <![CDATA[
+                    integral_value = #{integralValue,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="balanceValue != null" >
+                <![CDATA[
+                    balance_value = #{balanceValue,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and user_id = #{userId ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.ShoppingAsset">
+        <![CDATA[
+            delete from shopping_asset
+        ]]>
+        <where>
+            <![CDATA[
+                and user_id = #{userId ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.ShoppingAsset">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_asset t
+        ]]>
+        <where>
+            <![CDATA[
+                and user_id = #{userId ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_asset t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+</mapper>

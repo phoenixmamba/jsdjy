@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.ticket.dao.TicketVenueDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.ticket.po.TicketVenue">
+        <id column="venue_id" property="venueId" />
+        <result column="venue_name" property="venueName" />
+        <result column="venue_introduce" property="venueIntroduce" />
+        <result column="address" property="address" />
+        <result column="longitude" property="longitude" />
+        <result column="latitude" property="latitude" />
+        <result column="province_code" property="provinceCode" />
+        <result column="province_name" property="provinceName" />
+        <result column="city_code" property="cityCode" />
+        <result column="city_name" property="cityName" />
+        <result column="big_venue_boolean" property="bigVenueBoolean" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        venue_id, venue_name, venue_introduce, address, longitude, latitude, province_code, province_name, city_code, city_name, big_venue_boolean
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        venue_id
+          ,
+        venue_name
+          ,
+        venue_introduce
+          ,
+        address
+          ,
+        longitude
+          ,
+        latitude
+          ,
+        province_code
+          ,
+        province_name
+          ,
+        city_code
+          ,
+        city_name
+          ,
+        big_venue_boolean
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="venueId != null and venueId != ''">
+            <![CDATA[
+                AND venue_id = #{venueId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="venueName != null and venueName != ''">
+            <![CDATA[
+                AND venue_name = #{venueName ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="venueIntroduce != null and venueIntroduce != ''">
+            <![CDATA[
+                AND venue_introduce = #{venueIntroduce ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="address != null and address != ''">
+            <![CDATA[
+                AND address = #{address ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="longitude != null and longitude != ''">
+            <![CDATA[
+                AND longitude = #{longitude ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="latitude != null and latitude != ''">
+            <![CDATA[
+                AND latitude = #{latitude ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="provinceCode != null and provinceCode != ''">
+            <![CDATA[
+                AND province_code = #{provinceCode ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="provinceName != null and provinceName != ''">
+            <![CDATA[
+                AND province_name = #{provinceName ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="cityCode != null and cityCode != ''">
+            <![CDATA[
+                AND city_code = #{cityCode ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="cityName != null and cityName != ''">
+            <![CDATA[
+                AND city_name = #{cityName ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="bigVenueBoolean != null and bigVenueBoolean != ''">
+            <![CDATA[
+                AND big_venue_boolean = #{bigVenueBoolean ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.ticket.po.TicketVenue">
+        <![CDATA[
+			insert into ticket_venue
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="venueId != '' and venueId != null" >
+                <![CDATA[
+                    venue_id,
+                ]]>
+            </if>
+            <if test="venueName != '' and venueName != null" >
+                <![CDATA[
+                    venue_name,
+                ]]>
+            </if>
+            <if test="venueIntroduce != '' and venueIntroduce != null" >
+                <![CDATA[
+                    venue_introduce,
+                ]]>
+            </if>
+            <if test="address != '' and address != null" >
+                <![CDATA[
+                    address,
+                ]]>
+            </if>
+            <if test="longitude != '' and longitude != null" >
+                <![CDATA[
+                    longitude,
+                ]]>
+            </if>
+            <if test="latitude != '' and latitude != null" >
+                <![CDATA[
+                    latitude,
+                ]]>
+            </if>
+            <if test="provinceCode != '' and provinceCode != null" >
+                <![CDATA[
+                    province_code,
+                ]]>
+            </if>
+            <if test="provinceName != '' and provinceName != null" >
+                <![CDATA[
+                    province_name,
+                ]]>
+            </if>
+            <if test="cityCode != '' and cityCode != null" >
+                <![CDATA[
+                    city_code,
+                ]]>
+            </if>
+            <if test="cityName != '' and cityName != null" >
+                <![CDATA[
+                    city_name,
+                ]]>
+            </if>
+            <if test="bigVenueBoolean != '' and bigVenueBoolean != null" >
+                <![CDATA[
+                    big_venue_boolean,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="venueId != '' and venueId != null" >
+                <![CDATA[
+                    #{venueId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="venueName != '' and venueName != null" >
+                <![CDATA[
+                    #{venueName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="venueIntroduce != '' and venueIntroduce != null" >
+                <![CDATA[
+                    #{venueIntroduce,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="address != '' and address != null" >
+                <![CDATA[
+                    #{address,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="longitude != '' and longitude != null" >
+                <![CDATA[
+                    #{longitude,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="latitude != '' and latitude != null" >
+                <![CDATA[
+                    #{latitude,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="provinceCode != '' and provinceCode != null" >
+                <![CDATA[
+                    #{provinceCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="provinceName != '' and provinceName != null" >
+                <![CDATA[
+                    #{provinceName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="cityCode != '' and cityCode != null" >
+                <![CDATA[
+                    #{cityCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="cityName != '' and cityName != null" >
+                <![CDATA[
+                    #{cityName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="bigVenueBoolean != '' and bigVenueBoolean != null" >
+                <![CDATA[
+                    #{bigVenueBoolean,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.ticket.po.TicketVenue" >
+        <![CDATA[
+        	update ticket_venue
+        ]]>
+        <set >
+            <if test="venueId != '' and venueId != null" >
+                <![CDATA[
+                    venue_id = #{venueId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="venueName != '' and venueName != null" >
+                <![CDATA[
+                    venue_name = #{venueName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="venueIntroduce != '' and venueIntroduce != null" >
+                <![CDATA[
+                    venue_introduce = #{venueIntroduce,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="address != '' and address != null" >
+                <![CDATA[
+                    address = #{address,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="longitude != '' and longitude != null" >
+                <![CDATA[
+                    longitude = #{longitude,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="latitude != '' and latitude != null" >
+                <![CDATA[
+                    latitude = #{latitude,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="provinceCode != '' and provinceCode != null" >
+                <![CDATA[
+                    province_code = #{provinceCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="provinceName != '' and provinceName != null" >
+                <![CDATA[
+                    province_name = #{provinceName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="cityCode != '' and cityCode != null" >
+                <![CDATA[
+                    city_code = #{cityCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="cityName != '' and cityName != null" >
+                <![CDATA[
+                    city_name = #{cityName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="bigVenueBoolean != '' and bigVenueBoolean != null" >
+                <![CDATA[
+                    big_venue_boolean = #{bigVenueBoolean,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and venue_id = #{venueId ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.ticket.po.TicketVenue">
+        <![CDATA[
+            delete from ticket_venue
+        ]]>
+        <where>
+            <![CDATA[
+                and venue_id = #{venueId ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.ticket.po.TicketVenue">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from ticket_venue t
+        ]]>
+        <where>
+            <![CDATA[
+                and venue_id = #{venueId ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from ticket_venue t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+</mapper>

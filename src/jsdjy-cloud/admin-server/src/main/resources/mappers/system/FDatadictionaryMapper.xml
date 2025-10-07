@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.admin.system.dao.FDatadictionaryDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.admin.system.po.FDatadictionary">
+        <id column="CATALOG_CODE" property="catalogCode" />
+        <result column="DATA_CODE" property="dataCode" />
+        <result column="EXTRA_CODE" property="extraCode" />
+        <result column="EXTRA_CODE2" property="extraCode2" />
+        <result column="DATA_TAG" property="dataTag" />
+        <result column="DATA_VALUE" property="dataValue" />
+        <result column="DATA_STYLE" property="dataStyle" />
+        <result column="DATA_DESC" property="dataDesc" />
+        <result column="LAST_MODIFY_DATE" property="lastModifyDate" />
+        <result column="CREATE_DATE" property="createDate" />
+        <result column="DATA_ORDER" property="dataOrder" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        CATALOG_CODE, DATA_CODE, EXTRA_CODE, EXTRA_CODE2, DATA_TAG, DATA_VALUE, DATA_STYLE, DATA_DESC, LAST_MODIFY_DATE, CREATE_DATE, DATA_ORDER
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        CATALOG_CODE
+          ,
+        DATA_CODE
+          ,
+        EXTRA_CODE
+          ,
+        EXTRA_CODE2
+          ,
+        DATA_TAG
+          ,
+        DATA_VALUE
+          ,
+        DATA_STYLE
+          ,
+        DATA_DESC
+          ,
+        LAST_MODIFY_DATE
+          ,
+        CREATE_DATE
+          ,
+        DATA_ORDER
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="catalogCode != null and catalogCode != ''">
+            <![CDATA[
+                AND CATALOG_CODE = #{catalogCode ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="dataCode != null and dataCode != ''">
+            <![CDATA[
+                AND DATA_CODE = #{dataCode ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="extraCode != null and extraCode != ''">
+            <![CDATA[
+                AND EXTRA_CODE = #{extraCode ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="extraCode2 != null and extraCode2 != ''">
+            <![CDATA[
+                AND EXTRA_CODE2 = #{extraCode2 ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="dataTag != null and dataTag != ''">
+            <![CDATA[
+                AND DATA_TAG = #{dataTag ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="dataValue != null and dataValue != ''">
+            <![CDATA[
+                AND DATA_VALUE = #{dataValue ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="dataStyle != null and dataStyle != ''">
+            <![CDATA[
+                AND DATA_STYLE = #{dataStyle ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="dataDesc != null and dataDesc != ''">
+            <![CDATA[
+                AND DATA_DESC = #{dataDesc ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="lastModifyDate != null and lastModifyDate != ''">
+            <![CDATA[
+                AND LAST_MODIFY_DATE = #{lastModifyDate ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="createDate != null and createDate != ''">
+            <![CDATA[
+                AND CREATE_DATE = #{createDate ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="dataOrder != null and dataOrder != ''">
+            <![CDATA[
+                AND DATA_ORDER = #{dataOrder ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.admin.system.po.FDatadictionary">
+        <![CDATA[
+			insert into f_datadictionary
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="catalogCode != '' and catalogCode != null" >
+                <![CDATA[
+                    CATALOG_CODE,
+                ]]>
+            </if>
+            <if test="dataCode != '' and dataCode != null" >
+                <![CDATA[
+                    DATA_CODE,
+                ]]>
+            </if>
+            <if test="extraCode != '' and extraCode != null" >
+                <![CDATA[
+                    EXTRA_CODE,
+                ]]>
+            </if>
+            <if test="extraCode2 != '' and extraCode2 != null" >
+                <![CDATA[
+                    EXTRA_CODE2,
+                ]]>
+            </if>
+            <if test="dataTag != '' and dataTag != null" >
+                <![CDATA[
+                    DATA_TAG,
+                ]]>
+            </if>
+            <if test="dataValue != '' and dataValue != null" >
+                <![CDATA[
+                    DATA_VALUE,
+                ]]>
+            </if>
+            <if test="dataStyle != '' and dataStyle != null" >
+                <![CDATA[
+                    DATA_STYLE,
+                ]]>
+            </if>
+            <if test="dataDesc != '' and dataDesc != null" >
+                <![CDATA[
+                    DATA_DESC,
+                ]]>
+            </if>
+
+                <![CDATA[
+                    LAST_MODIFY_DATE,
+                ]]>
+
+
+                <![CDATA[
+                    CREATE_DATE,
+                ]]>
+
+            <if test="dataOrder != '' and dataOrder != null" >
+                <![CDATA[
+                    DATA_ORDER,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="catalogCode != '' and catalogCode != null" >
+                <![CDATA[
+                    #{catalogCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="dataCode != '' and dataCode != null" >
+                <![CDATA[
+                    #{dataCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="extraCode != '' and extraCode != null" >
+                <![CDATA[
+                    #{extraCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="extraCode2 != '' and extraCode2 != null" >
+                <![CDATA[
+                    #{extraCode2,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="dataTag != '' and dataTag != null" >
+                <![CDATA[
+                    #{dataTag,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="dataValue != '' and dataValue != null" >
+                <![CDATA[
+                    #{dataValue,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="dataStyle != '' and dataStyle != null" >
+                <![CDATA[
+                    #{dataStyle,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="dataDesc != '' and dataDesc != null" >
+                <![CDATA[
+                    #{dataDesc,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            now(),
+            now(),
+            <if test="dataOrder != '' and dataOrder != null" >
+                <![CDATA[
+                    #{dataOrder,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.admin.system.po.FDatadictionary" >
+        <![CDATA[
+        	update f_datadictionary
+        ]]>
+        <set >
+            <if test="catalogCode != '' and catalogCode != null" >
+                <![CDATA[
+                    CATALOG_CODE = #{catalogCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="dataCode != '' and dataCode != null" >
+                <![CDATA[
+                    DATA_CODE = #{dataCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="extraCode != '' and extraCode != null" >
+                <![CDATA[
+                    EXTRA_CODE = #{extraCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="extraCode2 != '' and extraCode2 != null" >
+                <![CDATA[
+                    EXTRA_CODE2 = #{extraCode2,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="dataTag != '' and dataTag != null" >
+                <![CDATA[
+                    DATA_TAG = #{dataTag,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="dataValue != '' and dataValue != null" >
+                <![CDATA[
+                    DATA_VALUE = #{dataValue,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="dataStyle != '' and dataStyle != null" >
+                <![CDATA[
+                    DATA_STYLE = #{dataStyle,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="dataDesc != '' and dataDesc != null" >
+                <![CDATA[
+                    DATA_DESC = #{dataDesc,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="lastModifyDate != '' and lastModifyDate != null" >
+                <![CDATA[
+                    LAST_MODIFY_DATE = #{lastModifyDate,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="createDate != '' and createDate != null" >
+                <![CDATA[
+                    CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="dataOrder != '' and dataOrder != null" >
+                <![CDATA[
+                    DATA_ORDER = #{dataOrder,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and CATALOG_CODE = #{catalogCode ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.admin.system.po.FDatadictionary">
+        <![CDATA[
+            delete from f_datadictionary
+        ]]>
+        <where>
+            <![CDATA[
+                and CATALOG_CODE = #{catalogCode ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.admin.system.po.FDatadictionary">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from f_datadictionary t
+        ]]>
+        <where>
+            <![CDATA[
+                and CATALOG_CODE = #{catalogCode ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from f_datadictionary t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+</mapper>

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.ShoppingMembershipDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.ShoppingMembership">
+        <result column="normal" property="normal" />
+        <result column="silver" property="silver" />
+        <result column="gold" property="gold" />
+        <result column="diamond" property="diamond" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        normal, silver, gold, diamond
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        normal
+          ,
+        silver
+          ,
+        gold
+          ,
+        diamond
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="normal != null and normal != ''">
+            <![CDATA[
+                AND normal = #{normal ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="silver != null and silver != ''">
+            <![CDATA[
+                AND silver = #{silver ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="gold != null and gold != ''">
+            <![CDATA[
+                AND gold = #{gold ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="diamond != null and diamond != ''">
+            <![CDATA[
+                AND diamond = #{diamond ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.ShoppingMembership">
+        <![CDATA[
+			insert into shopping_membership
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="normal != null and normal != ''" >
+                <![CDATA[
+                    normal,
+                ]]>
+            </if>
+            <if test="silver != null and silver != ''" >
+                <![CDATA[
+                    silver,
+                ]]>
+            </if>
+            <if test="gold != null and gold != ''" >
+                <![CDATA[
+                    gold,
+                ]]>
+            </if>
+            <if test="diamond != null and diamond != ''" >
+                <![CDATA[
+                    diamond,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="normal != null and normal != ''" >
+                <![CDATA[
+                    #{normal,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="silver != null and silver != ''" >
+                <![CDATA[
+                    #{silver,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="gold != null and gold != ''" >
+                <![CDATA[
+                    #{gold,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="diamond != null and diamond != ''" >
+                <![CDATA[
+                    #{diamond,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.ShoppingMembership" >
+        <![CDATA[
+        	update shopping_membership
+        ]]>
+        <set >
+            <if test="normal != null and normal != ''" >
+                <![CDATA[
+                    normal = #{normal,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="silver != null and silver != ''" >
+                <![CDATA[
+                    silver = #{silver,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="gold != null and gold != ''" >
+                <![CDATA[
+                    gold = #{gold,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="diamond != null and diamond != ''" >
+                <![CDATA[
+                    diamond = #{diamond,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.ShoppingMembership">
+        <![CDATA[
+            delete from shopping_membership
+        ]]>
+        <where>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.ShoppingMembership">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_membership t
+        ]]>
+        <where>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_membership t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+</mapper>

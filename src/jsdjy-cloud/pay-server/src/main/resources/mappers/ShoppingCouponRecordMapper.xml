@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.pay.biz.dao.ShoppingCouponRecordDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.pay.biz.po.ShoppingCouponRecord">
+        <id column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="right_no" property="rightNo" />
+        <result column="coupon_id" property="couponId" />
+        <result column="of_id" property="ofId" />
+        <result column="create_time" property="createTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, user_id, right_no, coupon_id, of_id, create_time
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        user_id
+          ,
+        right_no
+          ,
+        coupon_id
+          ,
+        of_id
+          ,
+        create_time
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="userId != null and userId != ''">
+            <![CDATA[
+                AND user_id = #{userId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="rightNo != null and rightNo != ''">
+            <![CDATA[
+                AND right_no = #{rightNo ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="couponId != null and couponId != ''">
+            <![CDATA[
+                AND coupon_id = #{couponId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="ofId != null and ofId != ''">
+            <![CDATA[
+                AND of_id = #{ofId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="createTime != null and createTime != ''">
+            <![CDATA[
+                AND create_time = #{createTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.pay.biz.po.ShoppingCouponRecord">
+        <![CDATA[
+			insert into shopping_coupon_record
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+
+            <if test="userId != '' and userId != null" >
+                <![CDATA[
+                    user_id,
+                ]]>
+            </if>
+            <if test="rightNo != '' and rightNo != null" >
+                <![CDATA[
+                    right_no,
+                ]]>
+            </if>
+            <if test="couponId != '' and couponId != null" >
+                <![CDATA[
+                    coupon_id,
+                ]]>
+            </if>
+            <if test="ofId != '' and ofId != null" >
+                <![CDATA[
+                    of_id,
+                ]]>
+            </if>
+
+                <![CDATA[
+                    create_time,
+                ]]>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+
+            <if test="userId != '' and userId != null" >
+                <![CDATA[
+                    #{userId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="rightNo != '' and rightNo != null" >
+                <![CDATA[
+                    #{rightNo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="couponId != '' and couponId != null" >
+                <![CDATA[
+                    #{couponId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="ofId != '' and ofId != null" >
+                <![CDATA[
+                    #{ofId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            now(),
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.pay.biz.po.ShoppingCouponRecord" >
+        <![CDATA[
+        	update shopping_coupon_record
+        ]]>
+        <set >
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userId != '' and userId != null" >
+                <![CDATA[
+                    user_id = #{userId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="rightNo != '' and rightNo != null" >
+                <![CDATA[
+                    right_no = #{rightNo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="couponId != '' and couponId != null" >
+                <![CDATA[
+                    coupon_id = #{couponId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="ofId != '' and ofId != null" >
+                <![CDATA[
+                    of_id = #{ofId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="createTime != '' and createTime != null" >
+                <![CDATA[
+                    create_time = #{createTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.pay.biz.po.ShoppingCouponRecord">
+        <![CDATA[
+            delete from shopping_coupon_record
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.pay.biz.po.ShoppingCouponRecord">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_coupon_record t
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_coupon_record t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+</mapper>

@@ -1,0 +1,142 @@
+#商城服务配置文件
+#Author: cui_jian
+
+spring:
+  application:
+    name: shopping
+
+  #Redis配置
+  redis:
+    host: 192.168.135.40
+    #Redis服务器连接密码（默认为空）
+    password:
+    #Redis数据库索引（默认为0）
+    database: 5
+    port: 6379
+    #连接超时时间（毫秒）
+    timeout: 300
+    #这里使用的是lettuce，如果使用Jedis，把下面的lettuce改成Jedis即可
+    lettuce:
+      pool:
+        #连接池中的最大空闲连接
+        max-idle: 8
+        #连接池中的最小空闲连接
+        min-idle: 0
+        #连接池最大连接数（使用负值表示没有限制）
+        max-active: 8
+        #连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: -1
+
+
+
+
+#mybatis配置
+mybatis:
+  config-locations: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mappers/*.xml #指定resources下面的mappers文件夹
+  #  typeAliasesPackage: com.centit.organizeuser.organizeuserserver.webmgr.po
+
+  #spring boot集成mybatis的方式打印sql
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+#日志方式sql打印
+#logging:
+#  level:
+#    com.example.demo.dao: debug
+
+#商品
+goods:
+  #文创商品
+  culGoods:
+    #文创商品一级分类id
+    firstClassId: 1
+  #积分商城商品
+  integralGoods:
+    #文创商品一级分类id
+    firstClassId: 2
+
+#积分与现金兑换比例
+moneyToIntegralScale: 100
+
+#pageHelper分页查询
+pagehelper:
+  helper-dialect: mysql
+
+#随机生成的核销码长度
+offcodeLength: 6
+
+sheduleSwitch:
+  master: true
+  systemStatus: true
+  checkOrder: true
+  checkInterface: true
+  assetRuleSync: true
+  artactivityPush: true
+  artplanPush: true
+  checkRedeemProject: true
+
+systemStatusCorn: 0 0/2 * * * ?
+checkOrderCorn: 0 0/1 * * * ?
+checkInterfaceCorn: 0 0/5 * * * ?
+assetRuleSyncCorn: 0 0/30 * * * ?
+checkRedeemProjectCorn: 0 0/2 * * * ?
+
+#超时未支付订单自动取消的时间阈值(单位：分钟),只针对演出订单
+orderCancelMinutes: 8
+
+#自动确认收货天数(单位：天)
+orderReceiveDays: 15
+
+#第三方接口健康检查异
+#具有核销权限的角色id
+writeOffRoleCode: HX
+常接收短信手机号
+checkInterfaceMobile: 13776407246
+
+#商城“其它”分类id
+otherGoodsTypeId: 68062
+
+#发票相关信息
+invoice:
+  #诺诺平台应用信息
+  nuonuo:
+    appKey: SD68601635
+    appSecret: SD353A0058354B15
+    #服务地址
+    url: https://sandbox.nuonuocs.cn/open/v1/services
+  #销方信息
+  saler:
+    #税号
+    taxNum: 339901999999824
+    #销方电话
+    salerTel: 025-85775515
+    #销方地址
+    salerAddress: 南京市建邺区梦都大街181号
+    #销方银行账号和开户行地址
+    salerAccount: 中国工商银行南京新街口支行4301010009101224647
+    #收款人
+    payee: 柯君
+    #复核人
+    checker: 苗晓伟
+    #开票员
+    clerk: 丁冉
+    #税收分类编码
+    goodsCode: 3070101
+    #发票商品名称
+    goodsName: 购票款
+    #税率
+    taxRate: 0.06
+
+fileDownloadUrl: https://app.jsartcentre.org/JSDJYPlatform/fileserver/common/downloadFile/
+writeOffStr: (仅限线下兑换使用)
+
+#会员活动与爱艺计划类型id
+artactivitySpecTypeId: 69
+aetplanSpecTypeId: 70
+
+
+#ips:
+#  ipList:
+#    - 192.168.131.104

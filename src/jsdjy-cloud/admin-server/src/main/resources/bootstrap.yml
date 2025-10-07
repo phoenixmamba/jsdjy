@@ -1,0 +1,40 @@
+server:
+  port: 7001
+spring:
+  application:
+    name: admin-server
+  sleuth:
+    sampler:
+      probability: 1
+  zipkin:
+    base-url: http://localhost:9411
+    sender:
+      type: web
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 114.55.40.183:8858
+        group: common
+        service: admin-server
+        username: nacos
+        password: nacos
+        namespace: jsdjy_test
+      config:
+        server-addr: 114.55.40.183:8858
+        username: nacos
+        password: nacos
+        namespace: jsdjy_test
+        file-extension: yaml
+        group: admin
+        extension-configs:
+          - data-id: commonDataSource.yaml
+            group: common
+            refresh: true
+          - data-id: commonConfig.yaml
+            group: common
+            refresh: true
+
+
+

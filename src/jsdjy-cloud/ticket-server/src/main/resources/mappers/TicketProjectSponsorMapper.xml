@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.ticket.dao.TicketProjectSponsorDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.ticket.po.TicketProjectSponsor">
+        <result column="project_id" property="projectId" />
+        <result column="sponsor_name" property="sponsorName" />
+        <result column="sponsor_id" property="sponsorId" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        project_id, sponsor_name, sponsor_id
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        project_id
+          ,
+        sponsor_name
+          ,
+        sponsor_id
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="projectId != null and projectId != ''">
+            <![CDATA[
+                AND project_id = #{projectId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="sponsorName != null and sponsorName != ''">
+            <![CDATA[
+                AND sponsor_name = #{sponsorName ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="sponsorId != null and sponsorId != ''">
+            <![CDATA[
+                AND sponsor_id = #{sponsorId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.ticket.po.TicketProjectSponsor">
+        <![CDATA[
+			insert into ticket_project_sponsor
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="projectId != '' and projectId != null" >
+                <![CDATA[
+                    project_id,
+                ]]>
+            </if>
+            <if test="sponsorName != '' and sponsorName != null" >
+                <![CDATA[
+                    sponsor_name,
+                ]]>
+            </if>
+            <if test="sponsorId != '' and sponsorId != null" >
+                <![CDATA[
+                    sponsor_id,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="projectId != '' and projectId != null" >
+                <![CDATA[
+                    #{projectId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="sponsorName != '' and sponsorName != null" >
+                <![CDATA[
+                    #{sponsorName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="sponsorId != '' and sponsorId != null" >
+                <![CDATA[
+                    #{sponsorId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.ticket.po.TicketProjectSponsor" >
+        <![CDATA[
+        	update ticket_project_sponsor
+        ]]>
+        <set >
+            <if test="projectId != '' and projectId != null" >
+                <![CDATA[
+                    project_id = #{projectId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="sponsorName != '' and sponsorName != null" >
+                <![CDATA[
+                    sponsor_name = #{sponsorName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="sponsorId != '' and sponsorId != null" >
+                <![CDATA[
+                    sponsor_id = #{sponsorId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.ticket.po.TicketProjectSponsor">
+        <![CDATA[
+            delete from ticket_project_sponsor
+        ]]>
+        <where>
+            <![CDATA[
+                AND project_id = #{projectId ,jdbcType=VARCHAR}
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.ticket.po.TicketProjectSponsor">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from ticket_project_sponsor t
+        ]]>
+        <where>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from ticket_project_sponsor t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+</mapper>

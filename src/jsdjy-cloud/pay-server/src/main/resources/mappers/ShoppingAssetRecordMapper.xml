@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.pay.biz.dao.ShoppingAssetRecordDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.pay.biz.po.ShoppingAssetRecord">
+        <id column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="change_time" property="changeTime" />
+        <result column="change_reason" property="changeReason" />
+        <result column="change_type" property="changeType" />
+        <result column="change_value" property="changeValue" />
+        <result column="asset_type" property="assetType" />
+        <result column="business_id" property="businessId" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, user_id, change_time, change_reason, change_type, change_value, asset_type, business_id
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        user_id
+          ,
+        change_time
+          ,
+        change_reason
+          ,
+        change_type
+          ,
+        change_value
+          ,
+        asset_type
+          ,
+        business_id
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="userId != null and userId != ''">
+            <![CDATA[
+                AND user_id = #{userId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="changeTime != null and changeTime != ''">
+            <![CDATA[
+                AND change_time = #{changeTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="changeReason != null and changeReason != ''">
+            <![CDATA[
+                AND change_reason = #{changeReason ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="changeType != null and changeType != ''">
+            <![CDATA[
+                AND change_type = #{changeType ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="changeValue != null and changeValue != ''">
+            <![CDATA[
+                AND change_value = #{changeValue ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="assetType != null and assetType != ''">
+            <![CDATA[
+                AND asset_type = #{assetType ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="businessId != null and businessId != ''">
+            <![CDATA[
+                AND business_id = #{businessId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.pay.biz.po.ShoppingAssetRecord">
+        <![CDATA[
+			insert into shopping_asset_record
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="userId != '' and userId != null" >
+                <![CDATA[
+                    user_id,
+                ]]>
+            </if>
+
+                <![CDATA[
+                    change_time,
+                ]]>
+
+            <if test="changeReason != '' and changeReason != null" >
+                <![CDATA[
+                    change_reason,
+                ]]>
+            </if>
+            <if test="changeType != '' and changeType != null" >
+                <![CDATA[
+                    change_type,
+                ]]>
+            </if>
+            <if test="changeValue != '' and changeValue != null" >
+                <![CDATA[
+                    change_value,
+                ]]>
+            </if>
+            <if test="assetType != '' and assetType != null" >
+                <![CDATA[
+                    asset_type,
+                ]]>
+            </if>
+            <if test="businessId != '' and businessId != null" >
+                <![CDATA[
+                    business_id,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="userId != '' and userId != null" >
+                <![CDATA[
+                    #{userId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            now(),
+            <if test="changeReason != '' and changeReason != null" >
+                <![CDATA[
+                    #{changeReason,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="changeType != '' and changeType != null" >
+                <![CDATA[
+                    #{changeType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="changeValue != '' and changeValue != null" >
+                <![CDATA[
+                    #{changeValue,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="assetType != '' and assetType != null" >
+                <![CDATA[
+                    #{assetType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="businessId != '' and businessId != null" >
+                <![CDATA[
+                    #{businessId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.pay.biz.po.ShoppingAssetRecord" >
+        <![CDATA[
+        	update shopping_asset_record
+        ]]>
+        <set >
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userId != '' and userId != null" >
+                <![CDATA[
+                    user_id = #{userId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="changeTime != '' and changeTime != null" >
+                <![CDATA[
+                    change_time = #{changeTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="changeReason != '' and changeReason != null" >
+                <![CDATA[
+                    change_reason = #{changeReason,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="changeType != '' and changeType != null" >
+                <![CDATA[
+                    change_type = #{changeType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="changeValue != '' and changeValue != null" >
+                <![CDATA[
+                    change_value = #{changeValue,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="assetType != '' and assetType != null" >
+                <![CDATA[
+                    asset_type = #{assetType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="businessId != '' and businessId != null" >
+                <![CDATA[
+                    business_id = #{businessId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.pay.biz.po.ShoppingAssetRecord">
+        <![CDATA[
+            delete from shopping_asset_record
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.pay.biz.po.ShoppingAssetRecord">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_asset_record t
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_asset_record t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+</mapper>

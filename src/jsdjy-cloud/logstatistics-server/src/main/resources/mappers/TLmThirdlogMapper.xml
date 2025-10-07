@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.logstatistics.logstatisticsserver.webmgr.dao.TLmThirdlogDao">
+
+        <!-- 通用查询映射结果 -->
+        <resultMap id="BaseResultMap" type="com.centit.logstatistics.logstatisticsserver.webmgr.po.TLmThirdlog">
+                    <id column="ID" property="id" />
+                    <result column="LOGTYPE" property="logtype" />
+                    <result column="LOGINFO" property="loginfo" />
+                    <result column="LOGTIME" property="logtime" />
+                    <result column="LOGIP" property="logip" />
+                    <result column="REQMETHOD" property="reqmethod" />
+                    <result column="SERVERPATH" property="serverpath" />
+                    <result column="REQTIME" property="reqtime" />
+                    <result column="REQINFO" property="reqinfo" />
+                    <result column="RETTIME" property="rettime" />
+                    <result column="RETINFO" property="retinfo" />
+                    <result column="STATUS" property="status" />
+        </resultMap>
+
+        <!-- 通用查询结果列(横着排列) -->
+        <sql id="Base_Column_List1">
+        ID, LOGTYPE, LOGINFO, LOGTIME, LOGIP, REQMETHOD, SERVERPATH, REQTIME, REQINFO, RETTIME, RETINFO,STATUS
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+            ID
+          ,
+            LOGTYPE
+          ,
+            LOGINFO
+          ,
+            LOGTIME
+          ,
+            LOGIP
+          ,
+            REQMETHOD
+          ,
+            SERVERPATH
+          ,
+            REQTIME
+          ,
+            REQINFO
+          ,
+            RETTIME
+          ,
+            RETINFO
+          ,
+            STATUS
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+                <if test="id != null and id != ''">
+                    <![CDATA[
+                AND ID = #{id ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="logtype != null and logtype != ''">
+                    <![CDATA[
+                AND LOGTYPE = #{logtype ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="loginfo != null and loginfo != ''">
+                    <![CDATA[
+                AND LOGINFO like concat('%', #{loginfo,jdbcType=VARCHAR}, '%')
+            ]]>
+                </if>
+                <if test="logtime != null and logtime != ''">
+                    <![CDATA[
+                AND LOGTIME = #{logtime ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="logip != null and logip != ''">
+                    <![CDATA[
+                AND LOGIP = #{logip ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="reqmethod != null and reqmethod != ''">
+                    <![CDATA[
+                AND REQMETHOD = #{reqmethod ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="serverpath != null and serverpath != ''">
+                    <![CDATA[
+                AND SERVERPATH like concat('%', #{serverpath,jdbcType=VARCHAR}, '%')
+            ]]>
+                </if>
+                <if test="reqtime != null and reqtime != ''">
+                    <![CDATA[
+                AND REQTIME = #{reqtime ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="reqinfo != null and reqinfo != ''">
+                    <![CDATA[
+                AND REQINFO like concat('%', #{reqinfo,jdbcType=VARCHAR}, '%')
+            ]]>
+                </if>
+                <if test="rettime != null and rettime != ''">
+                    <![CDATA[
+                AND RETTIME = #{rettime ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="retinfo != null and retinfo != ''">
+                    <![CDATA[
+                AND RETINFO = #{retinfo ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+        <if test="status != null">
+            <![CDATA[
+                AND STATUS = #{status ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="startLogTime !=null and startLogTime !='' ">
+            <![CDATA[
+                AND LOGTIME  >=  #{startLogTime}
+            ]]>
+        </if>
+        <if test="endLogTime !=null and endLogTime!='' "  >
+            <![CDATA[
+                and LOGTIME <=  #{endLogTime}
+             ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.logstatistics.logstatisticsserver.webmgr.po.TLmThirdlog">
+        <![CDATA[
+			insert into t_lm_thirdlog
+		]]>
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                    <if test="id != '' and id != null" >
+                        <![CDATA[
+                    ID,
+                ]]>
+                    </if>
+                    <if test="logtype != '' and logtype != null" >
+                        <![CDATA[
+                    LOGTYPE,
+                ]]>
+                    </if>
+                    <if test="loginfo != '' and loginfo != null" >
+                        <![CDATA[
+                    LOGINFO,
+                ]]>
+                    </if>
+                    <if test="logtime != '' and logtime != null" >
+                        <![CDATA[
+                    LOGTIME,
+                ]]>
+                    </if>
+                    <if test="logip != '' and logip != null" >
+                        <![CDATA[
+                    LOGIP,
+                ]]>
+                    </if>
+                    <if test="reqmethod != '' and reqmethod != null" >
+                        <![CDATA[
+                    REQMETHOD,
+                ]]>
+                    </if>
+                    <if test="serverpath != '' and serverpath != null" >
+                        <![CDATA[
+                    SERVERPATH,
+                ]]>
+                    </if>
+                    <if test="reqtime != '' and reqtime != null" >
+                        <![CDATA[
+                    REQTIME,
+                ]]>
+                    </if>
+                    <if test="reqinfo != '' and reqinfo != null" >
+                        <![CDATA[
+                    REQINFO,
+                ]]>
+                    </if>
+                    <if test="rettime != '' and rettime != null" >
+                        <![CDATA[
+                    RETTIME,
+                ]]>
+                    </if>
+                    <if test="retinfo != '' and retinfo != null" >
+                        <![CDATA[
+                    RETINFO,
+                ]]>
+                    </if>
+            </trim>
+            <trim prefix="values (" suffix=")" suffixOverrides="," >
+                    <if test="id != '' and id != null" >
+                        <![CDATA[
+                    #{id,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="logtype != '' and logtype != null" >
+                        <![CDATA[
+                    #{logtype,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="loginfo != '' and loginfo != null" >
+                        <![CDATA[
+                    #{loginfo,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="logtime != '' and logtime != null" >
+                        <![CDATA[
+                    #{logtime,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="logip != '' and logip != null" >
+                        <![CDATA[
+                    #{logip,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="reqmethod != '' and reqmethod != null" >
+                        <![CDATA[
+                    #{reqmethod,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="serverpath != '' and serverpath != null" >
+                        <![CDATA[
+                    #{serverpath,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="reqtime != '' and reqtime != null" >
+                        <![CDATA[
+                    #{reqtime,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="reqinfo != '' and reqinfo != null" >
+                        <![CDATA[
+                    #{reqinfo,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="rettime != '' and rettime != null" >
+                        <![CDATA[
+                    #{rettime,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="retinfo != '' and retinfo != null" >
+                        <![CDATA[
+                    #{retinfo,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+            </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.logstatistics.logstatisticsserver.webmgr.po.TLmThirdlog" >
+        <![CDATA[
+        	update t_lm_thirdlog
+        ]]>
+        <set >
+                    <if test="id != '' and id != null" >
+                        <![CDATA[
+                    ID = #{id,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="logtype != '' and logtype != null" >
+                        <![CDATA[
+                    LOGTYPE = #{logtype,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="loginfo != '' and loginfo != null" >
+                        <![CDATA[
+                    LOGINFO = #{loginfo,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="logtime != '' and logtime != null" >
+                        <![CDATA[
+                    LOGTIME = #{logtime,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="logip != '' and logip != null" >
+                        <![CDATA[
+                    LOGIP = #{logip,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="reqmethod != '' and reqmethod != null" >
+                        <![CDATA[
+                    REQMETHOD = #{reqmethod,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="serverpath != '' and serverpath != null" >
+                        <![CDATA[
+                    SERVERPATH = #{serverpath,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="reqtime != '' and reqtime != null" >
+                        <![CDATA[
+                    REQTIME = #{reqtime,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="reqinfo != '' and reqinfo != null" >
+                        <![CDATA[
+                    REQINFO = #{reqinfo,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="rettime != '' and rettime != null" >
+                        <![CDATA[
+                    RETTIME = #{rettime,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="retinfo != '' and retinfo != null" >
+                        <![CDATA[
+                    RETINFO = #{retinfo,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+        </set>
+        <where>
+                        <![CDATA[
+                and ID = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.logstatistics.logstatisticsserver.webmgr.po.TLmThirdlog">
+        <![CDATA[
+            delete from t_lm_thirdlog
+        ]]>
+        <where>
+                        <![CDATA[
+                and ID = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.logstatistics.logstatisticsserver.webmgr.po.TLmThirdlog">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from t_lm_thirdlog t
+        ]]>
+        <where>
+                        <![CDATA[
+                and ID = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from t_lm_thirdlog t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+        order by t.LOGTIME desc
+        <if test="pageSize != '' and pageSize != null" >
+            <![CDATA[
+                    limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+                ]]>
+        </if>
+    </select>
+
+    <!--  查询列表数量 -->
+    <select id="queryTotalCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            SELECT count(0) FROM t_lm_thirdlog
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+</mapper>

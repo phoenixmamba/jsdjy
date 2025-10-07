@@ -1,0 +1,34 @@
+#统一组织用户平台服务配置文件
+#Author: Luo_X
+
+spring:
+  application:
+    name: djyserv
+  #  datasource:
+  #    driver-class-name: oracle.jdbc.OracleDriver
+  #    url: jdbc:oracle:thin:@192.168.131.102:1521:mipdb
+  #    username: JSSJTT
+  #    password: JSSJTT
+  #    max-idle: 10
+  #    max-wait: 10000
+  #    min-idle: 5
+  #    initial-size: 5
+
+#mybatis配置
+mybatis:
+  config-locations: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mappers/*.xml #指定resources下面的mappers文件夹
+  typeAliasesPackage: com.centit.jsdjy.djyserv.po
+
+  #spring boot集成mybatis的方式打印sql
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+#日志方式sql打印
+#logging:
+#  level:
+#    com.example.demo.dao: debug
+
+#上传文件目录
+uploadFiledir: D:/data/upload/

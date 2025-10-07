@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.zuulgateway.dao.TLmOperlogDao">
+
+        <!-- 通用查询映射结果 -->
+        <resultMap id="BaseResultMap" type="com.centit.zuulgateway.po.TLmOperlog">
+                    <id column="ID" property="id" />
+                    <result column="LOGTYPE" property="logtype" />
+                    <result column="LOGINFO" property="loginfo" />
+                    <result column="LOGTIME" property="logtime" />
+                    <result column="USERID" property="userid" />
+                    <result column="USERNAME" property="username" />
+                    <result column="DEPTCODE" property="deptcode" />
+                    <result column="IDENTCODE" property="identcode" />
+                    <result column="SERVERNAME" property="servername" />
+                    <result column="VERSIONID" property="versionid" />
+                    <result column="DEVICETYPE" property="devicetype" />
+                    <result column="OSVERSION" property="osversion" />
+                    <result column="LOGIP" property="logip" />
+                    <result column="SERVERCLASS" property="serverclass" />
+                    <result column="SERVERMETHOD" property="servermethod" />
+                    <result column="SERVERPATH" property="serverpath" />
+                    <result column="REQINFO" property="reqinfo" />
+                    <result column="RETINFO" property="retinfo" />
+                    <result column="DELFLAG" property="delflag" />
+                    <result column="REQMETHOD" property="reqmethod" />
+        </resultMap>
+
+        <!-- 通用查询结果列(横着排列) -->
+        <sql id="Base_Column_List1">
+        ID, LOGTYPE, LOGINFO, LOGTIME, USERID, USERNAME, DEPTCODE, IDENTCODE, SERVERNAME, VERSIONID, DEVICETYPE, OSVERSION, LOGIP, SERVERCLASS, SERVERMETHOD, SERVERPATH, REQINFO, RETINFO, DELFLAG, REQMETHOD
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+            ID
+          ,
+            LOGTYPE
+          ,
+            LOGINFO
+          ,
+            LOGTIME
+          ,
+            USERID
+          ,
+            USERNAME
+          ,
+            DEPTCODE
+          ,
+            IDENTCODE
+          ,
+            SERVERNAME
+          ,
+            VERSIONID
+          ,
+            DEVICETYPE
+          ,
+            OSVERSION
+          ,
+            LOGIP
+          ,
+            SERVERCLASS
+          ,
+            SERVERMETHOD
+          ,
+            SERVERPATH
+          ,
+            REQINFO
+          ,
+            RETINFO
+          ,
+            DELFLAG
+          ,
+            REQMETHOD
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+                <if test="id != null and id != ''">
+                    <![CDATA[
+                AND ID = #{id ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="logtype != null and logtype != ''">
+                    <![CDATA[
+                AND LOGTYPE = #{logtype ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="loginfo != null and loginfo != ''">
+                    <![CDATA[
+                AND LOGINFO = #{loginfo ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="logtime != null and logtime != ''">
+                    <![CDATA[
+                AND LOGTIME = #{logtime ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="userid != null and userid != ''">
+                    <![CDATA[
+                AND USERID = #{userid ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="username != null and username != ''">
+                    <![CDATA[
+                AND USERNAME = #{username ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="deptcode != null and deptcode != ''">
+                    <![CDATA[
+                AND DEPTCODE = #{deptcode ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="identcode != null and identcode != ''">
+                    <![CDATA[
+                AND IDENTCODE = #{identcode ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="servername != null and servername != ''">
+                    <![CDATA[
+                AND SERVERNAME = #{servername ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="versionid != null and versionid != ''">
+                    <![CDATA[
+                AND VERSIONID = #{versionid ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="devicetype != null and devicetype != ''">
+                    <![CDATA[
+                AND DEVICETYPE = #{devicetype ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="osversion != null and osversion != ''">
+                    <![CDATA[
+                AND OSVERSION = #{osversion ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="logip != null and logip != ''">
+                    <![CDATA[
+                AND LOGIP = #{logip ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="serverclass != null and serverclass != ''">
+                    <![CDATA[
+                AND SERVERCLASS = #{serverclass ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="servermethod != null and servermethod != ''">
+                    <![CDATA[
+                AND SERVERMETHOD = #{servermethod ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="serverpath != null and serverpath != ''">
+                    <![CDATA[
+                AND SERVERPATH = #{serverpath ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="reqinfo != null and reqinfo != ''">
+                    <![CDATA[
+                AND REQINFO = #{reqinfo ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="retinfo != null and retinfo != ''">
+                    <![CDATA[
+                AND RETINFO = #{retinfo ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="delflag != null and delflag != ''">
+                    <![CDATA[
+                AND DELFLAG = #{delflag ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+                <if test="reqmethod != null and reqmethod != ''">
+                    <![CDATA[
+                AND REQMETHOD = #{reqmethod ,jdbcType=VARCHAR}
+            ]]>
+                </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.zuulgateway.po.TLmOperlog">
+        <![CDATA[
+			insert into T_LM_OPERLOG
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="logtype != null and logtype != ''">
+                <![CDATA[
+                    LOGTYPE,
+                ]]>
+            </if>
+            <if test="loginfo != null and loginfo != ''">
+                <![CDATA[
+                    LOGINFO,
+                ]]>
+            </if>
+            LOGTIME,
+            <if test="userid != null and userid != ''">
+                <![CDATA[
+                    USERID,
+                ]]>
+            </if>
+            <if test="username != null and username != ''">
+                <![CDATA[
+                    USERNAME,
+                ]]>
+            </if>
+            <if test="deptcode != null and deptcode != ''">
+                <![CDATA[
+                    DEPTCODE,
+                ]]>
+            </if>
+            <if test="identcode != null and identcode != ''">
+                <![CDATA[
+                    IDENTCODE,
+                ]]>
+            </if>
+            <if test="servername != null and servername != ''">
+                <![CDATA[
+                    SERVERNAME,
+                ]]>
+            </if>
+            <if test="versionid != null and versionid != ''">
+                <![CDATA[
+                    VERSIONID,
+                ]]>
+            </if>
+            <if test="devicetype != null and devicetype != ''">
+                <![CDATA[
+                    DEVICETYPE,
+                ]]>
+            </if>
+            <if test="osversion != null and osversion != ''">
+                <![CDATA[
+                    OSVERSION,
+                ]]>
+            </if>
+            <if test="logip != null and logip != ''">
+                <![CDATA[
+                    LOGIP,
+                ]]>
+            </if>
+            <if test="serverclass != null and serverclass != ''">
+                <![CDATA[
+                    SERVERCLASS,
+                ]]>
+            </if>
+            <if test="servermethod != null and servermethod != ''">
+                <![CDATA[
+                    SERVERMETHOD,
+                ]]>
+            </if>
+            <if test="serverpath != null and serverpath != ''">
+                <![CDATA[
+                    SERVERPATH,
+                ]]>
+            </if>
+            <if test="reqinfo != null and reqinfo != ''">
+                <![CDATA[
+                    REQINFO,
+                ]]>
+            </if>
+            <if test="delflag != null and delflag != ''">
+                <![CDATA[
+                    DELFLAG,
+                ]]>
+            </if>
+            <if test="reqmethod != null and reqmethod != ''">
+                <![CDATA[
+                    REQMETHOD,
+                ]]>
+            </if>
+            <if test="retinfo != null and retinfo != ''">
+                <![CDATA[
+                    RETINFO,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="logtype != null and logtype != ''">
+                <![CDATA[
+                    #{logtype,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="loginfo != null and loginfo != ''">
+                <![CDATA[
+                    #{loginfo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            now(),
+            <if test="userid != null and userid != ''">
+                <![CDATA[
+                    #{userid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="username != null and username != ''">
+                <![CDATA[
+                    #{username,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="deptcode != null and deptcode != ''">
+                <![CDATA[
+                    #{deptcode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="identcode != null and identcode != ''">
+                <![CDATA[
+                    #{identcode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="servername != null and servername != ''">
+                <![CDATA[
+                    #{servername,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="versionid != null and versionid != ''">
+                <![CDATA[
+                    #{versionid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="devicetype != null and devicetype != ''">
+                <![CDATA[
+                    #{devicetype,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="osversion != null and osversion != ''">
+                <![CDATA[
+                    #{osversion,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="logip != null and logip != ''">
+                <![CDATA[
+                    #{logip,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="serverclass != null and serverclass != ''">
+                <![CDATA[
+                    #{serverclass,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="servermethod != null and servermethod != ''">
+                <![CDATA[
+                    #{servermethod,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="serverpath != null and serverpath != ''">
+                <![CDATA[
+                    #{serverpath,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="reqinfo != null and reqinfo != ''">
+                <![CDATA[
+                    #{reqinfo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="delflag != null and delflag != ''">
+                <![CDATA[
+                    #{delflag,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="reqmethod != null and reqmethod != ''">
+                <![CDATA[
+                    #{reqmethod,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="retinfo != null and retinfo != ''">
+                <![CDATA[
+                    #{retinfo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.zuulgateway.po.TLmOperlog" >
+        <![CDATA[
+        	update T_LM_OPERLOG
+        ]]>
+        <set >
+                    <if test="id != '' and id != null" >
+                        <![CDATA[
+                    ID = #{id,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="logtype != '' and logtype != null" >
+                        <![CDATA[
+                    LOGTYPE = #{logtype,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="loginfo != '' and loginfo != null" >
+                        <![CDATA[
+                    LOGINFO = #{loginfo,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="userid != '' and userid != null" >
+                        <![CDATA[
+                    USERID = #{userid,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="username != '' and username != null" >
+                        <![CDATA[
+                    USERNAME = #{username,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="deptcode != '' and deptcode != null" >
+                        <![CDATA[
+                    DEPTCODE = #{deptcode,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="identcode != '' and identcode != null" >
+                        <![CDATA[
+                    IDENTCODE = #{identcode,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="servername != '' and servername != null" >
+                        <![CDATA[
+                    SERVERNAME = #{servername,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="versionid != '' and versionid != null" >
+                        <![CDATA[
+                    VERSIONID = #{versionid,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="devicetype != '' and devicetype != null" >
+                        <![CDATA[
+                    DEVICETYPE = #{devicetype,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="osversion != '' and osversion != null" >
+                        <![CDATA[
+                    OSVERSION = #{osversion,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="logip != '' and logip != null" >
+                        <![CDATA[
+                    LOGIP = #{logip,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="serverclass != '' and serverclass != null" >
+                        <![CDATA[
+                    SERVERCLASS = #{serverclass,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="servermethod != '' and servermethod != null" >
+                        <![CDATA[
+                    SERVERMETHOD = #{servermethod,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="serverpath != '' and serverpath != null" >
+                        <![CDATA[
+                    SERVERPATH = #{serverpath,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="reqinfo != '' and reqinfo != null" >
+                        <![CDATA[
+                    REQINFO = #{reqinfo,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="retinfo != '' and retinfo != null" >
+                        <![CDATA[
+                    RETINFO = #{retinfo,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="delflag != '' and delflag != null" >
+                        <![CDATA[
+                    DELFLAG = #{delflag,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+                    <if test="reqmethod != '' and reqmethod != null" >
+                        <![CDATA[
+                    REQMETHOD = #{reqmethod,jdbcType=VARCHAR},
+                ]]>
+                    </if>
+        </set>
+        <where>
+                        <![CDATA[
+                and ID = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.zuulgateway.po.TLmOperlog">
+        <![CDATA[
+            delete from T_LM_OPERLOG
+        ]]>
+        <where>
+                        <![CDATA[
+                and ID = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.zuulgateway.po.TLmOperlog">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from T_LM_OPERLOG t
+        ]]>
+        <where>
+                        <![CDATA[
+                and ID = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from T_LM_OPERLOG t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+</mapper>

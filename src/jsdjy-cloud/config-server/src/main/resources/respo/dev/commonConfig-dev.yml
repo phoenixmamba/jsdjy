@@ -1,0 +1,177 @@
+#全局通用配置信息配置文件
+#Author: cui_jian
+
+
+#------------------------------------------全局定义配置数据------------------------------------------
+zuul:
+  host:
+    connect-timeout-millis: 15000 #HTTP连接超时要比Hystrix的大
+    socket-timeout-millis: 60000   #socket超时
+ribbon:
+  NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule # 默认为；轮询，这里改为随机
+  ReadTimeout: 10000
+  ConnectTimeout: 10000
+#zuul:
+#  host:
+#    connect-timeout-millis: 30000 #HTTP连接超时要比Hystrix的大
+#    socket-timeout-millis: 60000   #socket超时
+#ribbon:
+#  ReadTimeout: 20000
+#  ConnectTimeout: 20000
+
+#Feign配置
+feign:
+  hystrix:
+    enabled: true #Feign Hystrix断路器
+    command:
+      default:
+        execution:
+          timeout:
+            enabled: true #是否开启超时(默认开启)
+          isolation:
+            thread:
+              timeoutInMilliseconds: 13000 #超时时间(默认1000毫秒)
+
+
+#应用监控设置
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: '*'
+#  endpoint:
+#    health:
+#      show-details: always
+
+#Hystrix Dashboard仪表盘（断路器监控）配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
+
+#系统订单配置
+order:
+  #订单全局统一前缀（订单号格式为"统一前缀+当前时间（yyyyMMddHHmmssSSS格式）”）
+  prefix:
+    #合并
+    merge: MG
+    #商城
+    shopping:
+      #文创商品
+      culgoods: CUL
+      #积分商品
+      integralgoods: INT
+      #艺术活动
+      activity: AC
+      #艺术培训
+      class: CL
+    #卖票
+    ticket: TK
+    #停车
+    park: PK
+    #点播
+    video: VD
+    #充值
+    recharge: CZ
+  #订单类型（对应数据库订单表order_type字段）
+  orderType:
+    #合并
+    merge: 0
+    #商城
+    shopping:
+      #文创商品
+      culgoods: 11
+      #积分商品
+      integralgoods: 12
+      #艺术活动
+      activity: 13
+      #艺术培训
+      class: 14
+    #卖票
+    ticket: 2
+    #停车
+    park: 3
+    #点播
+    video: 4
+    #充值
+    recharge: 5
+  #订单状态
+  orderState:
+    #异常
+    anomalous: -1
+    #已取消
+    cancel: 0
+    #待付款
+    toPay: 10
+    #付款中
+    inPay: 15
+    #已付款
+    hasPay: 20
+    #已发货
+    hasSend: 30
+    #已收货
+    hasGet: 40
+    #待评价
+    toEvaluate: 45
+    #已完成
+    hasDone: 50
+    #申请退款中
+    toRefund: 60
+    #已退款
+    hasRefund: 70
+
+#系统购物车配置
+cart:
+  #购物车商品类型（对应购物车商品表cart_type字段）
+  cartType:
+    #文创商品
+    culgoods: 1
+    #积分商品
+    integralgoods: 2
+    #艺术活动
+    activity: 3
+    #艺术培训
+    class: 4
+    #演出票
+    ticket: 5
+    #停车
+    park: 6
+    #点播
+    video: 7
+
+#商户
+store:
+  #默认商户
+  default:
+    #商户id
+    storeId: 1
+
+mz:
+  client:
+    url: http://gw.api.taobao.com/router/rest
+    appkey: 32364640
+    secret: 4c3c8d3ff15a9747be01bac652ba35ac
+  sign:
+    secret: jsdjyw193hg319141
+
+park:
+  api:
+    #账单查询/费用查询
+    getParkingPaymentInfo: https://tsktapps.keytop.cn/unite-api/api/wec/GetParkingPaymentInfo
+    #停车费支付
+    payParkingFee: https://tsktapps.keytop.cn/unite-api/api/wec/PayParkingFee
+    #查询订单状态
+    getOrderStatus: https://tsktapps.keytop.cn/unite-api/api/wec/GetOrderStatus
+    #查询缴费记录
+    getParkingPaymentList: https://tsktapps.keytop.cn/unite-api/api/wec/GetParkingPaymentList
+  appId: 10031
+  appSecret: 9d682649d9f64faeb5e4477a8e27858e
+  parkId: 1039
+
+payment:
+  wxpay: 21
+  alipay: 22
+
+#积分与现金兑换比例
+moneyToIntegralScale: 100

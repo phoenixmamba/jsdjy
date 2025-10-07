@@ -1,0 +1,57 @@
+#移动支付服务配置文件
+#Author: cui_jian
+
+spring:
+  application:
+    name: park
+  #  datasource:
+  #    driver-class-name: oracle.jdbc.OracleDriver
+  #    url: jdbc:oracle:thin:@192.168.131.102:1521:mipdb
+  #    username: JSSJTT
+  #    password: JSSJTT
+  #    max-idle: 10
+  #    max-wait: 10000
+  #    min-idle: 5
+  #    initial-size: 5
+
+  #Redis配置
+  redis:
+    host: 192.168.135.40
+    #Redis服务器连接密码（默认为空）
+    password:
+    #Redis数据库索引（默认为0）
+    database: 5
+    port: 6379
+    #连接超时时间（毫秒）
+    timeout: 300
+    #这里使用的是lettuce，如果使用Jedis，把下面的lettuce改成Jedis即可
+    lettuce:
+      pool:
+        #连接池中的最大空闲连接
+        max-idle: 8
+        #连接池中的最小空闲连接
+        min-idle: 0
+        #连接池最大连接数（使用负值表示没有限制）
+        max-active: 8
+        #连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: -1
+
+
+
+
+#mybatis配置
+mybatis:
+  config-locations: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mappers/*.xml #指定resources下面的mappers文件夹
+  #  typeAliasesPackage: com.centit.organizeuser.organizeuserserver.webmgr.po
+
+  #spring boot集成mybatis的方式打印sql
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+#日志方式sql打印
+#logging:
+#  level:
+#    com.example.demo.dao: debug
+

@@ -1,0 +1,24 @@
+#日志与统计服务配置文件
+#Author: cui_jian
+
+spring:
+  application:
+    name: logstatistics
+#  datasource:
+#    driver-class-name: oracle.jdbc.OracleDriver
+#    url: jdbc:oracle:thin:@192.168.131.102:1521:mipdb
+#    username: JSSJTT
+#    password: JSSJTT
+#    max-idle: 10
+#    max-wait: 10000
+#    min-idle: 5
+#    initial-size: 5
+
+
+
+#mybatis配置
+mybatis:
+  config-locations: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mappers/*.xml #指定resources下面的mappers文件夹
+#  typeAliasesPackage: com.centit.jtmop.organizeuserserver.webmgr.po
+

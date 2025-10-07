@@ -1,0 +1,24 @@
+#日志与统计服务配置文件
+#Author: cui_jian
+
+spring:
+  application:
+    name: logstatistics
+
+#mybatis配置
+mybatis:
+  config-locations: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mappers/*.xml #指定resources下面的mappers文件夹
+#  typeAliasesPackage: com.centit.jtmop.organizeuserserver.webmgr.po
+
+
+management:
+  server:
+    port: 10095
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+logtest: 123456
+

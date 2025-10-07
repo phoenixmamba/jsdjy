@@ -1,0 +1,55 @@
+#商城服务
+#Author: cui_jian
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:10080/eureka/
+      #生产prod
+      #defaultZone: http://10.1.31.201:10080/eureka/
+
+server:
+  port: 10099
+
+
+spring:
+  application:
+    #配置文件名称，多个配置文件用英文逗号分隔
+    name: ticket
+  #从config-server配置中心获取配置信息
+  cloud:
+    config:
+      name: ticket,commonRetCodeMsg,commonDataSource,commonConfig
+      label: master
+      profile: test
+      discovery:
+        enabled: true
+        serviceId: configServer
+  http:
+    multipart:
+      maxFileSize: 10MB
+      maxRequestSize: 100MB
+  servlet:
+    multipart:
+      maxFileSize: 10MB
+      maxRequestSize: 100MB
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 30000
+
+#应用监控设置
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: '*'
+#  endpoint:
+#    health:
+#      show-details: always
+
+
+

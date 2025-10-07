@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.admin.system.dao.FRoleinfoDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.admin.system.po.FRoleinfo">
+        <id column="ROLE_CODE" property="roleCode" />
+        <result column="ROLE_NAME" property="roleName" />
+        <result column="ROLE_TYPE" property="roleType" />
+        <result column="UNIT_CODE" property="unitCode" />
+        <result column="IS_VALID" property="isValid" />
+        <result column="ROLE_DESC" property="roleDesc" />
+        <result column="UPDATE_DATE" property="updateDate" />
+        <result column="CREATE_DATE" property="createDate" />
+        <result column="CREATOR" property="creator" />
+        <result column="UPDATOR" property="updator" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        ROLE_CODE, ROLE_NAME, ROLE_TYPE, UNIT_CODE, IS_VALID, ROLE_DESC, UPDATE_DATE, CREATE_DATE, CREATOR, UPDATOR
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        ROLE_CODE
+          ,
+        ROLE_NAME
+          ,
+        ROLE_TYPE
+          ,
+        UNIT_CODE
+          ,
+        IS_VALID
+          ,
+        ROLE_DESC
+          ,
+        UPDATE_DATE
+          ,
+        CREATE_DATE
+          ,
+        CREATOR
+          ,
+        UPDATOR
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="roleCode != null and roleCode != ''">
+            <![CDATA[
+                AND ROLE_CODE = #{roleCode ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="roleName != null and roleName != ''">
+            <![CDATA[
+                AND ROLE_NAME = #{roleName ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="roleType != null and roleType != ''">
+            <![CDATA[
+                AND ROLE_TYPE = #{roleType ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="unitCode != null and unitCode != ''">
+            <![CDATA[
+                AND UNIT_CODE = #{unitCode ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="isValid != null and isValid != ''">
+            <![CDATA[
+                AND IS_VALID = #{isValid ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="roleDesc != null and roleDesc != ''">
+            <![CDATA[
+                AND ROLE_DESC = #{roleDesc ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="updateDate != null and updateDate != ''">
+            <![CDATA[
+                AND UPDATE_DATE = #{updateDate ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="createDate != null and createDate != ''">
+            <![CDATA[
+                AND CREATE_DATE = #{createDate ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="creator != null and creator != ''">
+            <![CDATA[
+                AND CREATOR = #{creator ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="updator != null and updator != ''">
+            <![CDATA[
+                AND UPDATOR = #{updator ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.admin.system.po.FRoleinfo">
+        <![CDATA[
+			insert into f_roleinfo
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="roleCode != '' and roleCode != null" >
+                <![CDATA[
+                    ROLE_CODE,
+                ]]>
+            </if>
+            <if test="roleName != '' and roleName != null" >
+                <![CDATA[
+                    ROLE_NAME,
+                ]]>
+            </if>
+            <if test="roleType != '' and roleType != null" >
+                <![CDATA[
+                    ROLE_TYPE,
+                ]]>
+            </if>
+            <if test="unitCode != '' and unitCode != null" >
+                <![CDATA[
+                    UNIT_CODE,
+                ]]>
+            </if>
+            <if test="isValid != '' and isValid != null" >
+                <![CDATA[
+                    IS_VALID,
+                ]]>
+            </if>
+            <if test="roleDesc != '' and roleDesc != null" >
+                <![CDATA[
+                    ROLE_DESC,
+                ]]>
+            </if>
+            <if test="updateDate != '' and updateDate != null" >
+                <![CDATA[
+                    UPDATE_DATE,
+                ]]>
+            </if>
+            <if test="createDate != '' and createDate != null" >
+                <![CDATA[
+                    CREATE_DATE,
+                ]]>
+            </if>
+            <if test="creator != '' and creator != null" >
+                <![CDATA[
+                    CREATOR,
+                ]]>
+            </if>
+            <if test="updator != '' and updator != null" >
+                <![CDATA[
+                    UPDATOR,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="roleCode != '' and roleCode != null" >
+                <![CDATA[
+                    #{roleCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="roleName != '' and roleName != null" >
+                <![CDATA[
+                    #{roleName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="roleType != '' and roleType != null" >
+                <![CDATA[
+                    #{roleType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="unitCode != '' and unitCode != null" >
+                <![CDATA[
+                    #{unitCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isValid != '' and isValid != null" >
+                <![CDATA[
+                    #{isValid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="roleDesc != '' and roleDesc != null" >
+                <![CDATA[
+                    #{roleDesc,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="updateDate != '' and updateDate != null" >
+                <![CDATA[
+                    #{updateDate,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="createDate != '' and createDate != null" >
+                <![CDATA[
+                    #{createDate,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="creator != '' and creator != null" >
+                <![CDATA[
+                    #{creator,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="updator != '' and updator != null" >
+                <![CDATA[
+                    #{updator,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.admin.system.po.FRoleinfo" >
+        <![CDATA[
+        	update f_roleinfo
+        ]]>
+        <set >
+            <if test="roleCode != '' and roleCode != null" >
+                <![CDATA[
+                    ROLE_CODE = #{roleCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="roleName != '' and roleName != null" >
+                <![CDATA[
+                    ROLE_NAME = #{roleName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="roleType != '' and roleType != null" >
+                <![CDATA[
+                    ROLE_TYPE = #{roleType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="unitCode != '' and unitCode != null" >
+                <![CDATA[
+                    UNIT_CODE = #{unitCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isValid != '' and isValid != null" >
+                <![CDATA[
+                    IS_VALID = #{isValid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="roleDesc != '' and roleDesc != null" >
+                <![CDATA[
+                    ROLE_DESC = #{roleDesc,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="updateDate != '' and updateDate != null" >
+                <![CDATA[
+                    UPDATE_DATE = #{updateDate,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="createDate != '' and createDate != null" >
+                <![CDATA[
+                    CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="creator != '' and creator != null" >
+                <![CDATA[
+                    CREATOR = #{creator,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="updator != '' and updator != null" >
+                <![CDATA[
+                    UPDATOR = #{updator,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and ROLE_CODE = #{roleCode ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.admin.system.po.FRoleinfo">
+        <![CDATA[
+            delete from f_roleinfo
+        ]]>
+        <where>
+            <![CDATA[
+                and ROLE_CODE = #{roleCode ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.admin.system.po.FRoleinfo">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from f_roleinfo t
+        ]]>
+        <where>
+            <![CDATA[
+                and ROLE_CODE = #{roleCode ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from f_roleinfo t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+    <!--  查询分页列表 -->
+    <select id="queryRolePageList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            SELECT * FROM f_roleinfo
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+        <![CDATA[
+                      ORDER BY UPDATE_DATE desc limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+        ]]>
+    </select>
+
+    <!--  查询分页列表数量 -->
+    <select id="queryRolePageListCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            SELECT count(0) FROM f_roleinfo
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+    <!--  查询分页列表 -->
+    <select id="queryToMeRolePageList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            SELECT * FROM f_roleinfo
+        ]]>
+        <where>
+            <if test="roleName != null and roleName != ''">
+                <![CDATA[
+                AND ROLE_NAME like '%'||#{roleName,jdbcType=VARCHAR}||'%'
+            ]]>
+            </if>
+            <if test="isValid != null and isValid != ''">
+                <![CDATA[
+                AND IS_VALID = #{isValid ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="userCode != null and userCode != ''">
+                AND ROLE_CODE in(
+                select tt2.ROLE_CODE from f_unitrole tt2 left join f_roleinfo t2 on tt2.ROLE_CODE = t2.ROLE_CODE
+                where FIND_IN_SET(tt2.unit_code, getParentUnitCode(#{unitCode}))
+                <if test="roleType != '' and roleType != null" >
+                    <![CDATA[
+                    and t2.ROLE_TYPE=#{roleType ,jdbcType=VARCHAR }
+                ]]>
+                </if>
+                UNION
+                select tt3.ROLE_CODE from f_userrole tt3  left join f_roleinfo t2 on tt3.ROLE_CODE = t2.ROLE_CODE where tt3.user_code = #{userCode ,jdbcType=VARCHAR }
+                <if test="roleType != '' and roleType != null" >
+                    <![CDATA[
+                    and t2.ROLE_TYPE=#{roleType ,jdbcType=VARCHAR }
+                ]]>
+                </if>
+                )
+            </if>
+
+        </where>
+        <![CDATA[
+                      ORDER BY UPDATE_DATE desc limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+        ]]>
+    </select>
+
+    <!--  查询分页列表数量 -->
+    <select id="queryToMeRolePageListCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            SELECT count(0) FROM f_roleinfo
+        ]]>
+        <where>
+            <if test="roleName != null and roleName != ''">
+                <![CDATA[
+                AND ROLE_NAME like '%'||#{roleName,jdbcType=VARCHAR}||'%'
+            ]]>
+            </if>
+            <if test="isValid != null and isValid != ''">
+                <![CDATA[
+                AND IS_VALID = #{isValid ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="userCode != null and userCode != ''">
+                AND ROLE_CODE in(
+                select tt2.ROLE_CODE from f_unitrole tt2 left join f_roleinfo t2 on tt2.ROLE_CODE = t2.ROLE_CODE
+                where FIND_IN_SET(tt2.unit_code, getParentUnitCode(#{unitCode}))
+                <if test="roleType != '' and roleType != null" >
+                    <![CDATA[
+                    and t2.ROLE_TYPE=#{roleType ,jdbcType=VARCHAR }
+                ]]>
+                </if>
+                UNION
+                select tt3.ROLE_CODE from f_userrole tt3  left join f_roleinfo t2 on tt3.ROLE_CODE = t2.ROLE_CODE where tt3.user_code = #{userCode ,jdbcType=VARCHAR }
+                <if test="roleType != '' and roleType != null" >
+                    <![CDATA[
+                    and t2.ROLE_TYPE=#{roleType ,jdbcType=VARCHAR }
+                ]]>
+                </if>
+                )
+            </if>
+
+        </where>
+    </select>
+
+    <!--  名称校验 -->
+    <select id="checkName" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from f_roleinfo t
+        ]]>
+        <where>
+            <![CDATA[
+                and ROLE_NAME = #{roleName ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+</mapper>

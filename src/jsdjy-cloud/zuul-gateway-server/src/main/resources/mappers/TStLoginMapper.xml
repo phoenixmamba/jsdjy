@@ -1,0 +1,271 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.zuulgateway.dao.TStLoginDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.zuulgateway.po.TStLogin">
+        <result column="ID" property="id"/>
+        <result column="LOGINTIME" property="logintime"/>
+        <result column="USERID" property="userid"/>
+        <result column="TERMINAL_TYPE" property="terminalType"/>
+        <result column="TERMINAL_NUMBER" property="terminalNumber"/>
+        <result column="TERMINAL_SYSTEM_VERSION" property="terminalSystemVersion"/>
+        <result column="APP_VERSION" property="appVersion"/>
+        <result column="TERMINAL_BRAND" property="terminalBrand"/>
+        <result column="TERMINAL_BRANDVALUE" property="terminalBrandvalue"/>
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        ID, LOGINTIME, USERID, TERMINAL_TYPE, TERMINAL_NUMBER, TERMINAL_SYSTEM_VERSION, APP_VERSION, TERMINAL_BRAND, TERMINAL_BRANDVALUE
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        ID
+          ,
+        LOGINTIME
+          ,
+        USERID
+          ,
+        TERMINAL_TYPE
+          ,
+        TERMINAL_NUMBER
+          ,
+        TERMINAL_SYSTEM_VERSION
+          ,
+        APP_VERSION
+          ,
+        TERMINAL_BRAND
+          ,
+        TERMINAL_BRANDVALUE
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND ID = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="logintime != null and logintime != ''">
+            <![CDATA[
+                AND LOGINTIME = #{logintime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="userid != null and userid != ''">
+            <![CDATA[
+                AND USERID = #{userid ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="terminalType != null and terminalType != ''">
+            <![CDATA[
+                AND TERMINAL_TYPE = #{terminalType ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="terminalNumber != null and terminalNumber != ''">
+            <![CDATA[
+                AND TERMINAL_NUMBER = #{terminalNumber ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="terminalSystemVersion != null and terminalSystemVersion != ''">
+            <![CDATA[
+                AND TERMINAL_SYSTEM_VERSION = #{terminalSystemVersion ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="appVersion != null and appVersion != ''">
+            <![CDATA[
+                AND APP_VERSION = #{appVersion ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="terminalBrand != null and terminalBrand != ''">
+            <![CDATA[
+                AND TERMINAL_BRAND = #{terminalBrand ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="terminalBrandvalue != null and terminalBrandvalue != ''">
+            <![CDATA[
+                AND TERMINAL_BRANDVALUE = #{terminalBrandvalue ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.zuulgateway.po.TStLogin" useGeneratedKeys="true" keyProperty="id"
+            keyColumn="id">
+        <![CDATA[
+			insert into t_st_login
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            LOGINTIME,
+            <if test="userid != null and userid != ''">
+                <![CDATA[
+                    USERID,
+                ]]>
+            </if>
+            <if test="terminalType != null and terminalType != ''">
+                <![CDATA[
+                    TERMINAL_TYPE,
+                ]]>
+            </if>
+            <if test="terminalNumber != null and terminalNumber != ''">
+                <![CDATA[
+                    TERMINAL_NUMBER,
+                ]]>
+            </if>
+            <if test="terminalSystemVersion != null and terminalSystemVersion != ''">
+                <![CDATA[
+                    TERMINAL_SYSTEM_VERSION,
+                ]]>
+            </if>
+            <if test="appVersion != null and appVersion != ''">
+                <![CDATA[
+                    APP_VERSION,
+                ]]>
+            </if>
+            <if test="terminalBrand != null and terminalBrand != ''">
+                <![CDATA[
+                    TERMINAL_BRAND,
+                ]]>
+            </if>
+            <if test="terminalBrandvalue != null and terminalBrandvalue != ''">
+                <![CDATA[
+                    TERMINAL_BRANDVALUE,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            now(),
+            <if test="userid != null and userid != ''">
+                <![CDATA[
+                    #{userid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="terminalType != null and terminalType != ''">
+                <![CDATA[
+                    #{terminalType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="terminalNumber != null and terminalNumber != ''">
+                <![CDATA[
+                    #{terminalNumber,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="terminalSystemVersion != null and terminalSystemVersion != ''">
+                <![CDATA[
+                    #{terminalSystemVersion,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="appVersion != null and appVersion != ''">
+                <![CDATA[
+                    #{appVersion,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="terminalBrand != null and terminalBrand != ''">
+                <![CDATA[
+                    #{terminalBrand,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="terminalBrandvalue != null and terminalBrandvalue != ''">
+                <![CDATA[
+                    #{terminalBrandvalue,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.zuulgateway.po.TStLogin">
+        <![CDATA[
+        	update t_st_login
+        ]]>
+        <set>
+            <if test="id != null and id != ''">
+                <![CDATA[
+                    ID = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="logintime != null and logintime != ''">
+                <![CDATA[
+                    LOGINTIME = #{logintime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userid != null and userid != ''">
+                <![CDATA[
+                    USERID = #{userid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="terminalType != null and terminalType != ''">
+                <![CDATA[
+                    TERMINAL_TYPE = #{terminalType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="terminalNumber != null and terminalNumber != ''">
+                <![CDATA[
+                    TERMINAL_NUMBER = #{terminalNumber,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="terminalSystemVersion != null and terminalSystemVersion != ''">
+                <![CDATA[
+                    TERMINAL_SYSTEM_VERSION = #{terminalSystemVersion,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="appVersion != null and appVersion != ''">
+                <![CDATA[
+                    APP_VERSION = #{appVersion,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="terminalBrand != null and terminalBrand != ''">
+                <![CDATA[
+                    TERMINAL_BRAND = #{terminalBrand,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="terminalBrandvalue != null and terminalBrandvalue != ''">
+                <![CDATA[
+                    TERMINAL_BRANDVALUE = #{terminalBrandvalue,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete" parameterType="com.centit.zuulgateway.po.TStLogin">
+        <![CDATA[
+            delete from t_st_login
+        ]]>
+        <where>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.zuulgateway.po.TStLogin">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1"/>
+        <![CDATA[
+            from t_st_login t
+        ]]>
+        <where>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1"/>
+        <![CDATA[
+            from t_st_login t
+        ]]>
+        <where>
+            <include refid="Base_Where_List"/>
+        </where>
+    </select>
+
+</mapper>

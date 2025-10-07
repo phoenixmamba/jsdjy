@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.TicketRedeemActivityProjectDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.TicketRedeemActivityProject">
+        <id column="ID" property="id" />
+        <result column="ACTIVITY_ID" property="activityId" />
+        <result column="PROJECT_ID" property="projectId" />
+        <result column="EVENT_ID" property="eventId" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        ID, ACTIVITY_ID, PROJECT_ID, EVENT_ID
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        ID
+          ,
+        ACTIVITY_ID
+          ,
+        PROJECT_ID
+          ,
+        EVENT_ID
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND ID = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="activityId != null and activityId != ''">
+            <![CDATA[
+                AND ACTIVITY_ID = #{activityId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="projectId != null and projectId != ''">
+            <![CDATA[
+                AND PROJECT_ID = #{projectId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="eventId != null and eventId != ''">
+            <![CDATA[
+                AND EVENT_ID = #{eventId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.TicketRedeemActivityProject">
+        <![CDATA[
+			insert into ticket_redeem_activity_project
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    ID,
+                ]]>
+            </if>
+            <if test="activityId != null and activityId != ''" >
+                <![CDATA[
+                    ACTIVITY_ID,
+                ]]>
+            </if>
+            <if test="projectId != null and projectId != ''" >
+                <![CDATA[
+                    PROJECT_ID,
+                ]]>
+            </if>
+            <if test="eventId != null and eventId != ''" >
+                <![CDATA[
+                    EVENT_ID,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="activityId != null and activityId != ''" >
+                <![CDATA[
+                    #{activityId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="projectId != null and projectId != ''" >
+                <![CDATA[
+                    #{projectId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="eventId != null and eventId != ''" >
+                <![CDATA[
+                    #{eventId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.TicketRedeemActivityProject" >
+        <![CDATA[
+        	update ticket_redeem_activity_project
+        ]]>
+        <set >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    ID = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="activityId != null and activityId != ''" >
+                <![CDATA[
+                    ACTIVITY_ID = #{activityId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="projectId != null and projectId != ''" >
+                <![CDATA[
+                    PROJECT_ID = #{projectId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="eventId != null and eventId != ''" >
+                <![CDATA[
+                    EVENT_ID = #{eventId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and ID = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.TicketRedeemActivityProject">
+        <![CDATA[
+            delete from ticket_redeem_activity_project
+        ]]>
+        <where>
+            <![CDATA[
+                and ID = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.TicketRedeemActivityProject">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from ticket_redeem_activity_project t
+        ]]>
+        <where>
+            <![CDATA[
+                and ID = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from ticket_redeem_activity_project t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+    <!-- 删除 -->
+    <delete id="deleteByProject"  parameterType="com.centit.shopping.po.TicketRedeemActivityProject">
+        <![CDATA[
+            delete from ticket_redeem_activity_project
+        ]]>
+        <where>
+            <![CDATA[
+                and PROJECT_ID = #{projectId,jdbcType=VARCHAR}
+            ]]>
+        </where>
+    </delete>
+
+    <!-- 删除 -->
+    <delete id="deleteByActivity"  parameterType="com.centit.shopping.po.TicketRedeemActivityProject">
+        <![CDATA[
+            delete from ticket_redeem_activity_project
+        ]]>
+        <where>
+            <![CDATA[
+                and ACTIVITY_ID = #{activityId,jdbcType=VARCHAR}
+            ]]>
+        </where>
+    </delete>
+</mapper>

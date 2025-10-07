@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.jobserver.dao.HomeGoodsDao">
+    <!-- 通用查询映射结果 -->
+    <resultMap id="ShoppingRecommendResultMap" type="com.centit.jobserver.po.ShoppingRecommendPo">
+        <id column="id" property="id"/>
+        <result column="goods_id" property="goodsId"/>
+        <result column="goods_type" property="goodsType"/>
+        <result column="sn" property="sn"/>
+    </resultMap>
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="AllGoodsMap" type="com.centit.jobserver.po.HomeGoods">
+        <result column="goods_id" property="goodsId"/>
+        <result column="goods_name" property="goodsName"/>
+        <result column="photo_id" property="photoId"/>
+        <result column="goods_price" property="goodsPrice"/>
+        <result column="type" property="type"/>
+        <result column="order_count" property="orderCount"/>
+    </resultMap>
+
+    <!--  查询所有商城商品 -->
+    <select id="queryAllList" resultMap="AllGoodsMap" parameterType="java.util.HashMap">
+        select sgc.id                   goods_id,
+               sgc.goods_name           goods_name,
+               sgc.goods_main_photo_id  photo_id,
+               sgc.store_price          goods_price,
+               1                        type,
+               (select count(1)
+                from shopping_orderform t1
+                         left join shopping_goodscart t2 on t1.id = t2.of_id
+                where t2.goods_id = sgc.id
+                  and t2.cart_type = 1) order_count
+        from shopping_goods sgc
+        where sgc.deleteStatus = 0
+          and sgc.goods_status = 0
+          and FIND_IN_SET(sgc.gc_id, queryChildrenGoodClass(#{culturalTopClassId,jdbcType=VARCHAR }))
+        UNION ALL
+        select sgi.id                   goods_id,
+               sgi.goods_name           goods_name,
+               sgi.goods_main_photo_id  photo_id,
+               sgi.store_price          goods_price,
+               2                        type,
+               (select count(1)
+                from shopping_orderform t1
+                         left join shopping_goodscart t2 on t1.id = t2.of_id
+                where t2.goods_id = sgi.id
+                  and t2.cart_type = 2) order_count
+        from shopping_goods sgi
+        where sgi.deleteStatus = 0
+          and sgi.goods_status = 0
+          and FIND_IN_SET(sgi.gc_id, queryChildrenGoodClass(#{integralTopClassId,jdbcType=VARCHAR }))
+        UNION ALL
+        select sac.id                   goods_id,
+               sac.activity_name        goods_name,
+               sac.main_photo_id        photo_id,
+               sac.current_price        goods_price,
+               3                        type,
+               (select count(1)
+                from shopping_orderform t1
+                         left join shopping_goodscart t2 on t1.id = t2.of_id
+                where t2.goods_id = sac.id
+                  and t2.cart_type = 3) order_count
+        from shopping_artactivity sac
+        where sac.deleteStatus = 0
+          and sac.activity_status = 1
+        UNION ALL
+        select sas.id                   goods_id,
+               sas.class_name           goods_name,
+               sas.main_photo_id        photo_id,
+               sas.current_price        goods_price,
+               4                        type,
+               (select count(1)
+                from shopping_orderform t1
+                         left join shopping_goodscart t2 on t1.id = t2.of_id
+                where t2.goods_id = sas.id
+                  and t2.cart_type = 4) order_count
+        from shopping_artclass sas
+        where sas.deleteStatus = 0
+          and sas.class_status = 1
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryRecommondList" resultMap="ShoppingRecommendResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+        select id, goods_id, goods_type, sn
+        ]]>
+        <![CDATA[
+            from shopping_recommend t
+        ]]>
+        <where>
+            <if test="goodsId != null">
+                <![CDATA[
+                AND t.goods_id = #{goodsId ,jdbcType=VARCHAR}
+                ]]>
+            </if>
+            <if test="goodsType != null">
+                <![CDATA[
+                AND t.goods_type = #{goodsType ,jdbcType=VARCHAR}
+                ]]>
+            </if>
+        </where>
+    </select>
+
+    <!--  查询热销商品 -->
+    <select id="queryHotList" resultMap="AllGoodsMap" parameterType="java.util.HashMap">
+        (select goods_id, 1 type
+         from (select goods_id, sum(count) num from shopping_goodscart where cart_type = 1 group by goods_id) td
+         order by td.num desc
+         limit #{limit ,jdbcType=INTEGER })
+        UNION all
+        (select goods_id, 2 type
+         from (select goods_id, sum(count) num from shopping_goodscart where cart_type = 2 group by goods_id) td
+         order by td.num desc
+         limit #{limit ,jdbcType=INTEGER })
+        UNION all
+        (select goods_id, 3 type
+         from (select goods_id, sum(count) num from shopping_goodscart where cart_type = 3 group by goods_id) td
+         order by td.num desc
+         limit #{limit ,jdbcType=INTEGER })
+        UNION all
+        (select goods_id, 4 type
+         from (select goods_id, sum(count) num from shopping_goodscart where cart_type = 4 group by goods_id) td
+         order by td.num desc
+         limit #{limit ,jdbcType=INTEGER })
+    </select>
+
+    <!--  查询指定商品订单列表数量 -->
+    <select id="queryGoodsOrderTotalCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+        select count(0)
+        ]]>
+        <![CDATA[
+            from shopping_orderform t
+                 left join shopping_user t2 on t.user_id = t2.id
+        ]]>
+        <where>
+            AND t.deleteStatus = 0
+            <if test="goodsId != null and goodsId != ''">
+                <![CDATA[
+                AND t.id in (select of_id
+                             from shopping_goodscart
+                             where goods_id = #{goodsId ,jdbcType=VARCHAR}
+                               and (cart_type = 1 or cart_type = 2))
+                ]]>
+            </if>
+        </where>
+    </select>
+
+    <!-- 删除 -->
+    <delete id="deleteByUser"  parameterType="java.lang.String">
+        <![CDATA[
+            delete from shopping_home_goods
+        ]]>
+        <where>
+            <![CDATA[
+                AND user_id = #{userId,jdbcType=VARCHAR}
+            ]]>
+        </where>
+    </delete>
+
+    <insert id="insertHomeGoods" parameterType="java.util.List">
+        INSERT INTO shopping_home_goods
+        (user_id,goods_id,goods_name,photo_id,goods_price,order_count,type,weight)
+        VALUES
+        <foreach collection ="list" item="item" index= "index" separator =",">
+            (
+            #{item.userId},
+            #{item.goodsId},
+            #{item.goodsName},
+            #{item.photoId},
+            #{item.goodsPrice},
+            #{item.orderCount},
+            #{item.type},
+            #{item.weight}
+            )
+        </foreach >
+    </insert>
+</mapper>

@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.ShoppingRechargeActivityRecordDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.ShoppingRechargeActivityRecord">
+        <id column="id" property="id" />
+        <result column="activity_id" property="activityId" />
+        <result column="userid" property="userid" />
+        <result column="recharge_time" property="rechargeTime" />
+        <result column="recharge_price" property="rechargePrice" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, activity_id, userid, recharge_time, recharge_price
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        activity_id
+          ,
+        userid
+          ,
+        recharge_time
+          ,
+        recharge_price
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="activityId != null and activityId != ''">
+            <![CDATA[
+                AND activity_id = #{activityId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="userid != null and userid != ''">
+            <![CDATA[
+                AND userid = #{userid ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="rechargeTime != null and rechargeTime != ''">
+            <![CDATA[
+                AND recharge_time = #{rechargeTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="rechargePrice != null and rechargePrice != ''">
+            <![CDATA[
+                AND recharge_price = #{rechargePrice ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.ShoppingRechargeActivityRecord">
+        <![CDATA[
+			insert into shopping_recharge_activity_record
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    id,
+                ]]>
+            </if>
+            <if test="activityId != null and activityId != ''" >
+                <![CDATA[
+                    activity_id,
+                ]]>
+            </if>
+            <if test="userid != null and userid != ''" >
+                <![CDATA[
+                    userid,
+                ]]>
+            </if>
+            <if test="rechargeTime != null and rechargeTime != ''" >
+                <![CDATA[
+                    recharge_time,
+                ]]>
+            </if>
+            <if test="rechargePrice != null and rechargePrice != ''" >
+                <![CDATA[
+                    recharge_price,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="activityId != null and activityId != ''" >
+                <![CDATA[
+                    #{activityId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userid != null and userid != ''" >
+                <![CDATA[
+                    #{userid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="rechargeTime != null and rechargeTime != ''" >
+                <![CDATA[
+                    #{rechargeTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="rechargePrice != null and rechargePrice != ''" >
+                <![CDATA[
+                    #{rechargePrice,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.ShoppingRechargeActivityRecord" >
+        <![CDATA[
+        	update shopping_recharge_activity_record
+        ]]>
+        <set >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="activityId != null and activityId != ''" >
+                <![CDATA[
+                    activity_id = #{activityId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userid != null and userid != ''" >
+                <![CDATA[
+                    userid = #{userid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="rechargeTime != null and rechargeTime != ''" >
+                <![CDATA[
+                    recharge_time = #{rechargeTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="rechargePrice != null and rechargePrice != ''" >
+                <![CDATA[
+                    recharge_price = #{rechargePrice,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.ShoppingRechargeActivityRecord">
+        <![CDATA[
+            delete from shopping_recharge_activity_record
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.ShoppingRechargeActivityRecord">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_recharge_activity_record t
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_recharge_activity_record t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+        order by t.recharge_time desc
+        <if test="pageSize != '' and pageSize != null">
+            limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+        </if>
+    </select>
+
+    <!--  查询列表数量 -->
+    <select id="queryTotalCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            SELECT count(0) FROM shopping_recharge_activity_record
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+</mapper>

@@ -1,0 +1,14 @@
+#全局数据库信息配置文件
+#Author: cui_jian
+
+#全局统一数据库配置
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/shop_wnsc
+    username: cuijian
+    password: root
+    max-idle: 10
+    max-wait: 10000
+    min-idle: 5
+    initial-size: 5

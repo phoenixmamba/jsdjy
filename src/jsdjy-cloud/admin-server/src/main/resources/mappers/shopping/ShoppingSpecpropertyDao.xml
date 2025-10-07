@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.admin.shopping.dao.ShoppingSpecpropertyDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.admin.shopping.po.ShoppingSpecproperty">
+        <id column="id" property="id" />
+        <result column="addTime" property="addTime" />
+        <result column="deleteStatus" property="deleteStatus" />
+        <result column="sequence" property="sequence" />
+        <result column="value" property="value" />
+        <result column="spec_id" property="specId" />
+        <result column="specImage_id" property="specimageId" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, addTime, deleteStatus, sequence, value, spec_id, specImage_id
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        addTime
+          ,
+        deleteStatus
+          ,
+        sequence
+          ,
+        value
+          ,
+        spec_id
+          ,
+        specImage_id
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="addTime != null and addTime != ''">
+            <![CDATA[
+                AND addTime = #{addTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="deleteStatus != null and deleteStatus != ''">
+            <![CDATA[
+                AND deleteStatus = #{deleteStatus ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="sequence != null and sequence != ''">
+            <![CDATA[
+                AND sequence = #{sequence ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="value != null and value != ''">
+            <![CDATA[
+                AND value = #{value ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="specId != null and specId != ''">
+            <![CDATA[
+                AND spec_id = #{specId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="specimageId != null and specimageId != ''">
+            <![CDATA[
+                AND specImage_id = #{specimageId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.admin.shopping.po.ShoppingSpecproperty">
+        <![CDATA[
+			insert into shopping_goodsspecproperty
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    id,
+                ]]>
+            </if>
+                <![CDATA[
+                    addTime,
+                ]]>
+
+                <![CDATA[
+                    deleteStatus,
+                ]]>
+            <if test="sequence != '' and sequence != null" >
+                <![CDATA[
+                    sequence,
+                ]]>
+            </if>
+            <if test="value != '' and value != null" >
+                <![CDATA[
+                    value,
+                ]]>
+            </if>
+            <if test="specId != '' and specId != null" >
+                <![CDATA[
+                    spec_id,
+                ]]>
+            </if>
+            <if test="specimageId != '' and specimageId != null" >
+                <![CDATA[
+                    specImage_id,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            now(),
+            0,
+            <if test="sequence != '' and sequence != null" >
+                <![CDATA[
+                    #{sequence,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="value != '' and value != null" >
+                <![CDATA[
+                    #{value,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="specId != '' and specId != null" >
+                <![CDATA[
+                    #{specId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="specimageId != '' and specimageId != null" >
+                <![CDATA[
+                    #{specimageId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.admin.shopping.po.ShoppingSpecproperty" >
+        <![CDATA[
+        	update shopping_goodsspecproperty
+        ]]>
+        <set >
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="addTime != '' and addTime != null" >
+                <![CDATA[
+                    addTime = #{addTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="deleteStatus != '' and deleteStatus != null" >
+                <![CDATA[
+                    deleteStatus = #{deleteStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="sequence != '' and sequence != null" >
+                <![CDATA[
+                    sequence = #{sequence,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="value != '' and value != null" >
+                <![CDATA[
+                    value = #{value,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="specId != '' and specId != null" >
+                <![CDATA[
+                    spec_id = #{specId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="specimageId != '' and specimageId != null" >
+                <![CDATA[
+                    specImage_id = #{specimageId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.admin.shopping.po.ShoppingSpecproperty">
+        <![CDATA[
+            delete from shopping_goodsspecproperty
+        ]]>
+        <where>
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                   and id = #{id ,jdbcType=VARCHAR }
+                ]]>
+            </if>
+
+            <if test="specId != '' and specId != null" >
+                <![CDATA[
+                   and spec_id = #{specId,jdbcType=VARCHAR}
+                ]]>
+            </if>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.admin.shopping.po.ShoppingSpecproperty">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_goodsspecproperty t
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_goodsspecproperty t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+    <!--<select id="getProperty" parameterType="java.util.HashMap" resultType="pd">-->
+		<!--SELECT IFNULL(GROUP_CONCAT(gsc.`value` ORDER BY gsc.id SEPARATOR ' '),'')AS spec_info-->
+		<!--FROM shopping_goodsspecproperty gsc-->
+		<!--WHERE gsc.id IN(${propertyArray})-->
+	<!--</select>-->
+</mapper>

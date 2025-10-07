@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.ticket.dao.CrmAuthorizationDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.ticket.po.CrmAuthorization">
+        <result column="role_type" property="roleType" />
+        <result column="authorization" property="authorization" />
+        <result column="update_time" property="updateTime" />
+        <result column="invalid_time" property="invalidTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        role_type, authorization, update_time, invalid_time
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        role_type
+          ,
+        authorization
+          ,
+        update_time
+          ,
+        invalid_time
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="roleType != null and roleType != ''">
+            <![CDATA[
+                AND role_type = #{roleType ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="authorization != null and authorization != ''">
+            <![CDATA[
+                AND authorization = #{authorization ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="updateTime != null and updateTime != ''">
+            <![CDATA[
+                AND update_time = #{updateTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="invalidTime != null and invalidTime != ''">
+            <![CDATA[
+                AND invalid_time = #{invalidTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.ticket.po.CrmAuthorization">
+        <![CDATA[
+			insert into crm_authorization
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="roleType != null and roleType != ''" >
+                <![CDATA[
+                    role_type,
+                ]]>
+            </if>
+            <if test="authorization != null and authorization != ''" >
+                <![CDATA[
+                    authorization,
+                ]]>
+            </if>
+                <![CDATA[
+                    update_time,
+                ]]>
+            <if test="invalidTime != null and invalidTime != ''" >
+                <![CDATA[
+                    invalid_time,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="roleType != null and roleType != ''" >
+                <![CDATA[
+                    #{roleType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="authorization != null and authorization != ''" >
+                <![CDATA[
+                    #{authorization,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            now(),
+            <if test="invalidTime != null and invalidTime != ''" >
+                <![CDATA[
+                    #{invalidTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.ticket.po.CrmAuthorization" >
+        <![CDATA[
+        	update crm_authorization
+        ]]>
+        <set >
+            <if test="roleType != null and roleType != ''" >
+                <![CDATA[
+                    role_type = #{roleType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="authorization != null and authorization != ''" >
+                <![CDATA[
+                    authorization = #{authorization,jdbcType=VARCHAR},
+                ]]>
+            </if>
+                <![CDATA[
+                    update_time = now(),
+                ]]>
+            <if test="invalidTime != null and invalidTime != ''" >
+                <![CDATA[
+                    invalid_time = #{invalidTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                AND role_type = #{roleType ,jdbcType=VARCHAR}
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.ticket.po.CrmAuthorization">
+        <![CDATA[
+            delete from crm_authorization
+        ]]>
+        <where>
+            <![CDATA[
+                AND role_type = #{roleType ,jdbcType=VARCHAR}
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.ticket.po.CrmAuthorization">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from crm_authorization t
+        ]]>
+        <where>
+            <![CDATA[
+                AND role_type = #{roleType ,jdbcType=VARCHAR}
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from crm_authorization t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+</mapper>

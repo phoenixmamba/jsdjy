@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.ShoppingCouponRelateDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.ShoppingCouponRelate">
+        <id column="id" property="id"/>
+        <result column="right_No" property="rightNo"/>
+        <result column="link_type" property="linkType"/>
+        <result column="goods_type" property="goodsType"/>
+        <result column="goods_id" property="goodsId"/>
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, right_No, link_type, goods_type, goods_id
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        right_No
+          ,
+        link_type
+          ,
+        goods_type
+          ,
+        goods_id
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="rightNo != null and rightNo != ''">
+            <![CDATA[
+                AND right_No = #{rightNo ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="linkType != null and linkType != ''">
+            <![CDATA[
+                AND link_type = #{linkType ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="goodsType != null and goodsType != ''">
+            <![CDATA[
+                AND goods_type = #{goodsType ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="goodsId != null and goodsId != ''">
+            <![CDATA[
+                AND goods_id = #{goodsId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.ShoppingCouponRelate">
+        <![CDATA[
+			insert into shopping_coupon_relate
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+
+            <if test="rightNo != null and rightNo != ''">
+                <![CDATA[
+                    right_No,
+                ]]>
+            </if>
+            <if test="linkType != null and linkType != ''">
+                <![CDATA[
+                    link_type,
+                ]]>
+            </if>
+            <if test="goodsType != null and goodsType != ''">
+                <![CDATA[
+                    goods_type,
+                ]]>
+            </if>
+            <if test="goodsId != null and goodsId != ''">
+                <![CDATA[
+                    goods_id,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+
+            <if test="rightNo != null and rightNo != ''">
+                <![CDATA[
+                    #{rightNo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="linkType != null and linkType != ''">
+                <![CDATA[
+                    #{linkType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="goodsType != null and goodsType != ''">
+                <![CDATA[
+                    #{goodsType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="goodsId != null and goodsId != ''">
+                <![CDATA[
+                    #{goodsId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.ShoppingCouponRelate">
+        <![CDATA[
+        	update shopping_coupon_relate
+        ]]>
+        <set>
+            <if test="id != null and id != ''">
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="rightNo != null and rightNo != ''">
+                <![CDATA[
+                    right_No = #{rightNo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="linkType != null and linkType != ''">
+                <![CDATA[
+                    link_type = #{linkType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="goodsType != null and goodsType != ''">
+                <![CDATA[
+                    goods_type = #{goodsType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="goodsId != null and goodsId != ''">
+                <![CDATA[
+                    goods_id = #{goodsId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete" parameterType="com.centit.shopping.po.ShoppingCouponRelate">
+        <![CDATA[
+            delete from shopping_coupon_relate
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.ShoppingCouponRelate">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1"/>
+        <![CDATA[
+            from shopping_coupon_relate t
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1"/>
+        <![CDATA[
+            from shopping_coupon_relate t
+        ]]>
+        <where>
+            <include refid="Base_Where_List"/>
+        </where>
+    </select>
+
+</mapper>

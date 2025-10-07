@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.TEarlywarningDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.TEarlywarning">
+        <id column="ID" property="id" />
+        <result column="TITLE" property="title" />
+        <result column="MOBILES" property="mobiles" />
+        <result column="SMS_CONTENT" property="smsContent" />
+        <result column="TASK_TYPE" property="taskType" />
+        <result column="DEADLINE" property="deadline" />
+        <result column="NEXT_EXP_DAY" property="nextExpDay" />
+        <result column="ADVANCE_DAY" property="advanceDay" />
+        <result column="WARNING_TYPE" property="warningType" />
+        <result column="LAST_SEND_TIME" property="lastSendTime" />
+        <result column="TASK_SWITCH" property="taskSwitch" />
+        <result column="CREATE_TIME" property="createTime" />
+        <result column="IS_DELETE" property="isDelete" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        ID, TITLE, MOBILES, SMS_CONTENT, TASK_TYPE, DEADLINE, NEXT_EXP_DAY, ADVANCE_DAY, WARNING_TYPE, LAST_SEND_TIME, TASK_SWITCH, CREATE_TIME, IS_DELETE
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        ID
+          ,
+        TITLE
+          ,
+        MOBILES
+          ,
+        SMS_CONTENT
+          ,
+        TASK_TYPE
+          ,
+        DEADLINE
+          ,
+        NEXT_EXP_DAY
+          ,
+        ADVANCE_DAY
+          ,
+        WARNING_TYPE
+          ,
+        LAST_SEND_TIME
+          ,
+        TASK_SWITCH
+          ,
+        CREATE_TIME
+          ,
+        IS_DELETE
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND ID = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="title != null and title != ''">
+            <![CDATA[
+                AND TITLE = #{title ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="mobiles != null and mobiles != ''">
+            <![CDATA[
+                AND MOBILES = #{mobiles ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="smsContent != null and smsContent != ''">
+            <![CDATA[
+                AND SMS_CONTENT = #{smsContent ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="taskType != null and taskType != ''">
+            <![CDATA[
+                AND TASK_TYPE = #{taskType ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="deadline != null and deadline != ''">
+            <![CDATA[
+                AND DEADLINE = #{deadline ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="nextExpDay != null and nextExpDay != ''">
+            <![CDATA[
+                AND NEXT_EXP_DAY = #{nextExpDay ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="advanceDay != null and advanceDay != ''">
+            <![CDATA[
+                AND ADVANCE_DAY = #{advanceDay ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="warningType != null and warningType != ''">
+            <![CDATA[
+                AND WARNING_TYPE = #{warningType ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="lastSendTime != null and lastSendTime != ''">
+            <![CDATA[
+                AND LAST_SEND_TIME = #{lastSendTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="taskSwitch != null and taskSwitch != ''">
+            <![CDATA[
+                AND TASK_SWITCH = #{taskSwitch ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="createTime != null and createTime != ''">
+            <![CDATA[
+                AND CREATE_TIME = #{createTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="isDelete != null and isDelete != ''">
+            <![CDATA[
+                AND IS_DELETE = #{isDelete ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.TEarlywarning">
+        <![CDATA[
+			insert into t_earlywarning
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    ID,
+                ]]>
+            </if>
+            <if test="title != null and title != ''" >
+                <![CDATA[
+                    TITLE,
+                ]]>
+            </if>
+            <if test="mobiles != null and mobiles != ''" >
+                <![CDATA[
+                    MOBILES,
+                ]]>
+            </if>
+            <if test="smsContent != null and smsContent != ''" >
+                <![CDATA[
+                    SMS_CONTENT,
+                ]]>
+            </if>
+            <if test="taskType != null and taskType != ''" >
+                <![CDATA[
+                    TASK_TYPE,
+                ]]>
+            </if>
+            <if test="deadline != null and deadline != ''" >
+                <![CDATA[
+                    DEADLINE,
+                ]]>
+            </if>
+            <if test="nextExpDay != null and nextExpDay != ''" >
+                <![CDATA[
+                    NEXT_EXP_DAY,
+                ]]>
+            </if>
+            <if test="advanceDay != null and advanceDay != ''" >
+                <![CDATA[
+                    ADVANCE_DAY,
+                ]]>
+            </if>
+            <if test="warningType != null and warningType != ''" >
+                <![CDATA[
+                    WARNING_TYPE,
+                ]]>
+            </if>
+            <if test="lastSendTime != null and lastSendTime != ''" >
+                <![CDATA[
+                    LAST_SEND_TIME,
+                ]]>
+            </if>
+            <if test="taskSwitch != null and taskSwitch != ''" >
+                <![CDATA[
+                    TASK_SWITCH,
+                ]]>
+            </if>
+
+                <![CDATA[
+                    CREATE_TIME,
+                ]]>
+
+            <if test="isDelete != null" >
+                <![CDATA[
+                    IS_DELETE,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="title != null and title != ''" >
+                <![CDATA[
+                    #{title,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="mobiles != null and mobiles != ''" >
+                <![CDATA[
+                    #{mobiles,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="smsContent != null and smsContent != ''" >
+                <![CDATA[
+                    #{smsContent,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="taskType != null and taskType != ''" >
+                <![CDATA[
+                    #{taskType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="deadline != null and deadline != ''" >
+                <![CDATA[
+                    #{deadline,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="nextExpDay != null and nextExpDay != ''" >
+                <![CDATA[
+                    #{nextExpDay,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="advanceDay != null and advanceDay != ''" >
+                <![CDATA[
+                    #{advanceDay,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="warningType != null and warningType != ''" >
+                <![CDATA[
+                    #{warningType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="lastSendTime != null and lastSendTime != ''" >
+                <![CDATA[
+                    #{lastSendTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="taskSwitch != null and taskSwitch != ''" >
+                <![CDATA[
+                    #{taskSwitch,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            now(),
+            <if test="isDelete != null" >
+                <![CDATA[
+                    #{isDelete,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.TEarlywarning" >
+        <![CDATA[
+        	update t_earlywarning
+        ]]>
+        <set >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    ID = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="title != null and title != ''" >
+                <![CDATA[
+                    TITLE = #{title,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="mobiles != null and mobiles != ''" >
+                <![CDATA[
+                    MOBILES = #{mobiles,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="smsContent != null and smsContent != ''" >
+                <![CDATA[
+                    SMS_CONTENT = #{smsContent,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="taskType != null and taskType != ''" >
+                <![CDATA[
+                    TASK_TYPE = #{taskType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="deadline != null and deadline != ''" >
+                <![CDATA[
+                    DEADLINE = #{deadline,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="nextExpDay != null and nextExpDay != ''" >
+                <![CDATA[
+                    NEXT_EXP_DAY = #{nextExpDay,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="advanceDay != null and advanceDay != ''" >
+                <![CDATA[
+                    ADVANCE_DAY = #{advanceDay,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="warningType != null and warningType != ''" >
+                <![CDATA[
+                    WARNING_TYPE = #{warningType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="lastSendTime != null and lastSendTime != ''" >
+                <![CDATA[
+                    LAST_SEND_TIME = #{lastSendTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="taskSwitch != null and taskSwitch != ''" >
+                <![CDATA[
+                    TASK_SWITCH = #{taskSwitch,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="createTime != null and createTime != ''" >
+                <![CDATA[
+                    CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isDelete != null" >
+                <![CDATA[
+                    IS_DELETE = #{isDelete,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and ID = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.TEarlywarning">
+        <![CDATA[
+            delete from t_earlywarning
+        ]]>
+        <where>
+            <![CDATA[
+                and ID = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.TEarlywarning">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from t_earlywarning t
+        ]]>
+        <where>
+            <![CDATA[
+                and ID = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from t_earlywarning t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+        order by t.create_time desc
+        <if test="pageSize != '' and pageSize != null">
+            limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+        </if>
+    </select>
+
+    <!--  查询用户重要通知分页列表数量 -->
+    <select id="queryTotalCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            SELECT count(0) FROM t_earlywarning t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+</mapper>

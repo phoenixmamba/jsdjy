@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.mallserver.dao.ShoppingFavoriteDao">
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.mallserver.po.ShoppingFavoritePo">
+        <id column="id" property="id"/>
+        <result column="addTime" property="addTime"/>
+        <result column="type" property="type"/>
+        <result column="goods_id" property="goodsId"/>
+        <result column="user_id" property="userId"/>
+    </resultMap>
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.mallserver.po.ShoppingFavoritePo">
+        <![CDATA[
+        insert into shopping_favorite
+        ]]>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            addTime,
+            <if test="type != null and type != ''">
+                <![CDATA[
+                type,
+                ]]>
+            </if>
+            <if test="goodsId != null and goodsId != ''">
+                <![CDATA[
+                goods_id,
+                ]]>
+            </if>
+            <if test="userId != null and userId != ''">
+                <![CDATA[
+                user_id,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            now(), '0',
+            <if test="type != null and type != ''">
+                <![CDATA[
+                #{type,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="goodsId != null and goodsId != ''">
+                <![CDATA[
+                #{goodsId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userId != null and userId != ''">
+                <![CDATA[
+                #{userId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!--  查询列表 -->
+    <select id="selectIsFav" resultType="java.lang.Boolean">
+        SELECT EXISTS (
+        SELECT 1
+        FROM shopping_favorite t
+        <where>
+            t.user_id = #{userId,jdbcType=VARCHAR}
+            AND t.goods_id = #{goodsId,jdbcType=VARCHAR}
+            AND t.type = #{goodsType,jdbcType=INTEGER}
+            and t.deleteStatus='0'
+        </where>
+        )
+    </select>
+</mapper>

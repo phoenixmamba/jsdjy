@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.ShoppingArtinfosDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.ShoppingArtinfos">
+        <id column="id" property="id" />
+        <result column="infor_name" property="inforName" />
+        <result column="sequence" property="sequence" />
+        <result column="info_type" property="infoType" />
+        <result column="required" property="required" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, infor_name, sequence,info_type
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        infor_name
+          ,
+        sequence
+        ,
+        info_type
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="inforName != null and inforName != ''">
+            <![CDATA[
+                AND infor_name = #{inforName ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="sequence != null and sequence != ''">
+            <![CDATA[
+                AND sequence = #{sequence ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="infoType != null">
+            <![CDATA[
+                AND info_type = #{infoType ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.ShoppingArtinfos">
+        <![CDATA[
+			insert into shopping_artinfos
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="inforName != '' and inforName != null" >
+                <![CDATA[
+                    infor_name,
+                ]]>
+            </if>
+            <if test="sequence != '' and sequence != null" >
+                <![CDATA[
+                    sequence,
+                ]]>
+            </if>
+            <if test="infoType != null" >
+                <![CDATA[
+                    info_type,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="inforName != '' and inforName != null" >
+                <![CDATA[
+                    #{inforName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="sequence != null" >
+                <![CDATA[
+                    #{sequence,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="infoType != null" >
+                <![CDATA[
+                    #{infoType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.ShoppingArtinfos" >
+        <![CDATA[
+        	update shopping_artinfos
+        ]]>
+        <set >
+
+            <if test="inforName != '' and inforName != null" >
+                <![CDATA[
+                    infor_name = #{inforName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="sequence != null" >
+                <![CDATA[
+                    sequence = #{sequence,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="infoType != null" >
+                <![CDATA[
+                    info_type = #{infoType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.ShoppingArtinfos">
+        <![CDATA[
+            delete from shopping_artinfos
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.ShoppingArtinfos">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_artinfos t
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_artinfos t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+    <!--  查询活动需要填写的报名项 -->
+    <select id="queryActivityInfoList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select t1.*,t2.required from shopping_artinfos t1 left join shopping_artactivity_info t2
+            on t1.id = t2.info_id
+            where t2.activity_id =#{activityId ,jdbcType=VARCHAR }
+            order by t1.sequence asc
+        ]]>
+    </select>
+
+    <!--  查询爱艺计划需要填写的报名项 -->
+    <select id="queryPlanInfoList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select t1.*,t2.required from shopping_artinfos t1 left join shopping_artplan_info t2
+            on t1.id = t2.info_id
+            where t2.activity_id =#{activityId ,jdbcType=VARCHAR }
+            order by t1.sequence asc
+        ]]>
+    </select>
+
+    <!--  查询培训需要填写的报名项 -->
+    <select id="queryClassInfoList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select t1.*,t2.required from shopping_artinfos t1 left join shopping_artclass_info t2
+            on t1.id = t2.info_id
+            where t2.class_id =#{classId ,jdbcType=VARCHAR }
+            order by t1.sequence asc
+        ]]>
+    </select>
+</mapper>

@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.admin.system.dao.FDatacatalogDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.admin.system.po.FDatacatalog">
+        <id column="CATALOG_CODE" property="catalogCode" />
+        <result column="CATALOG_NAME" property="catalogName" />
+        <result column="CATALOG_STYLE" property="catalogStyle" />
+        <result column="CATALOG_TYPE" property="catalogType" />
+        <result column="CATALOG_DESC" property="catalogDesc" />
+        <result column="FIELD_DESC" property="fieldDesc" />
+        <result column="UPDATE_DATE" property="updateDate" />
+        <result column="CREATE_DATE" property="createDate" />
+        <result column="OPT_ID" property="optId" />
+        <result column="NEED_CACHE" property="needCache" />
+        <result column="CREATOR" property="creator" />
+        <result column="UPDATOR" property="updator" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        CATALOG_CODE, CATALOG_NAME, CATALOG_STYLE, CATALOG_TYPE, CATALOG_DESC, FIELD_DESC, UPDATE_DATE, CREATE_DATE, OPT_ID, NEED_CACHE, CREATOR, UPDATOR
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        CATALOG_CODE
+          ,
+        CATALOG_NAME
+          ,
+        CATALOG_STYLE
+          ,
+        CATALOG_TYPE
+          ,
+        CATALOG_DESC
+          ,
+        FIELD_DESC
+          ,
+        UPDATE_DATE
+          ,
+        CREATE_DATE
+          ,
+        OPT_ID
+          ,
+        NEED_CACHE
+          ,
+        CREATOR
+          ,
+        UPDATOR
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="catalogCode != null and catalogCode != ''">
+            <![CDATA[
+                AND CATALOG_CODE like concat('%',#{catalogCode,jdbcType=VARCHAR},'%')
+            ]]>
+        </if>
+        <if test="catalogName != null and catalogName != ''">
+            <![CDATA[
+                AND CATALOG_NAME like concat('%',#{catalogName,jdbcType=VARCHAR},'%')
+            ]]>
+        </if>
+        <if test="catalogStyle != null and catalogStyle != ''">
+            <![CDATA[
+                AND CATALOG_STYLE = #{catalogStyle ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="catalogType != null and catalogType != ''">
+            <![CDATA[
+                AND CATALOG_TYPE = #{catalogType ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="catalogDesc != null and catalogDesc != ''">
+            <![CDATA[
+                AND CATALOG_DESC = #{catalogDesc ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="fieldDesc != null and fieldDesc != ''">
+            <![CDATA[
+                AND FIELD_DESC = #{fieldDesc ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="updateDate != null and updateDate != ''">
+            <![CDATA[
+                AND UPDATE_DATE = #{updateDate ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="createDate != null and createDate != ''">
+            <![CDATA[
+                AND CREATE_DATE = #{createDate ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="optId != null and optId != ''">
+            <![CDATA[
+                AND OPT_ID = #{optId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="needCache != null and needCache != ''">
+            <![CDATA[
+                AND NEED_CACHE = #{needCache ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="creator != null and creator != ''">
+            <![CDATA[
+                AND CREATOR = #{creator ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="updator != null and updator != ''">
+            <![CDATA[
+                AND UPDATOR = #{updator ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.admin.system.po.FDatacatalog">
+        <![CDATA[
+			insert into f_datacatalog
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="catalogCode != '' and catalogCode != null" >
+                <![CDATA[
+                    CATALOG_CODE,
+                ]]>
+            </if>
+            <if test="catalogName != '' and catalogName != null" >
+                <![CDATA[
+                    CATALOG_NAME,
+                ]]>
+            </if>
+            <if test="catalogStyle != '' and catalogStyle != null" >
+                <![CDATA[
+                    CATALOG_STYLE,
+                ]]>
+            </if>
+            <if test="catalogType != '' and catalogType != null" >
+                <![CDATA[
+                    CATALOG_TYPE,
+                ]]>
+            </if>
+            <if test="catalogDesc != '' and catalogDesc != null" >
+                <![CDATA[
+                    CATALOG_DESC,
+                ]]>
+            </if>
+            <if test="fieldDesc != '' and fieldDesc != null" >
+                <![CDATA[
+                    FIELD_DESC,
+                ]]>
+            </if>
+
+                <![CDATA[
+                    UPDATE_DATE,
+                ]]>
+
+                <![CDATA[
+                    CREATE_DATE,
+                ]]>
+
+            <if test="optId != '' and optId != null" >
+                <![CDATA[
+                    OPT_ID,
+                ]]>
+            </if>
+            <if test="needCache != '' and needCache != null" >
+                <![CDATA[
+                    NEED_CACHE,
+                ]]>
+            </if>
+            <if test="creator != '' and creator != null" >
+                <![CDATA[
+                    CREATOR,
+                ]]>
+            </if>
+            <if test="updator != '' and updator != null" >
+                <![CDATA[
+                    UPDATOR,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="catalogCode != '' and catalogCode != null" >
+                <![CDATA[
+                    #{catalogCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="catalogName != '' and catalogName != null" >
+                <![CDATA[
+                    #{catalogName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="catalogStyle != '' and catalogStyle != null" >
+                <![CDATA[
+                    #{catalogStyle,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="catalogType != '' and catalogType != null" >
+                <![CDATA[
+                    #{catalogType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="catalogDesc != '' and catalogDesc != null" >
+                <![CDATA[
+                    #{catalogDesc,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="fieldDesc != '' and fieldDesc != null" >
+                <![CDATA[
+                    #{fieldDesc,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            now(),
+            now(),
+            <if test="optId != '' and optId != null" >
+                <![CDATA[
+                    #{optId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="needCache != '' and needCache != null" >
+                <![CDATA[
+                    #{needCache,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="creator != '' and creator != null" >
+                <![CDATA[
+                    #{creator,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="updator != '' and updator != null" >
+                <![CDATA[
+                    #{updator,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.admin.system.po.FDatacatalog" >
+        <![CDATA[
+        	update f_datacatalog
+        ]]>
+        <set >
+            <if test="catalogCode != '' and catalogCode != null" >
+                <![CDATA[
+                    CATALOG_CODE = #{catalogCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="catalogName != '' and catalogName != null" >
+                <![CDATA[
+                    CATALOG_NAME = #{catalogName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="catalogStyle != '' and catalogStyle != null" >
+                <![CDATA[
+                    CATALOG_STYLE = #{catalogStyle,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="catalogType != '' and catalogType != null" >
+                <![CDATA[
+                    CATALOG_TYPE = #{catalogType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="catalogDesc != '' and catalogDesc != null" >
+                <![CDATA[
+                    CATALOG_DESC = #{catalogDesc,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="fieldDesc != '' and fieldDesc != null" >
+                <![CDATA[
+                    FIELD_DESC = #{fieldDesc,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="updateDate != '' and updateDate != null" >
+                <![CDATA[
+                    UPDATE_DATE = #{updateDate,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="createDate != '' and createDate != null" >
+                <![CDATA[
+                    CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="optId != '' and optId != null" >
+                <![CDATA[
+                    OPT_ID = #{optId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="needCache != '' and needCache != null" >
+                <![CDATA[
+                    NEED_CACHE = #{needCache,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="creator != '' and creator != null" >
+                <![CDATA[
+                    CREATOR = #{creator,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="updator != '' and updator != null" >
+                <![CDATA[
+                    UPDATOR = #{updator,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and CATALOG_CODE = #{catalogCode ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.admin.system.po.FDatacatalog">
+        <![CDATA[
+            delete from f_datacatalog
+        ]]>
+        <where>
+            <![CDATA[
+                and CATALOG_CODE = #{catalogCode ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.admin.system.po.FDatacatalog">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from f_datacatalog t
+        ]]>
+        <where>
+            <![CDATA[
+                and CATALOG_CODE = #{catalogCode ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from f_datacatalog t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+    <!--  查询分页列表 -->
+    <select id="queryDictionaryPageList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            SELECT t1.*,t2.OPT_NAME FROM f_datacatalog t1 left join f_optinfo t2 on t1.OPT_ID = t2.OPT_ID
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+        <![CDATA[
+                      ORDER BY t1.UPDATE_DATE desc limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+        ]]>
+    </select>
+
+    <!--  查询分页列表数量 -->
+    <select id="queryDictionaryPageListCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            SELECT count(0) FROM f_datacatalog
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+</mapper>

@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.TicketExchangePlaceDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.TicketExchangePlace">
+        <result column="event_id" property="eventId" />
+        <result column="place_id" property="placeId" />
+        <result column="address" property="address" />
+        <result column="longitude" property="longitude" />
+        <result column="latitude" property="latitude" />
+        <result column="place_type_list" property="placeTypeList" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        event_id, place_id, address, longitude, latitude, place_type_list
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        event_id
+          ,
+        place_id
+          ,
+        address
+          ,
+        longitude
+          ,
+        latitude
+          ,
+        place_type_list
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="eventId != null and eventId != ''">
+            <![CDATA[
+                AND event_id = #{eventId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="placeId != null and placeId != ''">
+            <![CDATA[
+                AND place_id = #{placeId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="address != null and address != ''">
+            <![CDATA[
+                AND address = #{address ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="longitude != null and longitude != ''">
+            <![CDATA[
+                AND longitude = #{longitude ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="latitude != null and latitude != ''">
+            <![CDATA[
+                AND latitude = #{latitude ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="placeTypeList != null and placeTypeList != ''">
+            <![CDATA[
+                AND place_type_list = #{placeTypeList ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.TicketExchangePlace">
+        <![CDATA[
+			insert into ticket_exchange_place
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="eventId != null and eventId != ''" >
+                <![CDATA[
+                    event_id,
+                ]]>
+            </if>
+            <if test="placeId != null and placeId != ''" >
+                <![CDATA[
+                    place_id,
+                ]]>
+            </if>
+            <if test="address != null and address != ''" >
+                <![CDATA[
+                    address,
+                ]]>
+            </if>
+            <if test="longitude != null and longitude != ''" >
+                <![CDATA[
+                    longitude,
+                ]]>
+            </if>
+            <if test="latitude != null and latitude != ''" >
+                <![CDATA[
+                    latitude,
+                ]]>
+            </if>
+            <if test="placeTypeList != null and placeTypeList != ''" >
+                <![CDATA[
+                    place_type_list,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="eventId != null and eventId != ''" >
+                <![CDATA[
+                    #{eventId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="placeId != null and placeId != ''" >
+                <![CDATA[
+                    #{placeId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="address != null and address != ''" >
+                <![CDATA[
+                    #{address,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="longitude != null and longitude != ''" >
+                <![CDATA[
+                    #{longitude,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="latitude != null and latitude != ''" >
+                <![CDATA[
+                    #{latitude,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="placeTypeList != null and placeTypeList != ''" >
+                <![CDATA[
+                    #{placeTypeList,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.TicketExchangePlace" >
+        <![CDATA[
+        	update ticket_exchange_place
+        ]]>
+        <set >
+            <if test="eventId != null and eventId != ''" >
+                <![CDATA[
+                    event_id = #{eventId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="placeId != null and placeId != ''" >
+                <![CDATA[
+                    place_id = #{placeId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="address != null and address != ''" >
+                <![CDATA[
+                    address = #{address,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="longitude != null and longitude != ''" >
+                <![CDATA[
+                    longitude = #{longitude,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="latitude != null and latitude != ''" >
+                <![CDATA[
+                    latitude = #{latitude,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="placeTypeList != null and placeTypeList != ''" >
+                <![CDATA[
+                    place_type_list = #{placeTypeList,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.TicketExchangePlace">
+        <![CDATA[
+            delete from ticket_exchange_place
+        ]]>
+        <where>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.TicketExchangePlace">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from ticket_exchange_place t
+        ]]>
+        <where>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from ticket_exchange_place t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+</mapper>

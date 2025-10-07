@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.ShoppingRecommendDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.ShoppingRecommend">
+        <id column="id" property="id"/>
+        <result column="goods_id" property="goodsId"/>
+        <result column="goods_type" property="goodsType"/>
+        <result column="photoId" property="photoId"/>
+        <result column="sn" property="sn"/>
+    </resultMap>
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="AllGoodsMap" type="com.centit.shopping.po.HomeGoods">
+        <result column="goods_id" property="goodsId"/>
+        <result column="goods_name" property="goodsName"/>
+        <result column="photo_id" property="photoId"/>
+        <result column="goods_price" property="goodsPrice"/>
+        <result column="type" property="type"/>
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, goods_id, goods_type, sn
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        goods_id
+          ,
+        goods_type
+          ,
+        sn
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="goodsId != null and goodsId != ''">
+            <![CDATA[
+                AND goods_id = #{goodsId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="goodsType != null and goodsType != ''">
+            <![CDATA[
+                AND goods_type = #{goodsType ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="sn != null and sn != ''">
+            <![CDATA[
+                AND sn = #{sn ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.ShoppingRecommend">
+        <![CDATA[
+			insert into shopping_recommend
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="goodsId != null and goodsId != ''">
+                <![CDATA[
+                    goods_id,
+                ]]>
+            </if>
+            <if test="goodsType != null and goodsType != ''">
+                <![CDATA[
+                    goods_type,
+                ]]>
+            </if>
+            <if test="sn != null and sn != ''">
+                <![CDATA[
+                    sn,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="goodsId != null and goodsId != ''">
+                <![CDATA[
+                    #{goodsId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="goodsType != null and goodsType != ''">
+                <![CDATA[
+                    #{goodsType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="sn != null and sn != ''">
+                <![CDATA[
+                    #{sn,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.ShoppingRecommend">
+        <![CDATA[
+        	update shopping_recommend
+        ]]>
+        <set>
+            <if test="id != null and id != ''">
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="goodsId != null and goodsId != ''">
+                <![CDATA[
+                    goods_id = #{goodsId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="goodsType != null and goodsType != ''">
+                <![CDATA[
+                    goods_type = #{goodsType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="sn != null and sn != ''">
+                <![CDATA[
+                    sn = #{sn,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete" parameterType="com.centit.shopping.po.ShoppingRecommend">
+        <![CDATA[
+            delete from shopping_recommend
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.ShoppingRecommend">
+        select t.id, goods_id, goods_type, sn,
+        IFNULL(case t.goods_type
+        when 1 then g.goods_name
+        when 2 then g.goods_name
+        when 3 then a.activity_name
+        when 4 then c.class_name
+        end,'---') goodsName,
+        IFNULL(case t.goods_type
+        when 1 then g.goods_main_photo_id
+        when 2 then g.goods_main_photo_id
+        when 3 then a.main_photo_id
+        when 4 then c.main_photo_id
+        end,'---') photoId
+        from shopping_recommend t
+        left join shopping_goods g on t.goods_id=g.id
+        left join shopping_artactivity a on t.goods_id=a.id
+        left join shopping_artclass c on t.goods_id=c.id
+        <where>
+            <![CDATA[
+                and t.id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1"/>
+        <![CDATA[
+            from shopping_recommend t
+        ]]>
+        <where>
+            <include refid="Base_Where_List"/>
+        </where>
+        order by t.sn asc
+        <if test="pageSize != '' and pageSize != null">
+            <![CDATA[
+                    limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+                ]]>
+        </if>
+    </select>
+
+    <select id="queryListDetail" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        select t.id, goods_id, goods_type, sn,
+        IFNULL(case t.goods_type
+        when 1 then g.goods_name
+        when 2 then g.goods_name
+        when 3 then a.activity_name
+        when 4 then c.class_name
+        end,'---') goodsName,
+        IFNULL(case t.goods_type
+        when 1 then g.goods_main_photo_id
+        when 2 then g.goods_main_photo_id
+        when 3 then a.main_photo_id
+        when 4 then c.main_photo_id
+        end,'---') photoId
+        from shopping_recommend t
+        left join shopping_goods g on t.goods_id=g.id
+        left join shopping_artactivity a on t.goods_id=a.id
+        left join shopping_artclass c on t.goods_id=c.id
+        <where>
+            <if test="goodsName!=null and goodsName!=''">
+                g.goods_name like concat('%',#{goodsName},'%')
+                or
+                activity_name like concat('%',#{goodsName},'%')
+                or
+                c.class_name like concat('%',#{goodsName},'%')
+            </if>
+            <include refid="Base_Where_List"/>
+        </where>
+        order by t.sn asc
+        <if test="pageSize != '' and pageSize != null">
+            limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+        </if>
+    </select>
+
+    <!--  查询所有商城商品 -->
+    <select id="queryAllList" resultMap="AllGoodsMap" parameterType="java.util.HashMap">
+        select sgc.id                  goods_id,
+               sgc.goods_name          goods_name,
+               sgc.goods_main_photo_id photo_id,
+               sgc.store_price         goods_price,
+               1                       type
+        from shopping_goods sgc
+        where sgc.deleteStatus = 0 and sgc.goods_status = 0
+          and FIND_IN_SET(sgc.gc_id, queryChildrenGoodClass('1'))
+        UNION ALL
+        select sgi.id                  goods_id,
+               sgi.goods_name          goods_name,
+               sgi.goods_main_photo_id photo_id,
+               sgi.store_price         goods_price,
+               2                       type
+        from shopping_goods sgi
+        where sgi.deleteStatus = 0 and sgi.goods_status = 0
+          and FIND_IN_SET(sgi.gc_id, queryChildrenGoodClass('2'))
+        UNION ALL
+        select sac.id            goods_id,
+               sac.activity_name goods_name,
+               sac.main_photo_id photo_id,
+               sac.current_price goods_price,
+               3                 type
+        from shopping_artactivity sac
+        where sac.deleteStatus = 0 and sac.activity_status=1
+        UNION ALL
+        select sas.id            goods_id,
+               sas.class_name    goods_name,
+               sas.main_photo_id photo_id,
+               sas.current_price goods_price,
+               4                 type
+        from shopping_artclass sas
+        where sas.deleteStatus = 0 and sas.class_status=1
+    </select>
+
+    <!--  查询用户已购买过的商品的同类商品 -->
+    <select id="queryBuyList" resultMap="AllGoodsMap" parameterType="java.util.HashMap">
+        select id goods_id, 1 type
+        from shopping_goods
+        where gc_id in (select gc_id
+                        from shopping_goods
+                        where id in
+                              (select sgc.goods_id
+                               from shopping_goodscart sgc
+                               where sgc.sc_id = 65
+                                 and sgc.cart_type = 1
+                                 and sgc.deleteStatus = 0))
+          and id not in (select sgc.goods_id
+                         from shopping_goodscart sgc
+                         where sgc.sc_id = #{scId ,jdbcType=VARCHAR }
+                           and sgc.cart_type = 1
+                           and sgc.deleteStatus = 0)
+        union
+        select id goods_id, 2 type
+        from shopping_goods
+        where gc_id in (select gc_id
+                        from shopping_goods
+                        where id in
+                              (select sgc.goods_id
+                               from shopping_goodscart sgc
+                               where sgc.sc_id = 65
+                                 and sgc.cart_type = 2
+                                 and sgc.deleteStatus = 0))
+          and id not in (select sgc.goods_id
+                         from shopping_goodscart sgc
+                         where sgc.sc_id = #{scId ,jdbcType=VARCHAR }
+                           and sgc.cart_type = 2
+                           and sgc.deleteStatus = 0)
+    </select>
+
+    <!--  查询热销商品 -->
+    <select id="queryHotList" resultMap="AllGoodsMap" parameterType="java.util.HashMap">
+        (select goods_id, 1 type
+         from (select goods_id, sum(count) num from shopping_goodscart where cart_type = 1 group by goods_id) td
+         order by td.num desc
+         limit #{limit ,jdbcType=INTEGER })
+        UNION all
+        (select goods_id, 2 type
+         from (select goods_id, sum(count) num from shopping_goodscart where cart_type = 2 group by goods_id) td
+         order by td.num desc
+         limit #{limit ,jdbcType=INTEGER })
+        UNION all
+        (select goods_id, 3 type
+         from (select goods_id, sum(count) num from shopping_goodscart where cart_type = 3 group by goods_id) td
+         order by td.num desc
+         limit #{limit ,jdbcType=INTEGER })
+        UNION all
+        (select goods_id, 4 type
+         from (select goods_id, sum(count) num from shopping_goodscart where cart_type = 4 group by goods_id) td
+         order by td.num desc
+         limit #{limit ,jdbcType=INTEGER })
+    </select>
+</mapper>

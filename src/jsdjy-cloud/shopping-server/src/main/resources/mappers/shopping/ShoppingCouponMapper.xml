@@ -1,0 +1,880 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.ShoppingCouponDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.ShoppingCoupon">
+        <id column="id" property="id"/>
+        <result column="right_No" property="right_No"/>
+        <result column="createdate" property="createdate"/>
+        <result column="right_Type" property="right_Type"/>
+        <result column="right_Display" property="right_Display"/>
+        <result column="right_Content" property="right_Content"/>
+        <result column="act_Rule" property="act_Rule"/>
+        <result column="memo" property="memo"/>
+        <result column="stack_Used" property="stack_Used"/>
+        <result column="discount_First" property="discount_First"/>
+        <result column="time_Type" property="time_Type"/>
+        <result column="start_Date" property="start_Date"/>
+        <result column="end_Date" property="end_Date"/>
+        <result column="time_Unit" property="time_Unit"/>
+        <result column="fix_Month" property="fix_Month"/>
+        <result column="max_Money" property="max_Money"/>
+        <result column="min_Money" property="min_Money"/>
+        <result column="isdelete" property="isdelete"/>
+        <result column="ispub" property="ispub"/>
+        <result column="per_limit" property="perLimit"/>
+        <result column="ac_per_limit" property="acPerLimit" />
+        <result column="offline" property="offline" />
+        <result column="write_off_count" property="writeOffCount" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, right_No, createdate, right_Type, right_Display, right_Content, act_Rule, memo, stack_Used, discount_First, time_Type, start_Date, end_Date, time_Unit, fix_Month, max_Money, min_Money, isdelete, ispub, per_limit,offline,write_off_count
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        right_No
+          ,
+        createdate
+          ,
+        right_Type
+          ,
+        right_Display
+          ,
+        right_Content
+          ,
+        act_Rule
+          ,
+        memo
+          ,
+        stack_Used
+          ,
+        discount_First
+          ,
+        time_Type
+          ,
+        start_Date
+          ,
+        end_Date
+          ,
+        time_Unit
+          ,
+        fix_Month
+          ,
+        max_Money
+          ,
+        min_Money
+          ,
+        isdelete
+          ,
+        ispub
+          ,
+        per_limit
+        ,
+        offline
+        ,
+        write_off_count
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="right_No != null and right_No != ''">
+            <![CDATA[
+                AND right_No = #{right_No ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="createdate != null and createdate != ''">
+            <![CDATA[
+                AND createdate = #{createdate ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="right_Type != null and right_Type != ''">
+            <![CDATA[
+                AND right_Type = #{right_Type ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="right_Display != null and right_Display != ''">
+            <![CDATA[
+                AND right_Display like concat('%', #{right_Display,jdbcType=VARCHAR}, '%')
+            ]]>
+        </if>
+        <if test="right_Content != null and right_Content != ''">
+            <![CDATA[
+                AND right_Content = #{right_Content ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="act_Rule != null and act_Rule != ''">
+            <![CDATA[
+                AND act_Rule = #{act_Rule ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="memo != null and memo != ''">
+            <![CDATA[
+                AND memo = #{memo ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="writeOff != null and writeOff == 0">
+            <![CDATA[
+                AND memo not like concat('%', #{writeOffStr,jdbcType=VARCHAR}, '%')
+            ]]>
+        </if>
+        <if test="writeOff != null and writeOff == 1">
+            <![CDATA[
+                AND memo like concat('%', #{writeOffStr,jdbcType=VARCHAR}, '%')
+            ]]>
+        </if>
+        <if test="stack_Used != null and stack_Used != ''">
+            <![CDATA[
+                AND stack_Used = #{stack_Used ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="discount_First != null and discount_First != ''">
+            <![CDATA[
+                AND discount_First = #{discount_First ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="time_Type != null and time_Type != ''">
+            <![CDATA[
+                AND time_Type = #{time_Type ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="start_Date != null and start_Date != ''">
+            <![CDATA[
+                AND start_Date = #{start_Date ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="end_Date != null and end_Date != ''">
+            <![CDATA[
+                AND end_Date = #{end_Date ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="time_Unit != null and time_Unit != ''">
+            <![CDATA[
+                AND time_Unit = #{time_Unit ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="fix_Month != null and fix_Month != ''">
+            <![CDATA[
+                AND fix_Month = #{fix_Month ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="max_Money != null and max_Money != ''">
+            <![CDATA[
+                AND max_Money = #{max_Money ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="min_Money != null and min_Money != ''">
+            <![CDATA[
+                AND min_Money = #{min_Money ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="isdelete != null and isdelete != ''">
+            <![CDATA[
+                AND isdelete = #{isdelete ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="ispub != null and ispub != ''">
+            <![CDATA[
+                AND ispub = #{ispub ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="perLimit != null and perLimit != ''">
+            <![CDATA[
+                AND per_limit = #{perLimit ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="offline != null">
+            <![CDATA[
+                AND offline = #{offline ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="writeOffCount != null and writeOffCount != ''">
+            <![CDATA[
+                AND write_off_count = #{writeOffCount ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.ShoppingCoupon">
+        <![CDATA[
+			insert into shopping_coupon
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and id != ''">
+                <![CDATA[
+                    id,
+                ]]>
+            </if>
+            <if test="right_No != null and right_No != ''">
+                <![CDATA[
+                    right_No,
+                ]]>
+            </if>
+            <if test="createdate != null and createdate != ''">
+                <![CDATA[
+                    createdate,
+                ]]>
+            </if>
+            <if test="right_Type != null and right_Type != ''">
+                <![CDATA[
+                    right_Type,
+                ]]>
+            </if>
+            <if test="right_Display != null and right_Display != ''">
+                <![CDATA[
+                    right_Display,
+                ]]>
+            </if>
+            <if test="right_Content != null and right_Content != ''">
+                <![CDATA[
+                    right_Content,
+                ]]>
+            </if>
+            <if test="act_Rule != null and act_Rule != ''">
+                <![CDATA[
+                    act_Rule,
+                ]]>
+            </if>
+            <if test="memo != null and memo != ''">
+                <![CDATA[
+                    memo,
+                ]]>
+            </if>
+            <if test="stack_Used != null">
+                <![CDATA[
+                    stack_Used,
+                ]]>
+            </if>
+            <if test="discount_First != null">
+                <![CDATA[
+                    discount_First,
+                ]]>
+            </if>
+            <if test="time_Type != null and time_Type != ''">
+                <![CDATA[
+                    time_Type,
+                ]]>
+            </if>
+            <if test="start_Date != null and start_Date != ''">
+                <![CDATA[
+                    start_Date,
+                ]]>
+            </if>
+            <if test="end_Date != null and end_Date != ''">
+                <![CDATA[
+                    end_Date,
+                ]]>
+            </if>
+            <if test="time_Unit != null">
+                <![CDATA[
+                    time_Unit,
+                ]]>
+            </if>
+            <if test="fix_Month != null">
+                <![CDATA[
+                    fix_Month,
+                ]]>
+            </if>
+            <if test="max_Money != null">
+                <![CDATA[
+                    max_Money,
+                ]]>
+            </if>
+            <if test="min_Money != null">
+                <![CDATA[
+                    min_Money,
+                ]]>
+            </if>
+            <if test="isdelete != null">
+                <![CDATA[
+                    isdelete,
+                ]]>
+            </if>
+            <if test="offline != null">
+                <![CDATA[
+                    offline,
+                ]]>
+            </if>
+            <if test="writeOffCount != null">
+                <![CDATA[
+                    write_off_count,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null and id != ''">
+                <![CDATA[
+                    #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="right_No != null and right_No != ''">
+                <![CDATA[
+                    #{right_No,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="createdate != null and createdate != ''">
+                <![CDATA[
+                    #{createdate,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="right_Type != null and right_Type != ''">
+                <![CDATA[
+                    #{right_Type,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="right_Display != null and right_Display != ''">
+                <![CDATA[
+                    #{right_Display,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="right_Content != null and right_Content != ''">
+                <![CDATA[
+                    #{right_Content,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="act_Rule != null and act_Rule != ''">
+                <![CDATA[
+                    #{act_Rule,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="memo != null and memo != ''">
+                <![CDATA[
+                    #{memo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="stack_Used != null">
+                <![CDATA[
+                    #{stack_Used,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="discount_First != null">
+                <![CDATA[
+                    #{discount_First,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="time_Type != null and time_Type != ''">
+                <![CDATA[
+                    #{time_Type,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="start_Date != null and start_Date != ''">
+                <![CDATA[
+                    #{start_Date,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="end_Date != null and end_Date != ''">
+                <![CDATA[
+                    #{end_Date,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="time_Unit != null">
+                <![CDATA[
+                    #{time_Unit,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="fix_Month != null">
+                <![CDATA[
+                    #{fix_Month,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="max_Money != null">
+                <![CDATA[
+                    #{max_Money,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="min_Money != null">
+                <![CDATA[
+                    #{min_Money,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isdelete != null">
+                <![CDATA[
+                    #{isdelete,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="offline != null">
+                <![CDATA[
+                    #{offline,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="writeOffCount != null">
+                <![CDATA[
+                    #{writeOffCount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.ShoppingCoupon">
+        <![CDATA[
+        	update shopping_coupon
+        ]]>
+        <set>
+            <if test="id != null and id != ''">
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="right_No != null and right_No != ''">
+                <![CDATA[
+                    right_No = #{right_No,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="createdate != null and createdate != ''">
+                <![CDATA[
+                    createdate = #{createdate,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="right_Type != null and right_Type != ''">
+                <![CDATA[
+                    right_Type = #{right_Type,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="right_Display != null and right_Display != ''">
+                <![CDATA[
+                    right_Display = #{right_Display,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="right_Content != null and right_Content != ''">
+                <![CDATA[
+                    right_Content = #{right_Content,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="act_Rule != null and act_Rule != ''">
+                <![CDATA[
+                    act_Rule = #{act_Rule,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="memo != null and memo != ''">
+                <![CDATA[
+                    memo = #{memo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="stack_Used != null">
+                <![CDATA[
+                    stack_Used = #{stack_Used,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="discount_First != null">
+                <![CDATA[
+                    discount_First = #{discount_First,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="time_Type != null and time_Type != ''">
+                <![CDATA[
+                    time_Type = #{time_Type,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="start_Date != null and start_Date != ''">
+                <![CDATA[
+                    start_Date = #{start_Date,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="end_Date != null and end_Date != ''">
+                <![CDATA[
+                    end_Date = #{end_Date,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="time_Unit != null">
+                <![CDATA[
+                    time_Unit = #{time_Unit,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="fix_Month != null">
+                <![CDATA[
+                    fix_Month = #{fix_Month,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="max_Money != null">
+                <![CDATA[
+                    max_Money = #{max_Money,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="min_Money != null">
+                <![CDATA[
+                    min_Money = #{min_Money,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isdelete != null">
+                <![CDATA[
+                    isdelete = #{isdelete,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="ispub != null">
+                <![CDATA[
+                    ispub = #{ispub,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="perLimit != null">
+                <![CDATA[
+                    per_limit = #{perLimit,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="offline != null">
+                <![CDATA[
+                    offline = #{offline,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="writeOffCount != null">
+                <![CDATA[
+                    write_off_count = #{writeOffCount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <!--<if test="writeOffCount == null || writeOffCount == ''">-->
+                <!--<![CDATA[-->
+                    <!--write_off_count = null,-->
+                <!--]]>-->
+            <!--</if>-->
+        </set>
+        <where>
+            <![CDATA[
+                and right_No = #{right_No ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+    <update id="updateWriteOffCount" parameterType="com.centit.shopping.po.ShoppingCoupon">
+        <![CDATA[
+        	update shopping_coupon
+        ]]>
+        <set>
+            <if test="offline != null">
+                <![CDATA[
+                    offline = #{offline,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="writeOffCount != null">
+                <![CDATA[
+                    write_off_count = #{writeOffCount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="writeOffCount == null || writeOffCount == ''">
+            <![CDATA[
+            write_off_count = null,
+            ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and right_No = #{right_No ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete" parameterType="com.centit.shopping.po.ShoppingCoupon">
+        <![CDATA[
+            delete from shopping_coupon
+        ]]>
+        <where>
+            <![CDATA[
+                and right_No = #{right_No ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.ShoppingCoupon">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1"/>
+        <![CDATA[
+            from shopping_coupon t
+        ]]>
+        <where>
+            <![CDATA[
+                and right_No = #{right_No ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1"/>
+        <![CDATA[
+            from shopping_coupon t
+        ]]>
+        <where>
+            <include refid="Base_Where_List"/>
+        </where>
+        order by t.createdate desc
+        <if test="pageSize != '' and pageSize != null">
+            <![CDATA[
+                    limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+                ]]>
+        </if>
+    </select>
+
+    <!--  查询列表数量 -->
+    <select id="queryTotalCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            SELECT count(0) FROM shopping_coupon
+        ]]>
+        <where>
+            <include refid="Base_Where_List"/>
+        </where>
+    </select>
+
+    <!-- 更新 -->
+    <update id="updateCouponState" parameterType="arraylist">
+        <![CDATA[
+        	update shopping_coupon
+        ]]>
+        <set>
+            <![CDATA[
+                    isdelete = '1',
+                ]]>
+        </set>
+        <where>
+            AND id not in
+            <foreach collection="list" index="index" item="item" open="("
+                     separator="," close=")">
+                #{item}
+            </foreach>
+        </where>
+    </update>
+
+    <!-- 更新 -->
+    <update id="deleteAllCoupon" parameterType="java.util.HashMap">
+        <![CDATA[
+        	update shopping_coupon
+        ]]>
+        <set>
+            <![CDATA[
+                    isdelete = '1',
+                ]]>
+        </set>
+    </update>
+
+    <!--  查询列表 -->
+    <select id="queryGoodsCouponList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1"/>
+        <![CDATA[
+            from shopping_coupon t
+        ]]>
+        <where>
+            (right_No in(
+            select right_No from shopping_coupon_relate sr where (sr.link_type=1 and
+            FIND_IN_SET(#{classId ,jdbcType=VARCHAR },queryGoodsClass(sr.goods_id)) and sr.goods_type=#{goodsType ,jdbcType=VARCHAR }) OR
+            (sr.link_type=2 and sr.goods_id=#{goodsId ,jdbcType=VARCHAR } and sr.goods_type=#{goodsType ,jdbcType=VARCHAR })
+            )
+            or (right_No not in
+            (select right_No from shopping_coupon_relate union select right_no from shopping_coupon_directgrant
+            union select right_No from shopping_birth_coupon union select right_No from shopping_new_coupon)
+            and right_Type !='park')
+            )
+            and isdelete='0'
+            and offline=0
+            and ispub='1'
+        </where>
+        order by t.createdate desc
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryArtCouponList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1"/>
+        <![CDATA[
+            from shopping_coupon t
+        ]]>
+        <where>
+            (right_No in(
+            select right_No from shopping_coupon_relate sr where (sr.link_type=1 and sr.goods_type=#{goodsType ,jdbcType=VARCHAR }) OR
+            (sr.link_type=2 and sr.goods_id=#{goodsId ,jdbcType=VARCHAR } and sr.goods_type=#{goodsType ,jdbcType=VARCHAR })
+            )
+            or (right_No not in (select right_No from shopping_coupon_relate) and right_Type !='park')
+            )
+            and isdelete='0'
+            and ispub='1'
+        </where>
+        order by t.createdate desc
+    </select>
+
+
+    <!--  查询列表 -->
+    <select id="queryActivityCoupon" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select t.*,sa.ac_per_limit
+        ]]>
+        <![CDATA[
+            from shopping_coupon t left join shopping_activity_coupon sa on t.right_No =sa.right_No
+        ]]>
+        <where>
+            and sa.ac_id = #{acId ,jdbcType=VARCHAR }
+            and t.isdelete = '0'
+            and t.ispub = '1'
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryBirthCoupon" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select t.*,sb.ac_per_limit
+        ]]>
+        <![CDATA[
+            from shopping_coupon t right join shopping_birth_coupon sb on t.right_No =sb.right_No
+            where t.isdelete = '0' and  t.ispub = '1'
+        ]]>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryNewCoupon" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select t.*,sn.ac_per_limit
+        ]]>
+        <![CDATA[
+            from shopping_coupon t right join shopping_new_coupon sn on t.right_No =sn.right_No
+            where t.isdelete = '0' and  t.ispub = '1'
+        ]]>
+    </select>
+
+    <select id="queryUserGoodsCouponList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        SELECT * FROM shopping_coupon WHERE
+	(
+		right_No NOT IN (
+			SELECT
+				right_No
+			FROM
+				shopping_coupon_relate
+		)
+		OR right_No IN (
+			SELECT
+				right_No
+			FROM
+				shopping_coupon_relate
+			WHERE
+				link_type = 1
+			AND goods_type = #{goodsType ,jdbcType=VARCHAR }
+			AND FIND_IN_SET(
+				#{gcId ,jdbcType=VARCHAR },
+				queryGoodsClass (goods_id)
+			)
+			UNION ALL
+				SELECT
+					right_No
+				FROM
+					shopping_coupon_relate
+				WHERE
+					link_type = 2
+				AND goods_type = #{goodsType ,jdbcType=VARCHAR }
+				AND #{goodsId ,jdbcType=VARCHAR } = goods_id
+		)
+	) AND (right_Type = 'coincp' or right_Type = 'discount')  AND isdelete = 0 AND ispub = 1  AND write_off_count is null
+    </select>
+
+    <select id="queryUserArtCouponList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        SELECT * FROM shopping_coupon WHERE
+	(
+		right_No NOT IN (
+			SELECT
+				right_No
+			FROM
+				shopping_coupon_relate
+		)
+		OR right_No IN (
+			SELECT
+				right_No
+			FROM
+				shopping_coupon_relate
+			WHERE
+				link_type = 1
+			AND goods_type = #{goodsType ,jdbcType=VARCHAR }
+			AND goods_id = #{gcId ,jdbcType=VARCHAR }
+			UNION ALL
+				SELECT
+					right_No
+				FROM
+					shopping_coupon_relate
+				WHERE
+					link_type = 2
+				AND goods_type = #{goodsType ,jdbcType=VARCHAR }
+				AND #{goodsId ,jdbcType=VARCHAR } = goods_id
+		)
+	) AND (right_Type = 'coincp' or right_Type = 'discount')
+	AND isdelete = 0 AND ispub = 1 AND write_off_count is null
+    </select>
+
+    <select id="queryUserVideoCouponList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        SELECT * FROM shopping_coupon WHERE
+	(
+		right_No NOT IN (
+			SELECT
+				right_No
+			FROM
+				shopping_coupon_relate
+		)
+		OR right_No IN (
+			SELECT
+				right_No
+			FROM
+				shopping_coupon_relate
+			WHERE
+				link_type = 1
+			AND goods_type = 5
+		)
+	) AND (right_Type = 'coincp' or right_Type = 'discount')
+	AND isdelete = 0 AND ispub = 1 AND write_off_count is null
+    </select>
+
+
+    <!--  查询配置为直接发放的优惠券列表 -->
+    <select id="queryDirectgrantCoupon" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select t.*
+        ]]>
+        <![CDATA[
+            from shopping_coupon t right join shopping_coupon_directgrant sn on t.right_No =sn.right_no
+            where t.isdelete = '0' and  t.ispub = '1' and  sn.is_delete = '0'
+        ]]>
+        order by sn.add_time desc
+        <if test="pageSize != '' and pageSize != null">
+            <![CDATA[
+                    limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+                ]]>
+        </if>
+    </select>
+
+    <!--  查询列表数量 -->
+    <select id="queryDirectgrantCouponTotalCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            SELECT count(0) from
+             shopping_coupon t right join shopping_coupon_directgrant sn on t.right_No =sn.right_no
+            where t.isdelete = '0' and  t.ispub = '1' and  sn.is_delete = '0'
+        ]]>
+    </select>
+
+    <select id="queryWriteOffCoupon" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select t.*
+        ]]>
+        <![CDATA[
+            from shopping_coupon t
+            where t.isdelete = '0' and  t.ispub = '1' and  t.write_off_count is not null
+        ]]>
+
+    </select>
+</mapper>

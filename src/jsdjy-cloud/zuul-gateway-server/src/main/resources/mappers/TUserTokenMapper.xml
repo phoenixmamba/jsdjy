@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.zuulgateway.dao.TUserTokenDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.zuulgateway.po.TUserToken">
+        <id column="USER_CODE" property="userCode" />
+        <result column="TOKEN" property="token" />
+        <result column="SERV_NAME" property="servName" />
+        <result column="ACTIVE_TIME" property="activeTime" />
+        <result column="VALIDPERIOD" property="validperiod" />
+        <result column="IS_VALID" property="isValid" />
+        <result column="TOKEN_ID" property="tokenId" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        USER_CODE, TOKEN, SERV_NAME, ACTIVE_TIME, VALIDPERIOD, IS_VALID, TOKEN_ID
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        USER_CODE
+          ,
+        TOKEN
+          ,
+        SERV_NAME
+          ,
+        ACTIVE_TIME
+          ,
+        VALIDPERIOD
+          ,
+        IS_VALID
+          ,
+        TOKEN_ID
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="userCode != null and userCode != ''">
+            <![CDATA[
+                AND USER_CODE = #{userCode ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="token != null and token != ''">
+            <![CDATA[
+                AND TOKEN = #{token ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="servName != null and servName != ''">
+            <![CDATA[
+                AND SERV_NAME = #{servName ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="activeTime != null and activeTime != ''">
+            <![CDATA[
+                AND ACTIVE_TIME = #{activeTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="validperiod != null and validperiod != ''">
+            <![CDATA[
+                AND VALIDPERIOD = #{validperiod ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="isValid != null and isValid != ''">
+            <![CDATA[
+                AND IS_VALID = #{isValid ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="tokenId != null and tokenId != ''">
+            <![CDATA[
+                AND TOKEN_ID = #{tokenId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.zuulgateway.po.TUserToken">
+        <![CDATA[
+			insert into T_USER_TOKEN
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="userCode != '' and userCode != null" >
+                <![CDATA[
+                    USER_CODE,
+                ]]>
+            </if>
+            <if test="token != '' and token != null" >
+                <![CDATA[
+                    TOKEN,
+                ]]>
+            </if>
+            <if test="servName != '' and servName != null" >
+                <![CDATA[
+                    SERV_NAME,
+                ]]>
+            </if>
+            <!--<if test="activeTime != '' and activeTime != null" >-->
+                <![CDATA[
+                    ACTIVE_TIME,
+                ]]>
+            <!--</if>-->
+            <if test="validperiod != '' and validperiod != null" >
+                <![CDATA[
+                    VALIDPERIOD,
+                ]]>
+            </if>
+            <if test="isValid != '' and isValid != null" >
+                <![CDATA[
+                    IS_VALID,
+                ]]>
+            </if>
+            <if test="tokenId != '' and tokenId != null" >
+                <![CDATA[
+                    TOKEN_ID,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="userCode != '' and userCode != null" >
+                <![CDATA[
+                    #{userCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="token != '' and token != null" >
+                <![CDATA[
+                    #{token,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="servName != '' and servName != null" >
+                <![CDATA[
+                    #{servName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <!--<if test="activeTime != '' and activeTime != null" >-->
+                <![CDATA[
+                    sysdate,
+                ]]>
+            <!--</if>-->
+            <if test="validperiod != '' and validperiod != null" >
+                <![CDATA[
+                    #{VALIDPERIOD,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="tokenId != '' and tokenId != null" >
+                <![CDATA[
+                    #{tokenId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.zuulgateway.po.TUserToken" >
+        <![CDATA[
+        	update T_USER_TOKEN
+        ]]>
+        <set >
+            <if test="token != '' and token != null" >
+                <![CDATA[
+                    TOKEN = #{token,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <!--<if test="activeTime != '' and activeTime != null" >-->
+                <![CDATA[
+                    ACTIVE_TIME = sysdate,
+                ]]>
+            <!--</if>-->
+            <if test="validperiod != '' and validperiod != null" >
+                <![CDATA[
+                    VALIDPERIOD = #{validperiod,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isValid != '' and isValid != null" >
+                <![CDATA[
+                    IS_VALID = #{isValid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="tokenId != '' and tokenId != null" >
+                <![CDATA[
+                    TOKEN_ID = #{tokenId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and USER_CODE = #{userCode ,jdbcType=VARCHAR }
+                and SERV_NAME = #{servName ,jdbcType=VARCHAR }
+                and TOKEN_ID = #{tokenId ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.zuulgateway.po.TUserToken">
+        <![CDATA[
+            delete from T_USER_TOKEN
+        ]]>
+        <where>
+            <![CDATA[
+                and USER_CODE = #{userCode ,jdbcType=VARCHAR }
+                and SERV_NAME = #{servName ,jdbcType=VARCHAR }
+                and TOKEN_ID = #{tokenId ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.zuulgateway.po.TUserToken">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from T_USER_TOKEN t
+        ]]>
+        <where>
+            <![CDATA[
+                and USER_CODE = #{userCode ,jdbcType=VARCHAR }
+                and SERV_NAME = #{servName ,jdbcType=VARCHAR }
+                and TOKEN_ID = #{tokenId ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from T_USER_TOKEN t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+
+    <!--  有则更新无则插入merge into -->
+    <insert id="mergeInto" parameterType="com.centit.zuulgateway.po.TUserToken">
+        <![CDATA[
+			merge into T_USER_TOKEN t1
+			USING(SELECT #{userCode,jdbcType=VARCHAR} as userCode, #{servName,jdbcType=VARCHAR} as servName, #{tokenId,jdbcType=VARCHAR} as tokenId FROM dual) t2
+            ON(t1.USER_CODE = t2.userCode and t1.SERV_NAME = t2.servName and t1.TOKEN_ID = t2.tokenId)
+            WHEN MATCHED THEN
+              update
+		]]>
+        <set>
+            <if test="token != '' and token != null" >
+                <![CDATA[
+                    TOKEN = #{token,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <!--<if test="activeTime != '' and activeTime != null" >-->
+                <![CDATA[
+                    ACTIVE_TIME = sysdate,
+                ]]>
+            <!--</if>-->
+            <if test="validperiod != '' and validperiod != null" >
+                <![CDATA[
+                    VALIDPERIOD = #{validperiod,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isValid != '' and isValid != null" >
+                <![CDATA[
+                    IS_VALID = #{isValid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and USER_CODE = #{userCode ,jdbcType=VARCHAR }
+                and SERV_NAME = #{servName ,jdbcType=VARCHAR }
+                and TOKEN_ID = #{tokenId ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+        <![CDATA[
+            when not matched then
+              insert
+        ]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="userCode != '' and userCode != null" >
+                <![CDATA[
+                    USER_CODE,
+                ]]>
+            </if>
+            <if test="token != '' and token != null" >
+                <![CDATA[
+                    TOKEN,
+                ]]>
+            </if>
+            <if test="servName != '' and servName != null" >
+                <![CDATA[
+                    SERV_NAME,
+                ]]>
+            </if>
+            <!--<if test="activeTime != '' and activeTime != null" >-->
+            <![CDATA[
+                    ACTIVE_TIME,
+                ]]>
+            <!--</if>-->
+            <if test="validperiod != '' and validperiod != null" >
+                <![CDATA[
+                    VALIDPERIOD,
+                ]]>
+            </if>
+            <if test="isValid != '' and isValid != null" >
+                <![CDATA[
+                    IS_VALID,
+                ]]>
+            </if>
+            <if test="tokenId != '' and tokenId != null" >
+                <![CDATA[
+                    TOKEN_ID,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="userCode != '' and userCode != null" >
+                <![CDATA[
+                    #{userCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="token != '' and token != null" >
+                <![CDATA[
+                    #{token,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="servName != '' and servName != null" >
+                <![CDATA[
+                    #{servName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <!--<if test="activeTime != '' and activeTime != null" >-->
+            <![CDATA[
+                    sysdate,
+                ]]>
+            <!--</if>-->
+            <if test="validperiod != '' and validperiod != null" >
+                <![CDATA[
+                    #{validperiod,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isValid != '' and isValid != null" >
+                <![CDATA[
+                    #{isValid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="tokenId != '' and tokenId != null" >
+                <![CDATA[
+                    #{tokenId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+
+    <!--  查询数量 -->
+    <select id="queryCount" resultType="java.lang.Integer" parameterType="com.centit.zuulgateway.po.TUserToken">
+        <![CDATA[
+            select count(0) from T_USER_TOKEN
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+    <!--  查询token是否过期失效，大于0则为过期，等于0则过期 -->
+    <select id="queryLoginTokenExpire" resultType="java.lang.Integer" parameterType="com.centit.zuulgateway.po.TUserToken">
+        <![CDATA[
+            select count(0) from T_USER_TOKEN t
+        ]]>
+        <where>
+            <if test="userCode != null and userCode != ''">
+                <![CDATA[
+                    AND USER_CODE = #{userCode ,jdbcType=VARCHAR}
+                ]]>
+            </if>
+            <if test="token != null and token != ''">
+                <![CDATA[
+                    AND TOKEN = #{token ,jdbcType=VARCHAR}
+                ]]>
+            </if>
+            <if test="servName != null and servName != ''">
+                <![CDATA[
+                    AND SERV_NAME = #{servName ,jdbcType=VARCHAR}
+                ]]>
+            </if>
+            <if test="isValid != null and isValid != ''">
+                <![CDATA[
+                    AND IS_VALID = #{isValid ,jdbcType=VARCHAR}
+                ]]>
+            </if>
+            <if test="tokenId != null and tokenId != ''">
+                <![CDATA[
+                    AND TOKEN_ID = #{tokenId ,jdbcType=VARCHAR}
+                ]]>
+            </if>
+            <![CDATA[
+				AND (t.ACTIVE_TIME + numtodsinterval(t.VALIDPERIOD,'second')) > SYSDATE
+	         ]]>
+        </where>
+    </select>
+
+</mapper>

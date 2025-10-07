@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.jobserver.dao.ApiCheckMsgLogDao">
+  <resultMap id="BaseResultMap" type="com.centit.jobserver.po.ApiCheckMsgLogPo">
+    <!--@mbg.generated-->
+    <!--@Table t_interfacecheck_msg_log-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="send_time" jdbcType="TIMESTAMP" property="sendTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, `type`, send_time
+  </sql>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.centit.jobserver.po.ApiCheckMsgLogPo" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into t_interfacecheck_msg_log (`type`, send_time)
+    values (#{type,jdbcType=INTEGER}, #{sendTime,jdbcType=TIMESTAMP})
+  </insert>
+  <select id="selectInHourData" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from t_interfacecheck_msg_log
+    <where>
+      AND type = #{type ,jdbcType=INTEGER }
+      AND send_time > DATE_SUB(NOW(),INTERVAL  1 HOUR);
+    </where>
+  </select>
+</mapper>

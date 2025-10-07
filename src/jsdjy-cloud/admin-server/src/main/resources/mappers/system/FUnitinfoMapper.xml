@@ -1,0 +1,882 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.admin.system.dao.FUnitinfoDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.admin.system.po.FUnitinfo">
+        <id column="UNIT_CODE" property="unitCode" />
+        <result column="PARENT_UNIT" property="parentUnit" />
+        <result column="UNIT_TYPE" property="unitType" />
+        <result column="IS_VALID" property="isValid" />
+        <result column="UNIT_TAG" property="unitTag" />
+        <result column="UNIT_NAME" property="unitName" />
+        <result column="ENGLISH_NAME" property="englishName" />
+        <result column="DEP_NO" property="depNo" />
+        <result column="UNIT_DESC" property="unitDesc" />
+        <result column="ADDRBOOK_ID" property="addrbookId" />
+        <result column="UNIT_SHORT_NAME" property="unitShortName" />
+        <result column="UNIT_WORD" property="unitWord" />
+        <result column="UNIT_GRADE" property="unitGrade" />
+        <result column="UNIT_ORDER" property="unitOrder" />
+        <result column="UPDATE_DATE" property="updateDate" />
+        <result column="CREATE_DATE" property="createDate" />
+        <result column="EXTJSONINFO" property="extjsoninfo" />
+        <result column="CREATOR" property="creator" />
+        <result column="UPDATOR" property="updator" />
+        <result column="UNIT_PATH" property="unitPath" />
+        <result column="UNIT_MANAGER" property="unitManager" />
+        <result column="TYPE" property="type" />
+        <result column="LEADER" property="leader" />
+        <result column="LEADERNAME" property="leadername" />
+        <result column="FGLD" property="fgld" />
+        <result column="FGLDNAME" property="fgldname" />
+        <result column="FGDW" property="fgdw" />
+        <result column="FGDWNAME" property="fgdwname" />
+        <result column="SHOWADDBOOK" property="showaddbook" />
+        <result column="CORPID" property="corpid" />
+        <result column="POST_CODE" property="postCode" />
+        <result column="PHONE_NUMBER" property="phoneNumber" />
+        <result column="FAX_NUMBER" property="faxNumber" />
+        <result column="ADDRESS" property="address" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        UNIT_CODE, PARENT_UNIT, UNIT_TYPE, IS_VALID, UNIT_TAG, UNIT_NAME, ENGLISH_NAME, DEP_NO, UNIT_DESC, ADDRBOOK_ID, UNIT_SHORT_NAME, UNIT_WORD, UNIT_GRADE, UNIT_ORDER, UPDATE_DATE, CREATE_DATE, EXTJSONINFO, CREATOR, UPDATOR, UNIT_PATH, UNIT_MANAGER, TYPE, LEADER, LEADERNAME, FGLD, FGLDNAME, FGDW, FGDWNAME, SHOWADDBOOK, CORPID, POST_CODE, PHONE_NUMBER, FAX_NUMBER, ADDRESS
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        UNIT_CODE
+          ,
+        PARENT_UNIT
+          ,
+        UNIT_TYPE
+          ,
+        IS_VALID
+          ,
+        UNIT_TAG
+          ,
+        UNIT_NAME
+          ,
+        ENGLISH_NAME
+          ,
+        DEP_NO
+          ,
+        UNIT_DESC
+          ,
+        ADDRBOOK_ID
+          ,
+        UNIT_SHORT_NAME
+          ,
+        UNIT_WORD
+          ,
+        UNIT_GRADE
+          ,
+        UNIT_ORDER
+          ,
+        UPDATE_DATE
+          ,
+        CREATE_DATE
+          ,
+        EXTJSONINFO
+          ,
+        CREATOR
+          ,
+        UPDATOR
+          ,
+        UNIT_PATH
+          ,
+        UNIT_MANAGER
+          ,
+        TYPE
+          ,
+        LEADER
+          ,
+        LEADERNAME
+          ,
+        FGLD
+          ,
+        FGLDNAME
+          ,
+        FGDW
+          ,
+        FGDWNAME
+          ,
+        SHOWADDBOOK
+          ,
+        CORPID
+          ,
+        POST_CODE
+          ,
+        PHONE_NUMBER
+          ,
+        FAX_NUMBER
+          ,
+        ADDRESS
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="unitCode != null and unitCode != ''">
+            <![CDATA[
+                AND UNIT_CODE = #{unitCode ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="parentUnit != null and parentUnit != ''">
+            <![CDATA[
+                AND PARENT_UNIT = #{parentUnit ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="unitType != null and unitType != ''">
+            <![CDATA[
+                AND UNIT_TYPE = #{unitType ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="isValid != null and isValid != ''">
+            <![CDATA[
+                AND IS_VALID = #{isValid ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="unitTag != null and unitTag != ''">
+            <![CDATA[
+                AND UNIT_TAG = #{unitTag ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="unitName != null and unitName != ''">
+            <![CDATA[
+                AND UNIT_NAME like concat('%',#{unitName,jdbcType=VARCHAR},'%')
+            ]]>
+        </if>
+        <if test="englishName != null and englishName != ''">
+            <![CDATA[
+                AND ENGLISH_NAME = #{englishName ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="depNo != null and depNo != ''">
+            <![CDATA[
+                AND DEP_NO = #{depNo ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="unitDesc != null and unitDesc != ''">
+            <![CDATA[
+                AND UNIT_DESC = #{unitDesc ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="addrbookId != null and addrbookId != ''">
+            <![CDATA[
+                AND ADDRBOOK_ID = #{addrbookId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="unitShortName != null and unitShortName != ''">
+            <![CDATA[
+                AND UNIT_SHORT_NAME = #{unitShortName ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="unitWord != null and unitWord != ''">
+            <![CDATA[
+                AND UNIT_WORD = #{unitWord ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="unitGrade != null and unitGrade != ''">
+            <![CDATA[
+                AND UNIT_GRADE = #{unitGrade ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="unitOrder != null and unitOrder != ''">
+            <![CDATA[
+                AND UNIT_ORDER = #{unitOrder ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="updateDate != null and updateDate != ''">
+            <![CDATA[
+                AND UPDATE_DATE = #{updateDate ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="createDate != null and createDate != ''">
+            <![CDATA[
+                AND CREATE_DATE = #{createDate ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="extjsoninfo != null and extjsoninfo != ''">
+            <![CDATA[
+                AND EXTJSONINFO = #{extjsoninfo ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="creator != null and creator != ''">
+            <![CDATA[
+                AND CREATOR = #{creator ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="updator != null and updator != ''">
+            <![CDATA[
+                AND UPDATOR = #{updator ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="unitPath != null and unitPath != ''">
+            <![CDATA[
+                AND UNIT_PATH = #{unitPath ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="unitManager != null and unitManager != ''">
+            <![CDATA[
+                AND UNIT_MANAGER = #{unitManager ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="type != null and type != ''">
+            <![CDATA[
+                AND TYPE = #{type ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="leader != null and leader != ''">
+            <![CDATA[
+                AND LEADER = #{leader ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="leadername != null and leadername != ''">
+            <![CDATA[
+                AND LEADERNAME = #{leadername ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="fgld != null and fgld != ''">
+            <![CDATA[
+                AND FGLD = #{fgld ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="fgldname != null and fgldname != ''">
+            <![CDATA[
+                AND FGLDNAME = #{fgldname ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="fgdw != null and fgdw != ''">
+            <![CDATA[
+                AND FGDW = #{fgdw ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="fgdwname != null and fgdwname != ''">
+            <![CDATA[
+                AND FGDWNAME = #{fgdwname ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="showaddbook != null and showaddbook != ''">
+            <![CDATA[
+                AND SHOWADDBOOK = #{showaddbook ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="corpid != null and corpid != ''">
+            <![CDATA[
+                AND CORPID = #{corpid ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="postCode != null and postCode != ''">
+            <![CDATA[
+                AND POST_CODE = #{postCode ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="phoneNumber != null and phoneNumber != ''">
+            <![CDATA[
+                AND PHONE_NUMBER = #{phoneNumber ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="faxNumber != null and faxNumber != ''">
+            <![CDATA[
+                AND FAX_NUMBER = #{faxNumber ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="address != null and address != ''">
+            <![CDATA[
+                AND ADDRESS = #{address ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.admin.system.po.FUnitinfo">
+        <![CDATA[
+			insert into f_unitinfo
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="unitCode != '' and unitCode != null" >
+                <![CDATA[
+                    UNIT_CODE,
+                ]]>
+            </if>
+            <if test="parentUnit != '' and parentUnit != null" >
+                <![CDATA[
+                    PARENT_UNIT,
+                ]]>
+            </if>
+            <if test="unitType != '' and unitType != null" >
+                <![CDATA[
+                    UNIT_TYPE,
+                ]]>
+            </if>
+            <if test="isValid != '' and isValid != null" >
+                <![CDATA[
+                    IS_VALID,
+                ]]>
+            </if>
+            <if test="unitTag != '' and unitTag != null" >
+                <![CDATA[
+                    UNIT_TAG,
+                ]]>
+            </if>
+            <if test="unitName != '' and unitName != null" >
+                <![CDATA[
+                    UNIT_NAME,
+                ]]>
+            </if>
+            <if test="englishName != '' and englishName != null" >
+                <![CDATA[
+                    ENGLISH_NAME,
+                ]]>
+            </if>
+            <if test="depNo != '' and depNo != null" >
+                <![CDATA[
+                    DEP_NO,
+                ]]>
+            </if>
+            <if test="unitDesc != '' and unitDesc != null" >
+                <![CDATA[
+                    UNIT_DESC,
+                ]]>
+            </if>
+            <if test="addrbookId != '' and addrbookId != null" >
+                <![CDATA[
+                    ADDRBOOK_ID,
+                ]]>
+            </if>
+            <if test="unitShortName != '' and unitShortName != null" >
+                <![CDATA[
+                    UNIT_SHORT_NAME,
+                ]]>
+            </if>
+            <if test="unitWord != '' and unitWord != null" >
+                <![CDATA[
+                    UNIT_WORD,
+                ]]>
+            </if>
+            <if test="unitGrade != '' and unitGrade != null" >
+                <![CDATA[
+                    UNIT_GRADE,
+                ]]>
+            </if>
+            <if test="unitOrder != '' and unitOrder != null" >
+                <![CDATA[
+                    UNIT_ORDER,
+                ]]>
+            </if>
+            <if test="updateDate != '' and updateDate != null" >
+                <![CDATA[
+                    UPDATE_DATE,
+                ]]>
+            </if>
+            <if test="createDate != '' and createDate != null" >
+                <![CDATA[
+                    CREATE_DATE,
+                ]]>
+            </if>
+            <if test="extjsoninfo != '' and extjsoninfo != null" >
+                <![CDATA[
+                    EXTJSONINFO,
+                ]]>
+            </if>
+            <if test="creator != '' and creator != null" >
+                <![CDATA[
+                    CREATOR,
+                ]]>
+            </if>
+            <if test="updator != '' and updator != null" >
+                <![CDATA[
+                    UPDATOR,
+                ]]>
+            </if>
+            <if test="unitPath != '' and unitPath != null" >
+                <![CDATA[
+                    UNIT_PATH,
+                ]]>
+            </if>
+            <if test="unitManager != '' and unitManager != null" >
+                <![CDATA[
+                    UNIT_MANAGER,
+                ]]>
+            </if>
+            <if test="type != '' and type != null" >
+                <![CDATA[
+                    TYPE,
+                ]]>
+            </if>
+            <if test="leader != '' and leader != null" >
+                <![CDATA[
+                    LEADER,
+                ]]>
+            </if>
+            <if test="leadername != '' and leadername != null" >
+                <![CDATA[
+                    LEADERNAME,
+                ]]>
+            </if>
+            <if test="fgld != '' and fgld != null" >
+                <![CDATA[
+                    FGLD,
+                ]]>
+            </if>
+            <if test="fgldname != '' and fgldname != null" >
+                <![CDATA[
+                    FGLDNAME,
+                ]]>
+            </if>
+            <if test="fgdw != '' and fgdw != null" >
+                <![CDATA[
+                    FGDW,
+                ]]>
+            </if>
+            <if test="fgdwname != '' and fgdwname != null" >
+                <![CDATA[
+                    FGDWNAME,
+                ]]>
+            </if>
+            <if test="showaddbook != '' and showaddbook != null" >
+                <![CDATA[
+                    SHOWADDBOOK,
+                ]]>
+            </if>
+            <if test="corpid != '' and corpid != null" >
+                <![CDATA[
+                    CORPID,
+                ]]>
+            </if>
+            <if test="postCode != '' and postCode != null" >
+                <![CDATA[
+                    POST_CODE,
+                ]]>
+            </if>
+            <if test="phoneNumber != '' and phoneNumber != null" >
+                <![CDATA[
+                    PHONE_NUMBER,
+                ]]>
+            </if>
+            <if test="faxNumber != '' and faxNumber != null" >
+                <![CDATA[
+                    FAX_NUMBER,
+                ]]>
+            </if>
+            <if test="address != '' and address != null" >
+                <![CDATA[
+                    ADDRESS,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="unitCode != '' and unitCode != null" >
+                <![CDATA[
+                    #{unitCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="parentUnit != '' and parentUnit != null" >
+                <![CDATA[
+                    #{parentUnit,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="unitType != '' and unitType != null" >
+                <![CDATA[
+                    #{unitType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isValid != '' and isValid != null" >
+                <![CDATA[
+                    #{isValid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="unitTag != '' and unitTag != null" >
+                <![CDATA[
+                    #{unitTag,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="unitName != '' and unitName != null" >
+                <![CDATA[
+                    #{unitName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="englishName != '' and englishName != null" >
+                <![CDATA[
+                    #{englishName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="depNo != '' and depNo != null" >
+                <![CDATA[
+                    #{depNo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="unitDesc != '' and unitDesc != null" >
+                <![CDATA[
+                    #{unitDesc,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="addrbookId != '' and addrbookId != null" >
+                <![CDATA[
+                    #{addrbookId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="unitShortName != '' and unitShortName != null" >
+                <![CDATA[
+                    #{unitShortName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="unitWord != '' and unitWord != null" >
+                <![CDATA[
+                    #{unitWord,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="unitGrade != '' and unitGrade != null" >
+                <![CDATA[
+                    #{unitGrade,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="unitOrder != '' and unitOrder != null" >
+                <![CDATA[
+                    #{unitOrder,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="updateDate != '' and updateDate != null" >
+                <![CDATA[
+                    #{updateDate,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="createDate != '' and createDate != null" >
+                <![CDATA[
+                    #{createDate,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="extjsoninfo != '' and extjsoninfo != null" >
+                <![CDATA[
+                    #{extjsoninfo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="creator != '' and creator != null" >
+                <![CDATA[
+                    #{creator,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="updator != '' and updator != null" >
+                <![CDATA[
+                    #{updator,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="unitPath != '' and unitPath != null" >
+                <![CDATA[
+                    #{unitPath,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="unitManager != '' and unitManager != null" >
+                <![CDATA[
+                    #{unitManager,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="type != '' and type != null" >
+                <![CDATA[
+                    #{type,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="leader != '' and leader != null" >
+                <![CDATA[
+                    #{leader,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="leadername != '' and leadername != null" >
+                <![CDATA[
+                    #{leadername,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="fgld != '' and fgld != null" >
+                <![CDATA[
+                    #{fgld,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="fgldname != '' and fgldname != null" >
+                <![CDATA[
+                    #{fgldname,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="fgdw != '' and fgdw != null" >
+                <![CDATA[
+                    #{fgdw,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="fgdwname != '' and fgdwname != null" >
+                <![CDATA[
+                    #{fgdwname,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="showaddbook != '' and showaddbook != null" >
+                <![CDATA[
+                    #{showaddbook,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="corpid != '' and corpid != null" >
+                <![CDATA[
+                    #{corpid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="postCode != '' and postCode != null" >
+                <![CDATA[
+                    #{postCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="phoneNumber != '' and phoneNumber != null" >
+                <![CDATA[
+                    #{phoneNumber,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="faxNumber != '' and faxNumber != null" >
+                <![CDATA[
+                    #{faxNumber,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="address != '' and address != null" >
+                <![CDATA[
+                    #{address,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.admin.system.po.FUnitinfo" >
+        <![CDATA[
+        	update f_unitinfo
+        ]]>
+        <set >
+            <if test="unitCode != '' and unitCode != null" >
+                <![CDATA[
+                    UNIT_CODE = #{unitCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="parentUnit != '' and parentUnit != null" >
+                <![CDATA[
+                    PARENT_UNIT = #{parentUnit,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="unitType != '' and unitType != null" >
+                <![CDATA[
+                    UNIT_TYPE = #{unitType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isValid != '' and isValid != null" >
+                <![CDATA[
+                    IS_VALID = #{isValid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="unitTag != '' and unitTag != null" >
+                <![CDATA[
+                    UNIT_TAG = #{unitTag,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="unitName != '' and unitName != null" >
+                <![CDATA[
+                    UNIT_NAME = #{unitName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="englishName != '' and englishName != null" >
+                <![CDATA[
+                    ENGLISH_NAME = #{englishName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="depNo != '' and depNo != null" >
+                <![CDATA[
+                    DEP_NO = #{depNo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="unitDesc != '' and unitDesc != null" >
+                <![CDATA[
+                    UNIT_DESC = #{unitDesc,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="addrbookId != '' and addrbookId != null" >
+                <![CDATA[
+                    ADDRBOOK_ID = #{addrbookId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="unitShortName != '' and unitShortName != null" >
+                <![CDATA[
+                    UNIT_SHORT_NAME = #{unitShortName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="unitWord != '' and unitWord != null" >
+                <![CDATA[
+                    UNIT_WORD = #{unitWord,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="unitGrade != '' and unitGrade != null" >
+                <![CDATA[
+                    UNIT_GRADE = #{unitGrade,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="unitOrder != '' and unitOrder != null" >
+                <![CDATA[
+                    UNIT_ORDER = #{unitOrder,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="updateDate != '' and updateDate != null" >
+                <![CDATA[
+                    UPDATE_DATE = #{updateDate,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="createDate != '' and createDate != null" >
+                <![CDATA[
+                    CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="extjsoninfo != '' and extjsoninfo != null" >
+                <![CDATA[
+                    EXTJSONINFO = #{extjsoninfo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="creator != '' and creator != null" >
+                <![CDATA[
+                    CREATOR = #{creator,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="updator != '' and updator != null" >
+                <![CDATA[
+                    UPDATOR = #{updator,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="unitPath != '' and unitPath != null" >
+                <![CDATA[
+                    UNIT_PATH = #{unitPath,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="unitManager != '' and unitManager != null" >
+                <![CDATA[
+                    UNIT_MANAGER = #{unitManager,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="type != '' and type != null" >
+                <![CDATA[
+                    TYPE = #{type,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="leader != '' and leader != null" >
+                <![CDATA[
+                    LEADER = #{leader,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="leadername != '' and leadername != null" >
+                <![CDATA[
+                    LEADERNAME = #{leadername,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="fgld != '' and fgld != null" >
+                <![CDATA[
+                    FGLD = #{fgld,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="fgldname != '' and fgldname != null" >
+                <![CDATA[
+                    FGLDNAME = #{fgldname,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="fgdw != '' and fgdw != null" >
+                <![CDATA[
+                    FGDW = #{fgdw,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="fgdwname != '' and fgdwname != null" >
+                <![CDATA[
+                    FGDWNAME = #{fgdwname,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="showaddbook != '' and showaddbook != null" >
+                <![CDATA[
+                    SHOWADDBOOK = #{showaddbook,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="corpid != '' and corpid != null" >
+                <![CDATA[
+                    CORPID = #{corpid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="postCode != '' and postCode != null" >
+                <![CDATA[
+                    POST_CODE = #{postCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="phoneNumber != '' and phoneNumber != null" >
+                <![CDATA[
+                    PHONE_NUMBER = #{phoneNumber,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="faxNumber != '' and faxNumber != null" >
+                <![CDATA[
+                    FAX_NUMBER = #{faxNumber,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="address != '' and address != null" >
+                <![CDATA[
+                    ADDRESS = #{address,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and UNIT_CODE = #{unitCode ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.admin.system.po.FUnitinfo">
+        <![CDATA[
+            delete from f_unitinfo
+        ]]>
+        <where>
+            <![CDATA[
+                and UNIT_CODE = #{unitCode ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.admin.system.po.FUnitinfo">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from f_unitinfo t
+        ]]>
+        <where>
+            <![CDATA[
+                and UNIT_CODE = #{unitCode ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from f_unitinfo t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+    <!--  查询下级部门数量 -->
+    <select id="queryChildUnitCount" resultType="java.lang.Integer" parameterType="com.centit.admin.system.po.FUnitinfo">
+        <![CDATA[
+            SELECT count(0) FROM F_UNITINFO
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+</mapper>

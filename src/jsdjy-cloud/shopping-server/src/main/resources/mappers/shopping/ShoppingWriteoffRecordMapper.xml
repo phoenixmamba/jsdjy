@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.ShoppingWriteoffRecordDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.ShoppingWriteoffRecord">
+        <id column="gcId" property="gcId" />
+        <result column="add_time" property="addTime" />
+        <result column="off_account" property="offAccount" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        gcId, add_time, off_account
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        gcId
+          ,
+        add_time
+          ,
+        off_account
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="gcId != null and gcId != ''">
+            <![CDATA[
+                AND gcId = #{gcId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="addTime != null and addTime != ''">
+            <![CDATA[
+                AND add_time = #{addTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="offAccount != null and offAccount != ''">
+            <![CDATA[
+                AND off_account = #{offAccount ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.ShoppingWriteoffRecord">
+        <![CDATA[
+			insert into shopping_writeoff_record
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="gcId != null and gcId != ''" >
+                <![CDATA[
+                    gcId,
+                ]]>
+            </if>
+                <![CDATA[
+                    add_time,
+                ]]>
+            <if test="offAccount != null and offAccount != ''" >
+                <![CDATA[
+                    off_account,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="gcId != null and gcId != ''" >
+                <![CDATA[
+                    #{gcId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            now(),
+            <if test="offAccount != null and offAccount != ''" >
+                <![CDATA[
+                    #{offAccount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.ShoppingWriteoffRecord" >
+        <![CDATA[
+        	update shopping_writeoff_record
+        ]]>
+        <set >
+            <if test="gcId != null and gcId != ''" >
+                <![CDATA[
+                    gcId = #{gcId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="addTime != null and addTime != ''" >
+                <![CDATA[
+                    add_time = #{addTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="offAccount != null and offAccount != ''" >
+                <![CDATA[
+                    off_account = #{offAccount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and gcId = #{gcId ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.ShoppingWriteoffRecord">
+        <![CDATA[
+            delete from shopping_writeoff_record
+        ]]>
+        <where>
+            <![CDATA[
+                and gcId = #{gcId ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.ShoppingWriteoffRecord">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_writeoff_record t
+        ]]>
+        <where>
+            <![CDATA[
+                and gcId = #{gcId ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_writeoff_record t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+    <!--  查询核销记录 -->
+    <select id="queryWriteRecordList" resultType="java.util.HashMap" parameterType="java.util.HashMap">
+        <![CDATA[
+select DATE_FORMAT(swr.add_time,'%Y-%m-%d %H:%i:%s') writeoffTime,swr.off_account account,gc.count,gc.goods_id goodsId,gc.spec_info specInfo,gc.cart_type cartType,fu.USER_NAME accountName,
+so.order_id ordId,DATE_FORMAT(so.addTime,'%Y-%m-%d %H:%i:%s') orderTime,su.mobile,su.nick_name nickName
+        ]]>
+        <![CDATA[
+            from shopping_writeoff_record swr  left join shopping_goodscart gc  on  swr.gcId  = gc.id
+left join f_userinfo fu on swr.off_account = fu.USER_CODE left join shopping_orderform so on gc.of_id = so.id
+left join shopping_user su on so.user_id = su.id left join v_writeoff_goods wg on (gc.goods_id=wg.goodsId and gc.cart_type=wg.cartType)
+        ]]>
+        <where>
+            <if test="goodsName != null and goodsName != ''">
+                <![CDATA[
+                AND wg.goodsName like concat('%', #{goodsName,jdbcType=VARCHAR}, '%')
+            ]]>
+            </if>
+            <if test="offAccount != null and offAccount != ''">
+                <![CDATA[
+                AND swr.off_account = #{offAccount ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="cartType != null">
+                AND gc.cart_type = #{cartType ,jdbcType=VARCHAR}
+            </if>
+            <if test="mobile != null">
+                AND su.mobile = #{mobile ,jdbcType=VARCHAR}
+            </if>
+            <if test="startTime !=null and startTime !='' ">
+                <![CDATA[
+                AND swr.add_time  >=  #{startTime}
+            ]]>
+            </if>
+            <if test="endTime !=null and endTime!='' "  >
+                <![CDATA[
+                and swr.add_time <=  #{endTime}
+             ]]>
+            </if>
+        </where>
+        order by swr.add_time desc
+        <if test="pageSize != '' and pageSize != null">
+            <![CDATA[
+                    limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+                ]]>
+        </if>
+    </select>
+
+    <select id="queryWriteRecordCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+select count(1)
+        ]]>
+        <![CDATA[
+            from shopping_writeoff_record swr  left join shopping_goodscart gc  on  swr.gcId  = gc.id
+left join f_userinfo fu on swr.off_account = fu.USER_CODE left join shopping_orderform so on gc.of_id = so.id
+left join shopping_user su on so.user_id = su.id left join v_writeoff_goods wg on (gc.goods_id=wg.goodsId and gc.cart_type=wg.cartType)
+        ]]>
+        <where>
+            <if test="goodsName != null and goodsName != ''">
+                <![CDATA[
+                AND wg.goodsName like concat('%', #{goodsName,jdbcType=VARCHAR}, '%')
+            ]]>
+            </if>
+            <if test="offAccount != null and offAccount != ''">
+                <![CDATA[
+                AND swr.off_account = #{offAccount ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="cartType != null">
+                AND gc.cart_type = #{cartType ,jdbcType=VARCHAR}
+            </if>
+            <if test="mobile != null">
+                AND su.mobile = #{mobile ,jdbcType=VARCHAR}
+            </if>
+            <if test="startTime !=null and startTime !='' ">
+                <![CDATA[
+                AND swr.add_time  >=  #{startTime}
+            ]]>
+            </if>
+            <if test="endTime !=null and endTime!='' "  >
+                <![CDATA[
+                and swr.add_time <=  #{endTime}
+             ]]>
+            </if>
+        </where>
+    </select>
+</mapper>

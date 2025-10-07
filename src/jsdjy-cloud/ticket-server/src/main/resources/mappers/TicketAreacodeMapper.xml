@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.ticket.dao.TicketAreacodeDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.ticket.po.TicketAreacode">
+        <result column="code" property="code" />
+        <result column="name" property="name" />
+        <result column="parent_code" property="parentCode" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        code, name, parent_code
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        code
+          ,
+        name
+          ,
+        parent_code
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="code != null and code != ''">
+            <![CDATA[
+                AND code = #{code ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="name != null and name != ''">
+            <![CDATA[
+                AND name = #{name ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="parentCode != null and parentCode != ''">
+            <![CDATA[
+                AND parent_code = #{parentCode ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="parentCode == null || parentCode == ''">
+            <![CDATA[
+                AND parent_code is null
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.ticket.po.TicketAreacode">
+        <![CDATA[
+			insert into ticket_areacode
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="code != '' and code != null" >
+                <![CDATA[
+                    code,
+                ]]>
+            </if>
+            <if test="name != '' and name != null" >
+                <![CDATA[
+                    name,
+                ]]>
+            </if>
+            <if test="parentCode != '' and parentCode != null" >
+                <![CDATA[
+                    parent_code,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="code != '' and code != null" >
+                <![CDATA[
+                    #{code,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="name != '' and name != null" >
+                <![CDATA[
+                    #{name,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="parentCode != '' and parentCode != null" >
+                <![CDATA[
+                    #{parentCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from ticket_areacode t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+</mapper>

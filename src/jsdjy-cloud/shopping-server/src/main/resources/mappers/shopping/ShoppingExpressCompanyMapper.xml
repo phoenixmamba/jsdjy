@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.ShoppingExpressCompanyDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.ShoppingExpressCompany">
+        <id column="id" property="id" />
+        <result column="addTime" property="addTime" />
+        <result column="deleteStatus" property="deleteStatus" />
+        <result column="company_mark" property="companyMark" />
+        <result column="company_name" property="companyName" />
+        <result column="company_status" property="companyStatus" />
+        <result column="company_sequence" property="companySequence" />
+        <result column="company_type" property="companyType" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, addTime, deleteStatus, company_mark, company_name, company_status, company_sequence, company_type
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        addTime
+          ,
+        deleteStatus
+          ,
+        company_mark
+          ,
+        company_name
+          ,
+        company_status
+          ,
+        company_sequence
+          ,
+        company_type
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="addTime != null and addTime != ''">
+            <![CDATA[
+                AND addTime = #{addTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="deleteStatus != null and deleteStatus != ''">
+            <![CDATA[
+                AND deleteStatus = #{deleteStatus ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="companyMark != null and companyMark != ''">
+            <![CDATA[
+                AND company_mark = #{companyMark ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="companyName != null and companyName != ''">
+            <![CDATA[
+                AND company_name = #{companyName ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="companyStatus != null and companyStatus != ''">
+            <![CDATA[
+                AND company_status = #{companyStatus ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="companySequence != null and companySequence != ''">
+            <![CDATA[
+                AND company_sequence = #{companySequence ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="companyType != null and companyType != ''">
+            <![CDATA[
+                AND company_type = #{companyType ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.ShoppingExpressCompany">
+        <![CDATA[
+			insert into shopping_express_company
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    id,
+                ]]>
+            </if>
+            <if test="addTime != '' and addTime != null" >
+                <![CDATA[
+                    addTime,
+                ]]>
+            </if>
+            <if test="deleteStatus != '' and deleteStatus != null" >
+                <![CDATA[
+                    deleteStatus,
+                ]]>
+            </if>
+            <if test="companyMark != '' and companyMark != null" >
+                <![CDATA[
+                    company_mark,
+                ]]>
+            </if>
+            <if test="companyName != '' and companyName != null" >
+                <![CDATA[
+                    company_name,
+                ]]>
+            </if>
+            <if test="companyStatus != '' and companyStatus != null" >
+                <![CDATA[
+                    company_status,
+                ]]>
+            </if>
+            <if test="companySequence != '' and companySequence != null" >
+                <![CDATA[
+                    company_sequence,
+                ]]>
+            </if>
+            <if test="companyType != '' and companyType != null" >
+                <![CDATA[
+                    company_type,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="addTime != '' and addTime != null" >
+                <![CDATA[
+                    #{addTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="deleteStatus != '' and deleteStatus != null" >
+                <![CDATA[
+                    #{deleteStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="companyMark != '' and companyMark != null" >
+                <![CDATA[
+                    #{companyMark,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="companyName != '' and companyName != null" >
+                <![CDATA[
+                    #{companyName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="companyStatus != '' and companyStatus != null" >
+                <![CDATA[
+                    #{companyStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="companySequence != '' and companySequence != null" >
+                <![CDATA[
+                    #{companySequence,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="companyType != '' and companyType != null" >
+                <![CDATA[
+                    #{companyType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.ShoppingExpressCompany" >
+        <![CDATA[
+        	update shopping_express_company
+        ]]>
+        <set >
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="addTime != '' and addTime != null" >
+                <![CDATA[
+                    addTime = #{addTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="deleteStatus != '' and deleteStatus != null" >
+                <![CDATA[
+                    deleteStatus = #{deleteStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="companyMark != '' and companyMark != null" >
+                <![CDATA[
+                    company_mark = #{companyMark,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="companyName != '' and companyName != null" >
+                <![CDATA[
+                    company_name = #{companyName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="companyStatus != '' and companyStatus != null" >
+                <![CDATA[
+                    company_status = #{companyStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="companySequence != '' and companySequence != null" >
+                <![CDATA[
+                    company_sequence = #{companySequence,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="companyType != '' and companyType != null" >
+                <![CDATA[
+                    company_type = #{companyType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.ShoppingExpressCompany">
+        <![CDATA[
+            delete from shopping_express_company
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.ShoppingExpressCompany">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_express_company t
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_express_company t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+        order by t.company_sequence asc
+    </select>
+
+</mapper>

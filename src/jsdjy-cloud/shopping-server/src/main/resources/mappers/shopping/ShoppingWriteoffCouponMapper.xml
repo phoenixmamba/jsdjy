@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.ShoppingWriteoffCouponDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.ShoppingWriteoffCoupon">
+        <id column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="right_no" property="rightNo" />
+        <result column="right_id" property="rightId" />
+        <result column="off_code" property="offCode" />
+        <result column="off_count" property="offCount" />
+        <result column="off_status" property="offStatus" />
+        <result column="off_time" property="offTime" />
+        <result column="off_account" property="offAccount" />
+        <result column="nick_name" property="userName" />
+        <result column="mobile" property="mobile" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, user_id, right_no, right_id, off_code, off_count, off_status, off_time,off_account
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        user_id
+          ,
+        right_no
+          ,
+        right_id
+          ,
+        off_code
+          ,
+        off_count
+          ,
+        off_status
+          ,
+        off_time
+        ,
+        off_account
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="userId != null and userId != ''">
+            <![CDATA[
+                AND user_id = #{userId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="rightNo != null and rightNo != ''">
+            <![CDATA[
+                AND right_no = #{rightNo ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="rightId != null and rightId != ''">
+            <![CDATA[
+                AND right_id = #{rightId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="offCode != null and offCode != ''">
+            <![CDATA[
+                AND off_code = #{offCode ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="offCount != null and offCount != ''">
+            <![CDATA[
+                AND off_count = #{offCount ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="offStatus != null and offStatus != ''">
+            <![CDATA[
+                AND off_status = #{offStatus ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="offTime != null and offTime != ''">
+            <![CDATA[
+                AND off_time = #{offTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="offAccount != null and offAccount != ''">
+            <![CDATA[
+                AND off_account = #{offAccount ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.ShoppingWriteoffCoupon">
+        <![CDATA[
+			insert into shopping_writeoff_coupon
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="userId != null and userId != ''" >
+                <![CDATA[
+                    user_id,
+                ]]>
+            </if>
+            <if test="rightNo != null and rightNo != ''" >
+                <![CDATA[
+                    right_no,
+                ]]>
+            </if>
+            <if test="rightId != null and rightId != ''" >
+                <![CDATA[
+                    right_id,
+                ]]>
+            </if>
+            <if test="offCode != null and offCode != ''" >
+                <![CDATA[
+                    off_code,
+                ]]>
+            </if>
+            <if test="offCount != null and offCount != ''" >
+                <![CDATA[
+                    off_count,
+                ]]>
+            </if>
+            <if test="offStatus != null and offStatus != ''" >
+                <![CDATA[
+                    off_status,
+                ]]>
+            </if>
+            <if test="offTime != null and offTime != ''" >
+                <![CDATA[
+                    off_time,
+                ]]>
+            </if>
+            <if test="offAccount != null and offAccount != ''" >
+                <![CDATA[
+                    off_account,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="userId != null and userId != ''" >
+                <![CDATA[
+                    #{userId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="rightNo != null and rightNo != ''" >
+                <![CDATA[
+                    #{rightNo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="rightId != null and rightId != ''" >
+                <![CDATA[
+                    #{rightId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="offCode != null and offCode != ''" >
+                <![CDATA[
+                    #{offCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="offCount != null and offCount != ''" >
+                <![CDATA[
+                    #{offCount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="offStatus != null and offStatus != ''" >
+                <![CDATA[
+                    #{offStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="offTime != null and offTime != ''" >
+                <![CDATA[
+                    #{offTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="offAccount != null and offAccount != ''" >
+                <![CDATA[
+                    #{offAccount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.ShoppingWriteoffCoupon" >
+        <![CDATA[
+        	update shopping_writeoff_coupon
+        ]]>
+        <set >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userId != null and userId != ''" >
+                <![CDATA[
+                    user_id = #{userId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="rightNo != null and rightNo != ''" >
+                <![CDATA[
+                    right_no = #{rightNo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="rightId != null and rightId != ''" >
+                <![CDATA[
+                    right_id = #{rightId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="offCode != null and offCode != ''" >
+                <![CDATA[
+                    off_code = #{offCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="offCount != null and offCount != ''" >
+                <![CDATA[
+                    off_count = #{offCount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="offStatus != null and offStatus != ''" >
+                <![CDATA[
+                    off_status = #{offStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="offTime != null and offTime != ''" >
+                <![CDATA[
+                    off_time = #{offTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="offAccount != null and offAccount != ''" >
+                <![CDATA[
+                    off_account = #{offAccount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.ShoppingWriteoffCoupon">
+        <![CDATA[
+            delete from shopping_writeoff_coupon
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.ShoppingWriteoffCoupon">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_writeoff_coupon t
+        ]]>
+        <where>
+            <if test="rightNo != null and rightNo != ''">
+                <![CDATA[
+                AND right_no = #{rightNo ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="rightId != null and rightId != ''">
+                <![CDATA[
+                AND right_id = #{rightId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="offCode != null and offCode != ''">
+                <![CDATA[
+                AND off_code = #{offCode ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_writeoff_coupon t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryWriteOffList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select t.*,u.nick_name,u.mobile
+        ]]>
+        <![CDATA[
+            from shopping_writeoff_coupon t left join shopping_user u on t.user_id = u.id
+        ]]>
+        <where>
+            <if test="userId != null and userId != ''">
+                <![CDATA[
+                AND t.user_id = #{userId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="rightNo != null and rightNo != ''">
+                <![CDATA[
+                AND t.right_no = #{rightNo ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="rightId != null and rightId != ''">
+                <![CDATA[
+                AND t.right_id = #{rightId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="offCode != null and offCode != ''">
+                <![CDATA[
+                AND t.off_code = #{offCode ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="offStatus != null and offStatus != ''">
+                <![CDATA[
+                AND t.off_status = #{offStatus ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="startTime != null and startTime != ''">
+                <![CDATA[
+                AND t.off_time >= #{startTime ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="endTime != null and endTime != ''">
+                <![CDATA[
+                AND t.off_time <= #{endTime ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="offAccount != null and offAccount != ''">
+                <![CDATA[
+                AND t.off_account = #{offAccount ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="mobile != null and mobile != ''">
+                <![CDATA[
+                AND u.mobile like concat('%', #{mobile,jdbcType=VARCHAR}, '%')
+            ]]>
+            </if>
+            <if test="userName != null and userName != ''">
+                <![CDATA[
+                AND u.nick_name like concat('%', #{userName,jdbcType=VARCHAR}, '%')
+            ]]>
+            </if>
+        </where>
+        order by t.off_time desc
+        <if test="pageSize != '' and pageSize != null">
+            <![CDATA[
+                    limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+                ]]>
+        </if>
+    </select>
+
+    <!--  查询列表数量 -->
+    <select id="queryWriteOffCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            SELECT count(0) FROM shopping_writeoff_coupon t left join shopping_user u on t.user_id = u.id
+        ]]>
+        <where>
+            <if test="userId != null and userId != ''">
+                <![CDATA[
+                AND t.user_id = #{userId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="rightNo != null and rightNo != ''">
+                <![CDATA[
+                AND t.right_no = #{rightNo ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="rightId != null and rightId != ''">
+                <![CDATA[
+                AND t.right_id = #{rightId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="offCode != null and offCode != ''">
+                <![CDATA[
+                AND t.off_code = #{offCode ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="offStatus != null and offStatus != ''">
+                <![CDATA[
+                AND t.off_status = #{offStatus ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="startTime != null and startTime != ''">
+                <![CDATA[
+                AND t.off_time >= #{startTime ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="endTime != null and endTime != ''">
+                <![CDATA[
+                AND t.off_time <= #{endTime ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="offAccount != null and offAccount != ''">
+                <![CDATA[
+                AND t.off_account = #{offAccount ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="mobile != null and mobile != ''">
+                <![CDATA[
+                AND u.mobile like concat('%', #{mobile,jdbcType=VARCHAR}, '%')
+            ]]>
+            </if>
+            <if test="userName != null and userName != ''">
+                <![CDATA[
+                AND u.nick_name like concat('%', #{userName,jdbcType=VARCHAR}, '%')
+            ]]>
+            </if>
+        </where>
+    </select>
+</mapper>

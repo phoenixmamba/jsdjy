@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.ShoppingEarlyWarningConfigDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.ShoppingEarlyWarningConfig">
+        <id column="id" property="id"/>
+        <result column="cpu" property="cpu"/>
+        <result column="memory" property="memory"/>
+        <result column="disc" property="disc"/>
+        <result column="server" property="server"/>
+        <result column="remark" property="remark"/>
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, cpu, memory, disc, server,remark
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        cpu
+          ,
+        memory
+          ,
+        disc
+          ,
+        server
+          ,
+        remark
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="cpu != null and cpu != ''">
+            <![CDATA[
+                AND cpu = #{cpu ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="memory != null and memory != ''">
+            <![CDATA[
+                AND memory = #{memory ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="disc != null and disc != ''">
+            <![CDATA[
+                AND disc = #{disc ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="server != null and server != ''">
+            <![CDATA[
+                AND server = #{server ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.ShoppingEarlyWarningConfig">
+        <![CDATA[
+			insert into shopping_early_warning_config
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="cpu != null and cpu != ''">
+                <![CDATA[
+                    cpu,
+                ]]>
+            </if>
+            <if test="memory != null and memory != ''">
+                <![CDATA[
+                    memory,
+                ]]>
+            </if>
+            <if test="disc != null and disc != ''">
+                <![CDATA[
+                    disc,
+                ]]>
+            </if>
+            <if test="server != null and server != ''">
+                <![CDATA[
+                    server,
+                ]]>
+            </if>
+            <if test="remark != null and remark != ''">
+                <![CDATA[
+                    remark,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="cpu != null and cpu != ''">
+                <![CDATA[
+                    #{cpu,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="memory != null and memory != ''">
+                <![CDATA[
+                    #{memory,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="disc != null and disc != ''">
+                <![CDATA[
+                    #{disc,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="server != null and server != ''">
+                <![CDATA[
+                    #{server,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="remark != null and remark != ''">
+                <![CDATA[
+                    #{remark},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.ShoppingEarlyWarningConfig">
+        <![CDATA[
+        	update shopping_early_warning_config
+        ]]>
+        <set>
+            <if test="id != null and id != ''">
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="cpu != null and cpu != ''">
+                <![CDATA[
+                    cpu = #{cpu,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="memory != null and memory != ''">
+                <![CDATA[
+                    memory = #{memory,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="disc != null and disc != ''">
+                <![CDATA[
+                    disc = #{disc,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="server != null and server != ''">
+                <![CDATA[
+                    server = #{server,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="remark != null and remark != ''">
+                <![CDATA[
+                    remark = #{remark},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete" parameterType="com.centit.shopping.po.ShoppingEarlyWarningConfig">
+        <![CDATA[
+            delete from shopping_early_warning_config
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap"
+            parameterType="com.centit.shopping.po.ShoppingEarlyWarningConfig">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1"/>
+        <![CDATA[
+            from shopping_early_warning_config t
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1"/>
+        <![CDATA[
+            from shopping_early_warning_config t
+        ]]>
+        <where>
+            <include refid="Base_Where_List"/>
+        </where>
+    </select>
+    <select id="queryDetailByIP" resultType="com.centit.shopping.po.ShoppingEarlyWarningConfig">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1"/>
+        <![CDATA[
+            from shopping_early_warning_config t
+        ]]>
+        where server=#{server}
+        <if test="id!=null and id !=''">
+            and id!=#{id}
+        </if>
+        limit 1
+    </select>
+
+</mapper>

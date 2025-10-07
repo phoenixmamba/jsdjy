@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.ticket.dao.TicketEventPriceDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.ticket.po.TicketEventPrice">
+        <result column="price_id" property="priceId" />
+        <result column="event_id" property="eventId" />
+        <result column="price_name" property="priceName" />
+        <result column="price_sale_state" property="priceSaleState" />
+        <result column="price_type" property="priceType" />
+        <result column="price_money_fen" property="priceMoneyFen" />
+        <result column="price_color" property="priceColor" />
+        <result column="margin_stock_num" property="marginStockNum" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        price_id, event_id, price_name, price_sale_state, price_type, price_money_fen, price_color, margin_stock_num
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        price_id
+          ,
+        event_id
+          ,
+        price_name
+          ,
+        price_sale_state
+          ,
+        price_type
+          ,
+        price_money_fen
+          ,
+        price_color
+          ,
+        margin_stock_num
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="priceId != null and priceId != ''">
+            <![CDATA[
+                AND price_id = #{priceId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="eventId != null and eventId != ''">
+            <![CDATA[
+                AND event_id = #{eventId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="priceName != null and priceName != ''">
+            <![CDATA[
+                AND price_name = #{priceName ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="priceSaleState != null and priceSaleState != ''">
+            <![CDATA[
+                AND price_sale_state = #{priceSaleState ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="priceType != null and priceType != ''">
+            <![CDATA[
+                AND price_type = #{priceType ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="priceMoneyFen != null and priceMoneyFen != ''">
+            <![CDATA[
+                AND price_money_fen = #{priceMoneyFen ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="priceColor != null and priceColor != ''">
+            <![CDATA[
+                AND price_color = #{priceColor ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="marginStockNum != null and marginStockNum != ''">
+            <![CDATA[
+                AND margin_stock_num = #{marginStockNum ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.ticket.po.TicketEventPrice">
+        <![CDATA[
+			insert into ticket_event_price
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="priceId != '' and priceId != null" >
+                <![CDATA[
+                    price_id,
+                ]]>
+            </if>
+            <if test="eventId != '' and eventId != null" >
+                <![CDATA[
+                    event_id,
+                ]]>
+            </if>
+            <if test="priceName != '' and priceName != null" >
+                <![CDATA[
+                    price_name,
+                ]]>
+            </if>
+            <if test="priceSaleState != '' and priceSaleState != null" >
+                <![CDATA[
+                    price_sale_state,
+                ]]>
+            </if>
+            <if test="priceType != '' and priceType != null" >
+                <![CDATA[
+                    price_type,
+                ]]>
+            </if>
+            <if test="priceMoneyFen != null" >
+                <![CDATA[
+                    price_money_fen,
+                ]]>
+            </if>
+            <if test="priceColor != '' and priceColor != null" >
+                <![CDATA[
+                    price_color,
+                ]]>
+            </if>
+            <if test="marginStockNum != '' and marginStockNum != null" >
+                <![CDATA[
+                    margin_stock_num,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="priceId != '' and priceId != null" >
+                <![CDATA[
+                    #{priceId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="eventId != '' and eventId != null" >
+                <![CDATA[
+                    #{eventId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="priceName != '' and priceName != null" >
+                <![CDATA[
+                    #{priceName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="priceSaleState != '' and priceSaleState != null" >
+                <![CDATA[
+                    #{priceSaleState,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="priceType != '' and priceType != null" >
+                <![CDATA[
+                    #{priceType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="priceMoneyFen != null" >
+                <![CDATA[
+                    #{priceMoneyFen,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="priceColor != '' and priceColor != null" >
+                <![CDATA[
+                    #{priceColor,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="marginStockNum != '' and marginStockNum != null" >
+                <![CDATA[
+                    #{marginStockNum,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.ticket.po.TicketEventPrice" >
+        <![CDATA[
+        	update ticket_event_price
+        ]]>
+        <set >
+            <if test="priceId != '' and priceId != null" >
+                <![CDATA[
+                    price_id = #{priceId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="eventId != '' and eventId != null" >
+                <![CDATA[
+                    event_id = #{eventId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="priceName != '' and priceName != null" >
+                <![CDATA[
+                    price_name = #{priceName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="priceSaleState != '' and priceSaleState != null" >
+                <![CDATA[
+                    price_sale_state = #{priceSaleState,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="priceType != '' and priceType != null" >
+                <![CDATA[
+                    price_type = #{priceType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="priceMoneyFen != '' and priceMoneyFen != null" >
+                <![CDATA[
+                    price_money_fen = #{priceMoneyFen,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="priceColor != '' and priceColor != null" >
+                <![CDATA[
+                    price_color = #{priceColor,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="marginStockNum != '' and marginStockNum != null" >
+                <![CDATA[
+                    margin_stock_num = #{marginStockNum,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                AND price_id = #{priceId ,jdbcType=VARCHAR}
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.ticket.po.TicketEventPrice">
+        <![CDATA[
+            delete from ticket_event_price
+        ]]>
+        <where>
+            <if test="priceId != null and priceId != ''">
+                <![CDATA[
+                AND price_id = #{priceId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+                <![CDATA[
+                AND event_id = #{eventId ,jdbcType=VARCHAR}
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.ticket.po.TicketEventPrice">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from ticket_event_price t
+        ]]>
+        <where>
+                <![CDATA[
+                AND price_id = #{priceId ,jdbcType=VARCHAR}
+            ]]>
+            <if test="eventId != null and eventId != ''">
+                <![CDATA[
+                AND event_id = #{eventId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from ticket_event_price t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+</mapper>

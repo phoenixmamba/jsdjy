@@ -1,0 +1,831 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.ShoppingArtactivityDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.ShoppingArtactivity">
+        <id column="id" property="id"/>
+        <result column="addTime" property="addTime"/>
+        <result column="deleteStatus" property="deleteStatus"/>
+        <result column="activity_status" property="activityStatus"/>
+        <result column="activity_name" property="activityName"/>
+        <result column="main_photo_id" property="mainPhotoId"/>
+        <result column="signup_starttime" property="signupStarttime"/>
+        <result column="signup_endtime" property="signupEndtime"/>
+        <result column="activity_time" property="activityTime"/>
+        <result column="activity_location" property="activityLocation"/>
+        <result column="activity_details" property="activityDetails"/>
+        <result column="origin_price" property="originPrice"/>
+        <result column="current_price" property="currentPrice"/>
+        <result column="use_integral_set" property="useIntegralSet"/>
+        <result column="use_integral_value" property="useIntegralValue"/>
+        <result column="signup_total_limit" property="signupTotalLimit"/>
+        <result column="signup_per_limit" property="signupPerLimit"/>
+        <result column="cancel_enable" property="cancelEnable"/>
+        <result column="show_leftnum" property="showLeftnum"/>
+        <result column="app_sort" property="appSort"/>
+        <result column="activity_notice" property="activityNotice"/>
+        <result column="return_explain" property="returnExplain"/>
+        <result column="leftnum" property="leftnum"/>
+        <result column="addUser" property="addUser"/>
+        <result column="use_balance_set" property="useBalanceSet"/>
+        <result column="use_membership_set" property="useMembershipSet"/>
+        <result column="write_off_count" property="writeOffCount" />
+        <result column="phone" property="phone" />
+        <result column="activity_inventory_detail" property="activityInventoryDetail" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, addTime, deleteStatus, activity_status, activity_name, main_photo_id, signup_starttime, signup_endtime, activity_time, activity_location, activity_details, origin_price, current_price, use_integral_set, use_integral_value, signup_total_limit, signup_per_limit, cancel_enable, show_leftnum,app_sort,activity_notice,return_explain,leftnum,addUser,use_balance_set,use_membership_set,write_off_count,phone,activity_inventory_detail
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        addTime
+          ,
+        deleteStatus
+          ,
+        activity_status
+          ,
+        activity_name
+          ,
+        main_photo_id
+          ,
+        signup_starttime
+          ,
+        signup_endtime
+          ,
+        activity_time
+          ,
+        activity_location
+          ,
+        activity_details
+          ,
+        origin_price
+          ,
+        current_price
+          ,
+        use_integral_set
+          ,
+        use_integral_value
+          ,
+        signup_total_limit
+          ,
+        signup_per_limit
+          ,
+        cancel_enable
+          ,
+        show_leftnum
+        ,
+        app_sort
+        ,
+        activity_notice
+        ,
+        return_explain
+        ,
+        leftnum
+        ,
+        addUser
+        ,
+        use_balance_set
+        ,
+        use_membership_set
+        ,
+        write_off_count
+        ,
+        phone
+        ,
+        activity_inventory_detail
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="addTime != null and addTime != ''">
+            <![CDATA[
+                AND addTime = #{addTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="deleteStatus != null and deleteStatus != ''">
+            <![CDATA[
+                AND deleteStatus = #{deleteStatus ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="activityStatus != null">
+            <![CDATA[
+                AND activity_status = #{activityStatus ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="activityName != null and activityName != ''">
+            <![CDATA[
+                AND activity_name like concat('%',#{activityName ,jdbcType=VARCHAR},'%')
+            ]]>
+        </if>
+        <if test="mainPhotoId != null and mainPhotoId != ''">
+            <![CDATA[
+                AND main_photo_id = #{mainPhotoId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="signupStarttime != null and signupStarttime != ''">
+            <![CDATA[
+                AND signup_starttime = #{signupStarttime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="signupEndtime != null and signupEndtime != ''">
+            <![CDATA[
+                AND signup_endtime = #{signupEndtime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="activityTime != null and activityTime != ''">
+            <![CDATA[
+                AND activity_time = #{activityTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="activityLocation != null and activityLocation != ''">
+            <![CDATA[
+                AND activity_location = #{activityLocation ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="activityDetails != null and activityDetails != ''">
+            <![CDATA[
+                AND activity_details = #{activityDetails ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="originPrice != null and originPrice != ''">
+            <![CDATA[
+                AND origin_price = #{originPrice ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="currentPrice != null and currentPrice != ''">
+            <![CDATA[
+                AND current_price = #{currentPrice ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="useIntegralSet != null">
+            <![CDATA[
+                AND use_integral_set = #{useIntegralSet ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="useIntegralValue != null">
+            <![CDATA[
+                AND use_integral_value = #{useIntegralValue ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="signupTotalLimit != null">
+            <![CDATA[
+                AND signup_total_limit = #{signupTotalLimit ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="signupPerLimit != null">
+            <![CDATA[
+                AND signup_per_limit = #{signupPerLimit ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="cancelEnable != null">
+            <![CDATA[
+                AND cancel_enable = #{cancelEnable ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="showLeftnum != null">
+            <![CDATA[
+                AND show_leftnum = #{showLeftnum ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="appSort != null">
+            <![CDATA[
+                AND app_sort = #{appSort ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="activityNotice != null and activityNotice != ''">
+            <![CDATA[
+                AND activity_notice = #{activityNotice ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="returnExplain != null and returnExplain != ''">
+            <![CDATA[
+                AND return_explain = #{returnExplain ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="leftnum != null">
+            <![CDATA[
+                AND leftnum = #{leftnum ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="addUser != null and addUser != ''">
+            <![CDATA[
+                AND addUser = #{addUser ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="useBalanceSet != null">
+            <![CDATA[
+                AND use_balance_set = #{useBalanceSet ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="useMembershipSet != null">
+            <![CDATA[
+                AND use_membership_set = #{useMembershipSet ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="writeOffCount != null and writeOffCount != ''">
+            <![CDATA[
+                AND write_off_count = #{writeOffCount ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="phpne != null and phpne != ''">
+            <![CDATA[
+                AND phpne = #{phpne ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="activityInventoryDetail != null and activityInventoryDetail != ''">
+            <![CDATA[
+                AND activity_inventory_detail = #{activityInventoryDetail ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.ShoppingArtactivity" useGeneratedKeys="true" keyProperty="id">
+        <![CDATA[
+			insert into shopping_artactivity
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+
+            <![CDATA[
+                    addTime,
+                ]]>
+
+            <if test="activityStatus != null">
+                <![CDATA[
+                    activity_status,
+                ]]>
+            </if>
+            <if test="activityName != null and activityName != ''">
+                <![CDATA[
+                    activity_name,
+                ]]>
+            </if>
+            <if test="mainPhotoId != null and  mainPhotoId != '' ">
+                <![CDATA[
+                    main_photo_id,
+                ]]>
+            </if>
+            <if test="  signupStarttime != null and signupStarttime != ''">
+                <![CDATA[
+                    signup_starttime,
+                ]]>
+            </if>
+            <if test=" signupEndtime != null  and signupEndtime != '' ">
+                <![CDATA[
+                    signup_endtime,
+                ]]>
+            </if>
+            <if test=" activityTime != null and activityTime != ''">
+                <![CDATA[
+                    activity_time,
+                ]]>
+            </if>
+            <if test=" activityLocation != null and activityLocation != ''">
+                <![CDATA[
+                    activity_location,
+                ]]>
+            </if>
+            <if test="activityDetails != null and activityDetails != ''  ">
+                <![CDATA[
+                    activity_details,
+                ]]>
+            </if>
+            <if test=" originPrice != null">
+                <![CDATA[
+                    origin_price,
+                ]]>
+            </if>
+            <if test="currentPrice != null">
+                <![CDATA[
+                    current_price,
+                ]]>
+            </if>
+            <if test="useIntegralSet != null">
+                <![CDATA[
+                    use_integral_set,
+                ]]>
+            </if>
+            <if test="useIntegralValue != null">
+                <![CDATA[
+                    use_integral_value,
+                ]]>
+            </if>
+            <if test="signupTotalLimit != null">
+                <![CDATA[
+                    signup_total_limit,
+                ]]>
+            </if>
+            <if test="signupPerLimit != null">
+                <![CDATA[
+                    signup_per_limit,
+                ]]>
+            </if>
+            <if test="cancelEnable != null">
+                <![CDATA[
+                    cancel_enable,
+                ]]>
+            </if>
+            <if test="showLeftnum != null">
+                <![CDATA[
+                    show_leftnum,
+                ]]>
+            </if>
+            <if test="appSort != null">
+                <![CDATA[
+                    app_sort,
+                ]]>
+            </if>
+            <if test="activityNotice != null and activityNotice != ''">
+                <![CDATA[
+                activity_notice,
+            ]]>
+            </if>
+            <if test="returnExplain != null and returnExplain != ''">
+                <![CDATA[
+                return_explain,
+            ]]>
+            </if>
+            <if test="leftnum != null">
+                <![CDATA[
+                leftnum,
+            ]]>
+            </if>
+            <if test="addUser != null and addUser != ''">
+                <![CDATA[
+                addUser,
+            ]]>
+            </if>
+            <if test="useBalanceSet != null">
+                <![CDATA[
+                use_balance_set,
+            ]]>
+            </if>
+            <if test="useMembershipSet != null">
+                <![CDATA[
+                use_membership_set,
+            ]]>
+            </if>
+            <if test="writeOffCount != '' and writeOffCount != null" >
+                <![CDATA[
+                    write_off_count,
+                ]]>
+            </if>
+            <if test="phone != null" >
+                <![CDATA[
+                    phone,
+                ]]>
+            </if>
+            <if test="activityInventoryDetail != null" >
+                <![CDATA[
+                    activity_inventory_detail,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+
+            now(),
+            <if test="activityStatus != null">
+                <![CDATA[
+                    #{activityStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test=" activityName != null and activityName != ''">
+                <![CDATA[
+                    #{activityName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="  mainPhotoId != null and mainPhotoId != ''">
+                <![CDATA[
+                    #{mainPhotoId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test=" signupStarttime != null and signupStarttime != ''">
+                <![CDATA[
+                    #{signupStarttime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test=" signupEndtime != null and signupEndtime != '' ">
+                <![CDATA[
+                    #{signupEndtime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="  activityTime != null and activityTime != ''">
+                <![CDATA[
+                    #{activityTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test=" activityLocation != null and activityLocation != ''">
+                <![CDATA[
+                    #{activityLocation,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test=" activityDetails != null and activityDetails != ''">
+                <![CDATA[
+                    #{activityDetails,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test=" originPrice != null">
+                <![CDATA[
+                    #{originPrice,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test=" currentPrice != null">
+                <![CDATA[
+                    #{currentPrice,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="useIntegralSet != null">
+                <![CDATA[
+                    #{useIntegralSet,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="useIntegralValue != null">
+                <![CDATA[
+                    #{useIntegralValue,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="signupTotalLimit != null">
+                <![CDATA[
+                    #{signupTotalLimit,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="signupPerLimit != null">
+                <![CDATA[
+                    #{signupPerLimit,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="cancelEnable != null">
+                <![CDATA[
+                    #{cancelEnable,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="showLeftnum != null">
+                <![CDATA[
+                    #{showLeftnum,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="appSort != null">
+                <![CDATA[
+                    #{appSort,jdbcType=INTEGER},
+                ]]>
+            </if>
+            <if test="activityNotice != null and activityNotice != ''">
+                <![CDATA[
+                #{activityNotice,jdbcType=INTEGER},
+            ]]>
+            </if>
+            <if test="returnExplain != null and returnExplain != ''">
+                <![CDATA[
+                #{returnExplain,jdbcType=INTEGER},
+            ]]>
+            </if>
+            <if test="leftnum != null">
+                <![CDATA[
+                #{leftnum,jdbcType=INTEGER},
+            ]]>
+            </if>
+            <if test="addUser != null and addUser != ''">
+                <![CDATA[
+                #{addUser,jdbcType=INTEGER},
+            ]]>
+            </if>
+            <if test="useBalanceSet != null">
+                <![CDATA[
+                #{useBalanceSet,jdbcType=INTEGER},
+            ]]>
+            </if>
+            <if test="useMembershipSet != null">
+                <![CDATA[
+                #{useMembershipSet,jdbcType=INTEGER},
+            ]]>
+            </if>
+            <if test="writeOffCount != '' and writeOffCount != null" >
+                <![CDATA[
+                    #{writeOffCount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="phone != null" >
+                <![CDATA[
+                    #{phone,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="activityInventoryDetail != null" >
+                <![CDATA[
+                    #{activity_inventory_detail,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.ShoppingArtactivity">
+        <![CDATA[
+        	update shopping_artactivity
+        ]]>
+        <set>
+
+            <if test="deleteStatus != '' and deleteStatus != null">
+                <![CDATA[
+                    deleteStatus = #{deleteStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="activityStatus != null">
+                <![CDATA[
+                    activity_status = #{activityStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="activityName != '' and activityName != null">
+                <![CDATA[
+                    activity_name = #{activityName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="mainPhotoId != '' and mainPhotoId != null">
+                <![CDATA[
+                    main_photo_id = #{mainPhotoId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="signupStarttime != '' and signupStarttime != null">
+                <![CDATA[
+                    signup_starttime = #{signupStarttime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="signupEndtime != '' and signupEndtime != null">
+                <![CDATA[
+                    signup_endtime = #{signupEndtime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="activityTime != '' and activityTime != null">
+                <![CDATA[
+                    activity_time = #{activityTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="activityLocation != '' and activityLocation != null">
+                <![CDATA[
+                    activity_location = #{activityLocation,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="activityDetails != '' and activityDetails != null">
+                <![CDATA[
+                    activity_details = #{activityDetails,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="originPrice != '' and originPrice != null">
+                <![CDATA[
+                    origin_price = #{originPrice,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="currentPrice != '' and currentPrice != null">
+                <![CDATA[
+                    current_price = #{currentPrice,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="useIntegralSet != null">
+                <![CDATA[
+                    use_integral_set = #{useIntegralSet,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="useIntegralValue != null">
+                <![CDATA[
+                    use_integral_value = #{useIntegralValue,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="signupTotalLimit != null">
+                <![CDATA[
+                    signup_total_limit = #{signupTotalLimit,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="signupPerLimit != null">
+                <![CDATA[
+                    signup_per_limit = #{signupPerLimit,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="cancelEnable != null">
+                <![CDATA[
+                    cancel_enable = #{cancelEnable,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="showLeftnum != null">
+                <![CDATA[
+                    show_leftnum = #{showLeftnum,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="appSort != ''">
+                <![CDATA[
+                    app_sort = #{appSort,jdbcType=INTEGER},
+                ]]>
+            </if>
+            <if test="activityNotice != null and activityNotice != ''">
+                <![CDATA[
+                activity_notice = #{activityNotice,jdbcType=INTEGER},
+            ]]>
+            </if>
+            <if test="returnExplain != null and returnExplain != ''">
+                <![CDATA[
+                return_explain = #{returnExplain,jdbcType=INTEGER},
+            ]]>
+            </if>
+            <if test="leftnum != null">
+                <![CDATA[
+                leftnum = #{leftnum,jdbcType=INTEGER},
+            ]]>
+            </if>
+            <if test="addUser != null and addUser != ''">
+                <![CDATA[
+                addUser = #{addUser,jdbcType=INTEGER},
+            ]]>
+            </if>
+            <if test="useBalanceSet != null">
+                <![CDATA[
+                    use_balance_set = #{useBalanceSet,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="useMembershipSet != null">
+                <![CDATA[
+                    use_membership_set = #{useMembershipSet,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="writeOffCount != '' and writeOffCount != null" >
+                <![CDATA[
+                    write_off_count = #{writeOffCount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="phone != null" >
+                <![CDATA[
+                    phone = #{phone,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="activityInventoryDetail != null" >
+                <![CDATA[
+                    activity_inventory_detail = #{activityInventoryDetail,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete" parameterType="com.centit.shopping.po.ShoppingArtactivity">
+        <![CDATA[
+            delete from shopping_artactivity
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.ShoppingArtactivity">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1"/>
+        <![CDATA[
+            from shopping_artactivity t
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select t.*
+        ]]>
+        <![CDATA[
+            from shopping_artactivity t
+            left join
+            (select * from shopping_recommend where goods_type = #{recmmondType ,jdbcType=INTEGER})tr on t.id = tr.goods_id
+        ]]>
+        <where>
+            <if test="deleteStatus != null and deleteStatus != ''">
+                <![CDATA[
+                AND t.deleteStatus = #{deleteStatus ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="activityStatus != null">
+                <![CDATA[
+                AND activity_status = #{activityStatus ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="activityName != null and activityName != ''">
+                <![CDATA[
+                AND activity_name like concat('%',#{activityName ,jdbcType=VARCHAR},'%')
+            ]]>
+            </if>
+            <if test="writeOffCount != null and writeOffCount != ''">
+                <![CDATA[
+                AND write_off_count = #{writeOffCount ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+        </where>
+        order by ISNULL(tr.sn),tr.sn asc,t.app_sort asc
+        <if test="pageSize != '' and pageSize != null">
+            <![CDATA[
+                    limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+                ]]>
+        </if>
+    </select>
+
+    <!--  查询列表数量 -->
+    <select id="queryTotalCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            SELECT count(0) FROM shopping_artactivity
+        ]]>
+        <where>
+            <include refid="Base_Where_List"/>
+        </where>
+    </select>
+
+    <select id="queryAllArtactivity" resultType="java.util.Map">
+        <![CDATA[
+            select
+        ]]>
+        id,activity_name as name,current_price price,main_photo_id photo
+        <![CDATA[
+            from shopping_artactivity t
+        ]]>
+        <where>
+            <include refid="Base_Where_List"/>
+        </where>
+        order by t.app_sort asc
+    </select>
+
+    <!-- 更新 -->
+    <update id="updateActivityNum" parameterType="com.centit.shopping.po.ShoppingArtactivity">
+        <![CDATA[
+        	update shopping_artactivity
+        ]]>
+        <set>
+            <if test="leftnum != null">
+                <![CDATA[
+                    leftnum = #{leftnum,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+    <!-- 更新 -->
+    <update id="updateActivityCutNum" parameterType="java.util.HashMap">
+        <![CDATA[
+        	update shopping_artactivity
+        ]]>
+        <set>
+            <if test="cutnum != null">
+                <![CDATA[
+                    leftnum =leftnum -#{cutnum,jdbcType=INTEGER},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+    <update id="updateActivityAddNum" parameterType="java.util.HashMap">
+        <![CDATA[
+        	update shopping_artactivity
+        ]]>
+        <set>
+            <if test="addnum != null">
+                <![CDATA[
+                    leftnum =leftnum +#{addnum,jdbcType=INTEGER},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+</mapper>

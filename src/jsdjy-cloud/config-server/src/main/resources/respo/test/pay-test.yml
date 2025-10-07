@@ -1,0 +1,69 @@
+#移动支付服务配置文件
+#Author: cui_jian
+
+spring:
+  application:
+    name: pay
+  #  datasource:
+  #    driver-class-name: oracle.jdbc.OracleDriver
+  #    url: jdbc:oracle:thin:@192.168.131.102:1521:mipdb
+  #    username: JSSJTT
+  #    password: JSSJTT
+  #    max-idle: 10
+  #    max-wait: 10000
+  #    min-idle: 5
+  #    initial-size: 5
+
+  #Redis配置
+  redis:
+    host: 193.168.1.233
+    #Redis服务器连接密码（默认为空）
+    password:
+    #Redis数据库索引（默认为0）
+    database: 5
+    port: 6379
+    #连接超时时间（毫秒）
+    timeout: 300
+    #这里使用的是lettuce，如果使用Jedis，把下面的lettuce改成Jedis即可
+    lettuce:
+      pool:
+        #连接池中的最大空闲连接
+        max-idle: 8
+        #连接池中的最小空闲连接
+        min-idle: 0
+        #连接池最大连接数（使用负值表示没有限制）
+        max-active: 8
+        #连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: -1
+
+
+
+
+#mybatis配置
+mybatis:
+  config-locations: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mappers/*.xml #指定resources下面的mappers文件夹
+  #  typeAliasesPackage: com.centit.organizeuser.organizeuserserver.webmgr.po
+
+  #spring boot集成mybatis的方式打印sql
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+#日志方式sql打印
+#logging:
+#  level:
+#    com.example.demo.dao: debug
+
+pay:
+  alipay:
+    appId: 2021002130685046
+    appPrivateKey: MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCpo75agSZXTQv/HkmPgqYX+M2VvttGyemxMfegTTLI2JAj+q1wJvGqg3iTV7J8dNCddAMLOdG8koIqryyca/IdROorPXDkyK2gldrXBx473TzBBR6wzopyK2/u3JdqwEpJ3eJDKUUgTYmehUY5kV+EWJL8DEYerHdcvR6L8U42D1OhDqBZuvSYL/wHpBDC4GBi1Np7KhbjW2oBbYqySj8GwsZFgnnPW135Z48IxkEu8mECfviYlhYKCbGpy7YQe/5OAiMSwUwzBZyH+Tm2rPgnQjpFOrQtF2plC7qrmEQVMLSvtJVArKTAG/jO5TvlGHy3Vx7And4Kx1mQCvWFQT8HAgMBAAECggEAcwNKXrArX4skNA7DzuHEXIJaWEly/5aLs5BuFCfi45s4drxRdLViqbnDORp/L7Q/cFEkcyr7UT9/sxLbSx5Ao6mCnlhkvyhz12liWuE/lVTVCQTAnx0ZbniWxjqXClBezZ/69I/5hwIq6OfxCbzPJrqqxOpJbCiAMMcj+7tZzHoNNZmxUlSU4ofEGRMlxSepZBGGyby6mzNLLdpHkn2GeKL3mVJhQxA7v8CI+2wGYXixrzChZ7OS7N0vN3FRI7Kv3Oma+6MBP2eyrUHGOZQYF0hQ3TQd9h5uR95RbC3K0UuegOXeNBX9e9HYC2CCGKE07O7/+RY9+6gn3KoXq/iRIQKBgQD/sE3a2knHmbFfZiE6bAotnFGidpKSD0ZizsvfTy0BcXZ1ooeqadHLstqFHZLyaYowhDwePekLgqzZkgcfhMvYDfYK4n7nm9s5ueZpPFqY6ApXgCsdIBonXcaqS6/QjcnKlC9iI8PiqZ1dk5VswwV8ssZbUA8RfUSMnmZ6VoOQNwKBgQCp2J5kpauLSqtOSYO4O9SEw03Mlnm0+7u2HxAY7nvj82vCgr0UB9deqg/HpQgBaiIVMirb08VbU0XAalC9EpalVtwqUYmpxCm+90brH2XgZ9z8ba00vETG3eA2mWaPBDXkJDHpO9L/4AeEbSyZE/xTT5AqLwf9zuuWYjpY0hs/sQKBgQDTdUNuE8mgwYLnmtcwMdnZDsaUzes50Fgtr0j8TcaywtttPhVk4k8XX7tJC8RTpuUaasItYJYzZsb8yMALWRAchq9NITRC56rOeugLcFaczop/Awik9b+rfuqmPCITILAaUaM+TsXZ1tzGXx/c6wzGrDNPoU5U8HyYrwehdZso0QKBgGnx5VuCu+63NQQwdymEqJvn96+WbXSnUf/YgIIMwNsADEfYpXjJK16xVgaCuuum+HugP3vALWs6Flhf+Nz3q2CXPd5n3ic3ZZLpTCN+Al5oa0BKabBrf7tMy39DUOYFCli0+y0xU/yoEghY0WjrPon5J0Qo8iMv32R/AUZGSRkBAoGBAPGTCqUv9f4nPCNSX70ygeEgSA09EFhR4etBM1QyEZc4RSVyF9rjrLbDNSBxId040luFmEY5HEvywx+HFJIZPGqm03uAJvB7QnT/OTchyIpG0dp+eo0wSf8V6ldItFIlznlNW8/toa8AcuMc0h8xOvj9VohFrW50joBoik6TTM/P
+    appPublicKey: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqaO+WoEmV00L/x5Jj4KmF/jNlb7bRsnpsTH3oE0yyNiQI/qtcCbxqoN4k1eyfHTQnXQDCznRvJKCKq8snGvyHUTqKz1w5MitoJXa1wceO908wQUesM6Kcitv7tyXasBKSd3iQylFIE2JnoVGOZFfhFiS/AxGHqx3XL0ei/FONg9ToQ6gWbr0mC/8B6QQwuBgYtTaeyoW41tqAW2Ksko/BsLGRYJ5z1td+WePCMZBLvJhAn74mJYWCgmxqcu2EHv+TgIjEsFMMwWch/k5tqz4J0I6RTq0LRdqZQu6q5hEFTC0r7SVQKykwBv4zuU75Rh8t1cewJ3eCsdZkAr1hUE/BwIDAQAB
+    publicKey: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAiEH9mCppvj7e/aVGjnMPAmhq1v+qFnxlVFoG3I6QOB/38eupChIUmBINx7bBXwGYN3J/MSTbByCQSUgoE7O4NBDGnx9bzqd8R1jjowr71SlEoTtpw/QHFsAhgkoQFXF/fD40VZ3sbuKHDRPbm1+0h9vzNyYGeVjyTPfrXZa/ubHRCyApwLJivZ+BI0J7BeqI4WO8XwSmo3JcuRNgWH05KxhSMDbzLDaQyC7dK0tUxYVg9XiVt6GRk7in/c56HZW0q1bQHuEOoFnYyTFRrw5K1ATapwJf213MOnFTA9kSM1JeVsZ0M725r91qOFwmZ6rrjkzlBlpl8S7kvIPtit3v4QIDAQAB
+    notifyUrl: http://app.centit.com:443/pay/notify/aliNotify
+  wxpay:
+    notifyUrl: http://app.centit.com:443/pay/notify/wxNotify
+    notifyUrl_park: http://app.centit.com:443/pay/notify/wxNotify_park
+  istest: true
+

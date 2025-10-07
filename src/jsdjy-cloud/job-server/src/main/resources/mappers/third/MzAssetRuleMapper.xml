@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.jobserver.dao.MzAssetRuleDao">
+  <resultMap id="BaseResultMap" type="com.centit.jobserver.po.MzAssetRule">
+    <!--@Table shopping_asset_rule-->
+    <result column="point_avoid_pay" jdbcType="CHAR" property="pointAvoidPay" />
+    <result column="point_avoid_limit" jdbcType="BIGINT" property="pointAvoidLimit" />
+    <result column="account_avoid_pay" jdbcType="CHAR" property="accountAvoidPay" />
+    <result column="account_avoid_limit" jdbcType="DECIMAL" property="accountAvoidLimit" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    point_avoid_pay, point_avoid_limit, account_avoid_pay, account_avoid_limit
+  </sql>
+  <insert id="insert" parameterType="com.centit.jobserver.po.MzAssetRule">
+    insert into shopping_asset_rule (point_avoid_pay, point_avoid_limit, account_avoid_pay, 
+      account_avoid_limit)
+    values (#{pointAvoidPay,jdbcType=CHAR}, #{pointAvoidLimit,jdbcType=BIGINT}, #{accountAvoidPay,jdbcType=CHAR}, 
+      #{accountAvoidLimit,jdbcType=DECIMAL})
+  </insert>
+
+  <!-- 更新 -->
+  <update id="update" parameterType="com.centit.jobserver.po.MzAssetRule" >
+    <![CDATA[
+        	update shopping_asset_rule
+        ]]>
+    <set >
+      <if test="pointAvoidPay != null and pointAvoidPay != ''" >
+        <![CDATA[
+                    point_avoid_pay = #{pointAvoidPay,jdbcType=VARCHAR},
+                ]]>
+      </if>
+      <if test="pointAvoidLimit != null and pointAvoidLimit != ''" >
+        <![CDATA[
+                    point_avoid_limit = #{pointAvoidLimit,jdbcType=VARCHAR},
+                ]]>
+      </if>
+      <if test="accountAvoidPay != null and accountAvoidPay != ''" >
+        <![CDATA[
+                    account_avoid_pay = #{accountAvoidPay,jdbcType=VARCHAR},
+                ]]>
+      </if>
+      <if test="accountAvoidLimit != null and accountAvoidLimit != ''" >
+        <![CDATA[
+                    account_avoid_limit = #{accountAvoidLimit,jdbcType=VARCHAR},
+                ]]>
+      </if>
+    </set>
+    <where>
+    </where>
+  </update>
+</mapper>

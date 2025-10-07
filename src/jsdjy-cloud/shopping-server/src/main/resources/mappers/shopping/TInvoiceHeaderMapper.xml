@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.TInvoiceHeaderDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.TInvoiceHeader">
+        <id column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="head_type" property="headType" />
+        <result column="company_name" property="companyName" />
+        <result column="tax_num" property="taxNum" />
+        <result column="company_address" property="companyAddress" />
+        <result column="company_tel" property="companyTel" />
+        <result column="company_bank" property="companyBank" />
+        <result column="company_account" property="companyAccount" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="is_default" property="isDefault" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, user_id, head_type, company_name, tax_num, company_address, company_tel, company_bank, company_account, create_time, update_time, is_default
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        user_id
+          ,
+        head_type
+          ,
+        company_name
+          ,
+        tax_num
+          ,
+        company_address
+          ,
+        company_tel
+          ,
+        company_bank
+          ,
+        company_account
+          ,
+        create_time
+          ,
+        update_time
+          ,
+        is_default
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="userId != null and userId != ''">
+            <![CDATA[
+                AND user_id = #{userId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="headType != null and headType != ''">
+            <![CDATA[
+                AND head_type = #{headType ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="companyName != null and companyName != ''">
+            <![CDATA[
+                AND company_name = #{companyName ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="taxNum != null and taxNum != ''">
+            <![CDATA[
+                AND tax_num = #{taxNum ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="companyAddress != null and companyAddress != ''">
+            <![CDATA[
+                AND company_address = #{companyAddress ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="companyTel != null and companyTel != ''">
+            <![CDATA[
+                AND company_tel = #{companyTel ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="companyBank != null and companyBank != ''">
+            <![CDATA[
+                AND company_bank = #{companyBank ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="companyAccount != null and companyAccount != ''">
+            <![CDATA[
+                AND company_account = #{companyAccount ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="createTime != null and createTime != ''">
+            <![CDATA[
+                AND create_time = #{createTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="updateTime != null and updateTime != ''">
+            <![CDATA[
+                AND update_time = #{updateTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="isDefault != null and isDefault != ''">
+            <![CDATA[
+                AND is_default = #{isDefault ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.TInvoiceHeader">
+        <![CDATA[
+			insert into t_invoice_header
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+
+            <if test="userId != null and userId != ''" >
+                <![CDATA[
+                    user_id,
+                ]]>
+            </if>
+            <if test="headType != null and headType != ''" >
+                <![CDATA[
+                    head_type,
+                ]]>
+            </if>
+            <if test="companyName != null and companyName != ''" >
+                <![CDATA[
+                    company_name,
+                ]]>
+            </if>
+            <if test="taxNum != null and taxNum != ''" >
+                <![CDATA[
+                    tax_num,
+                ]]>
+            </if>
+            <if test="companyAddress != null and companyAddress != ''" >
+                <![CDATA[
+                    company_address,
+                ]]>
+            </if>
+            <if test="companyTel != null and companyTel != ''" >
+                <![CDATA[
+                    company_tel,
+                ]]>
+            </if>
+            <if test="companyBank != null and companyBank != ''" >
+                <![CDATA[
+                    company_bank,
+                ]]>
+            </if>
+            <if test="companyAccount != null and companyAccount != ''" >
+                <![CDATA[
+                    company_account,
+                ]]>
+            </if>
+
+                <![CDATA[
+                    create_time,
+                ]]>
+
+            <if test="updateTime != null and updateTime != ''" >
+                <![CDATA[
+                    update_time,
+                ]]>
+            </if>
+            <if test="isDefault != null and isDefault != ''" >
+                <![CDATA[
+                    is_default,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+
+            <if test="userId != null and userId != ''" >
+                <![CDATA[
+                    #{userId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="headType != null and headType != ''" >
+                <![CDATA[
+                    #{headType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="companyName != null and companyName != ''" >
+                <![CDATA[
+                    #{companyName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="taxNum != null and taxNum != ''" >
+                <![CDATA[
+                    #{taxNum,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="companyAddress != null and companyAddress != ''" >
+                <![CDATA[
+                    #{companyAddress,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="companyTel != null and companyTel != ''" >
+                <![CDATA[
+                    #{companyTel,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="companyBank != null and companyBank != ''" >
+                <![CDATA[
+                    #{companyBank,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="companyAccount != null and companyAccount != ''" >
+                <![CDATA[
+                    #{companyAccount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            now(),
+            <if test="updateTime != null and updateTime != ''" >
+                <![CDATA[
+                    #{updateTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isDefault != null and isDefault != ''" >
+                <![CDATA[
+                    #{isDefault,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.TInvoiceHeader" >
+        <![CDATA[
+        	update t_invoice_header
+        ]]>
+        <set >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userId != null and userId != ''" >
+                <![CDATA[
+                    user_id = #{userId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="headType != null and headType != ''" >
+                <![CDATA[
+                    head_type = #{headType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="companyName != null and companyName != ''" >
+                <![CDATA[
+                    company_name = #{companyName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="taxNum != null and taxNum != ''" >
+                <![CDATA[
+                    tax_num = #{taxNum,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="taxNum == null || taxNum == ''" >
+                <![CDATA[
+                    tax_num = null,
+                ]]>
+            </if>
+            <if test="companyAddress != null and companyAddress != ''" >
+                <![CDATA[
+                    company_address = #{companyAddress,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="companyTel != null and companyTel != ''" >
+                <![CDATA[
+                    company_tel = #{companyTel,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="companyBank != null and companyBank != ''" >
+                <![CDATA[
+                    company_bank = #{companyBank,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="companyAccount != null and companyAccount != ''" >
+                <![CDATA[
+                    company_account = #{companyAccount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+
+
+                <![CDATA[
+                    update_time = now(),
+                ]]>
+
+            <if test="isDefault != null and isDefault != ''" >
+                <![CDATA[
+                    is_default = #{isDefault,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.TInvoiceHeader">
+        <![CDATA[
+            delete from t_invoice_header
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.TInvoiceHeader">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from t_invoice_header t
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from t_invoice_header t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+        order by t.update_time,t.create_time desc
+    </select>
+
+    <!-- 将其它的抬头设置为非默认 -->
+    <update id="setOtherHeadersNotDefault" parameterType="com.centit.shopping.po.TInvoiceHeader" >
+        <![CDATA[
+        	update t_invoice_header
+        ]]>
+        <set >
+
+                <![CDATA[
+                    is_default = 'N',
+                ]]>
+
+        </set>
+        <where>
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    and id != #{id ,jdbcType=VARCHAR }
+                ]]>
+            </if>
+                <!--<![CDATA[-->
+                    <!--and head_type = #{headType ,jdbcType=VARCHAR}-->
+                <!--]]>-->
+        </where>
+    </update>
+</mapper>

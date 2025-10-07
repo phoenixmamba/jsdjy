@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.ShoppingCarouselDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.ShoppingCarousel">
+        <id column="id" property="id"/>
+        <result column="main_photo" property="mainPhoto"/>
+        <result column="status" property="status"/>
+        <result column="type" property="type"/>
+        <result column="category" property="category"/>
+        <result column="value" property="value"/>
+        <result column="desc" property="desc"/>
+        <result column="sort" property="sort"/>
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, main_photo, `status`, type, category, `value`, `desc`, sort
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        main_photo
+          ,
+        `status`
+          ,
+        type
+          ,
+        category
+          ,
+        `value`
+          ,
+        `desc`
+          ,
+        sort
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="mainPhoto != null and mainPhoto != ''">
+            <![CDATA[
+                AND main_photo = #{mainPhoto ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="status != null and status != ''">
+            <![CDATA[
+                AND `status` = #{status ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="type != null and type != ''">
+            <![CDATA[
+                AND type = #{type ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="category != null and category != ''">
+            <![CDATA[
+                AND category = #{category ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="value != null and value != ''">
+            <![CDATA[
+                AND `value` = #{value ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="desc != null and desc != ''">
+            <![CDATA[
+                AND `desc` like concat('%', #{desc ,jdbcType=VARCHAR},'%')
+            ]]>
+        </if>
+        <if test="sort != null and sort != ''">
+            <![CDATA[
+                AND sort = #{sort ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.ShoppingCarousel">
+        <![CDATA[
+			insert into shopping_carousel
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id !=null and id !=''">
+                <![CDATA[
+                    id,
+                ]]>
+            </if>
+            <if test="mainPhoto !=null and mainPhoto !=''">
+                <![CDATA[
+                    main_photo,
+                ]]>
+            </if>
+            <if test="status !=null and status !=''">
+                <![CDATA[
+                    `status`,
+                ]]>
+            </if>
+            <if test="type !=null and type !=''">
+                <![CDATA[
+                    type,
+                ]]>
+            </if>
+            <if test="category !=null and category !=''">
+                <![CDATA[
+                    category,
+                ]]>
+            </if>
+            <if test="value !=null and value !=''">
+                <![CDATA[
+                    `value`,
+                ]]>
+            </if>
+            <if test="desc !=null and desc !=''">
+                <![CDATA[
+                    `desc`,
+                ]]>
+            </if>
+            <if test="sort != null">
+                <![CDATA[
+                    sort,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id !=null and id !=''">
+                <![CDATA[
+                    #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="mainPhoto !=null and mainPhoto !=''">
+                <![CDATA[
+                    #{mainPhoto,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="status !=null and status !=''">
+                <![CDATA[
+                    #{status,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="type !=null and type !=''">
+                <![CDATA[
+                    #{type,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="category !=null and category !=''">
+                <![CDATA[
+                    #{category,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="value !=null and value !=''">
+                <![CDATA[
+                    #{value,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="desc !=null and desc !=''">
+                <![CDATA[
+                    #{desc,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="sort != null">
+                <![CDATA[
+                    #{sort,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.ShoppingCarousel">
+        <![CDATA[
+        	update shopping_carousel
+        ]]>
+        <set>
+            <if test="id !=null and id !=''">
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="mainPhoto !=null and mainPhoto !=''">
+                <![CDATA[
+                    main_photo = #{mainPhoto,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="status !=null and status !=''">
+                <![CDATA[
+                    `status` = #{status,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="type !=null and type !=''">
+                <![CDATA[
+                    type = #{type,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="category !=null and category !=''">
+                <![CDATA[
+                    category = #{category,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="value !=null and value !=''">
+                <![CDATA[
+                    `value` = #{value,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="desc !=null and desc !=''">
+                <![CDATA[
+                    `desc` = #{desc,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="sort != null">
+                <![CDATA[
+                    sort = #{sort,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete" parameterType="com.centit.shopping.po.ShoppingCarousel">
+        <![CDATA[
+            delete from shopping_carousel
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.ShoppingCarousel">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1"/>
+        <![CDATA[
+            from shopping_carousel t
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1"/>
+        <![CDATA[
+            from shopping_carousel t
+        ]]>
+        <where>
+            <include refid="Base_Where_List"/>
+        </where>
+            order by `sort`
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryCount" resultType="int" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        count(0)
+        <![CDATA[
+            from shopping_carousel t
+        ]]>
+        <where>
+            <include refid="Base_Where_List"/>
+        </where>
+    </select>
+
+    <select id="queryAllTicket" resultType="map">
+        select project_id as id, project_name as name,project_img_url as photo
+        from ticket_project
+        where
+         project_sale_state = 2
+        <if test="search!=null and search !=''">
+            and project_name like concat('%', #{search}, '%')
+        </if>
+    </select>
+
+    <select id="queryClassGoodsList" resultType="map" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        id,goods_name as name,goods_main_photo_id photo,store_price price
+        <![CDATA[
+            from shopping_goods t
+        ]]>
+        <where>
+            <if test="gcId != null and gcId != ''">
+                <![CDATA[
+                AND FIND_IN_SET(gc_id, queryChildrenGoodClass(#{gcId}))
+            ]]>
+            </if>
+            <if test="deleteStatus != null and deleteStatus != ''">
+                <![CDATA[
+                AND deleteStatus = #{deleteStatus ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="goodsName != null and goodsName != ''">
+                <![CDATA[
+                AND goods_name like concat('%',#{goodsName ,jdbcType=VARCHAR},'%')
+            ]]>
+            </if>
+        </where>
+        order by t.addTime desc
+    </select>
+
+</mapper>

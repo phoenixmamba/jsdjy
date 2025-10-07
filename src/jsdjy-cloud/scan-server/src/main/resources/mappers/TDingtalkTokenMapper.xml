@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.scan.webmgr.dao.TDingtalkTokenDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.scan.webmgr.po.TDingtalkToken">
+        <result column="AGENT_ID" property="agentId" />
+        <result column="APP_KEY" property="appKey" />
+        <result column="APP_SECRET" property="appSecret" />
+        <result column="ACCESS_TOKEN" property="accessToken" />
+        <result column="INVALIED_TIME" property="invaliedTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        AGENT_ID, APP_KEY, APP_SECRET, ACCESS_TOKEN, INVALIED_TIME
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        AGENT_ID
+          ,
+        APP_KEY
+          ,
+        APP_SECRET
+          ,
+        ACCESS_TOKEN
+          ,
+        INVALIED_TIME
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="agentId != null and agentId != ''">
+            <![CDATA[
+                AND AGENT_ID = #{agentId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="appKey != null and appKey != ''">
+            <![CDATA[
+                AND APP_KEY = #{appKey ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="appSecret != null and appSecret != ''">
+            <![CDATA[
+                AND APP_SECRET = #{appSecret ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="accessToken != null and accessToken != ''">
+            <![CDATA[
+                AND ACCESS_TOKEN = #{accessToken ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="invaliedTime != null and invaliedTime != ''">
+            <![CDATA[
+                AND INVALIED_TIME = #{invaliedTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.scan.webmgr.po.TDingtalkToken">
+        <![CDATA[
+			insert into t_dingtalk_token
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="agentId != '' and agentId != null" >
+                <![CDATA[
+                    AGENT_ID,
+                ]]>
+            </if>
+            <if test="appKey != '' and appKey != null" >
+                <![CDATA[
+                    APP_KEY,
+                ]]>
+            </if>
+            <if test="appSecret != '' and appSecret != null" >
+                <![CDATA[
+                    APP_SECRET,
+                ]]>
+            </if>
+            <if test="accessToken != '' and accessToken != null" >
+                <![CDATA[
+                    ACCESS_TOKEN,
+                ]]>
+            </if>
+            <if test="invaliedTime != '' and invaliedTime != null" >
+                <![CDATA[
+                    INVALIED_TIME,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="agentId != '' and agentId != null" >
+                <![CDATA[
+                    #{agentId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="appKey != '' and appKey != null" >
+                <![CDATA[
+                    #{appKey,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="appSecret != '' and appSecret != null" >
+                <![CDATA[
+                    #{appSecret,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="accessToken != '' and accessToken != null" >
+                <![CDATA[
+                    #{accessToken,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="invaliedTime != '' and invaliedTime != null" >
+                <![CDATA[
+                    #{invaliedTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.scan.webmgr.po.TDingtalkToken" >
+        <![CDATA[
+        	update t_dingtalk_token
+        ]]>
+        <set >
+            <if test="agentId != '' and agentId != null" >
+                <![CDATA[
+                    AGENT_ID = #{agentId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="appKey != '' and appKey != null" >
+                <![CDATA[
+                    APP_KEY = #{appKey,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="appSecret != '' and appSecret != null" >
+                <![CDATA[
+                    APP_SECRET = #{appSecret,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="accessToken != '' and accessToken != null" >
+                <![CDATA[
+                    ACCESS_TOKEN = #{accessToken,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="invaliedTime != '' and invaliedTime != null" >
+                <![CDATA[
+                    INVALIED_TIME = #{invaliedTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.scan.webmgr.po.TDingtalkToken">
+        <![CDATA[
+            delete from t_dingtalk_token
+        ]]>
+        <where>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.scan.webmgr.po.TDingtalkToken">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from t_dingtalk_token t
+        ]]>
+        <where>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from t_dingtalk_token t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+</mapper>

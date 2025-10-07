@@ -1,0 +1,732 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.admin.shopping.dao.GoodsInfoDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.admin.shopping.po.GoodsInfoPo">
+        <id column="id" property="id" />
+        <result column="addTime" property="addTime" />
+        <result column="deleteStatus" property="deleteStatus" />
+        <result column="goods_details" property="goodsDetails" />
+        <result column="goods_inventory" property="goodsInventory" />
+        <result column="goods_name" property="goodsName" />
+        <result column="goods_price" property="goodsPrice" />
+        <result column="goods_serial" property="goodsSerial" />
+        <result column="goods_status" property="goodsStatus" />
+        <result column="goods_weight" property="goodsWeight" />
+        <result column="inventory_type" property="inventoryType" />
+        <result column="store_price" property="storePrice" />
+        <result column="gc_id" property="gcId" />
+        <result column="goods_main_photo_id" property="goodsMainPhotoId" />
+        <result column="goods_store_id" property="goodsStoreId" />
+        <result column="express_trans_fee" property="expressTransFee" />
+        <result column="transport_id" property="transportId" />
+        <result column="app_sort" property="appSort" />
+        <result column="ex_factory_price" property="exFactoryPrice" />
+        <result column="use_integral_set" property="useIntegralSet" />
+        <result column="use_integral_value" property="useIntegralValue" />
+        <result column="limit_buy" property="limitBuy" />
+        <result column="use_balance_set" property="useBalanceSet" />
+        <result column="write_off_count" property="writeOffCount" />
+        <result column="selfextraction_set" property="selfextractionSet" />
+        <result column="selfextraction_address" property="selfextractionAddress" />
+        <result column="use_membership_set" property="useMembershipSet" />
+        <result column="addUser" property="addUser" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, addTime, deleteStatus, goods_click, goods_details, goods_fee, goods_inventory, goods_inventory_detail, goods_name, goods_price, goods_property, goods_recommend, goods_salenum, goods_seller_time, goods_serial, goods_status, goods_transfee, goods_weight, inventory_type, seo_description, seo_keywords, store_price, store_recommend, store_recommend_time, ztc_admin_content, ztc_apply_time, ztc_begin_time, ztc_click_num, ztc_dredge_price, ztc_gold, ztc_pay_status, ztc_price, ztc_status, gc_id, goods_brand_id, goods_main_photo_id, goods_store_id, ztc_admin_id, goods_collect, group_buy, goods_choice_type, group_id, activity_status, bargain_status, delivery_status, goods_current_price, goods_volume, ems_trans_fee, express_trans_fee, mail_trans_fee, transport_id, combin_status, combin_begin_time, combin_end_time, combin_price, description_evaluate, weixin_shop_hot, weixin_shop_hotTime, weixin_shop_recommend, weixin_shop_recommendTime, app_recommend, reimbursement_ratio, gift_d_coins, app_sort, ex_factory_price, use_integral_set, use_integral_value, good_area, app_recommend_time, give_integral, give_red, limit_buy, sign_day, producer_name, producer_phone, producer_url, store_scale, probability, qds_type, area_user_id, erji, quyu, yiji, audit_info, phone, qq, send_user, wx, area_id, purchase_num, price_range, units, maintain_class_id, screen_safe_group_id, spellGroupGoods_id, flashGoods_id, maintain_money, screen_safe, goods_checkbox, userGoodsClass_id, red_activity_status, fenxiao, bargain_marketing_status, flash_sale_marketing_status, group_marketing_status, bargain_goods_id, orderShareRedGoods_id, find_id, member_type, liveDelivery, liveDeliveryScale, use_cash_set, use_balance_set, write_off_count, selfextraction_set, selfextraction_address, goods_notice, return_explain,use_membership_set,addUser
+    </sql>
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.admin.shopping.po.GoodsInfoPo" useGeneratedKeys="true" keyProperty="id">
+        <![CDATA[
+			insert into shopping_goods
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                    addTime,
+                    deleteStatus,
+            <if test="goodsDetails != '' and goodsDetails != null" >
+                <![CDATA[
+                    goods_details,
+                ]]>
+            </if>
+            <if test="goodsInventory != '' and goodsInventory != null" >
+                <![CDATA[
+                    goods_inventory,
+                ]]>
+            </if>
+            <if test="goodsName != '' and goodsName != null" >
+                <![CDATA[
+                    goods_name,
+                ]]>
+            </if>
+            <if test="goodsPrice != '' and goodsPrice != null" >
+                <![CDATA[
+                    goods_price,
+                ]]>
+            </if>
+
+            <if test="goodsSerial != '' and goodsSerial != null" >
+                <![CDATA[
+                    goods_serial,
+                ]]>
+            </if>
+            <if test="goodsWeight != null" >
+                <![CDATA[
+                    goods_weight,
+                ]]>
+            </if>
+            <if test="inventoryType != '' and inventoryType != null" >
+                <![CDATA[
+                    inventory_type,
+                ]]>
+            </if>
+
+            <if test="storePrice != null" >
+                <![CDATA[
+                    store_price,
+                ]]>
+            </if>
+            <if test="gcId != '' and gcId != null" >
+                <![CDATA[
+                    gc_id,
+                ]]>
+            </if>
+
+            <if test="goodsMainPhotoId != '' and goodsMainPhotoId != null" >
+                <![CDATA[
+                    goods_main_photo_id,
+                ]]>
+            </if>
+            <if test="goodsStoreId != '' and goodsStoreId != null" >
+                <![CDATA[
+                    goods_store_id,
+                ]]>
+            </if>
+            <if test="goodsVolume != '' and goodsVolume != null" >
+                <![CDATA[
+                    goods_volume,
+                ]]>
+            </if>
+
+            <if test="expressTransFee != '' and expressTransFee != null" >
+                <![CDATA[
+                    express_trans_fee,
+                ]]>
+            </if>
+
+            <if test="transportId != '' and transportId != null" >
+                <![CDATA[
+                    transport_id,
+                ]]>
+            </if>
+
+
+            <if test="appSort != '' and appSort != null" >
+                <![CDATA[
+                    app_sort,
+                ]]>
+            </if>
+            <if test="exFactoryPrice != '' and exFactoryPrice != null" >
+                <![CDATA[
+                    ex_factory_price,
+                ]]>
+            </if>
+            <if test="useIntegralSet != null" >
+                <![CDATA[
+                    use_integral_set,
+                ]]>
+            </if>
+            <if test="useIntegralValue != null" >
+                <![CDATA[
+                    use_integral_value,
+                ]]>
+            </if>
+
+
+            <if test="limitBuy != null" >
+                <![CDATA[
+                    limit_buy,
+                ]]>
+            </if>
+
+            <if test="phone != null" >
+                <![CDATA[
+                    phone,
+                ]]>
+            </if>
+
+            <if test="goodsCheckbox != '' and goodsCheckbox != null" >
+                <![CDATA[
+                    goods_checkbox,
+                ]]>
+            </if>
+
+            <if test="useBalanceSet != null" >
+                <![CDATA[
+                    use_balance_set,
+                ]]>
+            </if>
+            <if test="writeOffCount != '' and writeOffCount != null" >
+                <![CDATA[
+                    write_off_count,
+                ]]>
+            </if>
+            <if test="selfextractionSet != '' and selfextractionSet != null" >
+                <![CDATA[
+                    selfextraction_set,
+                ]]>
+            </if>
+            <if test="selfextractionAddress != '' and selfextractionAddress != null" >
+                <![CDATA[
+                    selfextraction_address,
+                ]]>
+            </if>
+
+            <if test="useMembershipSet != null">
+                <![CDATA[
+                use_membership_set,
+            ]]>
+            </if>
+            <if test="addUser != null">
+                <![CDATA[
+                addUser
+            ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            now(),
+            0,
+
+            <if test="goodsDetails != '' and goodsDetails != null" >
+                <![CDATA[
+                    #{goodsDetails,jdbcType=VARCHAR},
+                ]]>
+            </if>
+
+            <if test="goodsInventory != '' and goodsInventory != null" >
+                <![CDATA[
+                    #{goodsInventory,jdbcType=VARCHAR},
+                ]]>
+            </if>
+
+            <if test="goodsName != '' and goodsName != null" >
+                <![CDATA[
+                    #{goodsName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="goodsPrice != null" >
+                <![CDATA[
+                    #{goodsPrice,jdbcType=VARCHAR},
+                ]]>
+            </if>
+
+            <if test="goodsSerial != '' and goodsSerial != null" >
+                <![CDATA[
+                    #{goodsSerial,jdbcType=VARCHAR},
+                ]]>
+            </if>
+
+            <if test="goodsWeight != null" >
+                <![CDATA[
+                    #{goodsWeight,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="inventoryType != '' and inventoryType != null" >
+                <![CDATA[
+                    #{inventoryType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+
+            <if test="storePrice != null" >
+                <![CDATA[
+                    #{storePrice,jdbcType=VARCHAR},
+                ]]>
+            </if>
+
+            <if test="gcId != '' and gcId != null" >
+                <![CDATA[
+                    #{gcId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+
+            <if test="goodsMainPhotoId != '' and goodsMainPhotoId != null" >
+                <![CDATA[
+                    #{goodsMainPhotoId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="goodsStoreId != '' and goodsStoreId != null" >
+                <![CDATA[
+                    #{goodsStoreId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+
+            <if test="goodsVolume != '' and goodsVolume != null" >
+                <![CDATA[
+                    #{goodsVolume,jdbcType=VARCHAR},
+                ]]>
+            </if>
+
+            <if test="expressTransFee != '' and expressTransFee != null" >
+                <![CDATA[
+                    #{expressTransFee,jdbcType=VARCHAR},
+                ]]>
+            </if>
+
+            <if test="transportId != '' and transportId != null" >
+                <![CDATA[
+                    #{transportId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+
+            <if test="appSort != '' and appSort != null" >
+                <![CDATA[
+                    #{appSort,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="exFactoryPrice != '' and exFactoryPrice != null" >
+                <![CDATA[
+                    #{exFactoryPrice,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="useIntegralSet != null" >
+                <![CDATA[
+                    #{useIntegralSet,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="useIntegralValue != null" >
+                <![CDATA[
+                    #{useIntegralValue,jdbcType=VARCHAR},
+                ]]>
+            </if>
+
+            <if test="limitBuy != null" >
+                <![CDATA[
+                    #{limitBuy,jdbcType=VARCHAR},
+                ]]>
+            </if>
+
+            <if test="phone != null" >
+                <![CDATA[
+                    #{phone,jdbcType=VARCHAR},
+                ]]>
+            </if>
+
+            <if test="goodsCheckbox != '' and goodsCheckbox != null" >
+                <![CDATA[
+                    #{goodsCheckbox,jdbcType=VARCHAR},
+                ]]>
+            </if>
+
+            <if test="useBalanceSet != null" >
+                <![CDATA[
+                    #{useBalanceSet,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="writeOffCount != '' and writeOffCount != null" >
+                <![CDATA[
+                    #{writeOffCount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="selfextractionSet != '' and selfextractionSet != null" >
+                <![CDATA[
+                    #{selfextractionSet,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="selfextractionAddress != '' and selfextractionAddress != null" >
+                <![CDATA[
+                    #{selfextractionAddress,jdbcType=VARCHAR},
+                ]]>
+            </if>
+
+            <if test="useMembershipSet != null">
+                <![CDATA[
+                #{useMembershipSet,jdbcType=INTEGER},
+            ]]>
+            </if>
+            <if test="addUser != null">
+                <![CDATA[
+                #{addUser,jdbcType=INTEGER},
+            ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.admin.shopping.po.GoodsInfoPo" >
+        <![CDATA[
+        	update shopping_goods
+        ]]>
+        <set >
+            <if test="deleteStatus != '' and deleteStatus != null" >
+                <![CDATA[
+                    deleteStatus = #{deleteStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="goodsDetails != '' and goodsDetails != null" >
+                <![CDATA[
+                    goods_details = #{goodsDetails,jdbcType=VARCHAR},
+                ]]>
+            </if>
+
+            <if test="goodsInventory != '' and goodsInventory != null" >
+                <![CDATA[
+                    goods_inventory = #{goodsInventory,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="goodsName != '' and goodsName != null" >
+                <![CDATA[
+                    goods_name = #{goodsName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="goodsPrice != null" >
+                <![CDATA[
+                    goods_price = #{goodsPrice,jdbcType=VARCHAR},
+                ]]>
+            </if>
+
+            <if test="goodsSerial != '' and goodsSerial != null" >
+                <![CDATA[
+                    goods_serial = #{goodsSerial,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="goodsWeight != '' and goodsWeight != null" >
+                <![CDATA[
+                    goods_weight = #{goodsWeight,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="inventoryType != '' and inventoryType != null" >
+                <![CDATA[
+                    inventory_type = #{inventoryType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+
+            <if test="storePrice != null" >
+                <![CDATA[
+                    store_price = #{storePrice,jdbcType=VARCHAR},
+                ]]>
+            </if>
+
+            <if test="gcId != '' and gcId != null" >
+                <![CDATA[
+                    gc_id = #{gcId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="goodsMainPhotoId != '' and goodsMainPhotoId != null" >
+                <![CDATA[
+                    goods_main_photo_id = #{goodsMainPhotoId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="goodsStoreId != '' and goodsStoreId != null" >
+                <![CDATA[
+                    goods_store_id = #{goodsStoreId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+
+            <if test="expressTransFee != null" >
+                <![CDATA[
+                    express_trans_fee = #{expressTransFee,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="expressTransFee == null" >
+                <![CDATA[
+                    express_trans_fee = null,
+                ]]>
+            </if>
+
+            <if test="transportId != '' and transportId != null" >
+                <![CDATA[
+                    transport_id = #{transportId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="transportId == '' || transportId == null" >
+                <![CDATA[
+                    transport_id = null,
+                ]]>
+            </if>
+
+            <if test="appSort != null" >
+                <![CDATA[
+                    app_sort = #{appSort,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="exFactoryPrice != '' and exFactoryPrice != null" >
+                <![CDATA[
+                    ex_factory_price = #{exFactoryPrice,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="useIntegralSet != null" >
+                <![CDATA[
+                    use_integral_set = #{useIntegralSet,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="useIntegralValue != null" >
+                <![CDATA[
+                    use_integral_value = #{useIntegralValue,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="limitBuy != null" >
+                <![CDATA[
+                    limit_buy = #{limitBuy,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="useBalanceSet != null" >
+                <![CDATA[
+                    use_balance_set = #{useBalanceSet,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="writeOffCount != '' and writeOffCount != null" >
+                <![CDATA[
+                    write_off_count = #{writeOffCount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="writeOffCount == null || writeOffCount == ''" >
+                <![CDATA[
+                    write_off_count = null,
+                ]]>
+            </if>
+            <if test="selfextractionSet != '' and selfextractionSet != null" >
+                <![CDATA[
+                    selfextraction_set = #{selfextractionSet,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="selfextractionAddress != '' and selfextractionAddress != null" >
+                <![CDATA[
+                    selfextraction_address = #{selfextractionAddress,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="selfextractionAddress == '' || selfextractionAddress == null" >
+                <![CDATA[
+                    selfextraction_address = null,
+                ]]>
+            </if>
+            <if test="useMembershipSet != null" >
+                <![CDATA[
+                    use_membership_set = #{useMembershipSet,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="addUser != null" >
+                <![CDATA[
+                    addUser = #{addUser,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+             id = #{id ,jdbcType=VARCHAR }
+            ]]>
+            <![CDATA[
+             and goods_status = '1'
+            ]]>
+        </where>
+    </update>
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.admin.shopping.po.GoodsInfoPo">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_goods t
+        ]]>
+        <where>
+            <![CDATA[
+             id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryStoreList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        from shopping_goods t
+        <where>
+            <![CDATA[
+                AND t.deleteStatus = #{deleteStatus ,jdbcType=VARCHAR}
+            ]]>
+            <![CDATA[
+                AND t.goods_store_id = #{goodsStoreId ,jdbcType=VARCHAR}
+            ]]>
+            <if test="goodsName != null" >
+                <![CDATA[
+                    AND t.goods_name like concat('%', #{goodsName,jdbcType=VARCHAR}, '%')
+                ]]>
+            </if>
+        </where>
+        order by t.addTime desc
+    </select>
+
+
+
+    <!--  查询列表数量 -->
+    <select id="checkGoodsName" resultType="java.lang.Boolean" parameterType="java.util.HashMap">
+        <![CDATA[
+            SELECT count(0) FROM shopping_goods
+        ]]>
+        <where>
+            <![CDATA[
+                AND deleteStatus = #{deleteStatus ,jdbcType=VARCHAR}
+            ]]>
+            <![CDATA[
+                AND goods_name = #{goodsName ,jdbcType=VARCHAR}
+            ]]>
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    AND id != #{id,jdbcType=VARCHAR}
+                ]]>
+            </if>
+        </where>
+    </select>
+
+    <!--  查询指定分类下的商品列表 -->
+    <select id="queryClassGoodsList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select t.*
+        ]]>
+        <![CDATA[
+            from shopping_goods t left join
+            (select * from shopping_recommend where goods_type = #{recmmondType ,jdbcType=INTEGER})tr on t.id = tr.goods_id
+        ]]>
+        <where>
+            <if test="gcId != null and gcId != ''">
+                <![CDATA[
+                AND FIND_IN_SET(t.gc_id, queryChildrenGoodClass(#{gcId}))
+            ]]>
+            </if>
+            <if test="deleteStatus != null and deleteStatus != ''">
+                <![CDATA[
+                AND t.deleteStatus = #{deleteStatus ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="goodsStatus != null">
+                <![CDATA[
+                AND t.goods_status = #{goodsStatus ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+        </where>
+        order by ISNULL(tr.sn),tr.sn asc,t.addTime desc
+        <if test="pageSize != '' and pageSize != null" >
+            <![CDATA[
+                    limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+                ]]>
+        </if>
+    </select>
+
+    <!--  查询列表数量 -->
+    <select id="queryClassGoodsTotalCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            SELECT count(0) FROM shopping_goods
+        ]]>
+        <where>
+            <if test="gcId != null and gcId != ''">
+                <![CDATA[
+                AND FIND_IN_SET(gc_id, queryChildrenGoodClass(#{gcId}))
+            ]]>
+            </if>
+            <if test="deleteStatus != null and deleteStatus != ''">
+                <![CDATA[
+                AND deleteStatus = #{deleteStatus ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="goodsStatus != null">
+                <![CDATA[
+                AND goods_status = #{goodsStatus ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+        </where>
+    </select>
+
+    <!-- 更新 -->
+    <update id="updateGoodsInventory" parameterType="com.centit.admin.shopping.po.GoodsInfoPo" >
+        <![CDATA[
+        	update shopping_goods
+        ]]>
+        <set >
+            <if test="goodsInventory != null" >
+                <![CDATA[
+                    goods_inventory = #{goodsInventory,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+
+    <!-- 更新 -->
+    <update id="updateStatus" parameterType="com.centit.admin.shopping.po.GoodsInfoPo" >
+        <![CDATA[
+        	update shopping_goods
+        ]]>
+        <set >
+
+
+                <![CDATA[
+                    goods_status = #{goodsStatus,jdbcType=VARCHAR},
+                ]]>
+
+
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+    <select id="selectGoodsStock" resultType="java.lang.Integer" parameterType="java.lang.String">
+        <![CDATA[
+            SELECT t.goods_inventory FROM shopping_goods t
+        ]]>
+        <where>
+                <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <update id="cutGoodsStock" >
+        <![CDATA[
+        	update shopping_goods
+        ]]>
+        <set >
+            <![CDATA[
+                    goods_inventory = goods_inventory -#{cutStock,jdbcType=INTEGER},
+                ]]>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{goodsId,jdbcType=VARCHAR }
+            ]]>
+            <![CDATA[
+                and goods_inventory >= #{cutStock,jdbcType=INTEGER }
+            ]]>
+        </where>
+    </update>
+
+    <update id="addGoodsStock" >
+        <![CDATA[
+        	update shopping_goods
+        ]]>
+        <set >
+            <![CDATA[
+                    goods_inventory = goods_inventory + #{addStock,jdbcType=INTEGER},
+                ]]>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{goodsId,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+</mapper>

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.ShoppingOrderPaykeyDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.ShoppingOrderPaykey">
+        <result column="of_id" property="ofId" />
+        <result column="account_point_pay_key" property="accountPointPayKey" />
+        <result column="account_money_pay_key" property="accountMoneyPayKey" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        of_id, account_point_pay_key, account_money_pay_key
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        of_id
+          ,
+        account_point_pay_key
+          ,
+        account_money_pay_key
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="ofId != null and ofId != ''">
+            <![CDATA[
+                AND of_id = #{ofId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="accountPointPayKey != null and accountPointPayKey != ''">
+            <![CDATA[
+                AND account_point_pay_key = #{accountPointPayKey ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="accountMoneyPayKey != null and accountMoneyPayKey != ''">
+            <![CDATA[
+                AND account_money_pay_key = #{accountMoneyPayKey ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.ShoppingOrderPaykey">
+        <![CDATA[
+			insert into shopping_order_paykey
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="ofId != '' and ofId != null" >
+                <![CDATA[
+                    of_id,
+                ]]>
+            </if>
+            <if test="accountPointPayKey != '' and accountPointPayKey != null" >
+                <![CDATA[
+                    account_point_pay_key,
+                ]]>
+            </if>
+            <if test="accountMoneyPayKey != '' and accountMoneyPayKey != null" >
+                <![CDATA[
+                    account_money_pay_key,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="ofId != '' and ofId != null" >
+                <![CDATA[
+                    #{ofId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="accountPointPayKey != '' and accountPointPayKey != null" >
+                <![CDATA[
+                    #{accountPointPayKey,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="accountMoneyPayKey != '' and accountMoneyPayKey != null" >
+                <![CDATA[
+                    #{accountMoneyPayKey,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.ShoppingOrderPaykey" >
+        <![CDATA[
+        	update shopping_order_paykey
+        ]]>
+        <set >
+            <if test="ofId != '' and ofId != null" >
+                <![CDATA[
+                    of_id = #{ofId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="accountPointPayKey != '' and accountPointPayKey != null" >
+                <![CDATA[
+                    account_point_pay_key = #{accountPointPayKey,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="accountPointPayKey == '' || accountPointPayKey == null" >
+                <![CDATA[
+                    account_point_pay_key = null,
+                ]]>
+            </if>
+            <if test="accountMoneyPayKey != '' and accountMoneyPayKey != null" >
+                <![CDATA[
+                    account_money_pay_key = #{accountMoneyPayKey,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="accountMoneyPayKey == '' || accountMoneyPayKey != null" >
+                <![CDATA[
+                    account_money_pay_key = null,
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                    of_id = #{ofId,jdbcType=VARCHAR},
+                ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.ShoppingOrderPaykey">
+        <![CDATA[
+            delete from shopping_order_paykey
+        ]]>
+        <where>
+            <![CDATA[
+                    of_id = #{ofId,jdbcType=VARCHAR},
+                ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.ShoppingOrderPaykey">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_order_paykey t
+        ]]>
+        <where>
+            <![CDATA[
+                    of_id = #{ofId,jdbcType=VARCHAR},
+                ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_order_paykey t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+</mapper>

@@ -1,0 +1,9 @@
+spring:
+  applicatn:
+    # 服务名称
+    name: common-utils
+
+mybatis:
+  config-locations: classpath*:mybatis/mybatis-config.xml
+  #mapper-locations: classpath:mappers/*.xml #指定resources下面的mappers文件夹
+  mapper-locations: classpath*:mappers/*.xml

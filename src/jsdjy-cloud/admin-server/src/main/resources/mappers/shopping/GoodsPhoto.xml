@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.admin.shopping.dao.GoodsPhotoDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.admin.shopping.po.GoodsPhotoPo">
+        <result column="goods_id" property="goodsId" />
+        <result column="photo_id" property="photoId" />
+        <result column="photo_url" property="photoUrl" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        goods_id, photo_id
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        goods_id
+          ,
+        photo_id
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="goodsId != null and goodsId != ''">
+            <![CDATA[
+                AND goods_id = #{goodsId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="photoId != null and photoId != ''">
+            <![CDATA[
+                AND photo_id = #{photoId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.admin.shopping.po.GoodsPhotoPo">
+        <![CDATA[
+			insert into shopping_goods_photo
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="goodsId != '' and goodsId != null" >
+                <![CDATA[
+                    goods_id,
+                ]]>
+            </if>
+            <if test="photoId != '' and photoId != null" >
+                <![CDATA[
+                    photo_id,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="goodsId != '' and goodsId != null" >
+                <![CDATA[
+                    #{goodsId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="photoId != '' and photoId != null" >
+                <![CDATA[
+                    #{photoId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.admin.shopping.po.GoodsPhotoPo" >
+        <![CDATA[
+        	update shopping_goods_photo
+        ]]>
+        <set >
+            <if test="goodsId != '' and goodsId != null" >
+                <![CDATA[
+                    goods_id = #{goodsId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="photoId != '' and photoId != null" >
+                <![CDATA[
+                    photo_id = #{photoId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <if test="goodsId != null and goodsId != ''">
+                <![CDATA[
+                AND goods_id = #{goodsId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="photoId != null and photoId != ''">
+                <![CDATA[
+                AND photo_id = #{photoId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.admin.shopping.po.GoodsPhotoPo">
+        <![CDATA[
+            delete from shopping_goods_photo
+        ]]>
+        <where>
+            <if test="goodsId != null and goodsId != ''">
+                <![CDATA[
+                AND goods_id = #{goodsId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="photoId != null and photoId != ''">
+                <![CDATA[
+                AND photo_id = #{photoId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.admin.shopping.po.GoodsPhotoPo">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />,
+        concat((select sc.imageWebServer from shopping_sysconfig sc),t.photo_id)photo_url
+        <![CDATA[
+            from shopping_goods_photo t
+        ]]>
+        <where>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />,
+        concat((select sc.imageWebServer from shopping_sysconfig sc),t.photo_id)photo_url
+        <![CDATA[
+            from shopping_goods_photo t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="selectGoodsPhotos" resultMap="BaseResultMap" >
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />,
+        concat((select sc.imageWebServer from shopping_sysconfig sc),t.photo_id)photo_url
+        <![CDATA[
+            from shopping_goods_photo t
+        ]]>
+        <where>
+            goods_id = #{goodsId ,jdbcType=VARCHAR}
+        </where>
+    </select>
+
+    <insert id="batchInsertGoodsPhotos" parameterType="list">
+        INSERT INTO shopping_goods_photo (goods_id, photo_id)
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.goodsId}, #{item.photoId})
+        </foreach>
+    </insert>
+</mapper>

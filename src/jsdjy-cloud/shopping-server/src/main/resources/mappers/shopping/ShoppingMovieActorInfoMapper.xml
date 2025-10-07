@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.ShoppingMovieActorInfoDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.ShoppingMovieActorInfo">
+        <id column="id" property="id" />
+        <result column="movie_id" property="movieId" />
+        <result column="actor_name" property="actorName" />
+        <result column="role_name" property="roleName" />
+        <result column="photo_id" property="photoId" />
+        <result column="type" property="type" />
+        <result column="sort" property="sort" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, movie_id, actor_name, role_name, photo_id, type, sort
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        movie_id
+          ,
+        actor_name
+          ,
+        role_name
+          ,
+        photo_id
+          ,
+        type
+          ,
+        sort
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="movieId != null and movieId != ''">
+            <![CDATA[
+                AND movie_id = #{movieId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="actorName != null and actorName != ''">
+            <![CDATA[
+                AND actor_name = #{actorName ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="roleName != null and roleName != ''">
+            <![CDATA[
+                AND role_name = #{roleName ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="photoId != null and photoId != ''">
+            <![CDATA[
+                AND photo_id = #{photoId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="type != null and type != ''">
+            <![CDATA[
+                AND type = #{type ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="sort != null and sort != ''">
+            <![CDATA[
+                AND sort = #{sort ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.ShoppingMovieActorInfo">
+        <![CDATA[
+			insert into shopping_movie_actor_info
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    id,
+                ]]>
+            </if>
+            <if test="movieId != '' and movieId != null" >
+                <![CDATA[
+                    movie_id,
+                ]]>
+            </if>
+            <if test="actorName != '' and actorName != null" >
+                <![CDATA[
+                    actor_name,
+                ]]>
+            </if>
+            <if test="roleName != '' and roleName != null" >
+                <![CDATA[
+                    role_name,
+                ]]>
+            </if>
+            <if test="photoId != '' and photoId != null" >
+                <![CDATA[
+                    photo_id,
+                ]]>
+            </if>
+            <if test="type != '' and type != null" >
+                <![CDATA[
+                    type,
+                ]]>
+            </if>
+            <if test="sort != '' and sort != null" >
+                <![CDATA[
+                    sort,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="movieId != '' and movieId != null" >
+                <![CDATA[
+                    #{movieId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="actorName != '' and actorName != null" >
+                <![CDATA[
+                    #{actorName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="roleName != '' and roleName != null" >
+                <![CDATA[
+                    #{roleName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="photoId != '' and photoId != null" >
+                <![CDATA[
+                    #{photoId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="type != '' and type != null" >
+                <![CDATA[
+                    #{type,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="sort != '' and sort != null" >
+                <![CDATA[
+                    #{sort,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.ShoppingMovieActorInfo" >
+        <![CDATA[
+        	update shopping_movie_actor_info
+        ]]>
+        <set >
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="movieId != '' and movieId != null" >
+                <![CDATA[
+                    movie_id = #{movieId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="actorName != '' and actorName != null" >
+                <![CDATA[
+                    actor_name = #{actorName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="roleName != '' and roleName != null" >
+                <![CDATA[
+                    role_name = #{roleName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="photoId != '' and photoId != null" >
+                <![CDATA[
+                    photo_id = #{photoId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="type != '' and type != null" >
+                <![CDATA[
+                    type = #{type,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="sort != '' and sort != null" >
+                <![CDATA[
+                    sort = #{sort,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.ShoppingMovieActorInfo">
+        <![CDATA[
+            delete from shopping_movie_actor_info
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+    <!-- 删除 -->
+    <delete id="deleteByMovieId"  parameterType="com.centit.shopping.po.ShoppingMovieActorInfo">
+        <![CDATA[
+            delete from shopping_movie_actor_info
+        ]]>
+        <where>
+            <![CDATA[
+                and movie_id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.ShoppingMovieActorInfo">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_movie_actor_info t
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_movie_actor_info t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+</mapper>

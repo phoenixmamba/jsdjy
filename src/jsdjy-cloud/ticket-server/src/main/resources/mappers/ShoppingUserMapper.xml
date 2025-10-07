@@ -1,0 +1,2007 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.ticket.dao.ShoppingUserDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.ticket.po.ShoppingUser">
+        <id column="id" property="id" />
+        <result column="mzuserid" property="mzuserid" />
+        <result column="addTime" property="addTime" />
+        <result column="deleteStatus" property="deleteStatus" />
+        <result column="MSN" property="msn" />
+        <result column="QQ" property="qq" />
+        <result column="WW" property="ww" />
+        <result column="address" property="address" />
+        <result column="availableBalance" property="availableBalance" />
+        <result column="place" property="place" />
+        <result column="inviter_id" property="inviterId" />
+        <result column="birthday" property="birthday" />
+        <result column="email" property="email" />
+        <result column="freezeBlance" property="freezeBlance" />
+        <result column="gold" property="gold" />
+        <result column="lastLoginDate" property="lastLoginDate" />
+        <result column="integral" property="integral" />
+        <result column="lastLoginIp" property="lastLoginIp" />
+        <result column="loginCount" property="loginCount" />
+        <result column="loginDate" property="loginDate" />
+        <result column="loginIp" property="loginIp" />
+        <result column="mobile" property="mobile" />
+        <result column="password" property="password" />
+        <result column="report" property="report" />
+        <result column="sex" property="sex" />
+        <result column="status" property="status" />
+        <result column="telephone" property="telephone" />
+        <result column="trueName" property="trueName" />
+        <result column="userName" property="userName" />
+        <result column="userRole" property="userRole" />
+        <result column="user_credit" property="userCredit" />
+        <result column="photo_id" property="photoId" />
+        <result column="store_id" property="storeId" />
+        <result column="qq_openid" property="qqOpenid" />
+        <result column="sina_openid" property="sinaOpenid" />
+        <result column="store_quick_menu" property="storeQuickMenu" />
+        <result column="parent_id" property="parentId" />
+        <result column="years" property="years" />
+        <result column="area_id" property="areaId" />
+        <result column="buy_total" property="buyTotal" />
+        <result column="buy_return" property="buyReturn" />
+        <result column="level" property="level" />
+        <result column="commission" property="commission" />
+        <result column="redbags" property="redbags" />
+        <result column="commission_total" property="commissionTotal" />
+        <result column="dgold" property="dgold" />
+        <result column="wxopenid" property="wxopenid" />
+        <result column="wxewm_id" property="wxewmId" />
+        <result column="agency" property="agency" />
+        <result column="payment_for_goods" property="paymentForGoods" />
+        <result column="membership_days" property="membershipDays" />
+        <result column="card" property="card" />
+        <result column="miniopenid" property="miniopenid" />
+        <result column="customer_name" property="customerName" />
+        <result column="partStoreId" property="partStoreId" />
+        <result column="nick_name" property="nickName" />
+        <result column="version" property="version" />
+        <result column="alipay" property="alipay" />
+        <result column="alipayName" property="alipayName" />
+        <result column="bankCard" property="bankCard" />
+        <result column="bankName" property="bankName" />
+        <result column="bankUser" property="bankUser" />
+        <result column="floor" property="floor" />
+        <result column="integralMonth" property="integralMonth" />
+        <result column="integral_month_old" property="integralMonthOld" />
+        <result column="my_inviter_size" property="myInviterSize" />
+        <result column="myteam" property="myteam" />
+        <result column="pay_pwd" property="payPwd" />
+        <result column="storeDgold" property="storeDgold" />
+        <result column="userRank_id" property="userrankId" />
+        <result column="agencyarea_id" property="agencyareaId" />
+        <result column="regional" property="regional" />
+        <result column="purchasing" property="purchasing" />
+        <result column="corporate" property="corporate" />
+        <result column="session_key" property="sessionKey" />
+        <result column="bank_address" property="bankAddress" />
+        <result column="IDCard" property="IDCard" />
+        <result column="member_time" property="memberTime" />
+        <result column="member_type" property="memberType" />
+        <result column="is_new" property="isNew" />
+        <result column="giftCurrency" property="giftCurrency" />
+        <result column="anchor" property="anchor" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, mzuserid,addTime, deleteStatus, MSN, QQ, WW, address, availableBalance, place, inviter_id, birthday, email, freezeBlance, gold, lastLoginDate, integral, lastLoginIp, loginCount, loginDate, loginIp, mobile, password, report, sex, status, telephone, trueName, userName, userRole, user_credit, photo_id, store_id, qq_openid, sina_openid, store_quick_menu, parent_id, years, area_id, buy_total, buy_return, level, commission, redbags, commission_total, dgold, wxopenid, wxewm_id, agency, payment_for_goods, membership_days, card, miniopenid, customer_name, partStoreId, nick_name, version, alipay, alipayName, bankCard, bankName, bankUser, floor, integralMonth, integral_month_old, my_inviter_size, myteam, pay_pwd, storeDgold, userRank_id, agencyarea_id, regional, purchasing, corporate, session_key, bank_address, IDCard, member_time, member_type, is_new, giftCurrency, anchor
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        mzuserid
+          ,
+        addTime
+          ,
+        deleteStatus
+          ,
+        MSN
+          ,
+        QQ
+          ,
+        WW
+          ,
+        address
+          ,
+        availableBalance
+          ,
+        place
+          ,
+        inviter_id
+          ,
+        birthday
+          ,
+        email
+          ,
+        freezeBlance
+          ,
+        gold
+          ,
+        lastLoginDate
+          ,
+        integral
+          ,
+        lastLoginIp
+          ,
+        loginCount
+          ,
+        loginDate
+          ,
+        loginIp
+          ,
+        mobile
+          ,
+        password
+          ,
+        report
+          ,
+        sex
+          ,
+        status
+          ,
+        telephone
+          ,
+        trueName
+          ,
+        userName
+          ,
+        userRole
+          ,
+        user_credit
+          ,
+        photo_id
+          ,
+        store_id
+          ,
+        qq_openid
+          ,
+        sina_openid
+          ,
+        store_quick_menu
+          ,
+        parent_id
+          ,
+        years
+          ,
+        area_id
+          ,
+        buy_total
+          ,
+        buy_return
+          ,
+        level
+          ,
+        commission
+          ,
+        redbags
+          ,
+        commission_total
+          ,
+        dgold
+          ,
+        wxopenid
+          ,
+        wxewm_id
+          ,
+        agency
+          ,
+        payment_for_goods
+          ,
+        membership_days
+          ,
+        card
+          ,
+        miniopenid
+          ,
+        customer_name
+          ,
+        partStoreId
+          ,
+        nick_name
+          ,
+        version
+          ,
+        alipay
+          ,
+        alipayName
+          ,
+        bankCard
+          ,
+        bankName
+          ,
+        bankUser
+          ,
+        floor
+          ,
+        integralMonth
+          ,
+        integral_month_old
+          ,
+        my_inviter_size
+          ,
+        myteam
+          ,
+        pay_pwd
+          ,
+        storeDgold
+          ,
+        userRank_id
+          ,
+        agencyarea_id
+          ,
+        regional
+          ,
+        purchasing
+          ,
+        corporate
+          ,
+        session_key
+          ,
+        bank_address
+          ,
+        IDCard
+          ,
+        member_time
+          ,
+        member_type
+          ,
+        is_new
+          ,
+        giftCurrency
+          ,
+        anchor
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="mzuserid != null and mzuserid != ''">
+            <![CDATA[
+                AND mzuserid = #{mzuserid ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="addTime != null and addTime != ''">
+            <![CDATA[
+                AND addTime = #{addTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="deleteStatus != null and deleteStatus != ''">
+            <![CDATA[
+                AND deleteStatus = #{deleteStatus ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="msn != null and msn != ''">
+            <![CDATA[
+                AND MSN = #{msn ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="qq != null and qq != ''">
+            <![CDATA[
+                AND QQ = #{qq ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="ww != null and ww != ''">
+            <![CDATA[
+                AND WW = #{ww ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="address != null and address != ''">
+            <![CDATA[
+                AND address = #{address ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="availableBalance != null and availableBalance != ''">
+            <![CDATA[
+                AND availableBalance = #{availableBalance ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="place != null and place != ''">
+            <![CDATA[
+                AND place = #{place ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="inviterId != null and inviterId != ''">
+            <![CDATA[
+                AND inviter_id = #{inviterId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="birthday != null and birthday != ''">
+            <![CDATA[
+                AND birthday = #{birthday ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="email != null and email != ''">
+            <![CDATA[
+                AND email = #{email ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="freezeBlance != null and freezeBlance != ''">
+            <![CDATA[
+                AND freezeBlance = #{freezeBlance ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="gold != null and gold != ''">
+            <![CDATA[
+                AND gold = #{gold ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="lastLoginDate != null and lastLoginDate != ''">
+            <![CDATA[
+                AND lastLoginDate = #{lastLoginDate ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="integral != null and integral != ''">
+            <![CDATA[
+                AND integral = #{integral ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="lastLoginIp != null and lastLoginIp != ''">
+            <![CDATA[
+                AND lastLoginIp = #{lastLoginIp ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="loginCount != null and loginCount != ''">
+            <![CDATA[
+                AND loginCount = #{loginCount ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="loginDate != null and loginDate != ''">
+            <![CDATA[
+                AND loginDate = #{loginDate ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="loginIp != null and loginIp != ''">
+            <![CDATA[
+                AND loginIp = #{loginIp ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="mobile != null and mobile != ''">
+            <![CDATA[
+                AND mobile = #{mobile ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="password != null and password != ''">
+            <![CDATA[
+                AND password = #{password ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="report != null and report != ''">
+            <![CDATA[
+                AND report = #{report ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="sex != null and sex != ''">
+            <![CDATA[
+                AND sex = #{sex ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="status != null and status != ''">
+            <![CDATA[
+                AND status = #{status ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="telephone != null and telephone != ''">
+            <![CDATA[
+                AND telephone = #{telephone ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="trueName != null and trueName != ''">
+            <![CDATA[
+                AND trueName = #{trueName ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="userName != null and userName != ''">
+            <![CDATA[
+                AND userName = #{userName ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="userRole != null and userRole != ''">
+            <![CDATA[
+                AND userRole = #{userRole ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="userCredit != null and userCredit != ''">
+            <![CDATA[
+                AND user_credit = #{userCredit ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="photoId != null and photoId != ''">
+            <![CDATA[
+                AND photo_id = #{photoId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="storeId != null and storeId != ''">
+            <![CDATA[
+                AND store_id = #{storeId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="qqOpenid != null and qqOpenid != ''">
+            <![CDATA[
+                AND qq_openid = #{qqOpenid ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="sinaOpenid != null and sinaOpenid != ''">
+            <![CDATA[
+                AND sina_openid = #{sinaOpenid ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="storeQuickMenu != null and storeQuickMenu != ''">
+            <![CDATA[
+                AND store_quick_menu = #{storeQuickMenu ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="parentId != null and parentId != ''">
+            <![CDATA[
+                AND parent_id = #{parentId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="years != null and years != ''">
+            <![CDATA[
+                AND years = #{years ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="areaId != null and areaId != ''">
+            <![CDATA[
+                AND area_id = #{areaId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="buyTotal != null and buyTotal != ''">
+            <![CDATA[
+                AND buy_total = #{buyTotal ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="buyReturn != null and buyReturn != ''">
+            <![CDATA[
+                AND buy_return = #{buyReturn ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="level != null and level != ''">
+            <![CDATA[
+                AND level = #{level ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="commission != null and commission != ''">
+            <![CDATA[
+                AND commission = #{commission ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="redbags != null and redbags != ''">
+            <![CDATA[
+                AND redbags = #{redbags ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="commissionTotal != null and commissionTotal != ''">
+            <![CDATA[
+                AND commission_total = #{commissionTotal ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="dgold != null and dgold != ''">
+            <![CDATA[
+                AND dgold = #{dgold ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="wxopenid != null and wxopenid != ''">
+            <![CDATA[
+                AND wxopenid = #{wxopenid ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="wxewmId != null and wxewmId != ''">
+            <![CDATA[
+                AND wxewm_id = #{wxewmId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="agency != null and agency != ''">
+            <![CDATA[
+                AND agency = #{agency ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="paymentForGoods != null and paymentForGoods != ''">
+            <![CDATA[
+                AND payment_for_goods = #{paymentForGoods ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="membershipDays != null and membershipDays != ''">
+            <![CDATA[
+                AND membership_days = #{membershipDays ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="card != null and card != ''">
+            <![CDATA[
+                AND card = #{card ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="miniopenid != null and miniopenid != ''">
+            <![CDATA[
+                AND miniopenid = #{miniopenid ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="customerName != null and customerName != ''">
+            <![CDATA[
+                AND customer_name = #{customerName ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="partStoreId != null and partStoreId != ''">
+            <![CDATA[
+                AND partStoreId = #{partStoreId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="nickName != null and nickName != ''">
+            <![CDATA[
+                AND nick_name = #{nickName ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="version != null and version != ''">
+            <![CDATA[
+                AND version = #{version ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="alipay != null and alipay != ''">
+            <![CDATA[
+                AND alipay = #{alipay ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="alipayName != null and alipayName != ''">
+            <![CDATA[
+                AND alipayName = #{alipayName ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="bankCard != null and bankCard != ''">
+            <![CDATA[
+                AND bankCard = #{bankCard ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="bankName != null and bankName != ''">
+            <![CDATA[
+                AND bankName = #{bankName ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="bankUser != null and bankUser != ''">
+            <![CDATA[
+                AND bankUser = #{bankUser ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="floor != null and floor != ''">
+            <![CDATA[
+                AND floor = #{floor ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="integralMonth != null and integralMonth != ''">
+            <![CDATA[
+                AND integralMonth = #{integralMonth ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="integralMonthOld != null and integralMonthOld != ''">
+            <![CDATA[
+                AND integral_month_old = #{integralMonthOld ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="myInviterSize != null and myInviterSize != ''">
+            <![CDATA[
+                AND my_inviter_size = #{myInviterSize ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="myteam != null and myteam != ''">
+            <![CDATA[
+                AND myteam = #{myteam ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="payPwd != null and payPwd != ''">
+            <![CDATA[
+                AND pay_pwd = #{payPwd ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="storeDgold != null and storeDgold != ''">
+            <![CDATA[
+                AND storeDgold = #{storeDgold ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="userrankId != null and userrankId != ''">
+            <![CDATA[
+                AND userRank_id = #{userrankId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="agencyareaId != null and agencyareaId != ''">
+            <![CDATA[
+                AND agencyarea_id = #{agencyareaId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="regional != null and regional != ''">
+            <![CDATA[
+                AND regional = #{regional ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="purchasing != null and purchasing != ''">
+            <![CDATA[
+                AND purchasing = #{purchasing ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="corporate != null and corporate != ''">
+            <![CDATA[
+                AND corporate = #{corporate ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="sessionKey != null and sessionKey != ''">
+            <![CDATA[
+                AND session_key = #{sessionKey ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="bankAddress != null and bankAddress != ''">
+            <![CDATA[
+                AND bank_address = #{bankAddress ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="IDCard != null and IDCard != ''">
+            <![CDATA[
+                AND IDCard = #{IDCard ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="memberTime != null and memberTime != ''">
+            <![CDATA[
+                AND member_time = #{memberTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="memberType != null and memberType != ''">
+            <![CDATA[
+                AND member_type = #{memberType ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="isNew != null and isNew != ''">
+            <![CDATA[
+                AND is_new = #{isNew ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="giftCurrency != null and giftCurrency != ''">
+            <![CDATA[
+                AND giftCurrency = #{giftCurrency ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="anchor != null and anchor != ''">
+            <![CDATA[
+                AND anchor = #{anchor ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.ticket.po.ShoppingUser">
+        <![CDATA[
+			insert into shopping_user
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    id,
+                ]]>
+            </if>
+            <if test="mzuserid != '' and mzuserid != null" >
+                <![CDATA[
+                    mzuserid,
+                ]]>
+            </if>
+            <if test="addTime != '' and addTime != null" >
+                <![CDATA[
+                    addTime,
+                ]]>
+            </if>
+            <if test="deleteStatus != '' and deleteStatus != null" >
+                <![CDATA[
+                    deleteStatus,
+                ]]>
+            </if>
+            <if test="msn != '' and msn != null" >
+                <![CDATA[
+                    MSN,
+                ]]>
+            </if>
+            <if test="qq != '' and qq != null" >
+                <![CDATA[
+                    QQ,
+                ]]>
+            </if>
+            <if test="ww != '' and ww != null" >
+                <![CDATA[
+                    WW,
+                ]]>
+            </if>
+            <if test="address != '' and address != null" >
+                <![CDATA[
+                    address,
+                ]]>
+            </if>
+            <if test="availableBalance != '' and availableBalance != null" >
+                <![CDATA[
+                    availableBalance,
+                ]]>
+            </if>
+            <if test="place != '' and place != null" >
+                <![CDATA[
+                    place,
+                ]]>
+            </if>
+            <if test="inviterId != '' and inviterId != null" >
+                <![CDATA[
+                    inviter_id,
+                ]]>
+            </if>
+            <if test="birthday != '' and birthday != null" >
+                <![CDATA[
+                    birthday,
+                ]]>
+            </if>
+            <if test="email != '' and email != null" >
+                <![CDATA[
+                    email,
+                ]]>
+            </if>
+            <if test="freezeBlance != '' and freezeBlance != null" >
+                <![CDATA[
+                    freezeBlance,
+                ]]>
+            </if>
+            <if test="gold != '' and gold != null" >
+                <![CDATA[
+                    gold,
+                ]]>
+            </if>
+            <if test="lastLoginDate != '' and lastLoginDate != null" >
+                <![CDATA[
+                    lastLoginDate,
+                ]]>
+            </if>
+            <if test="integral != '' and integral != null" >
+                <![CDATA[
+                    integral,
+                ]]>
+            </if>
+            <if test="lastLoginIp != '' and lastLoginIp != null" >
+                <![CDATA[
+                    lastLoginIp,
+                ]]>
+            </if>
+            <if test="loginCount != '' and loginCount != null" >
+                <![CDATA[
+                    loginCount,
+                ]]>
+            </if>
+            <if test="loginDate != '' and loginDate != null" >
+                <![CDATA[
+                    loginDate,
+                ]]>
+            </if>
+            <if test="loginIp != '' and loginIp != null" >
+                <![CDATA[
+                    loginIp,
+                ]]>
+            </if>
+            <if test="mobile != '' and mobile != null" >
+                <![CDATA[
+                    mobile,
+                ]]>
+            </if>
+            <if test="password != '' and password != null" >
+                <![CDATA[
+                    password,
+                ]]>
+            </if>
+            <if test="report != '' and report != null" >
+                <![CDATA[
+                    report,
+                ]]>
+            </if>
+            <if test="sex != '' and sex != null" >
+                <![CDATA[
+                    sex,
+                ]]>
+            </if>
+            <if test="status != '' and status != null" >
+                <![CDATA[
+                    status,
+                ]]>
+            </if>
+            <if test="telephone != '' and telephone != null" >
+                <![CDATA[
+                    telephone,
+                ]]>
+            </if>
+            <if test="trueName != '' and trueName != null" >
+                <![CDATA[
+                    trueName,
+                ]]>
+            </if>
+            <if test="userName != '' and userName != null" >
+                <![CDATA[
+                    userName,
+                ]]>
+            </if>
+            <if test="userRole != '' and userRole != null" >
+                <![CDATA[
+                    userRole,
+                ]]>
+            </if>
+            <if test="userCredit != '' and userCredit != null" >
+                <![CDATA[
+                    user_credit,
+                ]]>
+            </if>
+            <if test="photoId != '' and photoId != null" >
+                <![CDATA[
+                    photo_id,
+                ]]>
+            </if>
+            <if test="storeId != '' and storeId != null" >
+                <![CDATA[
+                    store_id,
+                ]]>
+            </if>
+            <if test="qqOpenid != '' and qqOpenid != null" >
+                <![CDATA[
+                    qq_openid,
+                ]]>
+            </if>
+            <if test="sinaOpenid != '' and sinaOpenid != null" >
+                <![CDATA[
+                    sina_openid,
+                ]]>
+            </if>
+            <if test="storeQuickMenu != '' and storeQuickMenu != null" >
+                <![CDATA[
+                    store_quick_menu,
+                ]]>
+            </if>
+            <if test="parentId != '' and parentId != null" >
+                <![CDATA[
+                    parent_id,
+                ]]>
+            </if>
+            <if test="years != '' and years != null" >
+                <![CDATA[
+                    years,
+                ]]>
+            </if>
+            <if test="areaId != '' and areaId != null" >
+                <![CDATA[
+                    area_id,
+                ]]>
+            </if>
+            <if test="buyTotal != '' and buyTotal != null" >
+                <![CDATA[
+                    buy_total,
+                ]]>
+            </if>
+            <if test="buyReturn != '' and buyReturn != null" >
+                <![CDATA[
+                    buy_return,
+                ]]>
+            </if>
+            <if test="level != '' and level != null" >
+                <![CDATA[
+                    level,
+                ]]>
+            </if>
+            <if test="commission != '' and commission != null" >
+                <![CDATA[
+                    commission,
+                ]]>
+            </if>
+            <if test="redbags != '' and redbags != null" >
+                <![CDATA[
+                    redbags,
+                ]]>
+            </if>
+            <if test="commissionTotal != '' and commissionTotal != null" >
+                <![CDATA[
+                    commission_total,
+                ]]>
+            </if>
+            <if test="dgold != '' and dgold != null" >
+                <![CDATA[
+                    dgold,
+                ]]>
+            </if>
+            <if test="wxopenid != '' and wxopenid != null" >
+                <![CDATA[
+                    wxopenid,
+                ]]>
+            </if>
+            <if test="wxewmId != '' and wxewmId != null" >
+                <![CDATA[
+                    wxewm_id,
+                ]]>
+            </if>
+            <if test="agency != '' and agency != null" >
+                <![CDATA[
+                    agency,
+                ]]>
+            </if>
+            <if test="paymentForGoods != '' and paymentForGoods != null" >
+                <![CDATA[
+                    payment_for_goods,
+                ]]>
+            </if>
+            <if test="membershipDays != '' and membershipDays != null" >
+                <![CDATA[
+                    membership_days,
+                ]]>
+            </if>
+            <if test="card != '' and card != null" >
+                <![CDATA[
+                    card,
+                ]]>
+            </if>
+            <if test="miniopenid != '' and miniopenid != null" >
+                <![CDATA[
+                    miniopenid,
+                ]]>
+            </if>
+            <if test="customerName != '' and customerName != null" >
+                <![CDATA[
+                    customer_name,
+                ]]>
+            </if>
+            <if test="partStoreId != '' and partStoreId != null" >
+                <![CDATA[
+                    partStoreId,
+                ]]>
+            </if>
+            <if test="nickName != '' and nickName != null" >
+                <![CDATA[
+                    nick_name,
+                ]]>
+            </if>
+            <if test="version != '' and version != null" >
+                <![CDATA[
+                    version,
+                ]]>
+            </if>
+            <if test="alipay != '' and alipay != null" >
+                <![CDATA[
+                    alipay,
+                ]]>
+            </if>
+            <if test="alipayName != '' and alipayName != null" >
+                <![CDATA[
+                    alipayName,
+                ]]>
+            </if>
+            <if test="bankCard != '' and bankCard != null" >
+                <![CDATA[
+                    bankCard,
+                ]]>
+            </if>
+            <if test="bankName != '' and bankName != null" >
+                <![CDATA[
+                    bankName,
+                ]]>
+            </if>
+            <if test="bankUser != '' and bankUser != null" >
+                <![CDATA[
+                    bankUser,
+                ]]>
+            </if>
+            <if test="floor != '' and floor != null" >
+                <![CDATA[
+                    floor,
+                ]]>
+            </if>
+            <if test="integralMonth != '' and integralMonth != null" >
+                <![CDATA[
+                    integralMonth,
+                ]]>
+            </if>
+            <if test="integralMonthOld != '' and integralMonthOld != null" >
+                <![CDATA[
+                    integral_month_old,
+                ]]>
+            </if>
+            <if test="myInviterSize != '' and myInviterSize != null" >
+                <![CDATA[
+                    my_inviter_size,
+                ]]>
+            </if>
+            <if test="myteam != '' and myteam != null" >
+                <![CDATA[
+                    myteam,
+                ]]>
+            </if>
+            <if test="payPwd != '' and payPwd != null" >
+                <![CDATA[
+                    pay_pwd,
+                ]]>
+            </if>
+            <if test="storeDgold != '' and storeDgold != null" >
+                <![CDATA[
+                    storeDgold,
+                ]]>
+            </if>
+            <if test="userrankId != '' and userrankId != null" >
+                <![CDATA[
+                    userRank_id,
+                ]]>
+            </if>
+            <if test="agencyareaId != '' and agencyareaId != null" >
+                <![CDATA[
+                    agencyarea_id,
+                ]]>
+            </if>
+            <if test="regional != '' and regional != null" >
+                <![CDATA[
+                    regional,
+                ]]>
+            </if>
+            <if test="purchasing != '' and purchasing != null" >
+                <![CDATA[
+                    purchasing,
+                ]]>
+            </if>
+            <if test="corporate != '' and corporate != null" >
+                <![CDATA[
+                    corporate,
+                ]]>
+            </if>
+            <if test="sessionKey != '' and sessionKey != null" >
+                <![CDATA[
+                    session_key,
+                ]]>
+            </if>
+            <if test="bankAddress != '' and bankAddress != null" >
+                <![CDATA[
+                    bank_address,
+                ]]>
+            </if>
+            <if test="IDCard != '' and IDCard != null" >
+                <![CDATA[
+                    IDCard,
+                ]]>
+            </if>
+            <if test="memberTime != '' and memberTime != null" >
+                <![CDATA[
+                    member_time,
+                ]]>
+            </if>
+            <if test="memberType != '' and memberType != null" >
+                <![CDATA[
+                    member_type,
+                ]]>
+            </if>
+            <if test="isNew != '' and isNew != null" >
+                <![CDATA[
+                    is_new,
+                ]]>
+            </if>
+            <if test="giftCurrency != '' and giftCurrency != null" >
+                <![CDATA[
+                    giftCurrency,
+                ]]>
+            </if>
+            <if test="anchor != '' and anchor != null" >
+                <![CDATA[
+                    anchor,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="mzuserid != '' and mzuserid != null" >
+                <![CDATA[
+                    #{mzuserid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="addTime != '' and addTime != null" >
+                <![CDATA[
+                    #{addTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="deleteStatus != '' and deleteStatus != null" >
+                <![CDATA[
+                    #{deleteStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="msn != '' and msn != null" >
+                <![CDATA[
+                    #{msn,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="qq != '' and qq != null" >
+                <![CDATA[
+                    #{qq,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="ww != '' and ww != null" >
+                <![CDATA[
+                    #{ww,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="address != '' and address != null" >
+                <![CDATA[
+                    #{address,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="availableBalance != '' and availableBalance != null" >
+                <![CDATA[
+                    #{availableBalance,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="place != '' and place != null" >
+                <![CDATA[
+                    #{place,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="inviterId != '' and inviterId != null" >
+                <![CDATA[
+                    #{inviterId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="birthday != '' and birthday != null" >
+                <![CDATA[
+                    #{birthday,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="email != '' and email != null" >
+                <![CDATA[
+                    #{email,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="freezeBlance != '' and freezeBlance != null" >
+                <![CDATA[
+                    #{freezeBlance,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="gold != '' and gold != null" >
+                <![CDATA[
+                    #{gold,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="lastLoginDate != '' and lastLoginDate != null" >
+                <![CDATA[
+                    #{lastLoginDate,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="integral != '' and integral != null" >
+                <![CDATA[
+                    #{integral,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="lastLoginIp != '' and lastLoginIp != null" >
+                <![CDATA[
+                    #{lastLoginIp,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="loginCount != '' and loginCount != null" >
+                <![CDATA[
+                    #{loginCount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="loginDate != '' and loginDate != null" >
+                <![CDATA[
+                    #{loginDate,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="loginIp != '' and loginIp != null" >
+                <![CDATA[
+                    #{loginIp,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="mobile != '' and mobile != null" >
+                <![CDATA[
+                    #{mobile,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="password != '' and password != null" >
+                <![CDATA[
+                    #{password,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="report != '' and report != null" >
+                <![CDATA[
+                    #{report,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="sex != '' and sex != null" >
+                <![CDATA[
+                    #{sex,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="status != '' and status != null" >
+                <![CDATA[
+                    #{status,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="telephone != '' and telephone != null" >
+                <![CDATA[
+                    #{telephone,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="trueName != '' and trueName != null" >
+                <![CDATA[
+                    #{trueName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userName != '' and userName != null" >
+                <![CDATA[
+                    #{userName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userRole != '' and userRole != null" >
+                <![CDATA[
+                    #{userRole,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userCredit != '' and userCredit != null" >
+                <![CDATA[
+                    #{userCredit,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="photoId != '' and photoId != null" >
+                <![CDATA[
+                    #{photoId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="storeId != '' and storeId != null" >
+                <![CDATA[
+                    #{storeId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="qqOpenid != '' and qqOpenid != null" >
+                <![CDATA[
+                    #{qqOpenid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="sinaOpenid != '' and sinaOpenid != null" >
+                <![CDATA[
+                    #{sinaOpenid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="storeQuickMenu != '' and storeQuickMenu != null" >
+                <![CDATA[
+                    #{storeQuickMenu,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="parentId != '' and parentId != null" >
+                <![CDATA[
+                    #{parentId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="years != '' and years != null" >
+                <![CDATA[
+                    #{years,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="areaId != '' and areaId != null" >
+                <![CDATA[
+                    #{areaId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="buyTotal != '' and buyTotal != null" >
+                <![CDATA[
+                    #{buyTotal,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="buyReturn != '' and buyReturn != null" >
+                <![CDATA[
+                    #{buyReturn,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="level != '' and level != null" >
+                <![CDATA[
+                    #{level,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="commission != '' and commission != null" >
+                <![CDATA[
+                    #{commission,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="redbags != '' and redbags != null" >
+                <![CDATA[
+                    #{redbags,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="commissionTotal != '' and commissionTotal != null" >
+                <![CDATA[
+                    #{commissionTotal,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="dgold != '' and dgold != null" >
+                <![CDATA[
+                    #{dgold,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="wxopenid != '' and wxopenid != null" >
+                <![CDATA[
+                    #{wxopenid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="wxewmId != '' and wxewmId != null" >
+                <![CDATA[
+                    #{wxewmId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="agency != '' and agency != null" >
+                <![CDATA[
+                    #{agency,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="paymentForGoods != '' and paymentForGoods != null" >
+                <![CDATA[
+                    #{paymentForGoods,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="membershipDays != '' and membershipDays != null" >
+                <![CDATA[
+                    #{membershipDays,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="card != '' and card != null" >
+                <![CDATA[
+                    #{card,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="miniopenid != '' and miniopenid != null" >
+                <![CDATA[
+                    #{miniopenid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="customerName != '' and customerName != null" >
+                <![CDATA[
+                    #{customerName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="partStoreId != '' and partStoreId != null" >
+                <![CDATA[
+                    #{partStoreId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="nickName != '' and nickName != null" >
+                <![CDATA[
+                    #{nickName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="version != '' and version != null" >
+                <![CDATA[
+                    #{version,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="alipay != '' and alipay != null" >
+                <![CDATA[
+                    #{alipay,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="alipayName != '' and alipayName != null" >
+                <![CDATA[
+                    #{alipayName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="bankCard != '' and bankCard != null" >
+                <![CDATA[
+                    #{bankCard,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="bankName != '' and bankName != null" >
+                <![CDATA[
+                    #{bankName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="bankUser != '' and bankUser != null" >
+                <![CDATA[
+                    #{bankUser,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="floor != '' and floor != null" >
+                <![CDATA[
+                    #{floor,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="integralMonth != '' and integralMonth != null" >
+                <![CDATA[
+                    #{integralMonth,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="integralMonthOld != '' and integralMonthOld != null" >
+                <![CDATA[
+                    #{integralMonthOld,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="myInviterSize != '' and myInviterSize != null" >
+                <![CDATA[
+                    #{myInviterSize,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="myteam != '' and myteam != null" >
+                <![CDATA[
+                    #{myteam,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="payPwd != '' and payPwd != null" >
+                <![CDATA[
+                    #{payPwd,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="storeDgold != '' and storeDgold != null" >
+                <![CDATA[
+                    #{storeDgold,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userrankId != '' and userrankId != null" >
+                <![CDATA[
+                    #{userrankId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="agencyareaId != '' and agencyareaId != null" >
+                <![CDATA[
+                    #{agencyareaId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="regional != '' and regional != null" >
+                <![CDATA[
+                    #{regional,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="purchasing != '' and purchasing != null" >
+                <![CDATA[
+                    #{purchasing,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="corporate != '' and corporate != null" >
+                <![CDATA[
+                    #{corporate,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="sessionKey != '' and sessionKey != null" >
+                <![CDATA[
+                    #{sessionKey,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="bankAddress != '' and bankAddress != null" >
+                <![CDATA[
+                    #{bankAddress,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="IDCard != '' and IDCard != null" >
+                <![CDATA[
+                    #{IDCard,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="memberTime != '' and memberTime != null" >
+                <![CDATA[
+                    #{memberTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="memberType != '' and memberType != null" >
+                <![CDATA[
+                    #{memberType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isNew != '' and isNew != null" >
+                <![CDATA[
+                    #{isNew,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="giftCurrency != '' and giftCurrency != null" >
+                <![CDATA[
+                    #{giftCurrency,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="anchor != '' and anchor != null" >
+                <![CDATA[
+                    #{anchor,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.ticket.po.ShoppingUser" >
+        <![CDATA[
+        	update shopping_user
+        ]]>
+        <set >
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="mzuserid != '' and mzuserid != null" >
+                <![CDATA[
+                    mzuserid = #{mzuserid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="addTime != '' and addTime != null" >
+                <![CDATA[
+                    addTime = #{addTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="deleteStatus != '' and deleteStatus != null" >
+                <![CDATA[
+                    deleteStatus = #{deleteStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="msn != '' and msn != null" >
+                <![CDATA[
+                    MSN = #{msn,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="qq != '' and qq != null" >
+                <![CDATA[
+                    QQ = #{qq,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="ww != '' and ww != null" >
+                <![CDATA[
+                    WW = #{ww,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="address != '' and address != null" >
+                <![CDATA[
+                    address = #{address,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="availableBalance != '' and availableBalance != null" >
+                <![CDATA[
+                    availableBalance = #{availableBalance,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="place != '' and place != null" >
+                <![CDATA[
+                    place = #{place,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="inviterId != '' and inviterId != null" >
+                <![CDATA[
+                    inviter_id = #{inviterId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="birthday != '' and birthday != null" >
+                <![CDATA[
+                    birthday = #{birthday,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="email != '' and email != null" >
+                <![CDATA[
+                    email = #{email,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="freezeBlance != '' and freezeBlance != null" >
+                <![CDATA[
+                    freezeBlance = #{freezeBlance,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="gold != '' and gold != null" >
+                <![CDATA[
+                    gold = #{gold,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="lastLoginDate != '' and lastLoginDate != null" >
+                <![CDATA[
+                    lastLoginDate = #{lastLoginDate,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="integral != '' and integral != null" >
+                <![CDATA[
+                    integral = #{integral,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="lastLoginIp != '' and lastLoginIp != null" >
+                <![CDATA[
+                    lastLoginIp = #{lastLoginIp,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="loginCount != '' and loginCount != null" >
+                <![CDATA[
+                    loginCount = #{loginCount,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="loginDate != '' and loginDate != null" >
+                <![CDATA[
+                    loginDate = #{loginDate,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="loginIp != '' and loginIp != null" >
+                <![CDATA[
+                    loginIp = #{loginIp,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="mobile != '' and mobile != null" >
+                <![CDATA[
+                    mobile = #{mobile,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="password != '' and password != null" >
+                <![CDATA[
+                    password = #{password,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="report != '' and report != null" >
+                <![CDATA[
+                    report = #{report,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="sex != '' and sex != null" >
+                <![CDATA[
+                    sex = #{sex,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="status != '' and status != null" >
+                <![CDATA[
+                    status = #{status,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="telephone != '' and telephone != null" >
+                <![CDATA[
+                    telephone = #{telephone,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="trueName != '' and trueName != null" >
+                <![CDATA[
+                    trueName = #{trueName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userName != '' and userName != null" >
+                <![CDATA[
+                    userName = #{userName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userRole != '' and userRole != null" >
+                <![CDATA[
+                    userRole = #{userRole,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userCredit != '' and userCredit != null" >
+                <![CDATA[
+                    user_credit = #{userCredit,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="photoId != '' and photoId != null" >
+                <![CDATA[
+                    photo_id = #{photoId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="storeId != '' and storeId != null" >
+                <![CDATA[
+                    store_id = #{storeId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="qqOpenid != '' and qqOpenid != null" >
+                <![CDATA[
+                    qq_openid = #{qqOpenid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="sinaOpenid != '' and sinaOpenid != null" >
+                <![CDATA[
+                    sina_openid = #{sinaOpenid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="storeQuickMenu != '' and storeQuickMenu != null" >
+                <![CDATA[
+                    store_quick_menu = #{storeQuickMenu,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="parentId != '' and parentId != null" >
+                <![CDATA[
+                    parent_id = #{parentId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="years != '' and years != null" >
+                <![CDATA[
+                    years = #{years,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="areaId != '' and areaId != null" >
+                <![CDATA[
+                    area_id = #{areaId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="buyTotal != '' and buyTotal != null" >
+                <![CDATA[
+                    buy_total = #{buyTotal,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="buyReturn != '' and buyReturn != null" >
+                <![CDATA[
+                    buy_return = #{buyReturn,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="level != '' and level != null" >
+                <![CDATA[
+                    level = #{level,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="commission != '' and commission != null" >
+                <![CDATA[
+                    commission = #{commission,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="redbags != '' and redbags != null" >
+                <![CDATA[
+                    redbags = #{redbags,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="commissionTotal != '' and commissionTotal != null" >
+                <![CDATA[
+                    commission_total = #{commissionTotal,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="dgold != '' and dgold != null" >
+                <![CDATA[
+                    dgold = #{dgold,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="wxopenid != '' and wxopenid != null" >
+                <![CDATA[
+                    wxopenid = #{wxopenid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="wxewmId != '' and wxewmId != null" >
+                <![CDATA[
+                    wxewm_id = #{wxewmId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="agency != '' and agency != null" >
+                <![CDATA[
+                    agency = #{agency,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="paymentForGoods != '' and paymentForGoods != null" >
+                <![CDATA[
+                    payment_for_goods = #{paymentForGoods,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="membershipDays != '' and membershipDays != null" >
+                <![CDATA[
+                    membership_days = #{membershipDays,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="card != '' and card != null" >
+                <![CDATA[
+                    card = #{card,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="miniopenid != '' and miniopenid != null" >
+                <![CDATA[
+                    miniopenid = #{miniopenid,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="customerName != '' and customerName != null" >
+                <![CDATA[
+                    customer_name = #{customerName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="partStoreId != '' and partStoreId != null" >
+                <![CDATA[
+                    partStoreId = #{partStoreId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="nickName != '' and nickName != null" >
+                <![CDATA[
+                    nick_name = #{nickName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="version != '' and version != null" >
+                <![CDATA[
+                    version = #{version,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="alipay != '' and alipay != null" >
+                <![CDATA[
+                    alipay = #{alipay,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="alipayName != '' and alipayName != null" >
+                <![CDATA[
+                    alipayName = #{alipayName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="bankCard != '' and bankCard != null" >
+                <![CDATA[
+                    bankCard = #{bankCard,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="bankName != '' and bankName != null" >
+                <![CDATA[
+                    bankName = #{bankName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="bankUser != '' and bankUser != null" >
+                <![CDATA[
+                    bankUser = #{bankUser,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="floor != '' and floor != null" >
+                <![CDATA[
+                    floor = #{floor,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="integralMonth != '' and integralMonth != null" >
+                <![CDATA[
+                    integralMonth = #{integralMonth,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="integralMonthOld != '' and integralMonthOld != null" >
+                <![CDATA[
+                    integral_month_old = #{integralMonthOld,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="myInviterSize != '' and myInviterSize != null" >
+                <![CDATA[
+                    my_inviter_size = #{myInviterSize,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="myteam != '' and myteam != null" >
+                <![CDATA[
+                    myteam = #{myteam,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="payPwd != '' and payPwd != null" >
+                <![CDATA[
+                    pay_pwd = #{payPwd,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="storeDgold != '' and storeDgold != null" >
+                <![CDATA[
+                    storeDgold = #{storeDgold,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userrankId != '' and userrankId != null" >
+                <![CDATA[
+                    userRank_id = #{userrankId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="agencyareaId != '' and agencyareaId != null" >
+                <![CDATA[
+                    agencyarea_id = #{agencyareaId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="regional != '' and regional != null" >
+                <![CDATA[
+                    regional = #{regional,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="purchasing != '' and purchasing != null" >
+                <![CDATA[
+                    purchasing = #{purchasing,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="corporate != '' and corporate != null" >
+                <![CDATA[
+                    corporate = #{corporate,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="sessionKey != '' and sessionKey != null" >
+                <![CDATA[
+                    session_key = #{sessionKey,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="bankAddress != '' and bankAddress != null" >
+                <![CDATA[
+                    bank_address = #{bankAddress,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="IDCard != '' and IDCard != null" >
+                <![CDATA[
+                    IDCard = #{IDCard,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="memberTime != '' and memberTime != null" >
+                <![CDATA[
+                    member_time = #{memberTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="memberType != '' and memberType != null" >
+                <![CDATA[
+                    member_type = #{memberType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isNew != '' and isNew != null" >
+                <![CDATA[
+                    is_new = #{isNew,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="giftCurrency != '' and giftCurrency != null" >
+                <![CDATA[
+                    giftCurrency = #{giftCurrency,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="anchor != '' and anchor != null" >
+                <![CDATA[
+                    anchor = #{anchor,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.ticket.po.ShoppingUser">
+        <![CDATA[
+            delete from shopping_user
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.ticket.po.ShoppingUser">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_user t
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_user t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryPushUserList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_user t
+        ]]>
+        <where>
+            t.id in (select user_id from shopping_orderform so where so.order_status = 50 and so.id
+            in (select of_id from shopping_goodscart sg where sg.goods_id = #{event_id ,jdbcType=VARCHAR }))
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryProjectUserList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_user t
+        ]]>
+        <where>
+            t.id in (select user_id from shopping_orderform so  where so.id in
+            (select of_id from  shopping_goodscart sg where sg.goods_id = #{goodsId ,jdbcType=VARCHAR } and sg.cart_type = #{cartType ,jdbcType=VARCHAR })
+            )
+        </where>
+    </select>
+</mapper>

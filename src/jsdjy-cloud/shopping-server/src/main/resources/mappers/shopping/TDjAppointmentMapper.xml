@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.TDjAppointmentDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.TDjAppointment">
+        <id column="id" property="id" />
+        <result column="company" property="company" />
+        <result column="contact_man" property="contactMan" />
+        <result column="contact_number" property="contactNumber" />
+        <result column="appointment_time" property="appointmentTime" />
+        <result column="people_number" property="peopleNumber" />
+        <result column="remark" property="remark" />
+        <result column="user_id" property="userId" />
+        <result column="add_time" property="addTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, company, contact_man, contact_number, appointment_time, people_number,remark, user_id, add_time
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        company
+          ,
+        contact_man
+          ,
+        contact_number
+          ,
+        appointment_time
+        ,
+        people_number
+          ,
+        remark
+          ,
+        user_id
+          ,
+        add_time
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="company != null and company != ''">
+            <![CDATA[
+                AND company = #{company ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="contactMan != null and contactMan != ''">
+            <![CDATA[
+                AND contact_man = #{contactMan ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="contactNumber != null and contactNumber != ''">
+            <![CDATA[
+                AND contact_number = #{contactNumber ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="appointmentTime != null and appointmentTime != ''">
+            <![CDATA[
+                AND appointment_time = #{appointmentTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="peopleNumber != null">
+            <![CDATA[
+                AND people_number = #{peopleNumber ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="remark != null and remark != ''">
+            <![CDATA[
+                AND remark = #{remark ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="userId != null and userId != ''">
+            <![CDATA[
+                AND user_id = #{userId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="addTime != null and addTime != ''">
+            <![CDATA[
+                AND add_time = #{addTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="startTime !=null and startTime !='' ">
+            <![CDATA[
+                AND appointment_time  >=  #{startTime}
+            ]]>
+        </if>
+        <if test="endTime !=null and endTime!='' "  >
+            <![CDATA[
+                and appointment_time <=  #{endTime}
+             ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.TDjAppointment">
+        <![CDATA[
+			insert into t_dj_appointment
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+
+            <if test="company != null and company != ''" >
+                <![CDATA[
+                    company,
+                ]]>
+            </if>
+            <if test="contactMan != null and contactMan != ''" >
+                <![CDATA[
+                    contact_man,
+                ]]>
+            </if>
+            <if test="contactNumber != null and contactNumber != ''" >
+                <![CDATA[
+                    contact_number,
+                ]]>
+            </if>
+            <if test="appointmentTime != null and appointmentTime != ''" >
+                <![CDATA[
+                    appointment_time,
+                ]]>
+            </if>
+            <if test="peopleNumber != null">
+                <![CDATA[
+                people_number,
+            ]]>
+            </if>
+            <if test="remark != null and remark != ''" >
+                <![CDATA[
+                    remark,
+                ]]>
+            </if>
+            <if test="userId != null and userId != ''" >
+                <![CDATA[
+                    user_id,
+                ]]>
+            </if>
+
+                <![CDATA[
+                    add_time,
+                ]]>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+
+            <if test="company != null and company != ''" >
+                <![CDATA[
+                    #{company,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="contactMan != null and contactMan != ''" >
+                <![CDATA[
+                    #{contactMan,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="contactNumber != null and contactNumber != ''" >
+                <![CDATA[
+                    #{contactNumber,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="appointmentTime != null and appointmentTime != ''" >
+                <![CDATA[
+                    #{appointmentTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="peopleNumber != null">
+                <![CDATA[
+                #{peopleNumber,jdbcType=VARCHAR},
+            ]]>
+            </if>
+            <if test="remark != null and remark != ''" >
+                <![CDATA[
+                    #{remark,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userId != null and userId != ''" >
+                <![CDATA[
+                    #{userId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            now(),
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.TDjAppointment" >
+        <![CDATA[
+        	update t_dj_appointment
+        ]]>
+        <set >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="company != null and company != ''" >
+                <![CDATA[
+                    company = #{company,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="contactMan != null and contactMan != ''" >
+                <![CDATA[
+                    contact_man = #{contactMan,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="contactNumber != null and contactNumber != ''" >
+                <![CDATA[
+                    contact_number = #{contactNumber,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="appointmentTime != null and appointmentTime != ''" >
+                <![CDATA[
+                    appointment_time = #{appointmentTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="peopleNumber != null">
+                <![CDATA[
+                people_number = #{peopleNumber,jdbcType=VARCHAR},
+            ]]>
+            </if>
+            <if test="remark != null and remark != ''" >
+                <![CDATA[
+                    remark = #{remark,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userId != null and userId != ''" >
+                <![CDATA[
+                    user_id = #{userId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="addTime != null and addTime != ''" >
+                <![CDATA[
+                    add_time = #{addTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.TDjAppointment">
+        <![CDATA[
+            delete from t_dj_appointment
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.TDjAppointment">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from t_dj_appointment t
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from t_dj_appointment t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+        order by t.add_time asc
+        <if test="pageSize != '' and pageSize != null">
+            <![CDATA[
+                    limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+                ]]>
+        </if>
+    </select>
+
+    <!--  查询列表数量 -->
+    <select id="queryTotalCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            SELECT count(0) from t_dj_appointment t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+</mapper>

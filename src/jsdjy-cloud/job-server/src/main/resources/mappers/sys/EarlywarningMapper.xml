@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.jobserver.dao.EarlywarningDao">
+  <resultMap id="BaseResultMap" type="com.centit.jobserver.po.EarlywarningPo">
+    <!--@mbg.generated-->
+    <!--@Table t_earlywarning-->
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="TITLE" jdbcType="VARCHAR" property="title" />
+    <result column="MOBILES" jdbcType="VARCHAR" property="mobiles" />
+    <result column="SMS_CONTENT" jdbcType="VARCHAR" property="smsContent" />
+    <result column="TASK_TYPE" jdbcType="INTEGER" property="taskType" />
+    <result column="DEADLINE" jdbcType="TIMESTAMP" property="deadline" />
+    <result column="NEXT_EXP_DAY" jdbcType="DATE" property="nextExpDay" />
+    <result column="ADVANCE_DAY" jdbcType="INTEGER" property="advanceDay" />
+    <result column="WARNING_TYPE" jdbcType="INTEGER" property="warningType" />
+    <result column="LAST_SEND_TIME" jdbcType="TIMESTAMP" property="lastSendTime" />
+    <result column="TASK_SWITCH" jdbcType="VARCHAR" property="taskSwitch" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="IS_DELETE" jdbcType="CHAR" property="isDelete" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    ID, TITLE, MOBILES, SMS_CONTENT, TASK_TYPE, DEADLINE, NEXT_EXP_DAY, ADVANCE_DAY, 
+    WARNING_TYPE, LAST_SEND_TIME, TASK_SWITCH, CREATE_TIME, IS_DELETE
+  </sql>
+  <!--  查询列表 -->
+  <select id="selectList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+    <![CDATA[
+            select
+        ]]>
+    <include refid="Base_Column_List" />
+    <![CDATA[
+            from t_earlywarning t
+        ]]>
+    <where>
+      <if test="taskSwitch != null">
+        and TASK_SWITCH = #{taskSwitch,jdbcType=VARCHAR}
+      </if>
+      <if test="isDelete != null">
+        and IS_DELETE = #{isDelete,jdbcType=CHAR}
+      </if>
+    </where>
+  </select>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.centit.jobserver.po.EarlywarningPo">
+    <!--@mbg.generated-->
+    update t_earlywarning
+    <set>
+      <if test="title != null">
+        TITLE = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="mobiles != null">
+        MOBILES = #{mobiles,jdbcType=VARCHAR},
+      </if>
+      <if test="smsContent != null">
+        SMS_CONTENT = #{smsContent,jdbcType=VARCHAR},
+      </if>
+      <if test="taskType != null">
+        TASK_TYPE = #{taskType,jdbcType=INTEGER},
+      </if>
+      <if test="deadline != null">
+        DEADLINE = #{deadline,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nextExpDay != null">
+        NEXT_EXP_DAY = #{nextExpDay,jdbcType=DATE},
+      </if>
+      <if test="advanceDay != null">
+        ADVANCE_DAY = #{advanceDay,jdbcType=INTEGER},
+      </if>
+      <if test="warningType != null">
+        WARNING_TYPE = #{warningType,jdbcType=INTEGER},
+      </if>
+      <if test="lastSendTime != null">
+        LAST_SEND_TIME = #{lastSendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="taskSwitch != null">
+        TASK_SWITCH = #{taskSwitch,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        IS_DELETE = #{isDelete,jdbcType=CHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

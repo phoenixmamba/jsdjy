@@ -1,0 +1,570 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.ShoppingEvaluateDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.ShoppingEvaluate">
+        <id column="id" property="id" />
+        <result column="addTime" property="addTime" />
+        <result column="deleteStatus" property="deleteStatus" />
+        <result column="evaluate_admin_info" property="evaluateAdminInfo" />
+        <result column="evaluate_buyer_val" property="evaluateBuyerVal" />
+        <result column="evaluate_info" property="evaluateInfo" />
+        <result column="evaluate_seller_info" property="evaluateSellerInfo" />
+        <result column="evaluate_seller_time" property="evaluateSellerTime" />
+        <result column="evaluate_seller_val" property="evaluateSellerVal" />
+        <result column="evaluate_status" property="evaluateStatus" />
+        <result column="evaluate_type" property="evaluateType" />
+        <result column="goods_spec" property="goodsSpec" />
+        <result column="evaluate_goods_id" property="evaluateGoodsId" />
+        <result column="evaluate_seller_user_id" property="evaluateSellerUserId" />
+        <result column="evaluate_user_id" property="evaluateUserId" />
+        <result column="of_id" property="ofId" />
+        <result column="description_evaluate" property="descriptionEvaluate" />
+        <result column="service_evaluate" property="serviceEvaluate" />
+        <result column="ship_evaluate" property="shipEvaluate" />
+        <result column="isRecommend" property="isRecommend" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, addTime, deleteStatus, evaluate_admin_info, evaluate_buyer_val, evaluate_info, evaluate_seller_info, evaluate_seller_time, evaluate_seller_val, evaluate_status, evaluate_type, goods_spec, evaluate_goods_id, evaluate_seller_user_id, evaluate_user_id, of_id, description_evaluate, service_evaluate, ship_evaluate, isRecommend
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        addTime
+          ,
+        deleteStatus
+          ,
+        evaluate_admin_info
+          ,
+        evaluate_buyer_val
+          ,
+        evaluate_info
+          ,
+        evaluate_seller_info
+          ,
+        evaluate_seller_time
+          ,
+        evaluate_seller_val
+          ,
+        evaluate_status
+          ,
+        evaluate_type
+          ,
+        goods_spec
+          ,
+        evaluate_goods_id
+          ,
+        evaluate_seller_user_id
+          ,
+        evaluate_user_id
+          ,
+        of_id
+          ,
+        description_evaluate
+          ,
+        service_evaluate
+          ,
+        ship_evaluate
+          ,
+        isRecommend
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="addTime != null and addTime != ''">
+            <![CDATA[
+                AND addTime = #{addTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="deleteStatus != null">
+            <![CDATA[
+                AND deleteStatus = #{deleteStatus ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="evaluateAdminInfo != null and evaluateAdminInfo != ''">
+            <![CDATA[
+                AND evaluate_admin_info = #{evaluateAdminInfo ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="evaluateBuyerVal != null and evaluateBuyerVal != ''">
+            <![CDATA[
+                AND evaluate_buyer_val = #{evaluateBuyerVal ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="evaluateInfo != null and evaluateInfo != ''">
+            <![CDATA[
+                AND evaluate_info = #{evaluateInfo ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="evaluateSellerInfo != null and evaluateSellerInfo != ''">
+            <![CDATA[
+                AND evaluate_seller_info = #{evaluateSellerInfo ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="evaluateSellerTime != null and evaluateSellerTime != ''">
+            <![CDATA[
+                AND evaluate_seller_time = #{evaluateSellerTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="evaluateSellerVal != null and evaluateSellerVal != ''">
+            <![CDATA[
+                AND evaluate_seller_val = #{evaluateSellerVal ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="evaluateStatus != null and evaluateStatus != ''">
+            <![CDATA[
+                AND evaluate_status = #{evaluateStatus ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="evaluateType != null and evaluateType != ''">
+            <![CDATA[
+                AND evaluate_type = #{evaluateType ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="goodsSpec != null and goodsSpec != ''">
+            <![CDATA[
+                AND goods_spec = #{goodsSpec ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="evaluateGoodsId != null and evaluateGoodsId != ''">
+            <![CDATA[
+                AND evaluate_goods_id = #{evaluateGoodsId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="evaluateSellerUserId != null and evaluateSellerUserId != ''">
+            <![CDATA[
+                AND evaluate_seller_user_id = #{evaluateSellerUserId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="evaluateUserId != null and evaluateUserId != ''">
+            <![CDATA[
+                AND evaluate_user_id = #{evaluateUserId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="ofId != null and ofId != ''">
+            <![CDATA[
+                AND of_id = #{ofId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="descriptionEvaluate != null and descriptionEvaluate != ''">
+            <![CDATA[
+                AND description_evaluate = #{descriptionEvaluate ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="serviceEvaluate != null and serviceEvaluate != ''">
+            <![CDATA[
+                AND service_evaluate = #{serviceEvaluate ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="shipEvaluate != null and shipEvaluate != ''">
+            <![CDATA[
+                AND ship_evaluate = #{shipEvaluate ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="isRecommend != null and isRecommend != ''">
+            <![CDATA[
+                AND isRecommend = #{isRecommend ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.ShoppingEvaluate"  useGeneratedKeys="true" keyProperty="id">
+        <![CDATA[
+			insert into shopping_evaluate
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+
+
+                <![CDATA[
+                    addTime,
+                ]]>
+
+            <if test="deleteStatus != '' and deleteStatus != null" >
+                <![CDATA[
+                    deleteStatus,
+                ]]>
+            </if>
+            <if test="evaluateAdminInfo != '' and evaluateAdminInfo != null" >
+                <![CDATA[
+                    evaluate_admin_info,
+                ]]>
+            </if>
+            <if test="evaluateBuyerVal != '' and evaluateBuyerVal != null" >
+                <![CDATA[
+                    evaluate_buyer_val,
+                ]]>
+            </if>
+            <if test="evaluateInfo != '' and evaluateInfo != null" >
+                <![CDATA[
+                    evaluate_info,
+                ]]>
+            </if>
+            <if test="evaluateSellerInfo != '' and evaluateSellerInfo != null" >
+                <![CDATA[
+                    evaluate_seller_info,
+                ]]>
+            </if>
+            <if test="evaluateSellerTime != '' and evaluateSellerTime != null" >
+                <![CDATA[
+                    evaluate_seller_time,
+                ]]>
+            </if>
+            <if test="evaluateSellerVal != '' and evaluateSellerVal != null" >
+                <![CDATA[
+                    evaluate_seller_val,
+                ]]>
+            </if>
+            <if test="evaluateStatus != '' and evaluateStatus != null" >
+                <![CDATA[
+                    evaluate_status,
+                ]]>
+            </if>
+            <if test="evaluateType != '' and evaluateType != null" >
+                <![CDATA[
+                    evaluate_type,
+                ]]>
+            </if>
+            <if test="goodsSpec != '' and goodsSpec != null" >
+                <![CDATA[
+                    goods_spec,
+                ]]>
+            </if>
+            <if test="evaluateGoodsId != '' and evaluateGoodsId != null" >
+                <![CDATA[
+                    evaluate_goods_id,
+                ]]>
+            </if>
+            <if test="evaluateSellerUserId != '' and evaluateSellerUserId != null" >
+                <![CDATA[
+                    evaluate_seller_user_id,
+                ]]>
+            </if>
+            <if test="evaluateUserId != '' and evaluateUserId != null" >
+                <![CDATA[
+                    evaluate_user_id,
+                ]]>
+            </if>
+            <if test="ofId != '' and ofId != null" >
+                <![CDATA[
+                    of_id,
+                ]]>
+            </if>
+            <if test="descriptionEvaluate != '' and descriptionEvaluate != null" >
+                <![CDATA[
+                    description_evaluate,
+                ]]>
+            </if>
+            <if test="serviceEvaluate != '' and serviceEvaluate != null" >
+                <![CDATA[
+                    service_evaluate,
+                ]]>
+            </if>
+            <if test="shipEvaluate != '' and shipEvaluate != null" >
+                <![CDATA[
+                    ship_evaluate,
+                ]]>
+            </if>
+            <if test="isRecommend != '' and isRecommend != null" >
+                <![CDATA[
+                    isRecommend,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+
+            now(),
+            <if test="deleteStatus != '' and deleteStatus != null" >
+                <![CDATA[
+                    #{deleteStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="evaluateAdminInfo != '' and evaluateAdminInfo != null" >
+                <![CDATA[
+                    #{evaluateAdminInfo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="evaluateBuyerVal != '' and evaluateBuyerVal != null" >
+                <![CDATA[
+                    #{evaluateBuyerVal,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="evaluateInfo != '' and evaluateInfo != null" >
+                <![CDATA[
+                    #{evaluateInfo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="evaluateSellerInfo != '' and evaluateSellerInfo != null" >
+                <![CDATA[
+                    #{evaluateSellerInfo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="evaluateSellerTime != '' and evaluateSellerTime != null" >
+                <![CDATA[
+                    #{evaluateSellerTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="evaluateSellerVal != '' and evaluateSellerVal != null" >
+                <![CDATA[
+                    #{evaluateSellerVal,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="evaluateStatus != '' and evaluateStatus != null" >
+                <![CDATA[
+                    #{evaluateStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="evaluateType != '' and evaluateType != null" >
+                <![CDATA[
+                    #{evaluateType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="goodsSpec != '' and goodsSpec != null" >
+                <![CDATA[
+                    #{goodsSpec,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="evaluateGoodsId != '' and evaluateGoodsId != null" >
+                <![CDATA[
+                    #{evaluateGoodsId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="evaluateSellerUserId != '' and evaluateSellerUserId != null" >
+                <![CDATA[
+                    #{evaluateSellerUserId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="evaluateUserId != '' and evaluateUserId != null" >
+                <![CDATA[
+                    #{evaluateUserId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="ofId != '' and ofId != null" >
+                <![CDATA[
+                    #{ofId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="descriptionEvaluate != '' and descriptionEvaluate != null" >
+                <![CDATA[
+                    #{descriptionEvaluate,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="serviceEvaluate != '' and serviceEvaluate != null" >
+                <![CDATA[
+                    #{serviceEvaluate,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="shipEvaluate != '' and shipEvaluate != null" >
+                <![CDATA[
+                    #{shipEvaluate,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isRecommend != '' and isRecommend != null" >
+                <![CDATA[
+                    #{isRecommend,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.ShoppingEvaluate" >
+        <![CDATA[
+        	update shopping_evaluate
+        ]]>
+        <set >
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="addTime != '' and addTime != null" >
+                <![CDATA[
+                    addTime = #{addTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="deleteStatus != '' and deleteStatus != null" >
+                <![CDATA[
+                    deleteStatus = #{deleteStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="evaluateAdminInfo != '' and evaluateAdminInfo != null" >
+                <![CDATA[
+                    evaluate_admin_info = #{evaluateAdminInfo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="evaluateBuyerVal != '' and evaluateBuyerVal != null" >
+                <![CDATA[
+                    evaluate_buyer_val = #{evaluateBuyerVal,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="evaluateInfo != '' and evaluateInfo != null" >
+                <![CDATA[
+                    evaluate_info = #{evaluateInfo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="evaluateSellerInfo != '' and evaluateSellerInfo != null" >
+                <![CDATA[
+                    evaluate_seller_info = #{evaluateSellerInfo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="evaluateSellerTime != '' and evaluateSellerTime != null" >
+                <![CDATA[
+                    evaluate_seller_time = #{evaluateSellerTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="evaluateSellerVal != '' and evaluateSellerVal != null" >
+                <![CDATA[
+                    evaluate_seller_val = #{evaluateSellerVal,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="evaluateStatus != '' and evaluateStatus != null" >
+                <![CDATA[
+                    evaluate_status = #{evaluateStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="evaluateType != '' and evaluateType != null" >
+                <![CDATA[
+                    evaluate_type = #{evaluateType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="goodsSpec != '' and goodsSpec != null" >
+                <![CDATA[
+                    goods_spec = #{goodsSpec,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="evaluateGoodsId != '' and evaluateGoodsId != null" >
+                <![CDATA[
+                    evaluate_goods_id = #{evaluateGoodsId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="evaluateSellerUserId != '' and evaluateSellerUserId != null" >
+                <![CDATA[
+                    evaluate_seller_user_id = #{evaluateSellerUserId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="evaluateUserId != '' and evaluateUserId != null" >
+                <![CDATA[
+                    evaluate_user_id = #{evaluateUserId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="ofId != '' and ofId != null" >
+                <![CDATA[
+                    of_id = #{ofId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="descriptionEvaluate != '' and descriptionEvaluate != null" >
+                <![CDATA[
+                    description_evaluate = #{descriptionEvaluate,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="serviceEvaluate != '' and serviceEvaluate != null" >
+                <![CDATA[
+                    service_evaluate = #{serviceEvaluate,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="shipEvaluate != '' and shipEvaluate != null" >
+                <![CDATA[
+                    ship_evaluate = #{shipEvaluate,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isRecommend != '' and isRecommend != null" >
+                <![CDATA[
+                    isRecommend = #{isRecommend,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.ShoppingEvaluate">
+        <![CDATA[
+            delete from shopping_evaluate
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.ShoppingEvaluate">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_evaluate t
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  获取最新评论 -->
+    <select id="queryLastEvaluate" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_evaluate t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+            order by addTime desc limit 1
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_evaluate t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+        order by t.addTime desc
+        <if test="pageSize != '' and pageSize != null" >
+            <![CDATA[
+                    limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+                ]]>
+        </if>
+    </select>
+
+    <!--  查询列表数量 -->
+    <select id="queryTotalCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            SELECT count(0) FROM shopping_evaluate
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+</mapper>

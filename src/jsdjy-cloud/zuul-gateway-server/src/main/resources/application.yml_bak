@@ -1,0 +1,37 @@
+#路由网关服务
+#Author: cui_jian
+
+
+server:
+  port: 10084
+spring:
+  application:
+    name: gateway
+  cloud:
+    config:
+      label: master
+      profile: dev
+      discovery:
+        enabled: true
+        serviceId: configServer
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:10080/eureka/
+
+##zuul路由网关服务
+#zuul:
+#  routes:
+#    api-a:
+#      path: /provider/**
+#      serviceId: provider
+#    api-b:
+#      path: /consumer/**
+#      serviceId: consumer
+#    api-c:
+#      path: /framework/**
+#      serviceId: framework
+##    apiAddBook:
+##      path: /organizeuser/**
+##      serviceId: organizeuser

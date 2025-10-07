@@ -1,0 +1,131 @@
+#全局错误码返回码信息配置文件
+#Author: li_hao
+
+
+#------------------------------------------全局返回码------------------------------------------
+retCode0: 0
+retCode1: 1
+retCode2: 2
+retCode3: 3
+retCode4: 4
+retCode5: 5
+retCode6: 6
+retCode7: 7
+retCode8: 8
+retCode9: 9
+retCode10: 10
+
+
+retCode101: 101
+retCode102: 102
+retCode103: 103
+retCode104: 104
+retCode105: 105
+
+
+retCode998: 998
+retCode999: 999
+
+
+retCode10001: 10001
+retCode10002: 10002
+retCode10003: 10003
+retCode10004: 10004
+retCode10005: 10005
+retCode10006: 10006
+retCode10007: 10007
+retCode10008: 10008
+retCode10009: 10009
+
+
+retCode20001: 20001
+retCode20002: 20002
+retCode20003: 20003
+retCode20004: 20004
+retCode20005: 20005
+retCode20006: 20006
+retCode20007: 20007
+retCode20008: 20008
+retCode20009: 20009
+retCode20010: 20010
+retCode20011: 20011
+
+
+retCode404: 404
+
+
+
+retCode1001: 1001
+retCode1002: 1002
+retCode1003: 1003
+retCode1004: 1004
+
+
+
+
+#------------------------------------------全局返回码释义------------------------------------------
+retMsg0: 操作成功
+retMsg1: 操作失败
+retMsg2: 请求超时
+retMsg3: 请求错误
+retMsg4: 参数不合法
+retMsg5: 网络异常
+retMsg6: 系统繁忙
+retMsg7: 非法请求
+retMsg8: 未知错误
+retMsg9: 系统错误
+retMsg10: Feign请求超时，进入Hystrix断路器
+
+
+retMsg101: 账号不存在
+retMsg102: 密码不正确
+retMsg103: 此账号无登录权限
+retMsg104: 账号关联信息不存在
+retMsg105: 账号关联信息已存在
+
+
+retMsg998: 此设备已停用
+retMsg999: 此设备已遗失
+
+
+retMsg10001: 无效的accessToken
+retMsg10002: 请求IP不在IP白名单之内
+retMsg10003: 回调地址无效
+retMsg10004: accessToken不能为空
+retMsg10005: 发起请求时间距服务器接收到时间间隔过长
+retMsg10006: 短信验证码无效
+retMsg10007: header中缺失用户账号
+retMsg10008: 用户登录状态已过期
+retMsg10009: 临时授权码已失效
+
+
+retMsg20001: 用户userCode已存在
+retMsg20002: 手机号已存在
+retMsg20003: 身份证号已存在
+retMsg20004: 登录名已存在
+retMsg20005: 单位不存在
+retMsg20006: 父级组织机构不存在
+retMsg20007: 该手机号已注册
+retMsg20008: 手机号未注册
+retMsg20009: 企业名称已存在
+retMsg20010: 企业统一社会信用代码已存在
+retMsg20011: 企业法人信息不正确（请检查企业名称、统一社会信用代码、法定代表人姓名、法定代表人身份证号码）
+
+retMsg30001: 标题含有敏感词 请重新输入
+retMsg30002: 内容含有敏感词 请重新输入
+
+
+retMsg404: 请求地址不存在
+
+
+retMsg1001: 无效的accessKey
+retMsg1002: 参数校验失败
+retMsg1003: 参数不完整
+retMsg1004: 接口版本过低
+
+
+
+
+
+
+

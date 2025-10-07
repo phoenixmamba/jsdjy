@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.scan.webmgr.dao.ShoppingAccessoryDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.scan.webmgr.po.ShoppingAccessory">
+        <id column="id" property="id" />
+        <result column="addTime" property="addTime" />
+        <result column="deleteStatus" property="deleteStatus" />
+        <result column="ext" property="ext" />
+        <result column="height" property="height" />
+        <result column="info" property="info" />
+        <result column="name" property="name" />
+        <result column="path" property="path" />
+        <result column="size" property="size" />
+        <result column="width" property="width" />
+        <result column="album_id" property="albumId" />
+        <result column="user_id" property="userId" />
+        <result column="config_id" property="configId" />
+        <result column="find_id" property="findId" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, addTime, deleteStatus, ext, height, info, name, path, size, width, album_id, user_id, config_id, find_id
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        addTime
+          ,
+        deleteStatus
+          ,
+        ext
+          ,
+        height
+          ,
+        info
+          ,
+        name
+          ,
+        path
+          ,
+        size
+          ,
+        width
+          ,
+        album_id
+          ,
+        user_id
+          ,
+        config_id
+          ,
+        find_id
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="addTime != null and addTime != ''">
+            <![CDATA[
+                AND addTime = #{addTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="deleteStatus != null and deleteStatus != ''">
+            <![CDATA[
+                AND deleteStatus = #{deleteStatus ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="ext != null and ext != ''">
+            <![CDATA[
+                AND ext = #{ext ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="height != null and height != ''">
+            <![CDATA[
+                AND height = #{height ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="info != null and info != ''">
+            <![CDATA[
+                AND info = #{info ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="name != null and name != ''">
+            <![CDATA[
+                AND name = #{name ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="path != null and path != ''">
+            <![CDATA[
+                AND path = #{path ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="size != null and size != ''">
+            <![CDATA[
+                AND size = #{size ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="width != null and width != ''">
+            <![CDATA[
+                AND width = #{width ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="albumId != null and albumId != ''">
+            <![CDATA[
+                AND album_id = #{albumId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="userId != null and userId != ''">
+            <![CDATA[
+                AND user_id = #{userId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="configId != null and configId != ''">
+            <![CDATA[
+                AND config_id = #{configId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="findId != null and findId != ''">
+            <![CDATA[
+                AND find_id = #{findId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.scan.webmgr.po.ShoppingAccessory" useGeneratedKeys="true" keyProperty="id">
+        <![CDATA[
+			insert into shopping_accessory
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+
+                <![CDATA[
+                    addTime,
+                ]]>
+
+            <if test="deleteStatus != '' and deleteStatus != null" >
+                <![CDATA[
+                    deleteStatus,
+                ]]>
+            </if>
+            <if test="ext != '' and ext != null" >
+                <![CDATA[
+                    ext,
+                ]]>
+            </if>
+            <if test="height != '' and height != null" >
+                <![CDATA[
+                    height,
+                ]]>
+            </if>
+            <if test="info != '' and info != null" >
+                <![CDATA[
+                    info,
+                ]]>
+            </if>
+            <if test="name != '' and name != null" >
+                <![CDATA[
+                    name,
+                ]]>
+            </if>
+            <if test="path != '' and path != null" >
+                <![CDATA[
+                    path,
+                ]]>
+            </if>
+            <if test="size != '' and size != null" >
+                <![CDATA[
+                    size,
+                ]]>
+            </if>
+            <if test="width != '' and width != null" >
+                <![CDATA[
+                    width,
+                ]]>
+            </if>
+            <if test="albumId != '' and albumId != null" >
+                <![CDATA[
+                    album_id,
+                ]]>
+            </if>
+            <if test="userId != '' and userId != null" >
+                <![CDATA[
+                    user_id,
+                ]]>
+            </if>
+            <if test="configId != '' and configId != null" >
+                <![CDATA[
+                    config_id,
+                ]]>
+            </if>
+            <if test="findId != '' and findId != null" >
+                <![CDATA[
+                    find_id,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            now(),
+            <if test="deleteStatus != '' and deleteStatus != null" >
+                <![CDATA[
+                    #{deleteStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="ext != '' and ext != null" >
+                <![CDATA[
+                    #{ext,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="height != '' and height != null" >
+                <![CDATA[
+                    #{height,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="info != '' and info != null" >
+                <![CDATA[
+                    #{info,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="name != '' and name != null" >
+                <![CDATA[
+                    #{name,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="path != '' and path != null" >
+                <![CDATA[
+                    #{path,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="size != '' and size != null" >
+                <![CDATA[
+                    #{size,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="width != '' and width != null" >
+                <![CDATA[
+                    #{width,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="albumId != '' and albumId != null" >
+                <![CDATA[
+                    #{albumId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userId != '' and userId != null" >
+                <![CDATA[
+                    #{userId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="configId != '' and configId != null" >
+                <![CDATA[
+                    #{configId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="findId != '' and findId != null" >
+                <![CDATA[
+                    #{findId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.scan.webmgr.po.ShoppingAccessory" >
+        <![CDATA[
+        	update shopping_accessory
+        ]]>
+        <set >
+            <if test="id != '' and id != null" >
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="addTime != '' and addTime != null" >
+                <![CDATA[
+                    addTime = #{addTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="deleteStatus != '' and deleteStatus != null" >
+                <![CDATA[
+                    deleteStatus = #{deleteStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="ext != '' and ext != null" >
+                <![CDATA[
+                    ext = #{ext,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="height != '' and height != null" >
+                <![CDATA[
+                    height = #{height,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="info != '' and info != null" >
+                <![CDATA[
+                    info = #{info,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="name != '' and name != null" >
+                <![CDATA[
+                    name = #{name,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="path != '' and path != null" >
+                <![CDATA[
+                    path = #{path,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="size != '' and size != null" >
+                <![CDATA[
+                    size = #{size,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="width != '' and width != null" >
+                <![CDATA[
+                    width = #{width,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="albumId != '' and albumId != null" >
+                <![CDATA[
+                    album_id = #{albumId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="userId != '' and userId != null" >
+                <![CDATA[
+                    user_id = #{userId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="configId != '' and configId != null" >
+                <![CDATA[
+                    config_id = #{configId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="findId != '' and findId != null" >
+                <![CDATA[
+                    find_id = #{findId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.scan.webmgr.po.ShoppingAccessory">
+        <![CDATA[
+            delete from shopping_accessory
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.scan.webmgr.po.ShoppingAccessory">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_accessory t
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_accessory t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+</mapper>

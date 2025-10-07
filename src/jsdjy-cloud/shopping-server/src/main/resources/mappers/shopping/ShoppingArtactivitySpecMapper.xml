@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.ShoppingArtactivitySpecDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.ShoppingArtactivitySpec">
+        <result column="activity_id" property="activityId" />
+        <result column="spec_id" property="specId" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        activity_id, spec_id
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        activity_id
+          ,
+        spec_id
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="activityId != null and activityId != ''">
+            <![CDATA[
+                AND activity_id = #{activityId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="specId != null and specId != ''">
+            <![CDATA[
+                AND spec_id = #{specId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.ShoppingArtactivitySpec">
+        <![CDATA[
+			insert into shopping_artactivity_spec
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="activityId != null and activityId != ''" >
+                <![CDATA[
+                    activity_id,
+                ]]>
+            </if>
+            <if test="specId != null and specId != ''" >
+                <![CDATA[
+                    spec_id,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="activityId != null and activityId != ''" >
+                <![CDATA[
+                    #{activityId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="specId != null and specId != ''" >
+                <![CDATA[
+                    #{specId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.ShoppingArtactivitySpec" >
+        <![CDATA[
+        	update shopping_artactivity_spec
+        ]]>
+        <set >
+            <if test="activityId != null and activityId != ''" >
+                <![CDATA[
+                    activity_id = #{activityId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="specId != null and specId != ''" >
+                <![CDATA[
+                    spec_id = #{specId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <if test="activityId != null and activityId != ''">
+                <![CDATA[
+                AND activity_id = #{activityId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="specId != null and specId != ''">
+                <![CDATA[
+                AND spec_id = #{specId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.ShoppingArtactivitySpec">
+        <![CDATA[
+            delete from shopping_artactivity_spec
+        ]]>
+        <where>
+            <if test="activityId != null and activityId != ''">
+                <![CDATA[
+                AND activity_id = #{activityId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="specId != null and specId != ''">
+                <![CDATA[
+                AND spec_id = #{specId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.ShoppingArtactivitySpec">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_artactivity_spec t
+        ]]>
+        <where>
+            <if test="activityId != null and activityId != ''">
+                <![CDATA[
+                AND activity_id = #{activityId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="specId != null and specId != ''">
+                <![CDATA[
+                AND spec_id = #{specId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_artactivity_spec t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+</mapper>

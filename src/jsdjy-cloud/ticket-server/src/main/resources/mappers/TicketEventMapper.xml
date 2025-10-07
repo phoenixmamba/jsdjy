@@ -1,0 +1,608 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.ticket.dao.TicketEventDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.ticket.po.TicketEvent">
+        <id column="event_id" property="eventId"/>
+        <result column="project_id" property="projectId"/>
+        <result column="event_name" property="eventName"/>
+        <result column="event_sale_state" property="eventSaleState"/>
+        <result column="event_start_time" property="eventStartTime"/>
+        <result column="event_end_time" property="eventEndTime"/>
+        <result column="delivery_type_list" property="deliveryTypeList"/>
+        <result column="real_name_buy_limit_boolean" property="realNameBuyLimitBoolean"/>
+        <result column="real_name_buy_limit_type" property="realNameBuyLimitType"/>
+        <result column="single_card_limit_num" property="singleCardLimitNum"/>
+        <result column="venue_id" property="venueId"/>
+        <result column="venue_name" property="venueName"/>
+        <result column="venue_basemap_svg_url" property="venueBasemapSvgUrl"/>
+        <result column="promotion_id_list" property="promotionIdList"/>
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        event_id, project_id, event_name, event_sale_state, event_start_time, event_end_time, delivery_type_list, real_name_buy_limit_boolean, real_name_buy_limit_type, single_card_limit_num, venue_id, venue_name, venue_basemap_svg_url, promotion_id_list
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        event_id
+          ,
+        project_id
+          ,
+        event_name
+          ,
+        event_sale_state
+          ,
+        event_start_time
+          ,
+        event_end_time
+          ,
+        delivery_type_list
+          ,
+        real_name_buy_limit_boolean
+          ,
+        real_name_buy_limit_type
+          ,
+        single_card_limit_num
+          ,
+        venue_id
+          ,
+        venue_name
+          ,
+        venue_basemap_svg_url
+          ,
+        promotion_id_list
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="eventId != null and eventId != ''">
+            <![CDATA[
+                AND event_id = #{eventId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="projectId != null and projectId != ''">
+            <![CDATA[
+                AND project_id = #{projectId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="eventName != null and eventName != ''">
+            <![CDATA[
+                AND event_name = #{eventName ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="eventSaleState != null and eventSaleState != ''">
+            <![CDATA[
+                AND event_sale_state = #{eventSaleState ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="eventStartTime != null and eventStartTime != ''">
+            <![CDATA[
+                AND event_start_time = #{eventStartTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="eventEndTime != null and eventEndTime != ''">
+            <![CDATA[
+                AND event_end_time = #{eventEndTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="deliveryTypeList != null and deliveryTypeList != ''">
+            <![CDATA[
+                AND delivery_type_list = #{deliveryTypeList ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="realNameBuyLimitBoolean != null and realNameBuyLimitBoolean != ''">
+            <![CDATA[
+                AND real_name_buy_limit_boolean = #{realNameBuyLimitBoolean ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="realNameBuyLimitType != null and realNameBuyLimitType != ''">
+            <![CDATA[
+                AND real_name_buy_limit_type = #{realNameBuyLimitType ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="singleCardLimitNum != null and singleCardLimitNum != ''">
+            <![CDATA[
+                AND single_card_limit_num = #{singleCardLimitNum ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="venueId != null and venueId != ''">
+            <![CDATA[
+                AND venue_id = #{venueId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="venueName != null and venueName != ''">
+            <![CDATA[
+                AND venue_name = #{venueName ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="venueBasemapSvgUrl != null and venueBasemapSvgUrl != ''">
+            <![CDATA[
+                AND venue_basemap_svg_url = #{venueBasemapSvgUrl ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="promotionIdList != null and promotionIdList != ''">
+            <![CDATA[
+                AND promotion_id_list = #{promotionIdList ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.ticket.po.TicketEvent">
+        <![CDATA[
+			insert into ticket_event
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="eventId != '' and eventId != null">
+                <![CDATA[
+                    event_id,
+                ]]>
+            </if>
+            <if test="projectId != '' and projectId != null">
+                <![CDATA[
+                    project_id,
+                ]]>
+            </if>
+            <if test="eventName != '' and eventName != null">
+                <![CDATA[
+                    event_name,
+                ]]>
+            </if>
+            <if test="eventSaleState != '' and eventSaleState != null">
+                <![CDATA[
+                    event_sale_state,
+                ]]>
+            </if>
+            <if test="eventStartTime != '' and eventStartTime != null">
+                <![CDATA[
+                    event_start_time,
+                ]]>
+            </if>
+            <if test="eventEndTime != '' and eventEndTime != null">
+                <![CDATA[
+                    event_end_time,
+                ]]>
+            </if>
+            <if test="deliveryTypeList != '' and deliveryTypeList != null">
+                <![CDATA[
+                    delivery_type_list,
+                ]]>
+            </if>
+            <if test="realNameBuyLimitBoolean != '' and realNameBuyLimitBoolean != null">
+                <![CDATA[
+                    real_name_buy_limit_boolean,
+                ]]>
+            </if>
+            <if test="realNameBuyLimitType != '' and realNameBuyLimitType != null">
+                <![CDATA[
+                    real_name_buy_limit_type,
+                ]]>
+            </if>
+            <if test="singleCardLimitNum != '' and singleCardLimitNum != null">
+                <![CDATA[
+                    single_card_limit_num,
+                ]]>
+            </if>
+            <if test="venueId != '' and venueId != null">
+                <![CDATA[
+                    venue_id,
+                ]]>
+            </if>
+            <if test="venueName != '' and venueName != null">
+                <![CDATA[
+                    venue_name,
+                ]]>
+            </if>
+            <if test="venueBasemapSvgUrl != '' and venueBasemapSvgUrl != null">
+                <![CDATA[
+                    venue_basemap_svg_url,
+                ]]>
+            </if>
+            <if test="promotionIdList != '' and promotionIdList != null">
+                <![CDATA[
+                    promotion_id_list,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="eventId != '' and eventId != null">
+                <![CDATA[
+                    #{eventId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="projectId != '' and projectId != null">
+                <![CDATA[
+                    #{projectId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="eventName != '' and eventName != null">
+                <![CDATA[
+                    #{eventName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="eventSaleState != '' and eventSaleState != null">
+                <![CDATA[
+                    #{eventSaleState,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="eventStartTime != '' and eventStartTime != null">
+                <![CDATA[
+                    #{eventStartTime ,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="eventEndTime != '' and eventEndTime != null">
+                <![CDATA[
+                    #{eventEndTime ,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="deliveryTypeList != '' and deliveryTypeList != null">
+                <![CDATA[
+                    #{deliveryTypeList,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="realNameBuyLimitBoolean != '' and realNameBuyLimitBoolean != null">
+                <![CDATA[
+                    #{realNameBuyLimitBoolean,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="realNameBuyLimitType != '' and realNameBuyLimitType != null">
+                <![CDATA[
+                    #{realNameBuyLimitType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="singleCardLimitNum != '' and singleCardLimitNum != null">
+                <![CDATA[
+                    #{singleCardLimitNum,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="venueId != '' and venueId != null">
+                <![CDATA[
+                    #{venueId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="venueName != '' and venueName != null">
+                <![CDATA[
+                    #{venueName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="venueBasemapSvgUrl != '' and venueBasemapSvgUrl != null">
+                <![CDATA[
+                    #{venueBasemapSvgUrl,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="promotionIdList != '' and promotionIdList != null">
+                <![CDATA[
+                    #{promotionIdList,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.ticket.po.TicketEvent">
+        <![CDATA[
+        	update ticket_event
+        ]]>
+        <set>
+            <if test="eventId != '' and eventId != null">
+                <![CDATA[
+                    event_id = #{eventId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="projectId != '' and projectId != null">
+                <![CDATA[
+                    project_id = #{projectId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="eventName != '' and eventName != null">
+                <![CDATA[
+                    event_name = #{eventName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="eventSaleState != '' and eventSaleState != null">
+                <![CDATA[
+                    event_sale_state = #{eventSaleState,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="eventStartTime != '' and eventStartTime != null">
+                <![CDATA[
+                    event_start_time = #{eventStartTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="eventEndTime != '' and eventEndTime != null">
+                <![CDATA[
+                    event_end_time = #{eventEndTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="deliveryTypeList != '' and deliveryTypeList != null">
+                <![CDATA[
+                    delivery_type_list = #{deliveryTypeList,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="realNameBuyLimitBoolean != '' and realNameBuyLimitBoolean != null">
+                <![CDATA[
+                    real_name_buy_limit_boolean = #{realNameBuyLimitBoolean,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="realNameBuyLimitType != '' and realNameBuyLimitType != null">
+                <![CDATA[
+                    real_name_buy_limit_type = #{realNameBuyLimitType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="singleCardLimitNum != '' and singleCardLimitNum != null">
+                <![CDATA[
+                    single_card_limit_num = #{singleCardLimitNum,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="venueId != '' and venueId != null">
+                <![CDATA[
+                    venue_id = #{venueId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="venueName != '' and venueName != null">
+                <![CDATA[
+                    venue_name = #{venueName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="venueBasemapSvgUrl != '' and venueBasemapSvgUrl != null">
+                <![CDATA[
+                    venue_basemap_svg_url = #{venueBasemapSvgUrl,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="promotionIdList != '' and promotionIdList != null">
+                <![CDATA[
+                    promotion_id_list = #{promotionIdList,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and event_id = #{eventId ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+    <!-- 更新 -->
+    <update id="updateEventSaleState" parameterType="java.util.HashMap">
+        <![CDATA[
+        	update ticket_event
+        ]]>
+        <set>
+            <![CDATA[
+                    event_sale_state = 1,
+                ]]>
+        </set>
+        <where>
+            AND event_id not in
+            <foreach collection="ids" index="index" item="item" open="("
+                     separator="," close=")">
+                #{item}
+            </foreach>
+            <if test="projectId != '' and projectId != null">
+                <![CDATA[
+                    AND project_id = #{projectId,jdbcType=VARCHAR}
+                ]]>
+            </if>
+        </where>
+    </update>
+
+    <!-- 更新 -->
+    <update id="updateAllEventSaleState" parameterType="java.util.HashMap">
+        <![CDATA[
+        	update ticket_event
+        ]]>
+        <set>
+            <![CDATA[
+                    event_sale_state = 1,
+                ]]>
+        </set>
+        <where>
+            <if test="projectId != '' and projectId != null">
+                <![CDATA[
+                    AND project_id = #{projectId,jdbcType=VARCHAR}
+                ]]>
+            </if>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete" parameterType="com.centit.ticket.po.TicketEvent">
+        <![CDATA[
+            delete from ticket_event
+        ]]>
+        <where>
+            <![CDATA[
+                and event_id = #{eventId ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.ticket.po.TicketEvent">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1"/>
+        <![CDATA[
+            from ticket_event t
+        ]]>
+        <where>
+            <![CDATA[
+                and event_id = #{eventId ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1"/>
+        <![CDATA[
+            from ticket_event t
+        ]]>
+        <where>
+            <include refid="Base_Where_List"/>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryPageList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select td.*
+        ]]>
+        from (select * from (SELECT * from ticket_event tv where tv.event_sale_state=2
+        and tv.project_id in
+        (select project_id from ticket_project tp
+        where tp.project_sale_state = 2
+        <if test="classId != '' and classId != null">
+            <![CDATA[
+                    and (tp.first_class_id = #{classId,jdbcType=VARCHAR} or tp.second_class_id = #{classId,jdbcType=VARCHAR})
+                  ]]>
+        </if>
+        <if test="classIds != null">
+            and tp.first_class_id not in
+            <foreach collection="classIds" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="projectName != null and projectName != ''">
+            <![CDATA[
+                      AND tp.project_name like concat('%', #{projectName,jdbcType=VARCHAR}, '%')
+                   ]]>
+        </if>
+        )
+        <if test="startTime != '' and startTime != null">
+            <![CDATA[
+                    and tv.event_start_time >= #{startTime,jdbcType=VARCHAR}
+                ]]>
+        </if>
+        <if test="endTime != '' and endTime != null">
+            <![CDATA[
+                    and tv.event_start_time <= #{endTime,jdbcType=VARCHAR}
+                ]]>
+        </if>
+        order by tv.event_start_time asc limit 1000)a group by a.project_id)td
+        left join ticket_recommend pr on td.project_id = pr.project_id
+        left join ticket_project pro on td.project_id = pro.project_id
+        order by
+        <if test="switchON != null">
+            (CASE WHEN pro.project_name like '%红楼梦%' THEN 1 ELSE 2 END),
+        </if>
+        td.event_start_time asc
+        <if test="pageSize != '' and pageSize != null">
+            <![CDATA[
+                    limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+                ]]>
+        </if>
+    </select>
+
+    <!--  查询列表数量 -->
+    <select id="queryTotalCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        SELECT count(0)
+        from (select * from (SELECT * from ticket_event tv where tv.event_sale_state=2
+        and tv.project_id in
+        (select project_id from ticket_project tp
+        where tp.project_sale_state = 2
+        <if test="classId != '' and classId != null">
+            <![CDATA[
+                    and (tp.first_class_id = #{classId,jdbcType=VARCHAR} or tp.second_class_id = #{classId,jdbcType=VARCHAR})
+                  ]]>
+        </if>
+        <if test="classIds != null">
+            and tp.first_class_id not in
+            <foreach collection="classIds" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="projectName != null and projectName != ''">
+            <![CDATA[
+                      AND tp.project_name like concat('%', #{projectName,jdbcType=VARCHAR}, '%')
+                   ]]>
+        </if>
+        )
+        <if test="startTime != '' and startTime != null">
+            <![CDATA[
+                    and tv.event_start_time >= #{startTime,jdbcType=VARCHAR}
+                ]]>
+        </if>
+        <if test="endTime != '' and endTime != null">
+            <![CDATA[
+                    and tv.event_start_time <= #{endTime,jdbcType=VARCHAR}
+                ]]>
+        </if>
+        order by tv.event_start_time asc limit 1000)a group by a.project_id)td
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryProjectEvents" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1"/>
+        <![CDATA[
+            from ticket_event t
+        ]]>
+        <where>
+            <if test="projectId != '' and projectId != null">
+                <![CDATA[
+                AND project_id = #{projectId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+
+            <if test="startTime != '' and startTime != null">
+                <![CDATA[
+                    AND event_start_time >= #{startTime,jdbcType=VARCHAR}
+                ]]>
+            </if>
+            <if test="endTime != '' and endTime != null">
+                <![CDATA[
+                    AND event_start_time <= #{endTime,jdbcType=VARCHAR}
+                ]]>
+            </if>
+            <![CDATA[
+                AND event_sale_state = 2
+            ]]>
+        </where>
+        order by event_start_time asc
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryClassEvents" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1"/>
+        from (select * from (SELECT * from ticket_event tv where tv.event_sale_state=2
+        and tv.project_id in
+        (select project_id from ticket_project tp
+        where tp.project_sale_state = 2
+        <if test="classId != '' and classId != null">
+            <![CDATA[
+                    and (tp.first_class_id = #{classId,jdbcType=VARCHAR} or tp.second_class_id = #{classId,jdbcType=VARCHAR})
+                  ]]>
+        </if>
+        )
+        order by tv.event_start_time asc limit 1000)a group by a.project_id)td
+        order by td.event_start_time asc limit 4
+
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryToPushEvents" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1"/>
+        from ticket_event where now() &lt;= SUBDATE(event_start_time,interval +0 minute) and now() &gt;= SUBDATE(event_start_time,interval #{pushRemindTime,jdbcType=VARCHAR} minute)
+        and project_id not in (select project_id from ticket_remind)
+    </select>
+
+</mapper>

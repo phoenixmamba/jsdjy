@@ -1,0 +1,650 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.admin.system.dao.FOptinfoDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.admin.system.po.FOptinfo">
+        <id column="OPT_ID" property="optId" />
+        <result column="OPT_NAME" property="optName" />
+        <result column="PRE_OPT_ID" property="preOptId" />
+        <result column="OPT_ROUTE" property="optRoute" />
+        <result column="OPT_URL" property="optUrl" />
+        <result column="FORM_CODE" property="formCode" />
+        <result column="OPT_TYPE" property="optType" />
+        <result column="MSG_NO" property="msgNo" />
+        <result column="MSG_PRM" property="msgPrm" />
+        <result column="IS_IN_TOOLBAR" property="isInToolbar" />
+        <result column="IMG_INDEX" property="imgIndex" />
+        <result column="TOP_OPT_ID" property="topOptId" />
+        <result column="ORDER_IND" property="orderInd" />
+        <result column="FLOW_CODE" property="flowCode" />
+        <result column="PAGE_TYPE" property="pageType" />
+        <result column="ICON" property="icon" />
+        <result column="HEIGHT" property="height" />
+        <result column="WIDTH" property="width" />
+        <result column="UPDATE_DATE" property="updateDate" />
+        <result column="CREATE_DATE" property="createDate" />
+        <result column="CREATOR" property="creator" />
+        <result column="UPDATOR" property="updator" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        OPT_ID, OPT_NAME, PRE_OPT_ID, OPT_ROUTE, OPT_URL, FORM_CODE, OPT_TYPE, MSG_NO, MSG_PRM, IS_IN_TOOLBAR, IMG_INDEX, TOP_OPT_ID, ORDER_IND, FLOW_CODE, PAGE_TYPE, ICON, HEIGHT, WIDTH, UPDATE_DATE, CREATE_DATE, CREATOR, UPDATOR
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        OPT_ID
+          ,
+        OPT_NAME
+          ,
+        PRE_OPT_ID
+          ,
+        OPT_ROUTE
+          ,
+        OPT_URL
+          ,
+        FORM_CODE
+          ,
+        OPT_TYPE
+          ,
+        MSG_NO
+          ,
+        MSG_PRM
+          ,
+        IS_IN_TOOLBAR
+          ,
+        IMG_INDEX
+          ,
+        TOP_OPT_ID
+          ,
+        ORDER_IND
+          ,
+        FLOW_CODE
+          ,
+        PAGE_TYPE
+          ,
+        ICON
+          ,
+        HEIGHT
+          ,
+        WIDTH
+          ,
+        UPDATE_DATE
+          ,
+        CREATE_DATE
+          ,
+        CREATOR
+          ,
+        UPDATOR
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="optId != null and optId != ''">
+            <![CDATA[
+                AND OPT_ID = #{optId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="optName != null and optName != ''">
+            <![CDATA[
+                AND OPT_NAME = #{optName ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="preOptId != null and preOptId != ''">
+            <![CDATA[
+                AND PRE_OPT_ID = #{preOptId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="optRoute != null and optRoute != ''">
+            <![CDATA[
+                AND OPT_ROUTE = #{optRoute ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="optUrl != null and optUrl != ''">
+            <![CDATA[
+                AND OPT_URL = #{optUrl ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="formCode != null and formCode != ''">
+            <![CDATA[
+                AND FORM_CODE = #{formCode ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="optType != null and optType != ''">
+            <![CDATA[
+                AND OPT_TYPE = #{optType ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="msgNo != null and msgNo != ''">
+            <![CDATA[
+                AND MSG_NO = #{msgNo ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="msgPrm != null and msgPrm != ''">
+            <![CDATA[
+                AND MSG_PRM = #{msgPrm ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="isInToolbar != null and isInToolbar != ''">
+            <![CDATA[
+                AND IS_IN_TOOLBAR = #{isInToolbar ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="imgIndex != null and imgIndex != ''">
+            <![CDATA[
+                AND IMG_INDEX = #{imgIndex ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="topOptId != null and topOptId != ''">
+            <![CDATA[
+                AND TOP_OPT_ID = #{topOptId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="orderInd != null and orderInd != ''">
+            <![CDATA[
+                AND ORDER_IND = #{orderInd ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="flowCode != null and flowCode != ''">
+            <![CDATA[
+                AND FLOW_CODE = #{flowCode ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="pageType != null and pageType != ''">
+            <![CDATA[
+                AND PAGE_TYPE = #{pageType ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="icon != null and icon != ''">
+            <![CDATA[
+                AND ICON = #{icon ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="height != null and height != ''">
+            <![CDATA[
+                AND HEIGHT = #{height ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="width != null and width != ''">
+            <![CDATA[
+                AND WIDTH = #{width ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="updateDate != null and updateDate != ''">
+            <![CDATA[
+                AND UPDATE_DATE = #{updateDate ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="createDate != null and createDate != ''">
+            <![CDATA[
+                AND CREATE_DATE = #{createDate ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="creator != null and creator != ''">
+            <![CDATA[
+                AND CREATOR = #{creator ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="updator != null and updator != ''">
+            <![CDATA[
+                AND UPDATOR = #{updator ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.admin.system.po.FOptinfo">
+        <![CDATA[
+			insert into f_optinfo
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="optId != '' and optId != null" >
+                <![CDATA[
+                    OPT_ID,
+                ]]>
+            </if>
+            <if test="optName != '' and optName != null" >
+                <![CDATA[
+                    OPT_NAME,
+                ]]>
+            </if>
+            <if test="preOptId != '' and preOptId != null" >
+                <![CDATA[
+                    PRE_OPT_ID,
+                ]]>
+            </if>
+            <if test="optRoute != '' and optRoute != null" >
+                <![CDATA[
+                    OPT_ROUTE,
+                ]]>
+            </if>
+            <if test="optUrl != '' and optUrl != null" >
+                <![CDATA[
+                    OPT_URL,
+                ]]>
+            </if>
+            <if test="formCode != '' and formCode != null" >
+                <![CDATA[
+                    FORM_CODE,
+                ]]>
+            </if>
+            <if test="optType != '' and optType != null" >
+                <![CDATA[
+                    OPT_TYPE,
+                ]]>
+            </if>
+            <if test="msgNo != '' and msgNo != null" >
+                <![CDATA[
+                    MSG_NO,
+                ]]>
+            </if>
+            <if test="msgPrm != '' and msgPrm != null" >
+                <![CDATA[
+                    MSG_PRM,
+                ]]>
+            </if>
+            <if test="isInToolbar != '' and isInToolbar != null" >
+                <![CDATA[
+                    IS_IN_TOOLBAR,
+                ]]>
+            </if>
+            <if test="imgIndex != '' and imgIndex != null" >
+                <![CDATA[
+                    IMG_INDEX,
+                ]]>
+            </if>
+            <if test="topOptId != '' and topOptId != null" >
+                <![CDATA[
+                    TOP_OPT_ID,
+                ]]>
+            </if>
+            <if test="orderInd != '' and orderInd != null" >
+                <![CDATA[
+                    ORDER_IND,
+                ]]>
+            </if>
+            <if test="flowCode != '' and flowCode != null" >
+                <![CDATA[
+                    FLOW_CODE,
+                ]]>
+            </if>
+            <if test="pageType != '' and pageType != null" >
+                <![CDATA[
+                    PAGE_TYPE,
+                ]]>
+            </if>
+            <if test="icon != '' and icon != null" >
+                <![CDATA[
+                    ICON,
+                ]]>
+            </if>
+            <if test="height != '' and height != null" >
+                <![CDATA[
+                    HEIGHT,
+                ]]>
+            </if>
+            <if test="width != '' and width != null" >
+                <![CDATA[
+                    WIDTH,
+                ]]>
+            </if>
+
+                <![CDATA[
+                    UPDATE_DATE,
+                ]]>
+
+                <![CDATA[
+                    CREATE_DATE,
+                ]]>
+            <if test="creator != '' and creator != null" >
+                <![CDATA[
+                    CREATOR,
+                ]]>
+            </if>
+            <if test="updator != '' and updator != null" >
+                <![CDATA[
+                    UPDATOR,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="optId != '' and optId != null" >
+                <![CDATA[
+                    #{optId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="optName != '' and optName != null" >
+                <![CDATA[
+                    #{optName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="preOptId != '' and preOptId != null" >
+                <![CDATA[
+                    #{preOptId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="optRoute != '' and optRoute != null" >
+                <![CDATA[
+                    #{optRoute,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="optUrl != '' and optUrl != null" >
+                <![CDATA[
+                    #{optUrl,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="formCode != '' and formCode != null" >
+                <![CDATA[
+                    #{formCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="optType != '' and optType != null" >
+                <![CDATA[
+                    #{optType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="msgNo != '' and msgNo != null" >
+                <![CDATA[
+                    #{msgNo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="msgPrm != '' and msgPrm != null" >
+                <![CDATA[
+                    #{msgPrm,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isInToolbar != '' and isInToolbar != null" >
+                <![CDATA[
+                    #{isInToolbar,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="imgIndex != '' and imgIndex != null" >
+                <![CDATA[
+                    #{imgIndex,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="topOptId != '' and topOptId != null" >
+                <![CDATA[
+                    #{topOptId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="orderInd != '' and orderInd != null" >
+                <![CDATA[
+                    #{orderInd,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="flowCode != '' and flowCode != null" >
+                <![CDATA[
+                    #{flowCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="pageType != '' and pageType != null" >
+                <![CDATA[
+                    #{pageType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="icon != '' and icon != null" >
+                <![CDATA[
+                    #{icon,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="height != '' and height != null" >
+                <![CDATA[
+                    #{height,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="width != '' and width != null" >
+                <![CDATA[
+                    #{width,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            now(),
+            now(),
+            <if test="creator != '' and creator != null" >
+                <![CDATA[
+                    #{creator,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="updator != '' and updator != null" >
+                <![CDATA[
+                    #{updator,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.admin.system.po.FOptinfo" >
+        <![CDATA[
+        	update f_optinfo
+        ]]>
+        <set >
+            <if test="optId != '' and optId != null" >
+                <![CDATA[
+                    OPT_ID = #{optId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="optName != '' and optName != null" >
+                <![CDATA[
+                    OPT_NAME = #{optName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="preOptId != '' and preOptId != null" >
+                <![CDATA[
+                    PRE_OPT_ID = #{preOptId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="optRoute != '' and optRoute != null" >
+                <![CDATA[
+                    OPT_ROUTE = #{optRoute,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="optUrl != '' and optUrl != null" >
+                <![CDATA[
+                    OPT_URL = #{optUrl,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="formCode != '' and formCode != null" >
+                <![CDATA[
+                    FORM_CODE = #{formCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="optType != '' and optType != null" >
+                <![CDATA[
+                    OPT_TYPE = #{optType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="msgNo != '' and msgNo != null" >
+                <![CDATA[
+                    MSG_NO = #{msgNo,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="msgPrm != '' and msgPrm != null" >
+                <![CDATA[
+                    MSG_PRM = #{msgPrm,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="isInToolbar != '' and isInToolbar != null" >
+                <![CDATA[
+                    IS_IN_TOOLBAR = #{isInToolbar,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="imgIndex != '' and imgIndex != null" >
+                <![CDATA[
+                    IMG_INDEX = #{imgIndex,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="topOptId != '' and topOptId != null" >
+                <![CDATA[
+                    TOP_OPT_ID = #{topOptId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="orderInd != '' and orderInd != null" >
+                <![CDATA[
+                    ORDER_IND = #{orderInd,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="flowCode != '' and flowCode != null" >
+                <![CDATA[
+                    FLOW_CODE = #{flowCode,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="pageType != '' and pageType != null" >
+                <![CDATA[
+                    PAGE_TYPE = #{pageType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="icon != '' and icon != null" >
+                <![CDATA[
+                    ICON = #{icon,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="height != '' and height != null" >
+                <![CDATA[
+                    HEIGHT = #{height,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="width != '' and width != null" >
+                <![CDATA[
+                    WIDTH = #{width,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="updateDate != '' and updateDate != null" >
+                <![CDATA[
+                    UPDATE_DATE = #{updateDate,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="createDate != '' and createDate != null" >
+                <![CDATA[
+                    CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="creator != '' and creator != null" >
+                <![CDATA[
+                    CREATOR = #{creator,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="updator != '' and updator != null" >
+                <![CDATA[
+                    UPDATOR = #{updator,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and OPT_ID = #{optId ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.admin.system.po.FOptinfo">
+        <![CDATA[
+            delete from f_optinfo
+        ]]>
+        <where>
+            <![CDATA[
+                and OPT_ID = #{optId ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.admin.system.po.FOptinfo">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from f_optinfo t
+        ]]>
+        <where>
+            <![CDATA[
+                and OPT_ID = #{optId ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from f_optinfo t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+    <select id="queryUserOpt" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from f_optinfo t
+        ]]>
+        <where>
+            and t.OPT_ID IN (
+            SELECT tf.OPT_ID from f_optdef tf where tf.OPT_CODE in(
+            select t1.OPT_CODE from f_rolepower t1  where
+            t1.ROLE_CODE in(
+            select ROLE_CODE from f_roleinfo tt1 where tt1.IS_VALID='T' and
+            FIND_IN_SET(tt1.unit_code, getParentUnitCode(#{unitCode}))
+            <if test="unitRoleType != '' and unitRoleType != null" >
+                <![CDATA[
+                    and tt1.ROLE_TYPE = #{unitRoleType ,jdbcType=VARCHAR }
+                ]]>
+            </if>
+            <![CDATA[
+                    and tt1.IS_VALID = 'T'
+                ]]>
+
+
+            )
+            OR t1.ROLE_CODE in(
+            select tt2.ROLE_CODE from F_UNITROLE tt2 left join F_ROLEINFO t2 on tt2.ROLE_CODE = t2.ROLE_CODE
+            where FIND_IN_SET(tt2.unit_code, getParentUnitCode(#{unitCode}))
+            <if test="roleType != '' and roleType != null" >
+                <![CDATA[
+                    and t2.ROLE_TYPE=#{roleType ,jdbcType=VARCHAR }
+                ]]>
+            </if>
+            <![CDATA[
+                    and t2.IS_VALID = 'T'
+                ]]>
+            )
+            OR t1.ROLE_CODE in(
+            select tt3.ROLE_CODE from F_USERROLE tt3  left join F_ROLEINFO t2 on tt3.ROLE_CODE = t2.ROLE_CODE where tt3.user_code = #{userCode ,jdbcType=VARCHAR }
+            <if test="roleType != '' and roleType != null" >
+                <![CDATA[
+                    and t2.ROLE_TYPE=#{roleType ,jdbcType=VARCHAR }
+                ]]>
+            </if>
+            <![CDATA[
+                    and t2.IS_VALID = 'T'
+                ]]>
+            )
+            ))
+        </where>
+    </select>
+
+    <select id="queryUpOpt" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select f.*
+        ]]>
+        <![CDATA[
+            from F_OPTINFO f,(select getParentOpt(#{optId ,jdbcType=VARCHAR }) cids)t
+            where FIND_IN_SET(OPT_ID, cids)
+            ORDER BY ORDER_IND ASC
+        ]]>
+    </select>
+</mapper>

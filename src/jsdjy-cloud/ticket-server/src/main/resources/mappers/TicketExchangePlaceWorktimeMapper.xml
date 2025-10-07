@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.ticket.dao.TicketExchangePlaceWorktimeDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.ticket.po.TicketExchangePlaceWorktime">
+        <result column="place_id" property="placeId" />
+        <result column="work_date_type" property="workDateType" />
+        <result column="work_date_desc" property="workDateDesc" />
+        <result column="work_date_sets" property="workDateSets" />
+        <result column="work_start_time" property="workStartTime" />
+        <result column="work_end_time" property="workEndTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        place_id, work_date_type, work_date_desc, work_date_sets, work_start_time, work_end_time
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        place_id
+          ,
+        work_date_type
+          ,
+        work_date_desc
+          ,
+        work_date_sets
+          ,
+        work_start_time
+          ,
+        work_end_time
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="placeId != null and placeId != ''">
+            <![CDATA[
+                AND place_id = #{placeId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="workDateType != null and workDateType != ''">
+            <![CDATA[
+                AND work_date_type = #{workDateType ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="workDateDesc != null and workDateDesc != ''">
+            <![CDATA[
+                AND work_date_desc = #{workDateDesc ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="workDateSets != null and workDateSets != ''">
+            <![CDATA[
+                AND work_date_sets = #{workDateSets ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="workStartTime != null and workStartTime != ''">
+            <![CDATA[
+                AND work_start_time = #{workStartTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="workEndTime != null and workEndTime != ''">
+            <![CDATA[
+                AND work_end_time = #{workEndTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.ticket.po.TicketExchangePlaceWorktime">
+        <![CDATA[
+			insert into ticket_exchange_place_worktime
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="placeId != '' and placeId != null" >
+                <![CDATA[
+                    place_id,
+                ]]>
+            </if>
+            <if test="workDateType != '' and workDateType != null" >
+                <![CDATA[
+                    work_date_type,
+                ]]>
+            </if>
+            <if test="workDateDesc != '' and workDateDesc != null" >
+                <![CDATA[
+                    work_date_desc,
+                ]]>
+            </if>
+            <if test="workDateSets != '' and workDateSets != null" >
+                <![CDATA[
+                    work_date_sets,
+                ]]>
+            </if>
+            <if test="workStartTime != '' and workStartTime != null" >
+                <![CDATA[
+                    work_start_time,
+                ]]>
+            </if>
+            <if test="workEndTime != '' and workEndTime != null" >
+                <![CDATA[
+                    work_end_time,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="placeId != '' and placeId != null" >
+                <![CDATA[
+                    #{placeId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="workDateType != '' and workDateType != null" >
+                <![CDATA[
+                    #{workDateType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="workDateDesc != '' and workDateDesc != null" >
+                <![CDATA[
+                    #{workDateDesc,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="workDateSets != '' and workDateSets != null" >
+                <![CDATA[
+                    #{workDateSets,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="workStartTime != '' and workStartTime != null" >
+                <![CDATA[
+                    #{workStartTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="workEndTime != '' and workEndTime != null" >
+                <![CDATA[
+                    #{workEndTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.ticket.po.TicketExchangePlaceWorktime" >
+        <![CDATA[
+        	update ticket_exchange_place_worktime
+        ]]>
+        <set >
+            <if test="placeId != '' and placeId != null" >
+                <![CDATA[
+                    place_id = #{placeId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="workDateType != '' and workDateType != null" >
+                <![CDATA[
+                    work_date_type = #{workDateType,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="workDateDesc != '' and workDateDesc != null" >
+                <![CDATA[
+                    work_date_desc = #{workDateDesc,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="workDateSets != '' and workDateSets != null" >
+                <![CDATA[
+                    work_date_sets = #{workDateSets,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="workStartTime != '' and workStartTime != null" >
+                <![CDATA[
+                    work_start_time = #{workStartTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="workEndTime != '' and workEndTime != null" >
+                <![CDATA[
+                    work_end_time = #{workEndTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.ticket.po.TicketExchangePlaceWorktime">
+        <![CDATA[
+            delete from ticket_exchange_place_worktime
+        ]]>
+        <where>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.ticket.po.TicketExchangePlaceWorktime">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from ticket_exchange_place_worktime t
+        ]]>
+        <where>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from ticket_exchange_place_worktime t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+</mapper>

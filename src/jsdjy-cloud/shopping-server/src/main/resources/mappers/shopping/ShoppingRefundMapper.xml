@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.shopping.dao.ShoppingRefundDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.shopping.po.ShoppingRefund">
+        <id column="id" property="id" />
+        <result column="addTime" property="addTime" />
+        <result column="deleteStatus" property="deleteStatus" />
+        <result column="gc_id" property="gcId" />
+        <result column="refund_status" property="refundStatus" />
+        <result column="reason" property="reason" />
+        <result column="refund_integral" property="refundIntegral" />
+        <result column="refund_balance" property="refundBalance" />
+        <result column="refund_cash" property="refundCash" />
+        <result column="update_time" property="updateTime" />
+        <result column="admin_user" property="adminUser" />
+        <result column="admin_name" property="adminName" />
+        <result column="admin_log" property="adminLog" />
+        <result column="of_id" property="ofId" />
+        <result column="pre_order_status" property="preOrderStatus" />
+    </resultMap>
+
+    <!-- 通用查询结果列(横着排列) -->
+    <sql id="Base_Column_List1">
+        id, addTime, deleteStatus, gc_id, refund_status, reason, refund_integral, refund_balance, refund_cash, update_time, admin_user, admin_name,admin_log,of_id,pre_order_status
+    </sql>
+
+    <!-- 通用查询结果列(竖着排列) -->
+    <sql id="Base_Column_List2">
+        id
+          ,
+        addTime
+          ,
+        deleteStatus
+          ,
+        gc_id
+          ,
+        refund_status
+          ,
+        reason
+          ,
+        refund_integral
+          ,
+        refund_balance
+          ,
+        refund_cash
+          ,
+        update_time
+          ,
+        admin_user
+          ,
+        admin_name
+          ,
+        admin_log
+          ,
+        of_id
+          ,
+        pre_order_status
+    </sql>
+
+    <!-- 通用查询条件 -->
+    <sql id="Base_Where_List">
+        <if test="id != null and id != ''">
+            <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="addTime != null and addTime != ''">
+            <![CDATA[
+                AND addTime = #{addTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="deleteStatus != null and deleteStatus != ''">
+            <![CDATA[
+                AND deleteStatus = #{deleteStatus ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="gcId != null and gcId != ''">
+            <![CDATA[
+                AND gc_id = #{gcId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="refundStatus != null and refundStatus != ''">
+            <![CDATA[
+                AND refund_status = #{refundStatus ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="reason != null and reason != ''">
+            <![CDATA[
+                AND reason = #{reason ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="refundIntegral != null">
+            <![CDATA[
+                AND refund_integral = #{refundIntegral ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="refundBalance != null and refundBalance != ''">
+            <![CDATA[
+                AND refund_balance = #{refundBalance ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="refundCash != null and refundCash != ''">
+            <![CDATA[
+                AND refund_cash = #{refundCash ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="updateTime != null and updateTime != ''">
+            <![CDATA[
+                AND update_time = #{updateTime ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="adminUser != null and adminUser != ''">
+            <![CDATA[
+                AND admin_user = #{adminUser ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="adminName != null and adminName != ''">
+            <![CDATA[
+                AND admin_name = #{adminName ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="adminLog != null and adminLog != ''">
+            <![CDATA[
+                AND admin_log = #{adminLog ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="ofId != null and ofId != ''">
+            <![CDATA[
+                AND of_id = #{ofId ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+        <if test="preOrderStatus != null and preOrderStatus != ''">
+            <![CDATA[
+                AND pre_order_status = #{preOrderStatus ,jdbcType=VARCHAR}
+            ]]>
+        </if>
+    </sql>
+
+
+    <!--  新增 -->
+    <insert id="insert" parameterType="com.centit.shopping.po.ShoppingRefund"  useGeneratedKeys="true" keyProperty="id">
+        <![CDATA[
+			insert into shopping_refund
+		]]>
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+
+                <![CDATA[
+                    addTime,
+                ]]>
+
+            <if test="deleteStatus != null" >
+                <![CDATA[
+                    deleteStatus,
+                ]]>
+            </if>
+            <if test="gcId != null and gcId != ''" >
+                <![CDATA[
+                    gc_id,
+                ]]>
+            </if>
+            <if test="refundStatus != null" >
+                <![CDATA[
+                    refund_status,
+                ]]>
+            </if>
+            <if test="reason != null and reason != ''" >
+                <![CDATA[
+                    reason,
+                ]]>
+            </if>
+            <if test="refundIntegral != null" >
+                <![CDATA[
+                    refund_integral,
+                ]]>
+            </if>
+            <if test="refundBalance != null" >
+                <![CDATA[
+                    refund_balance,
+                ]]>
+            </if>
+            <if test="refundCash != null" >
+                <![CDATA[
+                    refund_cash,
+                ]]>
+            </if>
+
+                <![CDATA[
+                    update_time,
+                ]]>
+
+            <if test="adminUser != null and adminUser != ''" >
+                <![CDATA[
+                    admin_user,
+                ]]>
+            </if>
+            <if test="adminName != null and adminName != ''" >
+                <![CDATA[
+                    admin_name,
+                ]]>
+            </if>
+            <if test="adminLog != null and adminLog != ''" >
+                <![CDATA[
+                    admin_log,
+                ]]>
+            </if>
+            <if test="ofId != null and ofId != ''" >
+                <![CDATA[
+                    of_id,
+                ]]>
+            </if>
+            <if test="preOrderStatus != null" >
+                <![CDATA[
+                    pre_order_status,
+                ]]>
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+
+            now(),
+            <if test="deleteStatus != null" >
+                <![CDATA[
+                    #{deleteStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="gcId != null and gcId != ''" >
+                <![CDATA[
+                    #{gcId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="refundStatus != null" >
+                <![CDATA[
+                    #{refundStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="reason != null and reason != ''" >
+                <![CDATA[
+                    #{reason,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="refundIntegral != null" >
+                <![CDATA[
+                    #{refundIntegral,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="refundBalance != null" >
+                <![CDATA[
+                    #{refundBalance,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="refundCash != null" >
+                <![CDATA[
+                    #{refundCash,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            now(),
+            <if test="adminUser != null and adminUser != ''" >
+                <![CDATA[
+                    #{adminUser,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="adminName != null and adminName != ''" >
+                <![CDATA[
+                    #{adminName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="adminLog != null and adminLog != ''" >
+                <![CDATA[
+                    #{adminLog,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="ofId != null and ofId != ''" >
+                <![CDATA[
+                    #{ofId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="preOrderStatus != null" >
+                <![CDATA[
+                    #{preOrderStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.centit.shopping.po.ShoppingRefund" >
+        <![CDATA[
+        	update shopping_refund
+        ]]>
+        <set >
+            <if test="id != null and id != ''" >
+                <![CDATA[
+                    id = #{id,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="addTime != null and addTime != ''" >
+                <![CDATA[
+                    addTime = #{addTime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="deleteStatus != null" >
+                <![CDATA[
+                    deleteStatus = #{deleteStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="gcId != null and gcId != ''" >
+                <![CDATA[
+                    gc_id = #{gcId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="refundStatus != null" >
+                <![CDATA[
+                    refund_status = #{refundStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="reason != null and reason != ''" >
+                <![CDATA[
+                    reason = #{reason,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="refundIntegral != null" >
+                <![CDATA[
+                    refund_integral = #{refundIntegral,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="refundBalance != null" >
+                <![CDATA[
+                    refund_balance = #{refundBalance,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="refundCash != null" >
+                <![CDATA[
+                    refund_cash = #{refundCash,jdbcType=VARCHAR},
+                ]]>
+            </if>
+
+                <![CDATA[
+                    update_time = now(),
+                ]]>
+
+            <if test="adminUser != null and adminUser != ''" >
+                <![CDATA[
+                    admin_user = #{adminUser,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="adminName != null and adminName != ''" >
+                <![CDATA[
+                    admin_name = #{adminName,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="adminLog != null and adminLog != ''" >
+                <![CDATA[
+                    admin_log = #{adminLog,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="ofId != null and ofId != ''" >
+                <![CDATA[
+                    of_id = #{ofId,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="preOrderStatus != null" >
+                <![CDATA[
+                    pre_order_status = #{preOrderStatus,jdbcType=VARCHAR},
+                ]]>
+            </if>
+        </set>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </update>
+
+
+    <!-- 删除 -->
+    <delete id="delete"  parameterType="com.centit.shopping.po.ShoppingRefund">
+        <![CDATA[
+            delete from shopping_refund
+        ]]>
+        <where>
+            <![CDATA[
+                and id = #{id ,jdbcType=VARCHAR }
+            ]]>
+        </where>
+    </delete>
+
+
+    <!--  查询详情 -->
+    <select id="queryDetail" resultMap="BaseResultMap" parameterType="com.centit.shopping.po.ShoppingRefund">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_refund t
+        ]]>
+        <where>
+            <if test="id != null and id != ''">
+                <![CDATA[
+                AND id = #{id ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="gcId != null and gcId != ''">
+                <![CDATA[
+                AND gc_id = #{gcId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="deleteStatus != null" >
+                <![CDATA[
+                  AND  deleteStatus = #{deleteStatus,jdbcType=VARCHAR}
+                ]]>
+            </if>
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select
+        ]]>
+        <include refid="Base_Column_List1" />
+        <![CDATA[
+            from shopping_refund t
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+        order by t.addTime desc
+        <if test="pageSize != '' and pageSize != null">
+            limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+        </if>
+    </select>
+
+    <!--  查询列表数量 -->
+    <select id="queryTotalCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            SELECT count(0) FROM shopping_refund
+        ]]>
+        <where>
+            <include refid="Base_Where_List" />
+        </where>
+    </select>
+
+    <!--  查询列表 -->
+    <select id="queryUserRefundList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+            select t.*
+        ]]>
+        <![CDATA[
+            from shopping_refund t left join shopping_goodscart sg on t.gc_id = sg.id left join shopping_orderform so on sg.of_id = so.id
+        ]]>
+        <where>
+            <if test="deleteStatus != null">
+                <![CDATA[
+                AND t.deleteStatus = #{deleteStatus ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="refundStatus != null and refundStatus != ''">
+                <![CDATA[
+                AND t.refund_status = #{refundStatus ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="userId != null and userId != ''">
+                <![CDATA[
+                AND so.user_id = #{userId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+        </where>
+        order by t.addTime desc
+        <if test="pageSize != '' and pageSize != null">
+            limit #{startRow,jdbcType=INTEGER} , #{pageSize,jdbcType=INTEGER}
+        </if>
+    </select>
+
+    <select id="queryUserRefundCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <![CDATA[
+            select count(0)
+        ]]>
+        <![CDATA[
+            from shopping_refund t left join shopping_goodscart sg on t.gc_id = sg.id left join shopping_orderform so on sg.of_id = so.id
+        ]]>
+        <where>
+            <if test="deleteStatus != null">
+                <![CDATA[
+                AND t.deleteStatus = #{deleteStatus ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="refundStatus != null and refundStatus != ''">
+                <![CDATA[
+                AND t.refund_status = #{refundStatus ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+            <if test="userId != null and userId != ''">
+                <![CDATA[
+                AND so.user_id = #{userId ,jdbcType=VARCHAR}
+            ]]>
+            </if>
+        </where>
+
+    </select>
+</mapper>

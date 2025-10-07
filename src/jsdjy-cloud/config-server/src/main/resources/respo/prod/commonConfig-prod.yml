@@ -1,0 +1,519 @@
+#全局通用配置信息配置文件
+#Author: li_hao
+
+
+#------------------------------------------全局定义配置数据------------------------------------------
+zuul:
+  host:
+    connect-timeout-millis: 45000 #HTTP连接超时要比Hystrix的大
+    socket-timeout-millis: 60000   #socket超时
+  semaphore:
+    max-semaphores: 5000 #设置全部路由最大信号量
+ribbon:
+  NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule # 默认为；轮询，这里改为随机
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+
+#Feign配置
+feign:
+  hystrix:
+    enabled: true #Feign Hystrix断路器
+
+hystrix:
+  threadpool:
+    default:
+      coreSize: 2000   #线程池数量
+  command:
+    default:  #default全局有效，service id指定应用有效
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 300000 #断路器超时时间，默认1000ms
+          strategy: SEMAPHORE   #隔离策略
+          semaphore:
+            max-semaphores: 2000 #信号量大小
+      circuitBreaker:
+        requestVolumeThreshold: 2000
+      fallback:
+        isolation:
+          semaphore:
+            maxConcurrentRequests: 50
+
+#应用监控设置
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: '*'
+#  endpoint:
+#    health:
+#      show-details: always
+
+#Hystrix Dashboard仪表盘（断路器监控）配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
+
+
+
+
+
+
+#访问资源地址：例如：http://localhost:10084。资源完整地址为：http://localhost:10084/file/static/JcmsPic/2020-08-11/20200811151422_s_85054a36a4b7460fa571fe6020c5a1b1.png
+webPublicUrl_common: http://218.2.208.143:10251
+#上传文件目录
+uploadFiledir_common: /data/upload/
+#上传文件目录显示路径前缀
+uploadFilePrefix_common: /file/static/
+
+
+#后端调用文件服务器上传下载配置
+file:
+  upload:
+    dir: /data/upload/
+    url: http://193.168.1.233:8281/fileserver/fileserver/upload/file
+    url_In: http://193.168.1.233:8281/fileserver/fileserver/upload/file
+  download:
+    url: https://app.jsmot.com:10252/fileserver/fileserver/download/pfile/
+
+
+#AES加密解密秘钥
+AES_Key: WWW.CENTIT.COM
+#AES256加密解密秘钥
+AES256_Key: WWW.CENTIT.COM123,./abc!@#$%^&*()
+
+
+#通讯录回调事件
+userAdd: userAdd
+userModify: userModify
+userDelete: userDelete
+deptAdd: deptAdd
+deptModify: deptModify
+deptDelete: deptDelete
+corpAdd: corpAdd
+corpModify: corpModify
+corpDelete: corpDelete
+
+
+
+#通讯录平台管理员角色
+addBookAdminRoleCode: addBookAdmin
+
+#accessToken有效期（单位：秒）
+validperiod: 7200
+#临时授权码有效期期限、有效时长（未操作有效期，单位：秒）
+tmpAuthCodeValidperiod: 60
+#用户登录状态保持期限、有效时长（未操作有效期，单位：秒）
+userLoginValidperiod: 7200
+
+#系统用户初始化密码
+initalPwdFUser: 123456@ydpt
+#企业法人账号初始化密码
+fddbrInitPwd: 123456@ydpt
+#个人账号初始化密码
+grInitPwd: 123456@ydpt
+
+resetPwdMsg1: 您的账号密码重置为：
+resetPwdMsg2: 。若非本人操作，请尽快登录系统更改密码。
+
+#用户登录默认失效时间（单位：分钟）
+loginExpireTime: 30
+
+
+#回调推送补偿开关：on/off （注意：springCloud 默认会把配置文件的on/off会解析成true/false;而用引号(单引号双引号都可以)的“on”/"off"（'on'/'off'）则会解析成on/off）
+callBackPushCompensateSwitch: 'off'
+
+
+
+#PC端在X分钟内，登录失败Y次，限制Z分钟内不准登录
+PC_loginLimitX: 5
+PC_loginLimitY: 10
+PC_loginLimitZ: 5
+
+#移动端在X分钟内，登录失败Y次，限制Z分钟内不准登录
+mobile_loginLimitX: 5
+mobile_loginLimitY: 10
+mobile_loginLimitZ: 5
+
+
+#SMS短信模块begin----------------------------------------------------------------------------------------------------------
+#万能验证码 （注意：springCloud 默认会把配置文件的000001前面的0去掉从而解析成1;而用引号(单引号双引号都可以)的'000001'则会解析成000001）
+SMS_universalSMSCode: '000001'
+#有效期（单位秒）
+SMS_validperiod: 300
+#短信验证码
+#普通业务
+SMS_commonSms: 您的验证码是：SMSCODE。5分钟有效，过期需重新申请，请勿向任何人提供您收到的验证码。如非本人操作，请忽略此短信。
+#短信注册
+SMS_registSms: 您的验证码是：SMSCODE。该验证码用于注册操作。5分钟有效，过期需重新申请，请勿向任何人提供您收到的验证码。如非本人操作，请忽略此短信。
+#短信登录
+SMS_loginSms: 您的验证码是：SMSCODE。该验证码用于登录操作。5分钟有效，过期需重新申请，请勿向任何人提供您收到的验证码。如非本人操作，请忽略此短信。
+#忘记密码
+SMS_rePwdSms: 您的验证码是：SMSCODE。该验证码用于忘记密码操作。5分钟有效，过期需重新申请，请勿向任何人提供您收到的验证码。如非本人操作，请忽略此短信。
+#验证当前手机号
+SMS_checkMobileSms: 您的验证码是：SMSCODE。该验证码用于验证当前手机号操作。5分钟有效，过期需重新申请，请勿向任何人提供您收到的验证码。如非本人操作，请忽略此短信。
+#修改手机号
+SMS_updateMobileSms: 您的验证码是：SMSCODE。该验证码用于修改手机号操作。5分钟有效，过期需重新申请，请勿向任何人提供您收到的验证码。如非本人操作，请忽略此短信。
+#验证码验证失败返回
+SMS_smsInvalidRetMsg: 验证码无效，请重新获取验证码！
+
+#短信验证码相关功能模块module
+#一般业务
+SMS_common_module: common
+#注册
+SMS_regist_module: regist
+#登录
+SMS_login_module: login
+#忘记密码
+SMS_updatePwd_module: updatePwd
+#验证当前手机号
+SMS_checkMobile_module: checkMobile
+#修改手机号（提交新手机号）
+SMS_updateMobile_module: updateMobile
+#注册成功
+SMS_userRegistSuccess_module: userRegistSuccess
+#注册失败
+SMS_userRegistFailed_module: userRegistFailed
+
+#SMS短信模块end----------------------------------------------------------------------------------------------------------
+
+
+
+
+
+#----------------------------------------实人实名认证----------------------------------------------------------
+#实名认证业务ID
+realUserNameBusinessId: 21593323754765hzeezm
+#实人认证业务ID
+realUserBusinessId: 11593323754694ymsjim
+
+#实名认证业务公钥
+realUserNameSM2PublicKey: 04ED6D2BC3EC6F606D2F560770B3648FAB32E6A3847F6441BF0E7305096FCE1DBD2DA217CDF51A2AAD44723A4F0DA5D666921CFF7083574B1680CD84CC4708B677
+#实人认证业务公钥
+realUserSM2PublicKey: 044A559D15060E6AA898F85DFB0E3E1C0A5A4E0FDD5092D883B3836CF2F73802CC3F0D090C05438B969FDFEA5CA25427F1477520F5DD783C2CFE304286FF076DD2
+
+#实人认证
+#实名认证
+#实名认证两项：传入身份证姓名、号码、校验是否为实名（POST；Content-type: application/x-www-form-urlencoded；国密SM2加密，由可信身份认证平台提供公私钥）
+realUserNameUrl2: http://180.101.234.48:9002/jsPolice/checkIdCardBase
+#实名认证四项：传入身份证姓名、号码、证件有效期起、止，校验是否为实名（POST；Content-type: application/x-www-form-urlencoded；国密SM2加密，由可信身份认证平台提供公私钥）
+realUserNameUrl4: http://180.101.234.48:9002/jsPolice/checkIdCard
+
+#实人认证
+#传实人认证三项：入身份证姓名、号码、照片校验是否为本人（POST；Content-type: application/x-www-form-urlencoded；国密SM2加密，由可信身份认证平台提供公私钥）
+realUserUrl3: http://180.101.234.48:9002/jsPolice/checkIdCardBaseFace
+#实人认证五项：传入身份证姓名、号码、证件有效期起、证件有效期止、照片校验是否为本人（POST；Content-type: application/x-www-form-urlencoded；国密SM2加密，由可信身份认证平台提供公私钥）
+realUserUrl5: http://180.101.234.48:9002/jsPolice/checkIdCardFace
+
+#--------------------------------------------------实人/实名对接紫金数云----------------------------------------------------------------------------------
+#服务器ip
+zjsy_ip: 221.226.253.52
+#应用端口
+zjsy_port: 10060
+#客户端
+zjsy_clientId: 32000001
+#服务器公钥
+zjsy_pubKey: 04e41621a6f34ceb490ffd90437772a736fdb54bd794032c968a95aecbcc22634761cb7a927983625bebf8c45c769d95c17c19c828da939b830741705d002f7525
+
+
+
+
+#--------------------------------------------法人信息查询-------对接江苏省政务信息共享网站-----------------------------------------------------------------
+#政务办法人基本信息查询开关：on/off
+zwbfrjbxxcx_switch: "on"
+#法人基本信息查询-appKey
+zwbfrjbxxcx_appKey: b4f78fba6d9e4faca4726155ef3f00ae
+#法人基本信息查询-appSecret
+zwbfrjbxxcx_appSecret: ab254d5cd7bd4f7fa720d21fa3308710
+#法人基本信息查询-认证地址
+zwbfrjbxxcx_getTokenUrl: https://172.24.129.103:48343/v1/apigw/oauth2/token
+#法人基本信息查询-接口地址（已停用）
+zwbfrjbxxcx_zwbfrjbxxcxUrl: https://172.24.129.103:48343/share/zwbfrjbxxcx
+#法人实名核验接口-接口地址
+zwbfrjbxxcx_frsmhyjkUrl: https://172.24.129.103:48343/share/frsmhyjk?$filter=FILTER&tyshxydm=TYSHXYDM&frmc=FRMC&frlx=FRLX&fddbrfzrxm=FDDBRFZRXM&fddbrfzrzjhm=FDDBRFZRZJHM
+#法人查询接口-接口地址
+zwbfrjbxxcx_frcxjkUrl: https://172.24.129.103:48343/share/frcxjk?$filter=FILTER&tyshxydm=TYSHXYDM&frlx=FRLX&frmc=FRMC
+
+
+#--------------------------------------------------对接亿美短信平台----------------------------------------------------------------------------------
+#亿美短信平台能力开关：on/off
+emay_switch: "on"
+#亿美短信平台-用户名
+emay_username: s_app2
+#亿美短信平台-密码
+emay_password: s_app123
+#获取token
+#emay_getTokenUrl: http://218.2.208.142:8082/gettoken
+emay_getTokenUrl: http://192.168.135.14:8082/gettoken
+#单发短信
+#emay_sendSingleSMSUrl: http://218.2.208.142:8082/ttworksheet/sendEmaySinglesms
+emay_sendSingleSMSUrl: http://193.168.1.94:8082/ttworksheet/sendEmaySinglesms
+#群发短信
+#emay_sendBatchonlySMSUrl: http://218.2.208.142:8082/ttworksheet/sendEmayBatchonlysms
+emay_sendBatchonlySMSUrl: http://193.168.1.94:8082/ttworksheet/sendEmayBatchonlysms
+#短信内容前缀（必须有，且固定为：【江苏交通云】）
+emay_SMSContentPrefix: 【江苏大剧院】
+
+
+#--------------------------------------------------对接大汉JCMS（交通要闻、通知公告）数据----------------------------------------------------------------------------------
+#对接大汉JCMS能力开关：on/off
+jcms_switch: "on"
+#接口访问地址
+jcms_wsdlUrl: http://172.24.16.225:8080/jcms/services/WSReceive?wsdl
+#登录名
+jcms_strLoginId: 8409d448a1936849d022f14d295251103c636f7d35b64a7cee5d161671b339ff13cb79b1d2265648bdcacdaceae51527b387704232d1164e12801df1dd7444124469368db268142b679b490b5ee272d09139e3e38782336d8697499731b0f1eb7afb5d78cfbfe2b8538a2769d2a0da361ee7c523caff1757731dc82e3d4e797d
+#密码
+jcms_strPwd: 91cd68405f86b86044c1253e6248f663c42b8e9a2c7f29a9719c9b2b79a167956252b18d002e0bc9089354656e26f42899bafba4fc9e1fa34cf30f7302d92106776e229d6657740fb7dcdb4f7786d3d977305e8468a6817f904955610876e3ab814b8644e1b9c7f70bdf6cae2389d322ba615fb08122fa572f0373177e6f7ad2
+#秘钥
+jcms_strKey:
+#栏目id--交通要闻
+jcms_nCataId_jtyw: 41904
+#栏目id--通知公告
+jcms_nCataId_tzgg: 41780
+#栏目id--媒体关注
+jcms_nCataId_mtgg: 41651
+#栏目id--新闻发布
+jcms_nCataId_xwfb: 75054
+#栏目id--学习贯彻党的十九届五中全会精神--学习贯彻
+jcms_nCataId_xxgc: 80607
+#栏目id--学习贯彻党的十九届五中全会精神--学习资料
+jcms_nCataId_xxzl: 80608
+#栏目id--通综合执法--通告
+jcms_nCataId_zftg: 65472
+#栏目id--通综合执法--执法动态
+jcms_nCataId_zfdt: 65473
+#栏目id--《信访条例》修订实施15周年——江苏交通微视频展播
+jcms_nCataId_jsjtwepzb: 80029
+#栏目id--交通运输安全--安全小贴士
+jcms_nCataId_aqxts: 74649
+#栏目id--交通运输安全--安全微动漫
+jcms_nCataId_aqwdm: 74650
+#栏目id--交通运输安全--给小朋友的主题班会
+jcms_nCataId_gxpydztbh: 74651
+#栏目id--交通运输安全--警示教育
+jcms_nCataId_jsjy: 80090
+#栏目id--政策法规--国家法律法规
+jcms_nCataId_gjflfg: 77118
+#栏目id--政策法规--省内法规规章
+jcms_nCataId_snfggz: 77119
+#栏目id--政策法规--规范性文件
+jcms_nCataId_gfxwj: 77120
+#栏目id--图片新闻(轮播图)
+jcms_nCataId_tpxw: 41693
+#查询时间天数：（开始时间和结束时间若不传，则默认查询时间段为：从当前日期开始向前推dayCell天）
+jcms_dayCell: 90
+
+
+#--------------------------------------------------对接长天智远： 运行监测----------------------------------------------------------------------------------
+#数据接口统一前缀地址
+ctzy_yxjc_Url: http://10.1.30.179:18080/runMonitorData/view/
+
+
+#--------------------------------------------------对接支付宝SDK----------------------------------------------------------------------------------
+#支付宝应用id
+alipay_appId: 2021002155658242
+#支付宝应用Pid
+alipay_pid: 2088931572838903
+#支付宝应用key
+alipay_appKey: d907b18ca7f5f33c39536f4c
+#支付宝应用secret
+alipay_masterSecret: d75e6502b95d5c4ee967c571
+#支付宝服务地址
+alipay_serverUrl: https://openapi.alipay.com/gateway.do
+#支付宝应用私钥
+alipay_appPrivateKey: MIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQCkwREjcR3TEdP0IRKoVmC4ySRW1VAxK5IxSctUHwNsJ20IjmLULl042aNrDuXbaK4PHq87VR9HTnteb+fWG0smRQB5t7tV4j6J5FqLWiwhYch9uaarm7/6NQ1OTfAHp89nl6d6zqqsD93mgIfJVIeAP+0TMGqqhqwN7AnxDVjYiPr69R97a7/c4KTW1LCbrcQCx6MoXW8X1sbRNEybLgi3q/xCcb9cifpNC6P5F8kKFYnKzQnsGnJ+3lTwbfxOmNnUmHlhAJGDkpitsbz8H/83TezOJBWZ9SUd069qxQ9QCnKu2S6VMntC3GrzLb2/woyJ96tkiKwNhfeFF9Rw7jhzAgMBAAECggEBAKSkG1Bjtf47jqgkdNSsnTOMLjhoKx83/3wp1ntWEsF+FMO8Jp8LRjWNqHVQCfvc/DQ34b1VL1C+6SJSike4Nr0jr3nzVc5ZrU13WdRwZDFn2kdpw1ky6AJOCeH6mKfN1sIbF07uQDh6ErJKN2fGhTJwr6XBeJa4xi+TdcviHqsjfFhD/xa3cr/t9WE08UyGu07qXkD18uQ+rJXdgmOaeXR9OlR0BgiFLdxfRvJ6uojL+q9oN23BEjMhdMR+eAZ1j9rv9QB0zGI1l3a3iXs7HsPpclJfukaaDXa2SDblqpKWFlAn1OzNY85tQfUn1IAd1FiGf++8i39B1gf6q9p6ncECgYEA355CgSjnW4LgrFJmFUQObIsOF3B0Da7o2HueuFFwEAXoAXDqOpq0Qdg/0Fz8Kid46FbuucxiCY+Y8W0y7hdHERdKDX1NgPFUmnr0SMPzk4ee50A2aR4o7KYmmhgce5PhXSALyZXBk4ycOj4SKI8qQ9ji1iBFC480N4jCDfxy9PkCgYEAvJypRVyDkr6YjW7ck7zYtX48/SQTxNfTbPLOgdF0bv8imELopvcrrNk/9D/2G2x90KyZKWcYLXDYANBREXrz0kZyLhiqXjyVS4e5D0QN3HAH3pdpQRMB4Z/8RAGAv2tqi+jmvEXOrzi5jS6WrLCv+EzoxTtFmZlVD0Qlak9+b8sCgYEAhnsRucVUpccmwNtpAv8Dwak610PMt3HqHE7z3Bs1zp0OstcqNgZVw4d+kRtqlxtX7jphpSFSEDfoncCzMVaUaaXc5hHmK1Z3L9Qj1yLo+F9GZAJM9pipufAOJPu9HWCI1s1v6VKDsO2OAsTTfMrkexsTB/0uKM59c6xuL6UTqVkCgYAW2dQYNzEpojXRTNEkhQisVHMHKEvM2WkgFfq2961nlTmXwON29xMvidKZwPYMNIS5t2+G+JqRRs6kqphnycGohChpNUvOxwA/el4NX21ee6Q4b5es7qSXtU5W3ue+SUFLWhg6TyrPR8wTMsXGflGTf53j515zUYRgqRzvWFo1KQKBgQCgZz5hPuouJ499nHN8bps3PptMFSiuJV/7j7VwijUoZTAcOBeisnthP204XAdcoCb+8UG+OQKvpFEzZAipdwxwMzH7gMqhGZfcOWMOOYy/ZAvfg2gzr8J+RQEBR0PY+E/yQEh/uy3k6hWc1INWByuHinrIkZF6dIW0tWo51GCmMA==
+#支付宝应用公钥
+alipay_appPublicKey: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApMERI3Ed0xHT9CESqFZguMkkVtVQMSuSMUnLVB8DbCdtCI5i1C5dONmjaw7l22iuDx6vO1UfR057Xm/n1htLJkUAebe7VeI+ieRai1osIWHIfbmmq5u/+jUNTk3wB6fPZ5enes6qrA/d5oCHyVSHgD/tEzBqqoasDewJ8Q1Y2Ij6+vUfe2u/3OCk1tSwm63EAsejKF1vF9bG0TRMmy4It6v8QnG/XIn6TQuj+RfJChWJys0J7Bpyft5U8G38TpjZ1Jh5YQCRg5KYrbG8/B//N03sziQVmfUlHdOvasUPUApyrtkulTJ7Qtxq8y29v8KMiferZIisDYX3hRfUcO44cwIDAQAB
+alipay_alipayPublicKey: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjguF74b+Cw33bZsoPdrccp7cCxLF3cwWXGEwuGq+semtp7c/TnbR9d3cN0MCUuwpoZaZbxFUpre8gPrX+q7zbmyjVTV9Of4dBYDTnZ5puIMW6wVgvaMQishkUJkjYZKgAIDHIYUjVnBpCfIYx3BpnAeXnh4bhXQJUFuQCi67ZMpIAuKAaDhUHpvTTgUgnlNay88lHl+Gt9AUyKLcYykvVgAvn7DDf73cTL0Vrutizi/1HsmO+sUE5FLGERcBjkA7mHkxwpOg8hmZQ6n/Yps/6JQnImCKLRTJX5BsrmvAzfyD35uWv+EKeOXhk2a6NL1pQXXpsuz7YOA0sYnNebgfIwIDAQAB
+
+#系统订单配置
+order:
+  #订单全局统一前缀（订单号格式为"统一前缀+当前时间（yyyyMMddHHmmssSSS格式）”）
+  prefix:
+    #合并
+    merge: MG
+    #商城
+    shopping:
+      #文创商品
+      culgoods: CUL
+      #积分商品
+      integralgoods: INT
+      #艺术活动
+      activity: AC
+      #艺术培训
+      class: CL
+      #爱艺计划
+      plan: PL
+    #卖票
+    ticket: TK
+    #停车
+    park: PK
+    #点播
+    video: VD
+    #充值
+    recharge: CG
+  #订单类型（对应数据库订单表order_type字段）
+  orderType:
+    #合并
+    merge: 0
+    #商城
+    shopping:
+      #文创商品
+      culgoods: 11
+      #积分商品
+      integralgoods: 12
+      #艺术活动
+      activity: 13
+      #艺术培训
+      class: 14
+      #爱艺活动
+      plan: 15
+    #卖票
+    ticket: 2
+    #停车
+    park: 3
+    #点播
+    video: 4
+    #充值
+    recharge: 5
+  #订单状态
+  orderState:
+    #异常
+    anomalous: -1
+    #已处理异常
+    handAnomalous: -10
+    #已取消
+    cancel: 0
+    #待付款
+    toPay: 10
+    #付款中
+    inPay: 15
+    #已付款
+    hasPay: 20
+    #已发货
+    hasSend: 30
+    #已收货
+    hasGet: 40
+    #待评价
+    toEvaluate: 45
+    #已完成
+    hasDone: 50
+    #申请退款中
+    toRefund: 60
+    #已退款
+    hasRefund: 70
+
+#系统商品配置
+cart:
+  #商品类型（对应购物车商品表cart_type字段）
+  cartType:
+    #文创商品
+    culgoods: 1
+    #积分商品
+    integralgoods: 2
+    #艺术活动
+    activity: 3
+    #艺术培训
+    class: 4
+    #演出票
+    ticket: 5
+    #停车
+    park: 6
+    #点播
+    video: 7
+    #充值
+    recharge: 8
+    #爱艺计划
+    plan: 9
+#商户
+store:
+  #默认值
+  default:
+    #商户id
+    storeId: 1
+
+mz:
+  client:
+    url: http://gw.api.taobao.com/router/rest
+    appkey: 32838507
+    secret: f0ff6a087d9543f613616274b509ac60
+  sign:
+    secret: jsdjyw193hg319141
+  pay:
+    wx: 61993
+    ali: 61992
+
+park:
+  api:
+    #账单查询/费用查询
+    getParkingPaymentInfo: http://kp-open.keytop.cn/unite-api/api/wec/GetParkingPaymentInfo
+    #停车费支付
+    payParkingFee: http://kp-open.keytop.cn/unite-api/api/wec/PayParkingFee
+    #查询订单状态
+    getOrderStatus: http://kp-open.keytop.cn/unite-api/api/wec/GetOrderStatus
+    #查询缴费记录
+    getParkingPaymentList: http://kp-open.keytop.cn/unite-api/api/wec/GetParkingPaymentList
+  appId: 10665
+  appSecret: 3e36665eb77142bcb370bc67247f10a4
+  parkId: 7624
+
+payment:
+  wxpay: 21
+  wxpay_park: 20
+  alipay: 22
+
+#积分与现金兑换比例
+moneyToIntegralScale: 100
+
+#每日签到赠送积分
+signIntegral: 1
+
+crm:
+  authorization:
+    systemName: JSART_APP_PROGRAM
+    url: http://crmprod.jsartcentre.org:83/crm/getToken
+  #优惠券列表
+  couponList:
+    roleType: ROLE_APP_COUPON_LIST
+    url: http://crmprod.jsartcentre.org:83/crm/coupon/couponList
+  #优惠券详情
+  couponDtl:
+    roleType: ROLE_APP_MEMBER_COUPON_INFO
+    url: http://crmprod.jsartcentre.org:83/crm/coupon/couponDtl
+  #会员优惠券列表
+  memcpList:
+    roleType: ROLE_APP_MEMBER_COUPON_LIST
+    url: http://crmprod.jsartcentre.org:83/crm/coupon/memcpList
+  #优惠券创建
+  createCoupon:
+    roleType: ROLE_APP_COUPON_CREATE
+    url: http://crmprod.jsartcentre.org:83/crm/coupon/createCoupon
+  #优惠券删除
+  deleteCoupon:
+    roleType: ROLE_APP_COUPON_DEL
+    url: http://crmprod.jsartcentre.org:83/crm/coupon/deleteCoupon
+  #优惠券发放
+  grantcoupon:
+    roleType: ROLE_APP_COUPON_ISSUE
+    url: http://crmprod.jsartcentre.org:83/crm/coupon/grantcoupon
+  #优惠券解绑
+  untie:
+    roleType: ROLE_APP_COUPON_UNTIE
+    url: http://crmprod.jsartcentre.org:83/crm/coupon/untie
+  #优惠券核销
+  writeOff:
+    roleType: ROLE_APP_COUPON_WRITEOFF
+    url: http://crmprod.jsartcentre.org:83/crm/coupon/writeOff
+  #会员标签
+  labels:
+    roleType: ROLE_APP_MEMBER_LABELS
+    url: http://crmprod.jsartcentre.org:83/crm/member/labels
+
+#艺教课程直播
+artClass_SDKAppID: 1400545536
+artClass_SecretKey: 75d96bcd03d24bdc03ce595e108430c153164f2f2c7c97fddbf259db292c2525
+artClass_expireTime: 604800

@@ -1,0 +1,74 @@
+#分布式配置中心(Spring Cloud Config)
+#Author: li_hao
+#1.调用配置中心的client服务的application.yml名称需要改成bootstrap.yml
+#2.如果Git仓库为公开仓库，可以不填写用户名和密码，如果是私有仓库需要填写
+#3.spring.profile.active=native相当于config只读取本地的文件，默认地址为classpath:/config目录
+#测试：启动config-server后，访问：http://localhost:10085/provider-dev.yml
+
+server:
+  port: 10085
+spring:
+  application:
+    name: configServer
+
+  #type1.加载本地配置文件开始--------------------------------------
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        bootstrap: true
+        native:
+          #searchLocations: classpath:/respo/dev
+          searchLocations: classpath:/respo/test
+          #searchLocations: classpath:/respo/prod
+  #type1.加载本地配置文件结束--------------------------------------
+
+
+  #type2.加载远程Git仓库配置文件开始-------------------------------
+  #  cloud:
+  #    config:
+  #      label: master
+  #      server:
+  #        git:
+  #          uri: https://github.com/piaoliudelaoyaoguai/SpringCloudConfig
+  #          searchPaths: respo
+  #          username: your username
+  #          password: your password
+  #type2.加载远程Git仓库配置文件结束-------------------------------
+
+
+  #type3.加载远程SVN仓库配置文件开始-------------------------------
+  #  profiles:
+  #      active: subversion
+  #  cloud:
+  #    config:
+  #      server:
+  #        svn:
+  #          uri: https://xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  #          username: your username
+  #          password: your password
+  #type3.加载远程SVN仓库配置文件结束-------------------------------
+
+
+
+
+
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:10080/eureka/
+
+
+
+#应用监控设置
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: '*'
+#  endpoint:
+#    health:
+#      show-details: always
