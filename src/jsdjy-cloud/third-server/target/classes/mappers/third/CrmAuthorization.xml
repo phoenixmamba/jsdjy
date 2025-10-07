@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.thirdserver.biz.dao.CrmAuthorizationDao">
+    <resultMap id="BaseResultMap" type="com.centit.thirdserver.biz.po.CrmAuthorization">
+        <!--@mbg.generated-->
+        <!--@Table crm_authorization-->
+        <result column="role_type" jdbcType="VARCHAR" property="roleType"/>
+        <result column="authorization" jdbcType="VARCHAR" property="authorization"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="invalid_time" jdbcType="TIMESTAMP" property="invalidTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        role_type,
+        `authorization`,
+        update_time,
+        invalid_time
+    </sql>
+    <insert id="insertOnDuplicateKey" parameterType="com.centit.thirdserver.biz.po.CrmAuthorization">
+        insert into crm_authorization (role_type, `authorization`, update_time,
+                                       invalid_time)
+        values (#{roleType,jdbcType=VARCHAR}, #{authorization,jdbcType=VARCHAR}, now(),
+                #{invalidTime,jdbcType=TIMESTAMP})
+        ON DUPLICATE KEY UPDATE authorization = #{authorization,jdbcType=VARCHAR},
+                                update_time=now(),
+                                invalid_time=#{invalidTime,jdbcType=TIMESTAMP}
+    </insert>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from crm_authorization
+        where role_type = #{roleType,jdbcType=VARCHAR}
+    </select>
+</mapper>

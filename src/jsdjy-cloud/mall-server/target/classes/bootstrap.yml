@@ -1,0 +1,48 @@
+server:
+  port: 17002
+spring:
+  application:
+    name: mall
+  sleuth:
+    sampler:
+      probability: 1
+  zipkin:
+    base-url: http://122.51.136.79:9411
+    sender:
+      type: web
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 106.54.58.237:8848
+        group: common
+        service: mall
+        username: nacos
+        password: nacos
+        namespace: jsdjy_test
+      config:
+        server-addr: 106.54.58.237:8848
+        username: nacos
+        password: nacos
+        namespace: jsdjy_test
+        file-extension: yaml
+        group: mall
+        extension-configs:
+          - data-id: commonDataSource.yaml
+            group: common
+            refresh: true
+          - data-id: commonConfig.yaml
+            group: common
+            refresh: true
+          - data-id: third.yaml
+            group: common
+            refresh: true
+
+snowflake:
+  datacenterId: 1
+  workerId: 1
+
+
+
+

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.centit.mallserver.dao.ShoppingPayLimitDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.centit.mallserver.po.ShoppingPayLimitPo">
+        <result column="point_pay" property="pointPay" />
+        <result column="balance_pay" property="balancePay" />
+        <result column="balance_recharge" property="balanceRecharge" />
+    </resultMap>
+
+
+
+    <!--  查询详情 -->
+    <select id="selectDetail" resultMap="BaseResultMap">
+            select point_pay, balance_pay, balance_recharge
+            from shopping_pay_limit limit 1
+    </select>
+
+
+</mapper>
