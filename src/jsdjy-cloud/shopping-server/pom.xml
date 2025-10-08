@@ -41,11 +41,11 @@
         </dependency>
 
         <!-- Oracle驱动  oracle ojdbc不免费，需要手动引入jar包 -->
-        <dependency>
-            <groupId>com.oracle</groupId>
-            <artifactId>ojdbc6</artifactId>
-            <version>11.2.0.3</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.oracle</groupId>-->
+<!--            <artifactId>ojdbc6</artifactId>-->
+<!--            <version>11.2.0.3</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
@@ -199,7 +199,7 @@
         <dependency>
             <groupId>com</groupId>
             <artifactId>taobao-sdk-java-auto</artifactId>
-            <version>1641374144418-20220330</version>
+            <version>1641374144418-20250917</version>
         </dependency>
 
         <dependency>

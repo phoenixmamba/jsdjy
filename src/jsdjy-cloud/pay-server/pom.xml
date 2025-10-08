@@ -118,7 +118,7 @@
         <dependency>
             <groupId>com</groupId>
             <artifactId>taobao-sdk-java-auto</artifactId>
-            <version>1641374144418-20220330</version>
+            <version>1641374144418-20250917</version>
         </dependency>
 
         <dependency>

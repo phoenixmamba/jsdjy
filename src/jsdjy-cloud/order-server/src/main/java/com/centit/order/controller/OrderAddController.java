@@ -32,7 +32,7 @@ public class OrderAddController {
     private String rocketmqTopicOrder;
     /**
      * 订单提交
-     * @return
+     * @return 订单ID
      */
     @PostMapping("/addOrder")
     public Result addOrder(@RequestBody @Validated OrderDto orderDto){
